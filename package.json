@@ -1,6 +1,6 @@
 {
   "name": "Filmoteka",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "homepage": "https://github.com/NikitaMelnychencko/Filmoteka",
@@ -12,19 +12,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NikitaMelnychencko/Filmoteka.git"
+    "url": "git+https://github.com/NikitaMelnychencko/Filmoteka"
   },
-  "keywords": [],
   "author": "Nikita Melnychencko",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/NikitaMelnychencko/Filmoteka/issues"
   },
+  "keywords": [],
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
     "parcel-plugin-nuke-dist": "^1.0.1",
-    "posthtml-include": "^1.6.2",
-    "sass": "^1.32.8"
+    "posthtml-include": "^1.7.1",
+    "sass": "^1.39.0"
+  },
+  "dependencies": {
+    "gh-pages": "^3.2.3"
   }
 }
