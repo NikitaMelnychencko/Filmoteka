@@ -9,4 +9,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"handlebars/dist/handlebars.runtime":"pAws"}],"QvaY":[function(require,module,exports) {
 "use strict";require("../sass/index.scss");var e=s(require("../templates/exampl.hbs"));function s(e){return e&&e.__esModule?e:{default:e}}
 },{"../sass/index.scss":"dKQo","../templates/exampl.hbs":"QrX6"}]},{},["QvaY"], null)
-//# sourceMappingURL=/Filmoteka/js.f32acb0a.js.map
+//# sourceMappingURL=/Filmoteka/js.702dba5d.js.map
