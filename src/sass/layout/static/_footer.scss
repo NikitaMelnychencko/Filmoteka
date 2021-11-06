@@ -4,6 +4,49 @@
   padding-bottom: 29.7px;
 }
 
+.footer__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media screen and (min-width: $tablet-general) {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.footer__first-text-box {
+  margin-bottom: 9.9px;
+  @media screen and (min-width: $tablet-general) {
+    margin-bottom: 0;
+    margin-right: 4px;
+  }
+}
+
+.footer__second-text-box {
+  display: flex;
+}
+
+.footer__text {
+  font-size: 14px;
+  line-height: 1.14;
+  color: $third-text-color;
+  @media screen and (min-width: $tablet-general) {
+    font-size: 16px;
+    line-height: 1.19;
+  }
+}
+
+.footer__link {
+  text-decoration-line: underline;
+  margin-left: 4px;
+}
+
 .footer__svg {
-  fill: red;
+  fill: $accent-color;
+  width: 14px;
+  height: 14px;
+  margin: 0 10px;
+  display: flex;
+  align-self: center;
 }
