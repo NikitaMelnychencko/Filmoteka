@@ -1,7 +1,7 @@
 .footer {
   background-color: $fourth-background-color;
-  padding-top: 28.7px;
-  padding-bottom: 29.7px;
+  padding-top: 29px;
+  padding-bottom: 29px;
 }
 
 .footer__container {
@@ -16,7 +16,7 @@
 }
 
 .footer__first-text-box {
-  margin-bottom: 9.9px;
+  margin-bottom: 10x;
   @media screen and (min-width: $tablet-general) {
     margin-bottom: 0;
     margin-right: 4px;
