@@ -1,0 +1,33 @@
+.gallery{
+  padding-bottom: 50px;
+  @media screen and (min-width: $desktop-up) {
+    padding-bottom: 40px;
+  }
+}
+.gallery-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: -15px;
+}
+.gallery-list__item{
+  display: block;
+  height: 440px;
+  width: 280px;
+  background-color: black;
+  margin: 15px;
+
+  @media screen and (min-width: $tablet-general) {
+    width: 294px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    width: 274px;
+  }
+}
+
+  
+
+  
+
+  
