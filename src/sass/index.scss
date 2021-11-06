@@ -1,1 +1,29 @@
+//==========utils=================
+@import './utils/animation';
+@import './utils/breakpoints';
+@import './utils/fonts';
+@import './utils/placeholder';
+@import './utils/variables';
+//=============base==============
 @import './base/globalClass';
+@import './base/reset';
+//==========components===========
+@import './components/backdrop';
+@import './components/block_help';
+@import './components/button';
+@import './components/gallery_card';
+@import './components/hero';
+@import './components/logo';
+@import './components/modal_login';
+@import './components/nuv_list';
+@import './components/pagination_list';
+//=========layout===============
+//=========static===============
+@import './layout/static/header';
+@import './layout/static/footer';
+//=========main================
+@import './layout/gallery';
+@import './layout/modal_one_movie';
+@import './layout/modal_team_list';
+@import './layout/hero_home';
+@import './layout/hero_my_list';
