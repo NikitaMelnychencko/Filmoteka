@@ -1,115 +1,13 @@
+{{#each this}}
 <li class="gallery-list__item">
-    <img class="gallery-list__img"
-        src='https://cdn.pixabay.com/photo/2019/05/14/16/43/himilayan-blue-poppy-4202825__340.jpg'>
+    <img class="gallery-list__img" src='https://image.tmdb.org/t/p/w500{{poster_path}}''>
     <div class="gallery-list__card">
-        <h2 class="gallery-list__title">Borat: Cultural Learnings of America for Make Benefit Glorious Nation of
-            Kazakhstan</h2>
+        <h2 class="gallery-list__title">{{title}}</h2>
         <div class="gallery-list__info">
-            <p class="gallery-list__genre">Drama, Action |</p>
-            <p class="gallery-list__year">2020</p>
-            <p class="gallery-list__rate">10.0</p>
+            <p class="gallery-list__genre">{{genre_ids}} |</p>
+            <p class="gallery-list__year">{{release_date}}</p>
+            <p class="gallery-list__rate">{{vote_average}}</p>
         </div>
     </div>
 </li>
-<li class="gallery-list__item">
-    <img class="gallery-list__img" src="./images/cover.png">
-    <div class="gallery-list__card">
-        <h2 class="gallery-list__title">three billboards outside ebbing missouri
-        </h2>
-        <div class="gallery-list__info">
-            <p class="gallery-list__genre">Drama, Action |</p>
-            <p class="gallery-list__year">2020</p>
-            <p class="gallery-list__rate">10.0</p>
-        </div>
-    </div>
-</li>
-<li class="gallery-list__item">
-    <img class="gallery-list__img" src="./images/cover.png">
-    <div class="gallery-list__card">
-        <h2 class="gallery-list__title">1. Night of the Day of the Dawn of the Son of the Bride of the Return of the
-            Revenge of the Terror of the Attack of the
-            Evil, Mutant, Hellbound, Flesh-Eating Subhumanoid Zombified Living Dead, Part 2: In Shocking 2-D</h2>
-        <div class="gallery-list__info">
-            <p class="gallery-list__genre">Drama, Action |</p>
-            <p class="gallery-list__year">2020</p>
-            <p class="gallery-list__rate">10.0</p>
-        </div>
-    </div>
-</li>
-<li class="gallery-list__item">
-    <img class="gallery-list__img" src="./images/cover.png">
-    <div class="gallery-list__card">
-        <h2 class="gallery-list__title">GREYHOUND</h2>
-        <div class="gallery-list__info">
-            <p class="gallery-list__genre">Drama, Action |</p>
-            <p class="gallery-list__year">2020</p>
-            <p class="gallery-list__rate">10.0</p>
-        </div>
-    </div>
-</li>
-<li class="gallery-list__item">
-    <img class="gallery-list__img" src="./images/cover.png">
-    <div class="gallery-list__card">
-        <h2 class="gallery-list__title">GREYHOUND</h2>
-        <div class="gallery-list__info">
-            <p class="gallery-list__genre">Drama, Action |</p>
-            <p class="gallery-list__year">2020</p>
-            <p class="gallery-list__rate">10.0</p>
-        </div>
-    </div>
-</li>
-<li class="gallery-list__item">
-    <img class="gallery-list__img" src="./images/cover.png">
-    <div class="gallery-list__card">
-        <h2 class="gallery-list__title">GREYHOUND</h2>
-        <div class="gallery-list__info">
-            <p class="gallery-list__genre">Drama, Action |</p>
-            <p class="gallery-list__year">2020</p>
-            <p class="gallery-list__rate">10.0</p>
-        </div>
-    </div>
-</li>
-<li class="gallery-list__item">
-    <img class="gallery-list__img" src="./images/cover.png">
-    <div class="gallery-list__card">
-        <h2 class="gallery-list__title">GREYHOUND</h2>
-        <div class="gallery-list__info">
-            <p class="gallery-list__genre">Drama, Action |</p>
-            <p class="gallery-list__year">2020</p>
-            <p class="gallery-list__rate">10.0</p>
-        </div>
-    </div>
-</li>
-<li class="gallery-list__item">
-    <img class="gallery-list__img" src="./images/cover.png">
-    <div class="gallery-list__card">
-        <h2 class="gallery-list__title">GREYHOUND</h2>
-        <div class="gallery-list__info">
-            <p class="gallery-list__genre">Drama, Action |</p>
-            <p class="gallery-list__year">2020</p>
-            <p class="gallery-list__rate">10.0</p>
-        </div>
-    </div>
-</li>
-<li class="gallery-list__item">
-    <img class="gallery-list__img" src="./images/cover.png">
-    <div class="gallery-list__card">
-        <h2 class="gallery-list__title">GREYHOUND</h2>
-        <div class="gallery-list__info">
-            <p class="gallery-list__genre">Drama, Action |</p>
-            <p class="gallery-list__year">2020</p>
-            <p class="gallery-list__rate">10.0</p>
-        </div>
-    </div>
-</li>
-<li class="gallery-list__item">
-    <img class="gallery-list__img" src="./images/cover.png">
-    <div class="gallery-list__card">
-        <h2 class="gallery-list__title">GREYHOUND</h2>
-        <div class="gallery-list__info">
-            <p class="gallery-list__genre">Drama, Action |</p>
-            <p class="gallery-list__year">2020</p>
-            <p class="gallery-list__rate">10.0</p>
-        </div>
-    </div>
-</li>
+{{/each}}
