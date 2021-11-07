@@ -3,8 +3,12 @@
     "hero_tittle": "Search Movies",
     "gallery_title": "Trending films of the week"
   },
-  "my_library": {
+  "my_library_watched": {
     "hero_tittle": "Movie bookmarks",
-    "gallery_title": ["List of films watched", "Queue of films for watching"]
+    "gallery_title": "List of films watched"
+  },
+  "my_library_queue": {
+    "hero_tittle": "Movie bookmarks",
+    "gallery_title": "Queue of films for watching"
   }
 }
