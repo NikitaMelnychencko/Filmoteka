@@ -1,0 +1,100 @@
+.gallery-list__item{
+  display: block;
+  height: 440px;
+  max-width: 280px;
+//   background-color: black;
+  margin: 15px;
+
+  @media screen and (min-width: $tablet-general) {
+    max-width: 294px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    max-width: 274px;
+  }
+}
+
+.gallery-list__img{
+  display: block;
+  height: 398px;
+  width: 280px;
+  border-radius: 5px;
+
+  @media screen and (min-width: $tablet-general) {
+    width: 294px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    width: 274px;
+  }
+}
+
+.gallery-list__card {
+padding-top: 10px;
+// display: flex;
+// flex-wrap: wrap;
+}
+
+.gallery-list__title {
+//font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 1.17;
+text-transform: uppercase;
+max-height: 44px;
+
+white-space: nowrap; /* Отменяем перенос текста */
+    overflow: hidden; /* Обрезаем содержимое */
+    //padding: 5px; /* Поля */
+    text-overflow: ellipsis; /* Многоточие */
+
+//flex-wrap: wrap;
+color: $primary-title-text-color;
+}
+
+.gallery-list__title:hover {
+    //background: #f0f0f0; /* Цвет фона */
+    white-space: normal; /* Обычный перенос текста */
+}
+
+.gallery-list__info {
+  display: flex;
+  align-items: baseline;
+
+  //font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+
+  color: $selection-text-color;
+}
+
+.gallery-list__genre {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  //padding-right: 2px;
+ // border-right: 2px solid #FF6B08;
+}
+
+.gallery-list__year {
+  padding-left: 2px;
+}
+
+.gallery-list__rate {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-left: 10px;
+  width: 36px;
+  height: 16px;
+  background-color: $secondary-background-color;
+  color: $form-text-color;
+  border-radius: 5px;
+}
+
+
+  
+
+  
