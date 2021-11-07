@@ -57,9 +57,9 @@
   margin: 0 10px;
   display: flex;
   align-self: center;
-  transition: all $time-cubic;
+  transition: all 150ms;
 }
 
 .footer__svg-heartbeat {
-  transform: scale(1.5);
+  transform: scale(1.4);
 }

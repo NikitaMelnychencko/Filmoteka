@@ -14,11 +14,12 @@ function heartBeat() {
 
 function intervalBeat() {
   heart.classList.add('footer__svg-heartbeat');
-  timerFooterId = setTimeout(delayBeat, 250);
+  timerFooterId = setTimeout(delayBeat, 150);
 }
 
 function delayBeat() {
   heart.classList.remove('footer__svg-heartbeat');
-  removeTimeout(delayBeat, 250);
+  clearTimeout(delayBeat, 150);
 }
+
 heartBeat();
