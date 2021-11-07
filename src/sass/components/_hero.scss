@@ -1,5 +1,4 @@
 .hero {
-  overflow: hidden;
   &--home {
     min-width: 320px;
     height: 230px;
@@ -136,7 +135,10 @@
   @extend %hide;
 }
 
-//   @media screen and (min-width: $desktop) {
-//     padding: 200px 0;
-//   }
-// }
+.hero__wrap{
+  display: flex;
+  justify-content: space-between;
+  @media screen and (min-width: $tablet-general) {
+  justify-content: space-around;
+  }
+}
