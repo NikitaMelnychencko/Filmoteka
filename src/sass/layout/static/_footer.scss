@@ -16,10 +16,10 @@
 }
 
 .footer__first-text-box {
-  margin-bottom: 10x;
+  margin-bottom: 10px;
+  display: flex;
   @media screen and (min-width: $tablet-general) {
     margin-bottom: 0;
-    margin-right: 4px;
   }
 }
 
@@ -28,12 +28,20 @@
 }
 
 .footer__text {
+  display: block;
   font-size: 14px;
   line-height: 1.14;
   color: $third-text-color;
   @media screen and (min-width: $tablet-general) {
     font-size: 16px;
     line-height: 1.19;
+  }
+}
+
+.footer__text__vertical-line {
+  &::after {
+    content: '|';
+    margin: 0 5px;
   }
 }
 
@@ -49,4 +57,9 @@
   margin: 0 10px;
   display: flex;
   align-self: center;
+  transition: all $time-cubic;
+}
+
+.footer__svg-heartbeat {
+  transform: scale(1.5);
 }
