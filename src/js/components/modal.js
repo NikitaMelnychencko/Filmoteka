@@ -46,4 +46,4 @@ function modalRemoveListener() {
   refsModal.backdrop.removeEventListener('click', clickBackdropClose);
 }
 
-setTimeout(e => renderModal('TEST'), 200); //test
+// setTimeout(e => renderModal('TEST'), 200); //test
