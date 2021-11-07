@@ -1,8 +1,10 @@
 import { refs } from '../refs/refs';
 import modal_markup from '../../views/components/modal.hbs';
 import { renderBackdrop, closeBackdrop } from './backdrop';
-
-refs.modal.insertAdjacentHTML('beforeend', modal_markup());
+import svg from '../../images/svg/sprite.svg';
+console.log(svg);
+refs.modal.insertAdjacentHTML('beforeend', modal_markup({ svg }));
+console.log(svg);
 
 const refsModal = {
   modalClose: document.querySelector('.modal'),
@@ -43,3 +45,4 @@ function modalRemoveListener() {
   window.removeEventListener('keydown', modalCloseEcsKey);
   backdropClose.removeEventListener('click', closeModal);
 }
+modalMarkup();

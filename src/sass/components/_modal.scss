@@ -15,16 +15,18 @@
   }
 }
 
-.content {
-  min-width: 100px;
-  min-height: 100px;
+.modal__content {
+  min-width: 150px;
+  min-height: 150px;
 }
 
 .modal__close-button-svg {
   fill: black;
+  stroke: red;
   width: 14px;
   height: 14px;
   filter: drop-shadow(0 0 8px red);
+  // background-color: #000;
 }
 
 .modal__close-button {
@@ -34,11 +36,14 @@
   border: none;
   top: 10px;
   right: 10px;
-  background-color: sandybrown;
+  width: 30px;
+  height: 30px;
+  display: block;
   padding: 8px;
+  transition: all $time-cubic;
   &:focus,
   &:hover {
-    filter: drop-shadow(0 0 8px red);
+    filter: drop-shadow(0 0 5px black);
   }
 }
 
@@ -50,3 +55,7 @@
     transform: translate(-50%, -50%) scale(1);
   }
 }
+
+// .element-color(@color) {
+//   background-image: url('data:image/svg+xml;utf8,<svg ...><g stroke="@{color}" ... /></g></svg>');
+// }
