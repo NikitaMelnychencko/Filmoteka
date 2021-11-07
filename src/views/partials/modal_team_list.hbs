@@ -1,0 +1,27 @@
+<div class="ourteam__container">
+    <div class="ourteam__title">
+        <a class="ref__github" href="https://github.com/NikitaMelnychencko/Filmoteka" target="_blank"
+            rel="noreferrer noopener" aria-label="Our Github">
+            <img class="goit-logo" src="https://goit.ua/wp-content/themes/2/images/Layer.png" alt="GoIT"
+                title="Our Github">
+        </a>
+        <h2 lang="en" class="ourteam__title">Group 10</h2>
+    </div>
+    <div class="ourteam__content">
+        <ul class="ourteam__list list">
+            {{#each this}}
+            <li class="ourteam__item">
+                <div class="img__scale"><img src="{{imageMember}}" alt="{{name}}" class="ourteam__image"/></div>
+                    <p lang="en" class="ourteam__subtitle">{{name}}</p>
+                    <p lang="en" class="ourteam__text text">{{position}}</p>
+                    <a class="social__link" href="{{socialLink}}" target="_blank" aria-label="Members Github">
+                        <img class="social__icon"
+                            src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
+                            alt="icon github">
+                    </a>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+    <button type=" button" class="close__button"></button>
+</div>
