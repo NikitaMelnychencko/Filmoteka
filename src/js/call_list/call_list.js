@@ -1,9 +1,9 @@
-import main from '../../views/layout/main.hbs'
-import { refs } from '../refs/refs.js'
-import { homeMarkUp } from '../layout/hero_home'
+import main from '../../views/layout/main.hbs';
+import { refs } from '../refs/refs.js';
+import { homeMarkUp } from '../layout/hero_home';
+import searchSvg from '../../images/svg/sprite.svg';
 
-//test
 function homeRender() {
-  refs.main.innerHTML = main({homeMarkUp});
+  refs.main.innerHTML = main({ homeMarkUp, searchSvg });
 }
-homeRender()
+homeRender();
