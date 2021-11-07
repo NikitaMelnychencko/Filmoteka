@@ -6,9 +6,75 @@
   }
 
   &--home{
-    
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $sixes-background-color;
+    background-image: linear-gradient(to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(47, 48, 58, 0.4)),
+    url(../../images/img/png/hero_home/mobile/hero.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+  
+
+    @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+      .hero {
+        background-image: url(../../images/img/png/hero_home/mobile/hero.png);
+      }
+    }
   }
   &--my-library{
 
   }
 }
+
+.gallery__tittle--hide,
+.hero__tittle--hide {
+  @extend %hide;
+}
+
+// .hero {
+ 
+
+//   @media screen and (min-width: 481px) and (max-width: $tablet) {
+//     max-width: 768px;
+//     background-image: linear-gradient(to right,
+//         rgba(47, 48, 58, 0.4),
+//         rgba(47, 48, 58, 0.4)),
+//       url(../images/tablet/hiro/hiro_tablet.jpg);
+
+//     @media (min-device-pixel-ratio: 2),
+//     (min-resolution: 192dpi),
+//     (min-resolution: 2dppx) {
+//       .hero {
+//         background-image: url(../images/tablet/hiro/hiro_tablet@2x.jpg);
+//       }
+//     }
+//   }
+
+//   @media screen and (min-width: 769px) {
+//     max-width: 1600px;
+//     background-image: linear-gradient(to right,
+//         rgba(47, 48, 58, 0.4),
+//         rgba(47, 48, 58, 0.4)),
+//       url(../images/desktop/hiro/hiro_desktop.jpg);
+
+//     @media (min-device-pixel-ratio: 2),
+//     (min-resolution: 192dpi),
+//     (min-resolution: 2dppx) {
+//       .hero {
+//         background-image: url(../images/desktop/hiro/hiro_desktop@2x.jpg);
+//       }
+//     }
+//   }
+
+//   @media screen and (min-width: $desktop) {
+//     padding: 200px 0;
+//   }
+// }

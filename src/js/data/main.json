@@ -1,14 +1,10 @@
 {
-  "home": [
-    {
-      "hero_tittle": "Search Movies",
-      "gallery_title": "Trending films of the week"
-    }
-  ],
-  "my_library": [
-    {
-      "hero_tittle": "Movie bookmarks",
-      "gallery_title": ["List of films watched", "Queue of films for watching"]
-    }
-  ]
+  "home": {
+    "hero_tittle": "Search Movies",
+    "gallery_title": "Trending films of the week"
+  },
+  "my_library": {
+    "hero_tittle": "Movie bookmarks",
+    "gallery_title": ["List of films watched", "Queue of films for watching"]
+  }
 }
