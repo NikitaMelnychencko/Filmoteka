@@ -1,7 +1,12 @@
 .modal-one-movie {
+  padding: 48px 20px 41px 20px;
   @media screen and (min-width: $tablet-general) {
     display: flex;
     justify-content: space-between;
+    padding: 42px 30px 40px 28px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    padding: 50px 30px 40px 30px;
   }
 }
 .modal-one-movie__image-box {

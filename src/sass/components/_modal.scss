@@ -2,17 +2,16 @@
   position: absolute;
   top: 20px;
   left: 50%;
-
-  transform: translate(-50%, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: all $time-cubic;
+  transform: translate(-50%, 0) scale(0.9);
   background-color: $primary-background-color;
-  padding: 48px 20px 41px 20px;
   @media screen and (min-width: $tablet-general) {
-    padding: 42px 30px 40px 28px;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.9);
     top: 50%;
   }
   @media screen and (min-width: $desktop-up) {
-    padding: 50px 30px 40px 30px;
   }
 }
 
@@ -40,5 +39,14 @@
   &:focus,
   &:hover {
     filter: drop-shadow(0 0 8px red);
+  }
+}
+
+.modal_is-open {
+  opacity: 1;
+  pointer-events: initial;
+  transform: translate(-50%, 0) scale(1);
+  @media screen and (min-width: $tablet-general) {
+    transform: translate(-50%, -50%) scale(1);
   }
 }

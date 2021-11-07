@@ -1,0 +1,16 @@
+.backdrop {
+  background: #000000;
+  opacity: 0;
+  pointer-events: none;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  position: fixed;
+  transition: all 250ms;
+}
+
+.backdrop_is-open {
+  opacity: 0.25;
+  pointer-events: initial;
+}
