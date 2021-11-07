@@ -1,15 +1,16 @@
-import { refs } from '../refs/refs';
-import modal_markup from '../../views/components/modal.hbs';
+// import { refs } from '../refs/refs';
+// import modal_markup from '../../views/components/modal.hbs';
 import { renderBackdrop, closeBackdrop } from './backdrop';
-import svg from '../../images/svg/sprite.svg';
-console.log(svg);
-refs.modal.insertAdjacentHTML('beforeend', modal_markup({ svg }));
-console.log(svg);
+// import svg from '../../images/svg/sprite.svg';
+// console.log(svg);
+// refs.modal.insertAdjacentHTML('beforeend', modal_markup({ svg }));
+// console.log(svg);
 
 const refsModal = {
   modalClose: document.querySelector('.modal'),
   modal_content: document.querySelector('.modal__content'),
   buttonCloseModal: document.querySelector('[data-action="close-modal"]'),
+  backdrop: document.querySelector('.backdrop'),
 };
 
 export function modalMarkup(modalContent) {
@@ -20,14 +21,19 @@ export function modalMarkup(modalContent) {
 }
 
 function modalAddListener() {
-  const backdropClose = document.querySelector('.backdrop');
   refsModal.buttonCloseModal.addEventListener('click', closeModal);
   window.addEventListener('keydown', modalCloseEcsKey);
-  backdropClose.addEventListener('click', closeModal);
+  refsModal.backdrop.addEventListener('click', clickBackdropClose);
 }
 
 function modalCloseEcsKey(evt) {
   if (evt.code === 'Escape') {
+    closeModal();
+  }
+}
+
+function clickBackdropClose(evt) {
+  if (evt.target === refsModal.backdrop) {
     closeModal();
   }
 }
@@ -40,9 +46,10 @@ function closeModal() {
 }
 
 function modalRemoveListener() {
-  const backdropClose = document.querySelector('.backdrop');
   refsModal.buttonCloseModal.removeEventListener('click', closeModal);
   window.removeEventListener('keydown', modalCloseEcsKey);
-  backdropClose.removeEventListener('click', closeModal);
+  refsModal.backdrop.removeEventListener('click', clickBackdropClose);
 }
-modalMarkup();
+
+import meow from '../../views/partials/modal_one_movie.hbs';
+modalMarkup(meow());

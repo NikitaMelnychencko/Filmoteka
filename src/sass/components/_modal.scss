@@ -7,6 +7,7 @@
   transition: all $time-cubic;
   transform: translate(-50%, 0) scale(0.9);
   background-color: $primary-background-color;
+  z-index: 2;
   @media screen and (min-width: $tablet-general) {
     transform: translate(-50%, -50%) scale(0.9);
     top: 50%;
@@ -21,12 +22,9 @@
 }
 
 .modal__close-button-svg {
-  fill: black;
-  stroke: red;
+  stroke: $primary-text-color;
   width: 14px;
   height: 14px;
-  filter: drop-shadow(0 0 8px red);
-  // background-color: #000;
 }
 
 .modal__close-button {
@@ -43,7 +41,7 @@
   transition: all $time-cubic;
   &:focus,
   &:hover {
-    filter: drop-shadow(0 0 5px black);
+    filter: drop-shadow(0 0 5px $accent-color);
   }
 }
 
@@ -55,7 +53,3 @@
     transform: translate(-50%, -50%) scale(1);
   }
 }
-
-// .element-color(@color) {
-//   background-image: url('data:image/svg+xml;utf8,<svg ...><g stroke="@{color}" ... /></g></svg>');
-// }
