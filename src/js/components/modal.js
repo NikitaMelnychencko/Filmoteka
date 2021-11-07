@@ -1,10 +1,4 @@
-// import { refs } from '../refs/refs';
-// import modal_markup from '../../views/components/modal.hbs';
 import { renderBackdrop, closeBackdrop } from './backdrop';
-// import svg from '../../images/svg/sprite.svg';
-// console.log(svg);
-// refs.modal.insertAdjacentHTML('beforeend', modal_markup({ svg }));
-// console.log(svg);
 
 const refsModal = {
   modalClose: document.querySelector('.modal'),
@@ -13,7 +7,7 @@ const refsModal = {
   backdrop: document.querySelector('.backdrop'),
 };
 
-export function modalMarkup(modalContent) {
+export function renderModal(modalContent) {
   renderBackdrop();
   refsModal.modal_content.innerHTML = modalContent;
   refsModal.modalClose.classList.add('modal_is-open');
@@ -39,6 +33,7 @@ function clickBackdropClose(evt) {
 }
 
 function closeModal() {
+  refsModal.modal_content.innerHTML = '';
   const modal = document.querySelector('.modal');
   modal.classList.remove('modal_is-open');
   modalRemoveListener();
@@ -51,5 +46,4 @@ function modalRemoveListener() {
   refsModal.backdrop.removeEventListener('click', clickBackdropClose);
 }
 
-import meow from '../../views/partials/modal_one_movie.hbs';
-modalMarkup(meow());
+// setTimeout(e => modalMarkup('TEST'), 200); //test

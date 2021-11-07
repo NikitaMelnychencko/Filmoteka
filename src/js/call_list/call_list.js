@@ -9,7 +9,7 @@ import mainTittle from '../data/main.json';
 import backdrop_markup from '../../views/components/backdrop.hbs';
 import modal_markup from '../../views/components/modal.hbs';
 import svg from '../../images/svg/sprite.svg';
-const backdropMarkUp = backdrop_markup(modal_markup({ svg }));
+const backdropMarkUp = backdrop_markup(modal_markup({ svg })); //backdrop include plugin "modal window"
 
 function pageRender(value) {
   const currentValue = value;
