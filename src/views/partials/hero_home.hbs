@@ -1,0 +1,15 @@
+{{#each}}
+  <form class='search-form' id='search-form'>
+    <input
+      type='text'
+      name='query'
+      autocomplete='off'
+      placeholder='Поиск фильмов'
+    />
+    <button type='submit' class='search-btn'>
+      <svg class='search-icon' width='12' height='12'>
+        <use href='../images/sprite.svg#icon-search'></use>
+      </svg>
+    </button>
+  </form>
+{{/each}}
