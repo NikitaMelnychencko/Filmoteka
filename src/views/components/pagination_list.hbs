@@ -1,0 +1,15 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item">
+            <button class="page-button arrow">P</button>
+        </li>
+        {{#each this}}
+        <li class="page-item">
+            <button class="page-button">{{this}}</button>
+        </li>
+        {{/each}}
+        <li class="page-item">
+            <button class="page-button arrow">N</button>
+        </li>
+    </ul>
+</nav>
