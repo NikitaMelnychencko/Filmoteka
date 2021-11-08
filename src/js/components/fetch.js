@@ -6,12 +6,12 @@ const SEARCH_URL = `${BASE_URL}/search/movie`
 const ID_URL = `${BASE_URL}/movie/`;
 const GENRE_URL = `${BASE_URL}/genre/movie`
 
-// Вызов функции renderMuvieGlobal(page, searchQuery) для "input"
-// Вызов функции renderMuvieGlobal(page, '', '', home) для страници "Home"
+// Вызов функции renderMovieGlobal(page, searchQuery) для "input"
+// Вызов функции renderMovieGlobal(page, '', '', home) для страници "Home"
 // Вызов функции genreMovie(genre) для Жанров
 
 
-export function renderMuvieGlobal(page, searchQuery, id, options) {
+export function renderMovieGlobal(page, searchQuery, id, options) {
   if (options === 'home') {
     const REQUEST_ADRESS = `${TREND_URL}?api_key=${API_KEY}&page=${page}`
     return baseFetch(REQUEST_ADRESS);
