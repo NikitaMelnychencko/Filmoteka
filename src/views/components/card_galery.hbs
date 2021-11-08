@@ -1,8 +1,8 @@
 {{#each this}}
-<li class="gallery-list__item">
+<li class="gallery-list__item" id="{{id}}">
     <img class="gallery-list__img" src='https://image.tmdb.org/t/p/w500{{poster_path}}''>
     <div class="gallery-list__card">
-        <h2 class="gallery-list__title">{{title}}</h2>
+        <h3 class="gallery-list__title">{{title}}</h3>
         <div class="gallery-list__info">
             <p class="gallery-list__genre">{{genre_ids}}</p>
             <p class="gallery-list__year">  |  {{release_date}}</p>
