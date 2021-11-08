@@ -64,8 +64,19 @@
 }
 
 .gallery-list__genre {
-  display: flex;
+  display: inline;
   align-items: center;
+
+  max-width: 190px;
+
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+
+  &:hover {
+    white-space: normal;
+  }
+
 }
 
 .gallery-list__year {
