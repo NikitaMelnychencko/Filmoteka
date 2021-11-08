@@ -17,38 +17,34 @@
 <body>
 
   <header class="header">
-    <div class="header__body container">
+    <div class="header__body-lib container">
     <div class="header__wraper ">
       <div class="header__main">
-        <svg class="icon-film"  width="16" height="12">
+        <a class="header_svg" href="/">
+        <svg class="icon-film" width="16" height="12">
           <use href="../src/images/svg/sprite.svg/#icon-film"></use>
       </svg>
+    </a>
       <a class="header__title" href="/">Filmoteka
       </a>
     </div> 
     <nav class="nav">
       <ul class="nav__title">
-        <li class="nav__list"><a class="nav__link nav__current" href="/">home</a></li>
+        <li class="nav__list"><a class="nav__link " href="/">home</a></li>
         <li class="nav__list">
           <a class="nav__link" href="">
        <svg class="icon-user"  width="16" height="12">
           <use href="../src/images/svg/sprite.svg/#icon-user"></use>
       </svg>
     <p class="user-name">name</p><p class="user-lastname">lastname</p></a></li>
-      <li class="nav__list"><a class="nav__link" href="./mylibrary.html">my library</a></li>
+      <li class="nav__list"><a class="nav__link nav__current" href="./mylibrary.html">my library</a></li>
     </ul>
     </nav>
 </div>
-<div class="header__serch">
-  <form class="header-form">
-    <label for="serch" class="header-form__label">
-      <input type="text" class="header-form__text" name="serch" id="serch" placeholder="Поиск фильмов">
-      <button type="button" class="serch"><svg class="icon-magnifier"  width="16" height="12">
-        <use href="../src/images/svg/sprite.svg/#icon-magnifier"></use>
-    </svg></button>
+<div class="header__button">
+<button type="button" class="button__watch">watched</button>
+<button type="button" class="button__queue">queue</button>
 
-    </label>
-  </form>
 </div>
 </div>
 
