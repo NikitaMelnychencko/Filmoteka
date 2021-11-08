@@ -1,10 +1,11 @@
-<section class='hero'>
+<section class='hero hero--home'>
+  <h2 class='hero__tittle--hide'>{{{currentValue.hero_tittle}}}</h2>
   <div class='container-hero'>
-    {{{homeMarkUp}}}
-
+    <div class='hero__wrap'>{{{homeMarkUp}}}</div>
   </div>
 </section>
 <section class='gallery'>
+  <h2 class='gallery__tittle--hide'> {{{currentValue.gallery_title}}}</h2>
   <div class='container'>
     <ul class='gallery-list'>
       {{! when working with a gallery, delete the contents of gallery-list but keep the class gallery-item }}
@@ -22,3 +23,5 @@
     </ul>
   </div>
 </section>
+
+{{{backdropMarkUp}}}
