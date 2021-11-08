@@ -1,3 +1,4 @@
 import heroHome from '../../views/partials/hero_home.hbs';
-export const homeMarkUp = heroHome()
+import searchSvg from '../../images/svg/sprite.svg';
+export const homeMarkUp = heroHome({searchSvg})
 
