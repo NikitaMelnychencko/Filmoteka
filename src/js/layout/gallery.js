@@ -8,8 +8,8 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const gallery = document.querySelector('.gallery-list');
 let currentPage = undefined;
 
-// init();
-// renderGallery();
+init();
+renderGallery();
 
 // Tests
 //renderGallery("titanic", 3);

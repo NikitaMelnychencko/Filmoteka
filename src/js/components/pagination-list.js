@@ -14,18 +14,22 @@ function renderPagination(currentPage) {
     const pagesContainer = refs.main.querySelector('.pagination');
     //console.log(pagesContainer.addEventListener);
     pagesContainer.addEventListener('click', onClick);
-    console.log(currentPage)
+    //console.log(currentPage)
     if (currentPage == 1) {
-        console.log(pagesContainer.querySelector('.previous'));
+        // console.log(pagesContainer.querySelector('.previous'));
         pagesContainer.querySelector('.previous').classList.add('hidden')
     }
     console.log('Pages', pages)
     if (currentPage == pages) {
-        console.log(pagesContainer.querySelector('.next'));
+        // console.log(pagesContainer.querySelector('.next'));
         pagesContainer.querySelector('.next').classList.add('hidden')
     }
+    console.log('CurrentPage', currentPage);
+    renderGallery('', currentPage)
+    return currentPage;
 }
 
+//enderGallery('',renderPagination)
 
 renderPagination(1);
 
@@ -36,35 +40,36 @@ function onClick(e) {
     console.log('target', e.target.className)
     let page = e.target.textContent;
     if (e.target.className.includes('end')) {
-        console.log('Ypa!');
+        // console.log('Ypa!');
         page = Number(refs.main.querySelector('.active').textContent) + 5;
 
     }
 
     if (e.target.className.includes('begin')) {
-        console.log('Ypa!');
+        // console.log('Ypa!');
         page = Number(refs.main.querySelector('.active').textContent) - 5;
 
     }
     console.log(page);
     if (e.target.className.includes('previous')) {
-        console.log(refs.main.querySelector('.active').textContent);
+        // console.log(refs.main.querySelector('.active').textContent);
         page = refs.main.querySelector('.active').textContent - 1;
         console.log(page);
     }
     if (e.target.className.includes('next')) {
-        console.log(refs.main.querySelector('.active').textContent);
+        // console.log(refs.main.querySelector('.active').textContent);
         page = Number(refs.main.querySelector('.active').textContent) + 1;
         console.log(page);
     }
     renderPagination(page);
+
 }
 
 function createPagination(pages, currentPage) {
     //console.log(currentPage);
     //console.log('creatPaginatio', pagesContainer)
     const center = Math.ceil(maxPages / 2);
-    console.log(center)
+    // console.log(center)
     let str = '<ul class="pagination"><li class="page-item" ><button class="page-button arrow previous">P</button></li >';
     if (pages <= maxPages) {
         for (let p = 1; p <= pages; p += 1) {
@@ -96,7 +101,7 @@ function createPagination(pages, currentPage) {
     }
     str += '<li class="page-item"><button class="page-button arrow next">N</button></li></ul>';
 
-    console.log(str);
+    // console.log(str);
     return str;
 }
 
