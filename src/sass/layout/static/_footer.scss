@@ -40,9 +40,10 @@
     font-size: 16px;
     line-height: 1.19;
   }
+  
 }
 
-.footer__text__vertical-line {
+.footer__text--vertical-line {
   &::after {
     content: '|';
     margin: 0 5px;
