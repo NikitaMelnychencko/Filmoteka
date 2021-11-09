@@ -19,8 +19,9 @@ saturation.arc(325, 325, 300, (7 * Math.PI) / 4, Math.PI / 4);
 saturation.stroke();
 
 const ring = palitre__ring.getContext('2d');
-ring.lineWidth = 50; // толщина линии
-ring.arc(325, 325, 300, 0, 2 * Math.PI);
-// ring.fillstyle(rgba(0, 0, 200, 0.5));
-// ring.fillRect(30, 30, 55, 50);
+ring.lineWidth = 45; // толщина линии
+
+ring.arc(325, 325, 220, 0, 2 * Math.PI);
+
+ring.strokeStyle = '#fff000';
 ring.stroke();
