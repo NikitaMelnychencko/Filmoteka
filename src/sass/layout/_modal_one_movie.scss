@@ -1,21 +1,39 @@
 .modal-one-movie {
-  padding: 48px 20px 41px 20px;
+  position: relative;
+  padding: 48px 0 106px 0;
   @media screen and (min-width: $tablet-general) {
     display: flex;
     justify-content: space-between;
-    padding: 42px 30px 40px 28px;
+    padding: 42px 0 40px 0;
   }
   @media screen and (min-width: $desktop-up) {
-    padding: 50px 30px 40px 30px;
+    padding: 50px 0 40px 0;
   }
 }
+.modal-one-movie__scroll-box {
+  max-height: calc(100vh - 195px);
+  overflow: scroll;
+  padding: 0 20px 0 20px;
+  @media screen and (min-width: $tablet-general) {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px 0 28px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    padding: 0 30px 0 30px;
+  }
+}
+
 .modal-one-movie__image-box {
+  display: flex;
+  justify-content: center;
   @media screen and (min-width: $tablet-general) {
     margin-right: 32px;
   }
 }
 
 .modal-one-movie__text-box {
+  width: min-content;
   @media screen and (min-width: $tablet-general) {
     width: 264px;
   }
@@ -28,7 +46,7 @@
   width: 240px;
   height: 357px;
   border-radius: 5px;
-  background-color: rgb(36, 25, 20);
+  background-color: $fourth-background-color;
   margin-bottom: 30px;
   overflow: hidden;
   @media screen and (min-width: $tablet-general) {
@@ -45,7 +63,7 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 23px;
-  color: #000000;
+  color: $primary-title-text-color;
   margin-bottom: 20px;
   text-transform: uppercase;
   @media screen and (min-width: $desktop-up) {
@@ -64,7 +82,7 @@
 }
 
 .modal-one-movie__first-list {
-  color: #8c8c8c;
+  color: $secondary-text-color;
   width: 108px;
   @media screen and (min-width: $desktop-up) {
     width: 152px;
@@ -72,7 +90,7 @@
 }
 
 .modal-one-movie__second-list {
-  color: #000000;
+  color: $primary-text-color;
 }
 
 .modal-one-movie__item {
@@ -87,14 +105,14 @@
 
 .modal-one-movie__text-box-accent {
   padding: 1px 10px;
-  background: #ff6b01;
+  background: $secont-accent-btn-color;
   border-radius: 5px;
   margin-right: 11px;
-  color: #ffffff;
+  color: $accent-btn-color;
   position: relative;
   &::after {
     content: '/';
-    color: #8c8c8c;
+    color: $secondary-text-color;
     position: absolute;
     transform: translate(14px);
   }
@@ -106,7 +124,7 @@
   line-height: 16px;
   display: flex;
   align-items: center;
-  color: #000000;
+  color: $primary-text-color;
   margin-bottom: 10px;
 }
 
@@ -114,20 +132,29 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 20px;
-  color: #000000;
+  color: $primary-text-color;
   margin-bottom: 21px;
 }
 
 .modal-one-movie__button-box {
+  padding: 0 20px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  bottom: 41px;
+  left: 0;
+  @media screen and (min-width: $tablet-general) {
+    position: static;
+    padding: 0;
+  }
   @media screen and (min-width: $desktop-up) {
     justify-content: start;
   }
 }
 
 .modal-one-movie__button {
-  border: 1px solid #000000;
+  border: $button-border;
   box-sizing: border-box;
   border-radius: 5px;
   height: 44px;
@@ -139,7 +166,7 @@
   align-items: center;
   text-align: center;
   text-transform: uppercase;
-  color: #000000;
+  color: $primary-text-color;
   background: none;
   justify-content: center;
   transition: all $time-cubic;
@@ -154,8 +181,8 @@
   }
   &:hover,
   &:focus {
-    background: #ff6b01;
-    color: #ffffff;
-    border-color: #ff6b01;
+    background: $secont-accent-btn-color;
+    color: $accent-btn-color;
+    border-color: $secont-accent-btn-color;
   }
 }

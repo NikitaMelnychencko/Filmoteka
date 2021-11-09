@@ -1,53 +1,60 @@
 <div class='modal-one-movie'>
-  <div class='modal-one-movie__image-box'><img
-      src={{backdrop_path}}
-      alt='cover'
-      class='modal-one-movie__image'
-    /></div>
+  <div class='modal-one-movie__scroll-box'>
+    <div class='modal-one-movie__image-box'>
+      <picture class='modal-one-movie__image'>
+        <img
+          src='https://www.themoviedb.org/t/p/w500/{{backdrop_path}}'
+          alt='cover'
+        />
+      </picture>
 
-  <div class='modal-one-movie__text-box'>
-    <h3 class='modal-one-movie__title'>{{original_title}}</h3>
-    <div class='modal-one-movie__list-box'>
-      <ul class='modal-one-movie__first-list'>
-        <li class='modal-one-movie__item'><p
-            class='modal-one-movie__text-box'
-          >Vote / Votes</p></li>
-        <li class='modal-one-movie__item'><p
-            class='modal-one-movie__text-box'
-          >Popularity</p></li>
-        <li class='modal-one-movie__item'><p
-            class='modal-one-movie__text-box'
-          >Original title</p></li>
-        <li class='modal-one-movie__item'><p
-            class='modal-one-movie__text-box'
-          >Genre</p></li>
-      </ul>
-      <ul class='modal-one-movie__second-list'>
-        <li class='modal-one-movie__item'>
-          <p class='modal-one-movie__text-box'><span
-              class='modal-one-movie__text-box-accent'
-            >{{vote_average}}</span>{{vote_count}}</p>
-        </li>
-        <li class='modal-one-movie__item'><p
-            class='modal-one-movie__text-box'
-          >{{popularity}}</p></li>
-        <li class='modal-one-movie__item modal-one-movie__original-title'><p
-            class='modal-one-movie__text-box'
-          >{{original_title}}</p></li>
-        <li class='modal-one-movie__item'>
-          {{#each genres}}
-            <p class='modal-one-movie__text-box'>{{name}}</p>
-          {{/each}}
-        </li>
-      </ul>
     </div>
-    <p class='modal-one-movie__about'>About</p>
-    <p class='modal-one-movie__about-text'>
-      {{overview}}
-    </p>
-    <div class='modal-one-movie__button-box'>
-      <button class='modal-one-movie__button'>Add to watched</button>
-      <button class='modal-one-movie__button'>Add to queue</button>
+    <div class='modal-one-movie__text-box'>
+      <h3 class='modal-one-movie__title'>{{original_title}}</h3>
+      <div class='modal-one-movie__list-box'>
+        <ul class='modal-one-movie__first-list'>
+          <li class='modal-one-movie__item'><p
+              class='modal-one-movie__text-list'
+            >Vote / Votes</p></li>
+          <li class='modal-one-movie__item'><p
+              class='modal-one-movie__text-list'
+            >Popularity</p></li>
+          <li class='modal-one-movie__item'><p
+              class='modal-one-movie__text-list'
+            >Original title</p></li>
+          <li class='modal-one-movie__item'><p
+              class='modal-one-movie__text-list'
+            >Genre</p></li>
+        </ul>
+        <ul class='modal-one-movie__second-list'>
+          <li class='modal-one-movie__item'>
+            <p class='modal-one-movie__text-list'><span
+                class='modal-one-movie__text-box-accent'
+              >{{vote_average}}</span>{{vote_count}}</p>
+          </li>
+          <li class='modal-one-movie__item'><p
+              class='modal-one-movie__text-list'
+            >{{popularity}}</p></li>
+          <li class='modal-one-movie__item modal-one-movie__original-title'><p
+              class='modal-one-movie__text-list'
+            >{{original_title}}</p></li>
+          <li class='modal-one-movie__item'>
+            {{#each genres}}
+              <p class='modal-one-movie__text-list'>{{name}}</p>
+            {{/each}}
+          </li>
+        </ul>
+      </div>
+      <p class='modal-one-movie__about'>About</p>
+      <p class='modal-one-movie__about-text'>
+        {{overview}}
+      </p>
+      <div class='modal-one-movie__button-box'>
+        <button class='modal-one-movie__button'>Add to watched</button>
+        <button class='modal-one-movie__button'>Add to queue</button>
+      </div>
     </div>
+
   </div>
+
 </div>
