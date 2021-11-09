@@ -1,34 +1,37 @@
-import { genres } from '../data/genres.json'
+import { GENRES_MAP, init } from '../data/genres';
+import { renderMovieGlobal } from '../components/fetch'
 import img from '../../images/img/png/gallery/no-image.png'
 import card from '../../views/components/card_galery.hbs'
-import { renderMovieGlobal } from '../components/fetch.js'
 
-const EMPTY_DATA = '-';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
-const currentPage = 999;
-
 const gallery = document.querySelector('.gallery-list');
+let currentPage = undefined;
 
-const genreDB = new Map(
-    genres.map(i => [i.id, i.name])
-);
+init().then(renderGallery(1, '', '', 'home'));
 
-renderMovieGlobal(currentPage, '', '', 'home').then(renderCards);
+async function renderGallery(page, searchQuery, id, options) {
+    currentPage = page;
+    const movies = (await renderMovieGlobal(currentPage, searchQuery, id, options)).results;
+    renderMovies(movies);
+    return currentPage;
+};
 
-function renderCards(data) {
-    const movies = modifyData(data);
-    gallery.insertAdjacentHTML('afterbegin', card(movies));
-}
+function renderMovies(movies) {
+    const moviesData = getData(movies, GENRES_MAP);
+    gallery.innerHTML = card(moviesData);
+};
 
-function modifyData(data) {
-    const newData = data.results;
-    newData.forEach(movie => {
-        movie.vote_average = movie.vote_average.toFixed(1);
-        movie.genre_ids = !movie.genre_ids.length ? [EMPTY_DATA] : movie.genre_ids.map(genre => genreDB.get(genre));
-        movie.genre_ids = movie.genre_ids.join(", ");
-        movie.release_date = !movie.release_date ? EMPTY_DATA : movie.release_date.slice(0, 4);
-        movie.poster_path = !movie.poster_path ? img : `${IMG_URL}${movie.poster_path}`
+function getData(movies, genres) {
+    return movies.map(m => {
+        return {
+            id: m.id,
+            title: m.title,
+            vote_average: m.vote_average.toFixed(1),
+            genres: m.genre_ids.map(id => { return { id, name: genres.get(id), url: '' } }), // TODO: Url to show movies by genre
+            release_date: m.release_date,
+            release_date_year: m.release_date.slice(0, 4),
+            poster_path: !m.poster_path ? img : `${IMG_URL}${m.poster_path}`
+        }
     });
-    return newData;
 };

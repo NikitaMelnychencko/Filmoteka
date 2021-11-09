@@ -3,6 +3,8 @@
   height: 440px;
   max-width: 280px;
   margin: 15px;
+  cursor: pointer;
+  
 
   @media screen and (min-width: $tablet-general) {
     max-width: 294px;
@@ -17,7 +19,12 @@
   height: 398px;
   width: 280px;
   border-radius: 5px;
-  color: red;
+ 
+
+  &:hover,
+  &:focus {
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+      1px 4px 6px rgba(0, 0, 0, 0.16);}
 
   @media screen and (min-width: $tablet-general) {
     width: 294px;
@@ -29,6 +36,7 @@
 
 .gallery-list__card {
   padding-top: 10px;
+  
 }
 
 .gallery-list__title {
@@ -77,7 +85,11 @@
   &:hover {
     white-space: normal;
   }
+}
 
+.gallery-list__genre-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .gallery-list__year {
