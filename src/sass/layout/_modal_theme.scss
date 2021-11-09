@@ -1,0 +1,50 @@
+.modal-theme__button-box {
+  padding: 0 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 41px;
+  left: 0;
+  @media screen and (min-width: $tablet-general) {
+    position: static;
+    padding: 0;
+  }
+  @media screen and (min-width: $desktop-up) {
+    justify-content: start;
+  }
+}
+
+.modal-theme__button {
+  border: $button-border;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 44px;
+  width: 113px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  color: $primary-text-color;
+  background: none;
+  justify-content: center;
+  transition: all $time-cubic;
+  @media screen and (min-width: $tablet-general) {
+    width: 125px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    width: 152px;
+    &:first-child {
+      margin-right: 15px;
+    }
+  }
+  &:hover,
+  &:focus {
+    background: $secont-accent-btn-color;
+    color: $accent-btn-color;
+    border-color: $secont-accent-btn-color;
+  }
+}
