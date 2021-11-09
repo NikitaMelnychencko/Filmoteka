@@ -105,7 +105,7 @@
 
 .modal-one-movie__text-box-accent {
   padding: 1px 10px;
-  background: $secont-accent-btn-color;
+  background: $second-accent-btn-color;
   border-radius: 5px;
   margin-right: 11px;
   color: $accent-btn-color;
@@ -181,8 +181,8 @@
   }
   &:hover,
   &:focus {
-    background: $secont-accent-btn-color;
+    background: $second-accent-btn-color;
     color: $accent-btn-color;
-    border-color: $secont-accent-btn-color;
+    border-color: $second-accent-btn-color;
   }
 }
