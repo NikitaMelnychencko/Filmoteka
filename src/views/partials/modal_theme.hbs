@@ -1,9 +1,44 @@
 <div class='modal-theme'>
-  <form name='theme'>
+  <div class='modal-theme__scroll-box'>
+    <form name='theme'>
+      <label>
+        <input type='checkbox' name='theme-switcher' value='Dark theme' />
+      </label>
+      <div class='palitre'>
+        <div class='palitre__brightness'></div><div
+          class='palitre__ring'
+        ></div><div class='palitre__current-color'>
 
-    <div class='modal-theme__button-box'>
-      <button class='modal-theme__button'>Add to watched</button>
-      <button class='modal-theme__button'>Add to queue</button>
-    </div>
-  </form>
+        </div><div class='palitre__saturation'></div>
+      </div>
+      <div class='modal-theme__checklist-box'>
+        <label>
+          <input
+            type='checkbox'
+            name='theme-switcher'
+            value='Background image'
+          />
+        </label>
+        <label>
+          <input
+            type='checkbox'
+            name='theme-switcher'
+            value='Change background image with interval'
+          />
+        </label>
+        <label>
+          <input
+            type='checkbox'
+            name='theme-switcher'
+            value='Change background color with interval '
+          />
+        </label>
+      </div>
+
+      <div class='modal-theme__button-box'>
+        <button class='modal-theme__button'>Add to watched</button>
+        <button class='modal-theme__button'>Add to queue</button>
+      </div>
+    </form>
+  </div>
 </div>
