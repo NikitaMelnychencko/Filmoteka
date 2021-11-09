@@ -10,15 +10,14 @@ let currentPage = undefined;
 
 init().then(renderGallery(1, '', '', 'home'));
 
-async function renderGallery(page, searchQuery, id, options) {
+function renderGallery(page, searchQuery, id, options) {
     currentPage = page;
-    const movies = (await renderMovieGlobal(currentPage, searchQuery, id, options)).results;
-    renderMovies(movies);
+    renderMovieGlobal(currentPage, searchQuery, id, options).then(renderMovies);
     return currentPage;
 };
 
 function renderMovies(movies) {
-    const moviesData = getData(movies, GENRES_MAP);
+    const moviesData = getData(movies.results, GENRES_MAP);
     gallery.innerHTML = card(moviesData);
 };
 
