@@ -21,7 +21,12 @@ border: 0;
 .arrow {
     background: #F7F7F7;
 border-radius: 5px;
+//visibility: hidden;
 // transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.hidden {
+  visibility: hidden;  
 }
 
 .active {
@@ -31,3 +36,63 @@ border-radius: 5px;
         background-color: lightcoral;
     }
 }
+
+// $border-color: #3D315B;
+// $background-color: #266DD3;
+// $list-background-color: #444B6E;
+// $active-list-background-color: #9AB87A;
+// $border-radius: 5px;
+
+// * {
+//   font-family: 'Poppins';
+// }
+// body {
+//   background-color: $background-color;
+//   margin: 0;
+// }
+// a:hover {
+//   cursor: pointer;
+// }
+// #pagination {
+//   display: flex;
+//   height: 100vh;
+//   align-items: center;
+//   justify-content: center;
+//   flex-direction: column;
+// }
+// ul {
+//   list-style: none;
+//   padding: 0;
+//   margin: 0;
+//   display: flex;
+//   li {
+//     color: #fff;
+//     display: flex;
+//     a {
+//       background-color: #444B6E;
+//       padding: 5px 10px;
+//       border: 2px solid $border-color;
+//       border-right: 0;
+//     }
+//   }
+//   // li.previous,
+//   // li.next {
+//   //   animation: fadein .5s;
+//   // }
+//   li.active a {
+//     background-color: $active-list-background-color;
+//   }
+//   li:first-child a {
+//     border-radius: $border-radius 0 0 $border-radius;
+//   }
+//   li:last-child a {
+//     border-radius: 0 $border-radius $border-radius 0;
+//     border-right: 2px solid $border-color;
+//   }
+// }
+
+// // When I feel motivated to get this working
+// // @keyframes fadein {
+// //   from {opacity: 0;}
+// //   to {opacity: 1;}
+// // }

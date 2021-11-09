@@ -8,8 +8,8 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const gallery = document.querySelector('.gallery-list');
 let currentPage = undefined;
 
-init();
-renderGallery();
+// init();
+// renderGallery();
 
 // Tests
 //renderGallery("titanic", 3);
@@ -20,15 +20,15 @@ renderGallery();
 // renderGallery (search) - отрисовывает первую страницу по слову вопросу
 // renderGallery ('', page) - отрисовывает страницу №page самых популярных фильмов
 
-async function renderGallery(searchQuery, page = 1, options = 'home') {
+export async function renderGallery(searchQuery, page = 1, options = 'home') {
     currentPage = page;
     let movies = undefined;
     if (!searchQuery) {
-        movies = (await renderMovieGlobal(currentPage, '', '', options)).results;
+        movies = (await renderMovieGlobal(currentPage, '', '', options));
     } else {
-        movies = (await renderMovieGlobal(currentPage, searchQuery, '', '')).results;
+        movies = (await renderMovieGlobal(currentPage, searchQuery, '', ''));
     };
-    renderMovies(movies);
+    renderMovies(movies.results);
     return movies;
 };
 
