@@ -12,6 +12,7 @@ import './components/pagination-list';
 import './components/scroll_too';
 import './components/color_switcher';
 import './components/modal';
+import './components/modal-theme';
 //=========layout===============
 //=========static===============
 import './layout/static/header';
