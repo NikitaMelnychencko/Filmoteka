@@ -40,7 +40,6 @@
     font-size: 16px;
     line-height: 1.19;
   }
-  
 }
 
 .footer__text--vertical-line {
@@ -62,9 +61,7 @@
   margin: 0 10px;
   display: flex;
   align-self: center;
-  transition: all 150ms;
-}
-
-.footer__svg-heartbeat {
-  transform: scale(1.4);
+  animation-name: heartbeat;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
 }
