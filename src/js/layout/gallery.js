@@ -2,7 +2,6 @@ import { GENRES_MAP, init } from '../data/genres';
 import { renderMovieGlobal } from '../components/fetch'
 import img from '../../images/img/png/gallery/no-image.png'
 import card from '../../views/components/card_galery.hbs'
-
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 const gallery = document.querySelector('.gallery-list');

@@ -12,6 +12,8 @@ import './components/pagination-list';
 import './components/scroll_too';
 import './components/color_switcher';
 import './components/modal';
+import './components/fetch-error';
+import './components/error';
 //=========layout===============
 //=========static===============
 import './layout/static/header';
