@@ -1,3 +1,19 @@
 //animatiom
 
 $time-cubic: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+//keyframes
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1.4);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

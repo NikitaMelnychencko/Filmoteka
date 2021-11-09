@@ -15,12 +15,14 @@ $secondary-title-text-color: #ffffff;
 
 $accent-color: #ff6b08;
 $accent-btn-color: #ffffff;
+$second-accent-btn-color: #ff6b01;
 
 //background
 $primary-background-color: #ffffff;
 $secondary-background-color: #ff6b08;
 $third-background-color: inherit;
 $fourth-background-color: #f7f7f7;
+$sixes-background-color: #000000;
 
 //svg-fill
 $primary-svg-color: #ff6b08;
@@ -31,9 +33,10 @@ $secondary-logo-color: #8d8d8d;
 
 //border
 $primary-border-color: #676767;
+$button-border: 1px solid #000000;
 
 //input
 $placeholder-color: #ffffff;
 
 // backdrop
-$backdrop-color: #efefef;
+$backdrop-color: rgba(0, 0, 0, 0.25);
