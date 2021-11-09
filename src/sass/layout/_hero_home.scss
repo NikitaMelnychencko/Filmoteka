@@ -1,4 +1,43 @@
-.search-icon {
-  width: 12px;
-  height: 12px;
+.search-form {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin-top: 113px;
+  &__input {
+    width: 280px;
+    color: $form-text-color;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.17;
+    outline: none;
+    background-color: transparent;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 0.5px solid $form-text-color;
+    transition: border-bottom $time-cubic;
+    &::placeholder {
+      color: $placeholder-color;
+    }
+    &:hover,
+    &:focus {
+      border-bottom: 0.5px solid $accent-color;
+    }
+    @media screen and (min-width: $tablet-general) {
+      min-width: 336px;
+    }
+  }
+  &__icon {
+    width: 12px;
+    height: 12px;
+  }
+  &__button {
+    position: absolute;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
 }
