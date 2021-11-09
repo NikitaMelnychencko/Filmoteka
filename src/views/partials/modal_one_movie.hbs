@@ -34,9 +34,11 @@
         <li class='modal-one-movie__item modal-one-movie__original-title'><p
             class='modal-one-movie__text-box'
           >{{original_title}}</p></li>
-        <li class='modal-one-movie__item'><p
-            class='modal-one-movie__text-box'
-          >{{genres}}</p></li>
+        <li class='modal-one-movie__item'>
+          {{#each genres}}
+            <p class='modal-one-movie__text-box'>{{name}}</p>
+          {{/each}}
+        </li>
       </ul>
     </div>
     <p class='modal-one-movie__about'>About</p>
