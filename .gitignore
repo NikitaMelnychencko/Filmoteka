@@ -105,4 +105,3 @@ dist
 
 .vscode/
 *.sh
-*.DS_Store
