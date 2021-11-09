@@ -38,7 +38,7 @@
   }
   @media screen and (min-width: $desktop-up) {
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
   }
 }
 
@@ -96,9 +96,7 @@
     &:nth-child(2n) {
       margin-right: 0;
     }
-    &:nth-child(2n) {
-      margin-right: 0;
-    }
+
     &:nth-last-child(-n + 2) {
       margin-bottom: 0;
     }
@@ -119,9 +117,7 @@
     &:not(:nth-child(5n)) {
       margin-right: 20px;
     }
-    &:last-child {
-      margin-right: 49px;
-    }
+
     margin-bottom: 30px;
   }
   margin-right: auto;
@@ -192,27 +188,4 @@
     width: 30px;
     height: 30px;
   }
-}
-.close__button {
-  position: absolute;
-  top: 2%;
-  right: 2%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  padding: 0;
-  margin: 0;
-  border: none;
-  border-radius: 50%;
-  background-color: transparent;
-  color: white;
-  cursor: pointer;
-  transition: background-color $time-cubic;
-  outline: none;
-  background-image: url('../images/svg/close-modal.svg');
-  background-position: center;
-  background-size: 60%;
-  background-repeat: no-repeat;
 }
