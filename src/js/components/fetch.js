@@ -12,7 +12,6 @@ const GENRE_URL = `${BASE_URL}/genre/movie`
 
 
 export function renderMuvieGlobal(page, searchQuery, id, options) {
-
   if (options === 'home') {
     const REQUEST_ADRESS = `${TREND_URL}?api_key=${API_KEY}&page=${page}`
     return baseFetch(REQUEST_ADRESS);
@@ -21,7 +20,6 @@ export function renderMuvieGlobal(page, searchQuery, id, options) {
     const REQUEST_ADRESS = `${SEARCH_URL}?api_key=${API_KEY}&query=${searchQuery}&page=${page}`
     return baseFetch(REQUEST_ADRESS);
   }
-
 }
 
 export function renderParamsCard(id) {
@@ -30,6 +28,11 @@ export function renderParamsCard(id) {
   return baseFetch(REQUEST_ADRESS);
 }
 
+export function genreMovie(genre) {
+  const REQUEST_ADRESS = `${GENRE_URL}/list?api_key=${API_KEY}&language=en-US`
+  console.log(REQUEST_ADRESS);
+  return baseFetch(REQUEST_ADRESS);
+}
 
 function baseFetch(REQUEST_ADRESS) {
   return fetch(REQUEST_ADRESS)
@@ -40,8 +43,3 @@ function baseFetch(REQUEST_ADRESS) {
     }).catch(error => alert(errorNot));
 }
 
-export function genreMovie(genre) {
-  const REQUEST_ADRESS = `${GENRE_URL}/list?api_key=${API_KEY}&language=en-US`
-  console.log(REQUEST_ADRESS);
-  return baseFetch(REQUEST_ADRESS);
-}
