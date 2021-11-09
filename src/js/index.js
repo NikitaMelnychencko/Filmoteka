@@ -12,6 +12,7 @@ import './components/pagination-list';
 import './components/scroll_too';
 import './components/color_switcher';
 import './components/modal';
+import './components/films_library';
 //=========layout===============
 //=========static===============
 import './layout/static/header';
