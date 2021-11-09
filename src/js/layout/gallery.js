@@ -11,24 +11,22 @@ let currentPage = undefined;
 init();
 renderGallery();
 
+// Tests
 //renderGallery("titanic", 3);
 //renderGallery("borat");
-renderGallery('', 2);
+//renderGallery('', 3);
 
 // renderGallery () - отрисовывает первую страницу самых популярных фильмов
+// renderGallery (search) - отрисовывает первую страницу по слову вопросу
+// renderGallery ('', page) - отрисовывает страницу №page самых популярных фильмов
 
-async function renderGallery(options = 'home', page = 1) {
+async function renderGallery(searchQuery, page = 1, options = 'home') {
     currentPage = page;
     let movies = undefined;
-    console.log(options);
-    if (!options) {
-        console.log("Ooops!");
-        return;
-    }
-    if (options === 'home') {
+    if (!searchQuery) {
         movies = (await renderMovieGlobal(currentPage, '', '', options)).results;
     } else {
-        movies = (await renderMovieGlobal(currentPage, options, '', '')).results;
+        movies = (await renderMovieGlobal(currentPage, searchQuery, '', '')).results;
     };
     renderMovies(movies);
     return movies;
