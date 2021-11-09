@@ -94,7 +94,7 @@
 }
 
 .modal-one-movie__item {
-  & + & {
+  .modal-one-movie__item + & {
     margin-top: 10px;
   }
 }
