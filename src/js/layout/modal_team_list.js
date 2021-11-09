@@ -1,10 +1,5 @@
 import teamTemplate from '/views/partials/modal_team_list.hbs';
 import team from '../data/team-list.json';
-
-import * as basicLightbox from 'basiclightbox';
-import 'basicLightbox/src/styles/main.scss';
-
-
 import { renderModal } from '../components/modal';
 const modalTheme = teamTemplate(team); //need insert object with movie detail
 

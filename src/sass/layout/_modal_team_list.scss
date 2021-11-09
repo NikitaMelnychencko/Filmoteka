@@ -155,7 +155,7 @@
   @media screen and (min-width: $desktop-up) {
     margin-bottom: 20px;
     font-size: 14px;
-    line-height: 1.15px;
+    line-height: 1.15;
   }
 }
 
@@ -165,7 +165,7 @@
   @media screen and (min-width: $tablet-general) and (max-width: $tablet-only) {
     margin-bottom: 15px;
     font-size: 17px;
-    line-height: 1.15px;
+    line-height: 1.15;
   }
   @media screen and (min-width: $desktop-up) {
     margin-bottom: 15px;
