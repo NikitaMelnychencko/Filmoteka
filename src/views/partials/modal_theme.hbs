@@ -5,11 +5,19 @@
         <input type='checkbox' name='theme-switcher' value='Dark theme' />
       </label>
       <div class='palitre'>
-        <div class='palitre__brightness'></div><div
-          class='palitre__ring'
-        ></div><div class='palitre__current-color'>
 
-        </div><div class='palitre__saturation'></div>
+        <canvas class='palitre__brightness' width='650' height='650'></canvas>
+
+        <canvas class='palitre__ring' width='650' height='650'></canvas>
+        {{! <div class='palitre__ring'></div> }}
+        <div class='palitre__current-color'>
+
+        </div><canvas
+          class='palitre__saturation'
+          width='650'
+          height='650'
+        ></canvas>
+
       </div>
       <div class='modal-theme__checklist-box'>
         <label>
