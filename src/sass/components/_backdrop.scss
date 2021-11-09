@@ -9,7 +9,7 @@
   height: 100%;
   position: fixed;
   transition: all $time-cubic;
-  z-index: 1;
+  z-index: 1000;
 }
 
 .backdrop_is-open {
