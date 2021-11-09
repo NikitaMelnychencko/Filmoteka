@@ -3,5 +3,7 @@ refs.footerLink.addEventListener('click', openTeamListModal);
 
 function openTeamListModal(e) {
   e.preventDefault();
+  //!temporary
   console.log('вызов функции, шоб модалка появилась');
+  //!
 }
