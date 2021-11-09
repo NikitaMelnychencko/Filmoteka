@@ -19,4 +19,3 @@ function pageRender(value, heroValue) {
 }
 
 pageRender(mainTittle.home, homeMarkUp);
-
