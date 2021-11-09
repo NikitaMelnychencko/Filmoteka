@@ -1,4 +1,8 @@
 
+// Вызов функции renderMuvieGlobal(page, searchQuery) для "input"
+// Вызов функции renderMuvieGlobal(page, '', '', home) для страници "Home"
+// Вызов функции renderParamsCard(id) для страници карточки фильма
+
 const API_KEY = '843d6905879c9b52f41f5f6a1e2c8966';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const TREND_URL = `${BASE_URL}/trending/movie/week`;
@@ -6,12 +10,7 @@ const SEARCH_URL = `${BASE_URL}/search/movie`
 const ID_URL = `${BASE_URL}/movie/`;
 const GENRE_URL = `${BASE_URL}/genre/movie`
 
-// Вызов функции renderMuvieGlobal(page, searchQuery) для "input"
-// Вызов функции renderMuvieGlobal(page, '', '', home) для страници "Home"
-// Вызов функции renderParamsCard(id) для страници карточки фильма
-
-
-export function renderMuvieGlobal(page, searchQuery, id, options) {
+export function renderMovieGlobal(page, searchQuery, id, options) {
   if (options === 'home') {
     const REQUEST_ADRESS = `${TREND_URL}?api_key=${API_KEY}&page=${page}`
     return baseFetch(REQUEST_ADRESS);
