@@ -23,23 +23,24 @@
         <svg class="icon-film"  width="16" height="12">
           <use href="../src/images/svg/sprite.svg/#icon-film"></use>
       </svg>
-      <a class="header__title" href="/">Filmoteka
+      <a class="header__title" href="">Filmoteka
       </a>
     </div> 
     <nav class="nav">
       <ul class="nav__title">
-        <li class="nav__list"><a class="nav__link nav__current" href="/">home</a></li>
-        <li class="nav__list">
-          <a class="nav__link" href="">
-       <svg class="icon-user"  width="16" height="12">
-          <use href="../src/images/svg/sprite.svg/#icon-user"></use>
-      </svg>
-    <p class="user-name">name</p><p class="user-lastname">lastname</p></a></li>
-      <li class="nav__list"><a class="nav__link" href="./mylibrary.html">my library</a></li>
+        <li class="nav__list nav__current"><a class="nav__link " >home</a></li>
+        <li class="nav__list js-link">
+          <svg class="icon-user"  width="16" height="12">
+            <use href="../src/images/svg/sprite.svg/#icon-user"></use>
+        </svg>
+          <a class="nav__link" > log in
+    
+    <!-- <p class="user-name">name</p><p class="user-lastname">lastname</p></a></li> -->
+      <li class="nav__list"><a class="nav__link" >my library</a></li>
     </ul>
     </nav>
 </div>
-<div class="header__serch">
+<div class="header__serch js-serch">
   <form class="header-form">
     <label for="serch" class="header-form__label">
       <input type="text" class="header-form__text" name="serch" id="serch" placeholder="Поиск фильмов">
@@ -50,9 +51,19 @@
     </label>
   </form>
 </div>
+<div class='header__button hidden'>
+  <button type='button' class='button__watch'>
+    watched
+  </button>
+  <button type='button' class='button__queue'>
+    queue
+  </button>
+</div>
 </div>
 
 </header>
+
+
 
   <main></main>
   <footer class="footer">

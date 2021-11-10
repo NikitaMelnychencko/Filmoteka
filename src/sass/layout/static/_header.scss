@@ -103,7 +103,11 @@
   width: 12px;
   height: 12px;
 }
-
+.hidden {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+}
 .serch {
   background-color: initial;
   border: none;
@@ -135,6 +139,9 @@
 
   .nav__title {
     font-size: 12px;
+  }
+  .nav__list {
+    display: flex;
   }
   .nav__list:not(:last-child) {
     margin-right: 39px;
