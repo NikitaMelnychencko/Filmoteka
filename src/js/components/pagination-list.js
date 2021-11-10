@@ -1,114 +1,145 @@
 import { refs } from '../refs/refs.js'
 import pagination from '../../views/components/pagination_list.hbs'
-import { renderGallery } from '../layout/gallery.js';
+import svg from '../../images/svg/sprite.svg';
+import { renderGallery } from '../layout/gallery';
 
-refs.main.insertAdjacentHTML("beforeend", pagination());
+const MAX_SHOWN_PAGES = 9;
+const PAGES_GAP = 2;
 
-let pages = 20;
-let currentPage = 1;
-let maxPages = 9;
-let pagesGap = 2;
+refs.main.insertAdjacentHTML("beforeend", pagination({ svg }));
 
-function renderPagination(currentPage) {
-    document.getElementById('pag').innerHTML = createPagination(pages, currentPage);
-    const pagesContainer = refs.main.querySelector('.pagination');
-    //console.log(pagesContainer.addEventListener);
-    pagesContainer.addEventListener('click', onClick);
-    //console.log(currentPage)
-    if (currentPage == 1) {
-        // console.log(pagesContainer.querySelector('.previous'));
-        pagesContainer.querySelector('.previous').classList.add('hidden')
-    }
-    console.log('Pages', pages)
-    if (currentPage == pages) {
-        // console.log(pagesContainer.querySelector('.next'));
-        pagesContainer.querySelector('.next').classList.add('hidden')
-    }
-    console.log('CurrentPage', currentPage);
-    renderGallery('', currentPage)
-    return currentPage;
-}
+let totalPages = 20;
 
-//enderGallery('',renderPagination)
+const pagesContainer = refs.main.querySelector('.pagination');
+pagesContainer.addEventListener('click', onClick);
 
-renderPagination(1);
-
-const button = refs.main.querySelectorAll('.page-button');
+renderPagination(1, totalPages);
 
 function onClick(e) {
+    e.preventDefault();
+
+    if (e.target.nodeName !== 'BUTTON') {
+        return;
+    };
 
     console.log('target', e.target.className)
-    let page = e.target.textContent;
-    if (e.target.className.includes('end')) {
-        // console.log('Ypa!');
-        page = Number(refs.main.querySelector('.active').textContent) + 5;
 
+    console.log(e.target.textContent, Number.isNaN(e.target.textContent))
+    let page = Number(e.target.textContent);
+    console.log(page)
+
+    if (e.target.className.includes('end')) {
+        page = Number(refs.main.querySelector('.active').textContent) + 5
     }
 
     if (e.target.className.includes('begin')) {
-        // console.log('Ypa!');
         page = Number(refs.main.querySelector('.active').textContent) - 5;
-
     }
-    console.log(page);
+
     if (e.target.className.includes('previous')) {
-        // console.log(refs.main.querySelector('.active').textContent);
         page = refs.main.querySelector('.active').textContent - 1;
-        console.log(page);
     }
     if (e.target.className.includes('next')) {
-        // console.log(refs.main.querySelector('.active').textContent);
         page = Number(refs.main.querySelector('.active').textContent) + 1;
-        console.log(page);
     }
-    renderPagination(page);
-
+    renderPagination(page, totalPages);
+    renderGallery(page)
 }
 
-function createPagination(pages, currentPage) {
-    //console.log(currentPage);
-    //console.log('creatPaginatio', pagesContainer)
-    const center = Math.ceil(maxPages / 2);
-    // console.log(center)
-    let str = '<ul class="pagination"><li class="page-item" ><button class="page-button arrow previous">P</button></li >';
-    if (pages <= maxPages) {
+function renderPagination(currentPage, totalPages) {
+    document.querySelector('.numbers').innerHTML = createPagination(currentPage, totalPages);
+    hideArrows(currentPage, totalPages);
+    return currentPage;
+}
+
+function hideArrows(currentPage, totalPages) {
+    if (currentPage == 1) {
+        pagesContainer.querySelector('.previous').classList.add('hidden')
+    } else {
+        pagesContainer.querySelector('.previous').classList.remove('hidden')
+    }
+
+    if (currentPage == totalPages) {
+        pagesContainer.querySelector('.next').classList.add('hidden')
+    } else {
+        pagesContainer.querySelector('.next').classList.remove('hidden')
+    }
+}
+
+function createPagination(currentPage, totalPages) {
+    const center = Math.ceil(MAX_SHOWN_PAGES / 2);
+    let str = '';
+    if (totalPages <= MAX_SHOWN_PAGES) {
         for (let p = 1; p <= pages; p += 1) {
-            str += isActive(p, currentPage)
+            str += isActive(p, currentPage, totalPages)
         }
     } else {
-        str += isActive(1, currentPage)
+        str += isActive(1, currentPage, totalPages)
         if (currentPage <= center) {
-            for (let p = 2; p <= center + pagesGap; p += 1) {
-                str += isActive(p, currentPage);
+            for (let p = 2; p <= center + PAGES_GAP; p += 1) {
+                str += isActive(p, currentPage, totalPages);
             }
-            str += `<li class="page-item"><button class="page-button end">...</button></li>`
+            str += `<li class="page-item"><button class="page-button end mobile-hidden">...</button></li>`
         } else {
-            if (currentPage <= pages - center) {
-                str += `<li class="page-item"><button class="page-button begin">...</button></li>`
-                for (let p = currentPage - pagesGap; p <= Number(currentPage) + pagesGap; p += 1) {
-                    str += isActive(p, currentPage);
+            if (currentPage <= totalPages - center) {
+                str += `<li class="page-item"><button class="page-button begin mobile-hidden">...</button></li>`
+                for (let p = currentPage - PAGES_GAP; p <= Number(currentPage) + PAGES_GAP; p += 1) {
+                    str += isActive(p, currentPage, totalPages);
                 }
-                str += `<li class="page-item"><button class="page-button end">...</button></li>`
+                str += `<li class="page-item"><button class="page-button end mobile-hidden">...</button></li>`
             } else {
-                str += `<li class="page-item"><button class="page-button begin">...</button></li>`
-                for (let p = pages - center - 1; p < pages; p += 1) {
-                    str += isActive(p, currentPage);
+                str += `<li class="page-item"><button class="page-button begin mobile-hidden">...</button></li>`
+                for (let p = totalPages - center - 1; p < totalPages; p += 1) {
+                    str += isActive(p, currentPage, totalPages);
                 }
             }
-            //str += `<li class="page-item"><button class="page-button end">...</button></li>`
         }
-        str += isActive(pages, currentPage)
+        str += isActive(totalPages, currentPage, totalPages)
     }
-    str += '<li class="page-item"><button class="page-button arrow next">N</button></li></ul>';
-
-    // console.log(str);
     return str;
 }
 
-function isActive(page, currentPage) {
+function isActive(page, currentPage, totalPages) {
     if (page == currentPage) {
-        return `<li class="page-item"><button class="page-button active">${page}</button></li>`
+        return createActivePage(page)
     } else {
-        return `<li class="page-item"><button class="page-button">${page}</button></li>`
+        return hideForMobile(page, currentPage, totalPages)
     }
+}
+
+function hideForMobile(page, currentPage, totalPages) {
+    if (totalPages <= MAX_SHOWN_PAGES - 4) {
+        return createPage(page)
+    }
+    if (currentPage <= 1 + PAGES_GAP) {
+        if (page <= 5) {
+            return createPage(page);
+        } else {
+            return createMobileHiddenPage(page)
+        }
+    }
+    if (currentPage < totalPages - PAGES_GAP) {
+        if (page >= (Number(currentPage) - PAGES_GAP) && page <= (Number(currentPage) + PAGES_GAP)) {
+            return createPage(page)
+        } else {
+            return createMobileHiddenPage(page)
+        }
+    }
+    if (page >= totalPages - 4) {
+        return createPage(page)
+    } else {
+        return createMobileHiddenPage(page)
+    }
+}
+
+function createPage(page) {
+    return `<li class="page-item"><button class="page-button">${page}</button></li>`
+}
+
+function createMobileHiddenPage(page) {
+    return `<li class="page-item"><button class="page-button mobile-hidden">${page}</button></li>`
+}
+
+function createActivePage(page) {
+    return `<li class="page-item"><button class="page-button active">${page}</button></li>`
 }

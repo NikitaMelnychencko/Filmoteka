@@ -6,6 +6,18 @@
     padding-top: 40px;
     padding-bottom: 40px;
 }
+.numbers {
+    display: flex;
+}
+.page-button-svg {
+    width: 14px;
+  height: 14px;
+    pointer-events: none;
+}
+
+.next {
+    transform: scale(-1, 1)
+}
 .page-button {
     width: 40px;
     height: 40px;
@@ -15,7 +27,13 @@ border-radius: 5px;
 border: 0;
 &:hover,
 &:focus {
-    background-color: khaki;
+
+    background-color: #FF6B08;
+    opacity: 0.5;
+    //filter: drop-shadow(0 0 5px#ff6b08);
+    //background-color: khaki;
+    color: #ffffff;
+    fill: #ffffff;
 }
 }
 .arrow {
@@ -26,73 +44,25 @@ border-radius: 5px;
 }
 
 .hidden {
-  visibility: hidden;  
+  visibility: hidden;
+  //disabled: true
+  //pointer-events: none;
+  
 }
 
 .active {
     background: #FF6B08;
     color: #ffffff;
     &:hover {
-        background-color: lightcoral;
+       opacity: 0.5;
     }
 }
 
-// $border-color: #3D315B;
-// $background-color: #266DD3;
-// $list-background-color: #444B6E;
-// $active-list-background-color: #9AB87A;
-// $border-radius: 5px;
-
-// * {
-//   font-family: 'Poppins';
-// }
-// body {
-//   background-color: $background-color;
-//   margin: 0;
-// }
-// a:hover {
-//   cursor: pointer;
-// }
-// #pagination {
-//   display: flex;
-//   height: 100vh;
-//   align-items: center;
-//   justify-content: center;
-//   flex-direction: column;
-// }
-// ul {
-//   list-style: none;
-//   padding: 0;
-//   margin: 0;
-//   display: flex;
-//   li {
-//     color: #fff;
-//     display: flex;
-//     a {
-//       background-color: #444B6E;
-//       padding: 5px 10px;
-//       border: 2px solid $border-color;
-//       border-right: 0;
-//     }
-//   }
-//   // li.previous,
-//   // li.next {
-//   //   animation: fadein .5s;
-//   // }
-//   li.active a {
-//     background-color: $active-list-background-color;
-//   }
-//   li:first-child a {
-//     border-radius: $border-radius 0 0 $border-radius;
-//   }
-//   li:last-child a {
-//     border-radius: 0 $border-radius $border-radius 0;
-//     border-right: 2px solid $border-color;
-//   }
-// }
-
-// // When I feel motivated to get this working
-// // @keyframes fadein {
-// //   from {opacity: 0;}
-// //   to {opacity: 1;}
-// // }
+.mobile-hidden {
+  display: none;
+  //visibility: hidden; 
+  @media screen and (min-width: $tablet-general) {
+    visibility: visible;
+    display: block;
+  }
+}

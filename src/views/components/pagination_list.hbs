@@ -1,17 +1,19 @@
-<div id="pag"></div>
-
-{{!-- <nav aria-label="Page navigation example">
+<nav aria-label="page-navigation">
     <ul class="pagination">
         <li class="page-item">
-            <button class="page-button arrow">P</button>
+            <button class="page-button arrow previous">
+                <svg class='page-button-svg'>
+                    <use href={{{svg}}}#arrow-left></use>
+            </button>
         </li>
-        {{#each this}}
+        <div class="numbers">
+
+        </div>
         <li class="page-item">
-            <button class="page-button">{{this}}</button>
-        </li>
-        {{/each}}
-        <li class="page-item">
-            <button class="page-button arrow">N</button>
+            <button class="page-button arrow next">
+                <svg class='page-button-svg'>
+                    <use href={{{svg}}}#arrow-left></use>
+            </button>
         </li>
     </ul>
-</nav> --}}
+</nav>
