@@ -22,4 +22,3 @@ import './layout/modal_one_movie';
 import './layout/modal_team_list';
 import './layout/hero_home';
 import './layout/hero_my_list';
-import catchMe from './components/pagination-list';
