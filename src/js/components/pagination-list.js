@@ -1,4 +1,5 @@
 import { refs } from '../refs/refs.js'
+import { renderGallery } from '../layout/gallery'
 import pagination from '../../views/components/pagination_list.hbs'
 import svg from '../../images/svg/sprite.svg';
 
@@ -7,7 +8,7 @@ const PAGES_GAP = 2;
 
 refs.main.insertAdjacentHTML("beforeend", pagination({ svg }));
 
-let totalPages = 20;
+let totalPages = 1000;
 
 const pagesContainer = refs.main.querySelector('.pagination-container');
 pagesContainer.addEventListener('click', onClick);
@@ -38,6 +39,7 @@ function onClick(e) {
         page = Number(refs.main.querySelector('.active').textContent) + 1;
     }
     renderPagination(page, totalPages);
+    renderGallery('', page)
 }
 
 function renderPagination(currentPage, totalPages) {
