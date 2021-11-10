@@ -1,0 +1,51 @@
+.modal__close-button {
+  position: absolute;
+  background: none;
+  outline: none;
+  border: none;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  display: block;
+  padding: 8px;
+  transition: all $time-cubic;
+  &:focus,
+  &:hover {
+    filter: drop-shadow(0 0 5px $accent-color);
+  }
+}
+
+.global-button {
+  border: $button-border;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 44px;
+  width: 113px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  color: $primary-text-color;
+  background: none;
+  justify-content: center;
+  transition: all $time-cubic;
+  @media screen and (min-width: $tablet-general) {
+    width: 125px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    width: 152px;
+    &:first-child {
+      margin-right: 15px;
+    }
+  }
+  &:hover,
+  &:focus {
+    background: $second-accent-btn-color;
+    color: $accent-btn-color;
+    border-color: $second-accent-btn-color;
+  }
+}

@@ -10,53 +10,42 @@
     </div>
     <div class='modal-one-movie__text-box'>
       <h3 class='modal-one-movie__title'>{{original_title}}</h3>
-      <div class='modal-one-movie__list-box'>
-        <ul class='modal-one-movie__first-list'>
-          <li class='modal-one-movie__item'>
-            <p class='modal-one-movie__text-list'>Vote / Votes</p>
-          </li>
-          <li class='modal-one-movie__item'>
-            <p class='modal-one-movie__text-list'>Popularity</p>
-          </li>
-          <li class='modal-one-movie__item'>
-            <p class='modal-one-movie__text-list'>Original title</p>
-          </li>
-          <li class='modal-one-movie__item'>
-            <p class='modal-one-movie__text-list'>Genre</p>
-          </li>
-        </ul>
-        <ul class='modal-one-movie__second-list'>
-          <li class='modal-one-movie__item'>
-            <p class='modal-one-movie__text-list'>
-              <span class='modal-one-movie__text-box-accent'>
-                {{vote_average}}
-              </span>
-              {{vote_count}}
-            </p>
-          </li>
-          <li class='modal-one-movie__item'>
-            <p>{{popularity}}</p>
-          </li>
-          <li class='modal-one-movie__item modal-one-movie__original-title'>
-            <p class='modal-one-movie__text-list'>{{original_title}}</p>
-          </li>
-          <li class='modal-one-movie__item'>
+      <table class='modal-one-movie__table'>
+        <tr class='modal-one-movie__table--row'>
+          <td class='modal-one-movie__table--first-list'>Vote / Votes</td>
+          <td class='modal-one-movie__table--second-list'>
+            <span class='modal-one-movie__text-box-accent'>
+              {{vote_average}}
+            </span>
+            {{vote_count}}
+          </td>
+        </tr>
+        <tr class='modal-one-movie__table--row'>
+          <td class='modal-one-movie__table--first-list'>Popularity</td>
+          <td class='modal-one-movie__table--second-list'>Original title</td>
+        </tr>
+        <tr class='modal-one-movie__table--row'>
+          <td class='modal-one-movie__table--first-list'>Genre</td>
+          <td class='modal-one-movie__table--second-list'>{{popularity}}
             {{#each genres}}
-              <p class='modal-one-movie__text-list'>{{name}}</p>
-            {{/each}}
-          </li>
-        </ul>
-      </div>
+              {{name}}
+            {{/each}}</td>
+        </tr>
+        <tr class='modal-one-movie__table--row'>
+          <td class='modal-one-movie__table--first-list'>Original title</td>
+          <td
+            class='modal-one-movie__table--second-list'
+          >{{original_title}}</td>
+        </tr>
+      </table>
       <p class='modal-one-movie__about'>About</p>
       <p class='modal-one-movie__about-text'>
         {{overview}}
       </p>
       <div class='modal-one-movie__button-box'>
-        <button class='modal-one-movie__button'>Add to watched</button>
-        <button class='modal-one-movie__button'>Add to queue</button>
+        <button class='global-button'>Add to watched</button>
+        <button class='global-button'>Add to queue</button>
       </div>
     </div>
-
   </div>
-
 </div>
