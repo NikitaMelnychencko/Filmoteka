@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -8,6 +9,8 @@ import { initializeApp } from 'firebase/app';
 const firebaseConfig = {
   apiKey: 'AIzaSyCrhBW63SM95ZUKCf6EsxC1CtzGhzdJBtQ',
   authDomain: 'goit-js10-films-library.firebaseapp.com',
+  databaseURL:
+    'https://goit-js10-films-library-default-rtdb.europe-west1.firebasedatabase.app',
   projectId: 'goit-js10-films-library',
   storageBucket: 'goit-js10-films-library.appspot.com',
   messagingSenderId: '365608496961',
@@ -15,18 +18,80 @@ const firebaseConfig = {
   measurementId: 'G-5Z0M6YF9RQ',
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+firebase.initializeApp(firebaseConfig);
 
-console.log(firebase);
-// var email = 'myemail@email.com';
-// var password = 'mypassword';
+const db = firebase.database();
+const chatsRef = db.ref('/users');
+//function to save file
+// function previewFile() {
+//   const storage = firebase.storage();
 
-// firebase
-//   .auth()
-//   .signInWithEmailAndPassword(email, password)
-//   .catch(function (error) {
-//     console.log(error.code);
-//     console.log(error.message);
+//   const file = document.getElementById('files').files[0];
+//   console.log(file);
+
+//   const storageRef = firebase.storage().ref();
+
+//   //dynamically set reference to the file name
+//   const thisRef = storageRef.child(file.name);
+
+//   //put request upload file to firebase storage
+//   thisRef.put(file).then(function (snapshot) {
+//     console.log('Uploaded a blob or file!');
 //   });
+
+//   //get request to get URL for uploaded file
+//   thisRef.getDownloadURL().then(function (url) {
+//     console.log(url);
+//   });
+// }
+
+// // // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const db = getFirestore(app);
+
+// async function getUsers(db) {
+//   const usersCol = collection(db, 'users');
+//   const usersSnapshot = await getDocs(usersCol);
+//   const usersList = usersSnapshot.docs.map(doc => doc.data());
+//   return usersList;
+// }
+
+// getUsers('users');
+
+// Регестраци, получение айди и создание базы юзера
+// Авторизация, получение айди и поолучение доступа к базе юзера
+
+// // const email = 'myemail@email.com';
+// // const password = 'mypassword';
+
+// // firebase
+// //   .auth()
+// //   .signInWithEmailAndPassword(email, password)
+// //   .catch(function (error) {
+// //     console.log(error.code);
+// //     console.log(error.message);
+// //   });
+
+// // const ref = firebase.database().ref('users');
+
+// // console.log(ref);
+// export class Question {
+//   static create(question) {
+//     return fetch(input: 'https://goit-js10-films-library-default-rtdb.europe-west1.firebasedatabase.app/',
+//       init: {
+//         method: 'POST',
+//         body: JSON.stringify(question),
+//         headers: {
+//           'Content-Type': 'application/json'
+//         }
+//     })
+//       .then(onfulfilled: response => response.json())
+//       .then(onfulfilled: response => {
+//       console.log(response)
+//     })
+//   }
+// }
+
+// function getUsersFromLocalStorage() {
+//   return JSON.parse(text: localStorage.getItem(key: 'users') || ]'[]')
+// }
