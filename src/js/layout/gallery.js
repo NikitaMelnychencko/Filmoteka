@@ -43,10 +43,10 @@ function getData(movies, genres) {
             id: m.id,
             title: m.title,
             vote_average: m.vote_average.toFixed(1),
-            //genres: m.genre_ids.map(id => {
-            //    return { id, name: genres.get(id), url: '' };
-            //}),
-            //release_date: m.release_date,
+            genres: m.genre_ids.map(id => {
+                return { id, name: genres.get(id), url: '' };
+            }),
+            release_date: m.release_date,
             release_date_year: m.release_date.slice(0, 4),
             poster_path: !m.poster_path ? img : `${IMG_URL}${m.poster_path}`,
         };

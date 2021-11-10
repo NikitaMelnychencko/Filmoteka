@@ -1,68 +1,72 @@
-.pagination {
+.pagination-container {
     display: flex;
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
     padding-top: 40px;
     padding-bottom: 40px;
+
+    @media screen and (min-width: $tablet-general) {
+    padding-top: 50px;
+    padding-bottom: 60px;
+  }
 }
-.numbers {
+.pagination-numbers {
     display: flex;
 }
-.page-button-svg {
-    width: 14px;
-  height: 14px;
-    pointer-events: none;
-}
+.page-button {
+  width: 40px;
+  height: 40px;
+    
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
 
+  color: $primary-btn-text-color;
+  fill: $primary-text-color;
+
+  background-color: $primary-btn-color;
+  border-radius: 5px;
+  border: 0;
+    
+  &:hover,
+  &:focus {
+    color: #ffffff;
+    fill: #ffffff;
+      
+    background-color: $active-btn-color;
+    opacity: 0.5;
+  }
+}
+.arrow {
+  background: $arrow-btn-color;
+  
+  &:disabled {
+    color: #000000;
+    fill: #000000;
+      
+    background-color: $arrow-btn-color;
+    opacity: 0.5;
+  }
+}
 .next {
     transform: scale(-1, 1)
 }
-.page-button {
-    width: 40px;
-    height: 40px;
-    background-color: inherit;
-    //background: #FF6B08;
-border-radius: 5px;
-border: 0;
-&:hover,
-&:focus {
-
-    background-color: #FF6B08;
-    opacity: 0.5;
-    //filter: drop-shadow(0 0 5px#ff6b08);
-    //background-color: khaki;
-    color: #ffffff;
-    fill: #ffffff;
-}
-}
-.arrow {
-    background: #F7F7F7;
-border-radius: 5px;
-//visibility: hidden;
-// transform: matrix(-1, 0, 0, 1, 0, 0);
-}
-
-.hidden {
-  visibility: hidden;
-  //disabled: true
-  //pointer-events: none;
-  
-}
-
 .active {
-    background: #FF6B08;
-    color: #ffffff;
-    &:hover {
-       opacity: 0.5;
-    }
+  color: $active-btn-text-color;
+  background: $active-btn-color;
 }
-
 .mobile-hidden {
   display: none;
-  //visibility: hidden; 
+
   @media screen and (min-width: $tablet-general) {
     visibility: visible;
     display: block;
   }
+}
+.page-button-svg {
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
 }
