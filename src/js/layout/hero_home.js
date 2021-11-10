@@ -9,6 +9,7 @@ export function openInput() {
     galleryList: document.querySelector('.gallery-list'),
     warning: document.querySelector('.warning'),
   };
+
   refs.searchForm.addEventListener('submit', onSearch);
   function onSearch(e) {
     e.preventDefault();
@@ -18,7 +19,9 @@ export function openInput() {
       return (refs.warning.textContent =
         'Search result not successful. Enter the correct movie name and try again!');
     } else {
+      refs.warning.classList.add('is-hidden');
       renderGallery(searchQuery);
     }
+    renderMovieGlobal(page, searchQuery);
   }
 }
