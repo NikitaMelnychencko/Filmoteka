@@ -81,16 +81,18 @@
   border: none;
   border-bottom: 0.5px solid #ffffff;
   color: #ffff;
+
+    &::placeholder {
+    color: #ffff;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.14;
+    margin-bottom: 4px;
+  }
 }
 
-.header-form__text::placeholder {
-  color: #ffff;
-  font-family: Roboto;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.14;
-  margin-bottom: 4px;
-}
+
 
 .header-form__text:hover,
 .header-form__text:focus {

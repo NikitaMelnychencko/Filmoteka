@@ -22,6 +22,7 @@ for (var i = 0, length = a.length; i < length; i++) {
 refs.clicMyLib.forEach(list => {
   list.addEventListener('click', function (eve) {
     eve.preventDefault();
+    console.log(eve);
     if (eve.target.textContent == 'my library') {
       refs.removeSerch.classList.add('hidden');
       refs.headBtn.classList.remove('hidden');
