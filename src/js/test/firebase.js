@@ -23,15 +23,15 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // get
-async function getCities(db,velue) {
-  const citiesCol = collection(db, velue);
-  const citySnapshot = await getDocs(citiesCol);
+async function getUsers(db,velue) {
+  const usersCol = collection(db, velue);
+  const usersSnapshot = await getDocs(citiesCol);
 
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  console.log(cityList);
-  return cityList;
+  const usersList = citySnapshot.docs.map(doc => doc.data());
+  console.log(usersList);
+  return usersList;
 }
-getCities(db, 'users');
+//getUsers(db, 'users');
 
 //Post
 async function postUsers(db,value) {
@@ -46,4 +46,4 @@ async function postUsers(db,value) {
     console.error('Error adding document: ', e);
   }
 }
-postUsers(db, 'users');
+//postUsers(db, 'users');
