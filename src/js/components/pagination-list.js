@@ -7,7 +7,7 @@ const PAGES_GAP = 2;
 
 refs.main.insertAdjacentHTML("beforeend", pagination({ svg }));
 
-let totalPages = 1000;
+let totalPages = 20;
 
 const pagesContainer = refs.main.querySelector('.pagination-container');
 pagesContainer.addEventListener('click', onClick);
@@ -60,7 +60,7 @@ function hideArrows(currentPage, totalPages) {
     }
 }
 
-function createPagination(currentPage, totalPages) {
+export function createPagination(currentPage, totalPages) {
     const center = Math.ceil(MAX_SHOWN_PAGES / 2);
     let str = ``;
     if (totalPages <= MAX_SHOWN_PAGES) {
