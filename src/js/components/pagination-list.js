@@ -1,7 +1,6 @@
 import { refs } from '../refs/refs.js'
 import pagination from '../../views/components/pagination_list.hbs'
 import svg from '../../images/svg/sprite.svg';
-import { renderGallery } from '../layout/gallery';
 
 const MAX_SHOWN_PAGES = 9;
 const PAGES_GAP = 2;
@@ -43,7 +42,6 @@ function onClick(e) {
         page = Number(refs.main.querySelector('.active').textContent) + 1;
     }
     renderPagination(page, totalPages);
-    renderGallery(page)
 }
 
 function renderPagination(currentPage, totalPages) {
