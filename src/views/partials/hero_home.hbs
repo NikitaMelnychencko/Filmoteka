@@ -9,3 +9,16 @@
     lastname
   </p>
 </a>
+<form class='search-form' id='search-form'>
+  <input class="search-form__input"
+    type='text'
+    name='query'
+    autocomplete='off'
+    placeholder='Поиск фильмов'
+  />
+    <button type='submit' class='search-form__button'>
+    <svg class='search-form__icon'>
+      <use href={{{searchSvg}}}#icon-search></use>
+    </svg>
+    </button>
+</form>
