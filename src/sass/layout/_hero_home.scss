@@ -46,11 +46,15 @@
   position: absolute;
   top: 155px;
   left: 0;
-  text-align: center;
-  
   font-size: 14px;
   font-weight: 400;
   line-height: 1.17;
   color: $warning-text-color;
-  
+  @media screen and (min-width: $tablet-general) {
+    text-align: center;
+  }
+}
+.is-hidden {
+  display: none;
+  visibility: hidden;
 }
