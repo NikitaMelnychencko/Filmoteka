@@ -48,4 +48,41 @@
     color: $accent-btn-color;
     border-color: $second-accent-btn-color;
   }
+%button {
+  height: 44px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  transition: background-color $time-cubic, border-color $time-cubic;
+}
+.hero-library__button {
+  @extend %button;
+  width: 130px;
+  background-color: transparent;
+  border: 1px solid $form-text-color;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: $form-text-color;
+  transition: box-shadow $time-cubic;
+
+  &:hover,
+  &:focus,
+  &--active {
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+    background-color: $second-accent-btn-color;
+    border-color: $second-accent-btn-color;
+  }
+
+  &--watched {
+    margin-right: 15px;
+  }
+
+  @media screen and (min-width: $tablet-general) {
+    width: 136px;
+  }
 }
