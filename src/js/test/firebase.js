@@ -2,7 +2,15 @@
 
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  getDoc,
+  addDoc,
+  query,
+  where,
+  doc,
+} from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,15 +32,18 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // get
-async function getUsers(db, velue) {
-  const usersCol = collection(db, velue);
-  const usersSnapshot = await getDocs(citiesCol);
-
-  const usersList = citySnapshot.docs.map(doc => doc.data());
-  console.log(usersList);
-  return usersList;
+async function getUsers(db, velue, grup) {
+  const docRef = doc(db, `${velue}/${grup}`);
+  //const usersCol = collection(db, velue)
+  const usersSnapshot = await getDoc(docRef);
+  if (usersSnapshot.exists()) {
+    console.log('Document data:', usersSnapshot.data());
+    return usersSnapshot.data()
+  } else {
+    console.log('No such document!');
+  }
 }
-//getUsers(db, 'users');
+getUsers(db, 'UxVBlbfUAzLkLGc5sUHE4uh8h8G3', 'Other');
 
 //Post
 async function postUsers(db, value) {
