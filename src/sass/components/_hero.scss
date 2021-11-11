@@ -81,7 +81,6 @@
     background-position: center;
     box-shadow: 0 0 100px black;
 
-
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -135,10 +134,10 @@
   @extend %hide;
 }
 
-.hero__wrap{
-  position: relative;
+.hero__wrap {
+  // position: relative;
   display: flex;
   @media screen and (min-width: $tablet-general) {
-  justify-content: space-around;
+    justify-content: space-around;
   }
 }
