@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getFirestore, collection } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,11 +18,21 @@ const firebaseConfig = {
   appId: '1:365608496961:web:88f6a83f1a1fc4849dfbc0',
   measurementId: 'G-5Z0M6YF9RQ',
 };
+const app = initializeApp(firebaseConfig);
 
-firebase.initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 
-const db = firebase.database();
-const chatsRef = db.ref('/users');
+async function getCities(db) {
+  const citiesCol = collection(db, 'users');
+  const citySnapshot = await getDocs(citiesCol);
+  const cityList = citySnapshot.docs.map(doc => doc.data());
+  return cityList;
+}
+// const usersList = collection(db, 'users');
+
+// console.log(cityList);
+
 //function to save file
 // function previewFile() {
 //   const storage = firebase.storage();
