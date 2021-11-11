@@ -18,22 +18,33 @@ export function renderMovieGlobal(page, searchQuery, id, options) {
   } else if (searchQuery !== undefined) {
     const REQUEST_ADRESS = `${SEARCH_URL}?api_key=${API_KEY}&query=${searchQuery}&page=${page}&language=uk-ua`
     return baseFetch(REQUEST_ADRESS)
+      .then(data => {
+        if (data.results.length === 0) {
+          throw new Error(renderErrorSearch())
+        } else {
+          return data;
+        }
+      })
       .catch(error => { });
   }
 }
 
 export function renderParamsCard(id) {
   const REQUEST_ADRESS = `${ID_URL}${id}?api_key=${API_KEY}&language=en-US`
-  return baseFetch(REQUEST_ADRESS);
+  return baseFetch(REQUEST_ADRESS)
+    .then(response => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        throw new Error(renderErrorServer())
+      }
+    }).catch(error => { });;
 }
 
 export function genreMovie(genre) {
   const REQUEST_ADRESS = `${GENRE_URL}/list?api_key=${API_KEY}&language=en-US`
   return baseFetch(REQUEST_ADRESS)
 }
-
-
-
 function baseFetch(REQUEST_ADRESS) {
   return fetch(REQUEST_ADRESS)
     .then(response => {
@@ -42,14 +53,6 @@ function baseFetch(REQUEST_ADRESS) {
       } else {
         throw new Error(renderErrorServer())
       }
-    }).then(data => {
-      if (data.results.length === 0) {
-        console.log(data);
-        return renderErrorSearch()
-        // throw new Error(renderErrorSearch())
-      } else {
-        return data;
-      }
-    }).catch(error => alert(errorNot));
+    }).catch(error => { });
 }
 

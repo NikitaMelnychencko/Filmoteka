@@ -1,14 +1,15 @@
 
 import errorRend from '../../views/components/error_search.hbs';
 import errorServ from '../../views/components/error_server.hbs';
-
-import img from '../../images/img/png/error/error.jpeg';
+import img from '../../images/img/png/error/404.webp';
+import imgMainError from '../../images/img/png/error/404-Error.png';
 export const imgMarkup = errorRend({ img });
-import { renderGallery, renderMovies } from '../layout/gallery'
+export const imgMarkupMain = errorServ({ imgMainError });
+import { renderGallery } from '../layout/gallery'
 
-
+//выводит ошибку при не вверном вводе в поиске
 export function renderErrorSearch() {
-    const errors = document.querySelector('.gallery');
+    const errors = document.querySelector('.gallery-list');
     const marcup = errorRend({ img });
     errors.innerHTML = marcup;
     const btnHome = document.querySelector('.error__button')
@@ -17,20 +18,14 @@ export function renderErrorSearch() {
         if (el.target) {
             renderGallery()
         }
-        console.log(el);
     })
 }
+//выводит ошибку при ошибке сервера
 
 export function renderErrorServer() {
-    const errorsServ = document.querySelector('.gallery');
-    console.log(errorsServ);
-    const marcup = errorServ({ img });
+    const errorsServ = document.querySelector('.gallery-list');
+    const marcup = errorServ({ imgMainError });
     errorsServ.innerHTML = marcup;
 }
-// renderErrorServer()
 
 
-
-
-
-// renderErrorSearch()
