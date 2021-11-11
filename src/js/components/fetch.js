@@ -45,7 +45,8 @@ function baseFetch(REQUEST_ADRESS) {
     }).then(data => {
       if (data.results.length === 0) {
         console.log(data);
-        throw new Error(renderErrorSearch())
+        return renderErrorSearch()
+        // throw new Error(renderErrorSearch())
       } else {
         return data;
       }
