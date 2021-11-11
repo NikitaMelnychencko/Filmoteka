@@ -50,18 +50,6 @@ signInWithEmailAndPassword(auth, email, password)
 // const arrayUser = signInWithEmailAndPassword((auth, email, password));
 
 // Reg User
-// createUserWithEmailAndPassword(auth, email, password)
-//   .then(userCredential => {
-//     // Signed in
-//     const user = userCredential.user;
-//     // ...
-//   })
-//   .catch(error => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // ..
-//   });
-
 //Post
 async function postUsers(db, value) {
   try {
@@ -75,4 +63,15 @@ async function postUsers(db, value) {
     console.error('Error adding document: ', e);
   }
 }
+// createUserWithEmailAndPassword(auth, email, password)
+//   .then(userCredential => {
+//     const user = userCredential.user;
+//     postUsers(db, 'users')
+//   })
+//   .catch(error => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     // ..
+//   });
+
 //postUsers(db, 'users');
