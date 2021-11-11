@@ -1,13 +1,10 @@
-import { GENRES_MAP, init } from '../data/genres';
+import { GENRES_MAP, initGenres } from '../data/genres';
 import { renderMovieGlobal } from '../components/fetch';
+import { renderPagination } from '../components/pagination-list';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-
-let currentPage = undefined;
-// init();
-// renderGallery();
 
 // Tests
 //renderGallery("titanic", 3);
@@ -19,19 +16,21 @@ let currentPage = undefined;
 // renderGallery ('', page) - отрисовывает страницу №page самых популярных фильмов
 
 export async function renderGallery(searchQuery, page = 1, options = 'home') {
-    currentPage = page;
     let movies = undefined;
-    init();
+    initGenres();
     if (!searchQuery) {
-        movies = (await renderMovieGlobal(currentPage, '', '', options));
+        movies = (await renderMovieGlobal(page, '', '', options));
     } else {
-        movies = (await renderMovieGlobal(currentPage, searchQuery, '', ''));
+        movies = (await renderMovieGlobal(page, searchQuery, '', ''));
     }
+
     renderMovies(movies.results);
+    renderPagination(page, movies.total_pages);
+
     return movies;
 }
 
-function renderMovies(movies) {
+export function renderMovies(movies) {
     const moviesData = getData(movies, GENRES_MAP);
     const gallery = document.querySelector('.gallery-list');
     gallery.innerHTML = card(moviesData);

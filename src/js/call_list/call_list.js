@@ -10,9 +10,8 @@ import backdrop_markup from '../../views/components/backdrop.hbs';
 import { homeMarkUp, openInput } from '../layout/hero_home';
 import modal_markup from '../../views/components/modal.hbs';
 import svg from '../../images/svg/sprite.svg';
-import { GENRES_MAP, init } from '../data/genres';
 import { renderGallery } from '../layout/gallery';
-import { renderPagination, primaryPagination } from '../components/pagination-list';
+import { primaryPagination } from '../components/pagination-list';
 
 
 
@@ -25,14 +24,9 @@ function pageRender(value, heroValue) {
     openInput();
   }
   // pagination
-  primaryPagination();
+  primaryPagination(svg);
 
 }
 
-init();
 pageRender(mainTittle.home, homeMarkUp);
-//renderGallery();
-renderGallery().then((data => {
-  console.log(data.total_pages)
-  renderPagination(1, data.total_pages);
-}));
+renderGallery();

@@ -1,34 +1,16 @@
 import { refs } from '../refs/refs.js'
 import { renderGallery } from '../layout/gallery'
 import pagination from '../../views/components/pagination_list.hbs'
-import svg from '../../images/svg/sprite.svg';
-
-import { GENRES_MAP, init } from '../data/genres';
+import { searchQuery } from '../layout/hero_home.js';
 
 const MAX_SHOWN_PAGES = 9;
 const PAGES_GAP = 2;
 
-export function primaryPagination() {
+export function primaryPagination(svg) {
     const pagesContainer = refs.main.querySelector('.pagination-container');
     pagesContainer.insertAdjacentHTML("beforeend", pagination({ svg }));
     pagesContainer.addEventListener('click', onClick);
 }
-
-
-let totalPages = 20;
-
-const searchQuery = 'love';
-const options = ""
-
-
-//pagesContainer.addEventListener('click', onClick);
-
-// init();
-// renderGallery().then((data => {
-//     console.log(data.total_pages)
-//     renderPagination(1, data.total_pages);
-// }));
-//renderPagination(1, totalPages);
 
 function onClick(e) {
     e.preventDefault();
@@ -53,12 +35,8 @@ function onClick(e) {
     if (e.target.className.includes('next')) {
         page = Number(refs.main.querySelector('.active').textContent) + 1;
     }
-    //renderPagination(page, totalPages);
-    //renderGallery('', page)
-    renderGallery(searchQuery, page, options).then((data => {
-        console.log(data.total_pages)
-        renderPagination(page, data.total_pages);
-    }));
+
+    renderGallery(searchQuery, page)
 }
 
 export function renderPagination(currentPage, totalPages) {
@@ -69,6 +47,13 @@ export function renderPagination(currentPage, totalPages) {
 
 function hideArrows(currentPage, totalPages) {
     const pagesContainer = refs.main.querySelector('.pagination-container');
+    console.log(totalPages)
+    if (totalPages === 0) {
+        console.log('jhvv')
+        pagesContainer.querySelector('.previous').classList.add('hidden-arrow');
+        pagesContainer.querySelector('.next').classList.add('hidden-arrow');
+    }
+
     if (currentPage == 1) {
         pagesContainer.querySelector('.previous').disabled = true
     } else {
