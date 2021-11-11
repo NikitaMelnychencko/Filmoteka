@@ -31,7 +31,7 @@ export async function renderGallery(searchQuery, page = 1, options = 'home') {
   return movies;
 }
 
-function renderMovies(movies) {
+export function renderMovies(movies) {
   const moviesData = getData(movies, GENRES_MAP);
   const gallery = document.querySelector('.gallery-list');
   gallery.innerHTML = card(moviesData);
