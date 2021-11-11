@@ -1,5 +1,10 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
 import {
   getFirestore,
   collection,
@@ -9,6 +14,7 @@ import {
   where,
   doc,
 } from 'firebase/firestore';
+import { refs } from '../refs/refs';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCrhBW63SM95ZUKCf6EsxC1CtzGhzdJBtQ',
@@ -24,11 +30,28 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth();
+
+const filmData = {
+  name: value,
+  genre: [value, value],
+  age: value,
+  vote: value,
+  votes: value,
+  popularity: value,
+  about: value,
+  img: link,
+};
+
+// const email = 'test@gmail.com';
+// const password = 'tesdadt1';
+const email = 'test3@gmail.com';
+const password = 'tesdadt122';
+const pageChoose = `watched`;
 
 // get
-async function getUsers(db, value, group) {
-  const docRef = doc(db, `${value}/${group}`);
-  //const usersCol = collection(db, velue)
+async function getUsers(db, userId, group) {
+  const docRef = doc(db, `users/${userId}/${group}/films`);
   const usersSnapshot = await getDoc(docRef);
   if (usersSnapshot.exists()) {
     console.log('Document data:', usersSnapshot.data());
@@ -37,91 +60,54 @@ async function getUsers(db, value, group) {
     console.log('No such document!');
   }
 }
-getUsers(db, 'UxVBlbfUAzLkLGc5sUHE4uh8h8G3', 'Other');
 
-//Post
-async function postUsers(db, value) {
+// Aut User
+signInWithEmailAndPassword(auth, email, password)
+  .then(userCredential => {
+    const user = userCredential.user;
+    onAuthStateChanged;
+  })
+  .catch(error => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
+
+// State User
+onAuthStateChanged(auth, user => {
+  if (user) {
+    const uid = user.uid;
+    console.log(uid);
+    getUsers(db, `${uid}`, `${pageChoose}`);
+  } else {
+  }
+});
+
+// Reg User
+// Post
+
+async function postUsers(db, userId, group) {
   try {
-    const docRef = await addDoc(collection(db, value), {
-      first: 'Ada',
-      last: 'Lovelace',
-      born: 1815,
-    });
+    const docRef = await addDoc(
+      collection(db, `users/${userId}/${group}/films`),
+      {
+        first: 'Ada',
+        last: 'Lovelace',
+        born: 1815,
+      },
+    );
     console.log('Document written with ID: ', docRef.id);
   } catch (e) {
     console.error('Error adding document: ', e);
   }
 }
-//postUsers(db, 'users');
-
-// const email = 'test@gmail.com';
-// const password = 'tesdadt1';
-// const auth = getAuth();
-
-// Aut User
-// get
-// async function getUsers(db, value) {
-//   const usersCol = collection(db, value);
-//   const usersSnapshot = await getDocs(usersCol);
-//   const usersList = usersSnapshot.docs.map(doc => doc.data());
-//   console.log(usersList);
-//   return usersList;
-// }
-// const alovelaceDocumentRef = doc(db, 'users/alovelace');
-// console.log(alovelaceDocumentRef);
-
-// signInWithEmailAndPassword(auth, email, password)
-//   .then(userCredential => {
-//     const user = userCredential.user;
-//     // console.log(user);
-//   })
-//   .catch(error => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//   });
-
-//   const userId = auth.currentUser.uid;
-// return onValue(ref(db, '/users/' + userId), (snapshot) => {
-//   const username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-//   // ...
-// }, {
-//   onlyOnce: true
-// });
-
-// State User
-// onAuthStateChanged(auth, user => {
-//   if (user) {
-//     // User is signed in, see docs for a list of available properties
-//     // https://firebase.google.com/docs/reference/js/firebase.User
-//     const uid = user.uid;
-//     console.log(uid);
-//   } else {
-//     // User is signed out
-//     // ...
-//   }
-// });
-// Reg User
-//Post
-// async function postUsers(db, value) {
-//   try {
-//     const docRef = await addDoc(collection(db, value), {
-//       first: 'Ada',
-//       last: 'Lovelace',
-//       born: 1815,
-//     });
-//     console.log('Document written with ID: ', docRef.id);
-//   } catch (e) {
-//     console.error('Error adding document: ', e);
-//   }
-// createUserWithEmailAndPassword(auth, email, password)
-//   .then(userCredential => {
-//     const user = userCredential.user;
-//     postUsers(db, 'users')
-//   })
-//   .catch(error => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // ..
-//   });
-
-//postUsers(db, 'users');
+createUserWithEmailAndPassword(auth, email, password)
+  .then(userCredential => {
+    const user = userCredential.user;
+    const uid = user.uid;
+    postUsers(db, `${uid}`, `watched`);
+    // postUsers(db, uid, `queue`);
+  })
+  .catch(error => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });

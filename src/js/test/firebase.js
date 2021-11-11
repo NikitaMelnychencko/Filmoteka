@@ -38,12 +38,12 @@ async function getUsers(db, velue, grup) {
   const usersSnapshot = await getDoc(docRef);
   if (usersSnapshot.exists()) {
     console.log('Document data:', usersSnapshot.data());
-    return usersSnapshot.data()
+    return usersSnapshot.data();
   } else {
     console.log('No such document!');
   }
 }
-getUsers(db, 'UxVBlbfUAzLkLGc5sUHE4uh8h8G3', 'Other');
+// getUsers(db, 'UxVBlbfUAzLkLGc5sUHE4uh8h8G3', 'Other');
 
 //Post
 async function postUsers(db, value) {
