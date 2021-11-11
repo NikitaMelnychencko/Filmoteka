@@ -11,6 +11,7 @@
     <div class='modal-one-movie__text-box'>
       <h3 class='modal-one-movie__title'>{{original_title}}</h3>
       <table class='modal-one-movie__table'>
+        <caption class='modal-one-movie__caption'>about movie</caption>
         <tr class='modal-one-movie__table--row'>
           <td class='modal-one-movie__table--first-list'>Vote / Votes</td>
           <td class='modal-one-movie__table--second-list'>
@@ -38,10 +39,13 @@
           >{{original_title}}</td>
         </tr>
       </table>
-      <p class='modal-one-movie__about'>About</p>
-      <p class='modal-one-movie__about-text'>
-        {{overview}}
-      </p>
+      <div class='modal-one-movie__about-box'>
+        <h4 class='modal-one-movie__about'>About</h4>
+        <p class='modal-one-movie__about-text'>
+          {{overview}}
+        </p>
+      </div>
+
       <div class='modal-one-movie__button-box'>
         <button class='global-button'>Add to watched</button>
         <button class='global-button'>Add to queue</button>
