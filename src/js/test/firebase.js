@@ -7,6 +7,7 @@ import {
   collection,
   getDoc,
   addDoc,
+  setDoc,
   query,
   where,
   doc,
@@ -38,24 +39,33 @@ async function getUsers(db, velue, grup) {
   const usersSnapshot = await getDoc(docRef);
   if (usersSnapshot.exists()) {
     console.log('Document data:', usersSnapshot.data());
-    return usersSnapshot.data()
+    return usersSnapshot.data();
   } else {
     console.log('No such document!');
   }
 }
-getUsers(db, 'UxVBlbfUAzLkLGc5sUHE4uh8h8G3', 'Other');
+getUsers(db, 'user', 'Other');
 
 //Post
+// async function postUsers(db, value) {
+//   try {
+//     const docRef = await addDoc(collection(db, value), {
+//       films: [{}, {}, {}]
+//     });
+//     console.log('Document written with ID: ', docRef.id);
+//   } catch (e) {
+//     console.error('Error adding document: ', e);
+//   }
+// }
+// postUsers(db, 'use');
+
 async function postUsers(db, value) {
   try {
-    const docRef = await addDoc(collection(db, value), {
-      first: 'Ada',
-      last: 'Lovelace',
-      born: 1815,
-    });
+    const docRef = await setDoc(doc(db, "rooms", "roomA", "messages", "message1"))
+
     console.log('Document written with ID: ', docRef.id);
   } catch (e) {
     console.error('Error adding document: ', e);
   }
 }
-//postUsers(db, 'users');
+postUsers(db, 'use');
