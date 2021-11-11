@@ -1,51 +1,92 @@
 <div class='modal-theme'>
+
   <div class='modal-theme__scroll-box'>
     <form name='theme'>
-      <label>
-        <input type='checkbox' name='theme-switcher' value='Dark theme' />
-      </label>
+      <div class='modal-theme__dark-box dark-toggle'>
+
+        <input
+          id='dark-toggle'
+          class='dark-toggle__checkbox'
+          type='checkbox'
+          name='theme-switcher'
+          value='Dark theme'
+        />
+        <label for='global-toggle' class='dark-toggle__label'>
+          <span class='dark-toggle__label-background'></span>
+        </label>
+      </div>
+
       <div class='palitre'>
 
-        <canvas class='palitre__brightness' width='650' height='650'></canvas>
+        <canvas
+          class='palitre__brightness palitre__holst'
+          width='280px'
+          height='280px'
+        ></canvas>
 
-        <canvas class='palitre__ring' width='650' height='650'></canvas>
+        <canvas
+          class='palitre__ring palitre__holst'
+          width='280px'
+          height='280px'
+        ></canvas>
         {{! <div class='palitre__ring'></div> }}
         <div class='palitre__current-color'>
 
         </div><canvas
-          class='palitre__saturation'
-          width='650'
-          height='650'
+          class='palitre__saturation palitre__holst'
+          width='280px'
+          height='280px'
         ></canvas>
 
       </div>
       <div class='modal-theme__checklist-box'>
-        <label>
-          <input
-            type='checkbox'
-            name='theme-switcher'
-            value='Background image'
-          />
-        </label>
-        <label>
-          <input
-            type='checkbox'
-            name='theme-switcher'
-            value='Change background image with interval'
-          />
-        </label>
-        <label>
-          <input
-            type='checkbox'
-            name='theme-switcher'
-            value='Change background color with interval '
-          />
-        </label>
+        <div class='global-toggle'>
+          <label class='global-toggle__label'>
+            <input
+              id='background'
+              type='checkbox'
+              name='background'
+              value='Background image'
+              checked='checked'
+            />
+            <span class='global-toggle__span'></span>
+            <p class='global-toggle__text'>Background image</p>
+          </label>
+        </div>
+        <div class='global-toggle'>
+          <label class='global-toggle__label'>
+            <input
+              id='background-image'
+              type='checkbox'
+              name='background-image'
+              value='Change background image with interval'
+            />
+            <span class='global-toggle__span'></span>
+            <p class='global-toggle__text'>Change background image with interval</p>
+          </label>
+        </div>
+        <div class='global-toggle'>
+          <label class='global-toggle__label'>
+            <input
+              id='background-color'
+              type='checkbox'
+              name='background-color'
+              value='Change background color with interval'
+              checked='checked'
+            />
+            <span class='global-toggle__span'></span>
+            <p class='global-toggle__text'>Change background color with interval</p>
+          </label>
+        </div>
       </div>
 
       <div class='modal-theme__button-box'>
-        <button class='modal-theme__button'>Add to watched</button>
-        <button class='modal-theme__button'>Add to queue</button>
+        <button class='modal-theme__button' data-action='default-theme'>Restore
+          default</button>
+        <button
+          class='modal-theme__button'
+          data-action='apply-theme'
+        >Apply</button>
       </div>
     </form>
   </div>

@@ -41,3 +41,35 @@ $placeholder-color: #ffffff;
 
 // backdrop
 $backdrop-color: rgba(0, 0, 0, 0.25);
+
+// toggle
+$global-toggle-background-color-on: $second-accent-btn-color;
+$global-toggle-background-color-off: $secondary-text-color;
+$global-toggle__label-color: $accent-btn-color;
+$global-toggle-width: 70px;
+$global-toggle-height: 35px;
+$global-toggle-gutter: 5px;
+$global-toggle-radius: 50%;
+$global-toggle__label-speed: 0.15s;
+$global-toggle__label-ease: ease-in;
+$global-toggle-radius: $global-toggle-height / 2;
+$global-toggle__label-size: $global-toggle-height - ($global-toggle-gutter * 2);
+
+// dark-theme toggle
+$dark-button-scale: 0.4;
+:root {
+  /** sunny side **/
+  --blue-background: #00bfff;
+  --blue-border: #72cce3;
+  --blue-color: #96dcee;
+  --yellow-background: #fffaa8;
+  --yellow-border: #f5eb71;
+  /** dark side **/
+  --indigo-background: #808fc7;
+  --indigo-border: #5d6baa;
+  --indigo-color: #6b7abb;
+  --gray-border: #e8e8ea;
+  --gray-dots: #e8e8ea;
+  /** general **/
+  --white: #fff;
+}

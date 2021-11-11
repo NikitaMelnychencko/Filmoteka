@@ -1,8 +1,16 @@
 .palitre {
-  width: 800px;
-  height: 600px;
-  outline: 1px solid slategrey;
+  width: 280px;
+  height: 280px;
+  // outline: 1px solid slategrey;
   position: relative;
+  @media screen and (min-width: $tablet-general) {
+    width: 350px;
+    height: 350px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    width: 600px;
+    height: 600px;
+  }
 }
 
 // .palitre__ring {
@@ -57,36 +65,46 @@
 //   }
 // }
 
-// .palitre__current-color {
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   background-color: #f0c433; //selected color
-//   border-radius: 50%;
-//   width: 250px;
-//   height: 250px;
-//   transform: translate(-50%, -50%);
-//   font-size: 36px;
-//   box-shadow: 0 0 10px rgba(#000, 0.5);
-// }
+.palitre__current-color {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #f0c433; //selected color
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  box-shadow: 0 0 10px rgba(#000, 0.5);
+  @media screen and (min-width: $tablet-general) {
+    width: 90px;
+    height: 90px;
+    font-size: 16px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    width: 200px;
+    height: 200px;
+    font-size: 36px;
+  }
+}
 
-// .palitre__current-color::before {
-//   content: 'Theme';
-//   position: absolute;
-//   top: 25%;
-//   left: 50%;
-//   transform: translate(-50%);
-//   color: #ffffff;
-// }
+.palitre__current-color::before {
+  content: 'Theme';
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%);
+  color: #ffffff;
+}
 
-// .palitre__current-color::after {
-//   content: 'Theme';
-//   position: absolute;
-//   bottom: 25%;
-//   left: 50%;
-//   transform: translate(-50%);
-//   color: black;
-// }
+.palitre__current-color::after {
+  content: 'Theme';
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translate(-50%);
+  color: black;
+}
 
 .palitre__brightness {
   // width: 100%;

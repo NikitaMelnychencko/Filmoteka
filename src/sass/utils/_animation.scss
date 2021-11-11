@@ -17,3 +17,30 @@ $time-cubic: 250ms cubic-bezier(0.4, 0, 0.2, 1);
     transform: scale(1);
   }
 }
+
+@keyframes switch {
+  0% {
+    left: 4px * $dark-button-scale;
+  }
+  60% {
+    left: 4px * $dark-button-scale;
+    width: 112px * $dark-button-scale;
+  }
+  100% {
+    left: 104px * $dark-button-scale;
+    width: 82px * $dark-button-scale;
+  }
+}
+@keyframes reverse {
+  0% {
+    left: 104px * $dark-button-scale;
+    width: 82px * $dark-button-scale;
+  }
+  60% {
+    left: 72px * $dark-button-scale;
+    width: 112px * $dark-button-scale;
+  }
+  100% {
+    left: 4px * $dark-button-scale;
+  }
+}
