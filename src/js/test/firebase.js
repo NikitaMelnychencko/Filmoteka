@@ -25,9 +25,9 @@ const db = getFirestore(app);
 // get
 async function getUsers(db,velue) {
   const usersCol = collection(db, velue);
-  const usersSnapshot = await getDocs(citiesCol);
+  const usersSnapshot = await getDocs(usersCol);
 
-  const usersList = citySnapshot.docs.map(doc => doc.data());
+  const usersList = usersSnapshot.docs.map(doc => doc.data());
   console.log(usersList);
   return usersList;
 }
