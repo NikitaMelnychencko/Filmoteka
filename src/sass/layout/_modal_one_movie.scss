@@ -82,7 +82,7 @@
 }
 
 .modal-one-movie__caption {
-  display: none;
+  @extend %hide
 }
 
 .modal-one-movie__table--first-list {
