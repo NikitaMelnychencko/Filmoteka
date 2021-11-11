@@ -12,6 +12,7 @@ import modal_markup from '../../views/components/modal.hbs';
 import svg from '../../images/svg/sprite.svg';
 import { renderGallery } from '../layout/gallery';
 import { primaryPagination } from '../components/pagination-list';
+import { initGenres } from '../data/genres'
 
 
 
@@ -28,5 +29,6 @@ function pageRender(value, heroValue) {
 
 }
 
+initGenres();
 pageRender(mainTittle.home, homeMarkUp);
 renderGallery();
