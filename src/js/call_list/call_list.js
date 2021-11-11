@@ -12,7 +12,8 @@ import modal_markup from '../../views/components/modal.hbs';
 import svg from '../../images/svg/sprite.svg';
 import { renderGallery } from '../layout/gallery';
 import { primaryPagination } from '../components/pagination-list';
-import { initGenres } from '../data/genres'
+import { initGenres } from '../data/genres';
+import blockHelpTemplate from '../../views/components/block_help.hbs';
 
 
 
@@ -20,7 +21,8 @@ function pageRender(value, heroValue) {
   //backdrop include plugin "modal window"
   const backdropMarkUp = backdrop_markup(modal_markup({ svg }));
   const currentValue = value;
-  refs.main.innerHTML = main({ currentValue, backdropMarkUp, heroValue });
+  const blockHelpMarkup = blockHelpTemplate({ svg });
+  refs.main.innerHTML = main({ currentValue, backdropMarkUp, heroValue,  blockHelpMarkup });
   if (value.hero_tittle === 'Search Movies') {
     openInput();
   }

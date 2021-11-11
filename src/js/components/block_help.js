@@ -1,16 +1,13 @@
-import { refs } from '../refs/refs';
-import blockHelpTemplate from '../../views/components/block_help.hbs';
-import scrollTo from './scroll_too';
-import sprite from '../../images/svg/sprite.svg'
 
-const { main } = refs;
+import scrollTo from './scroll_too';
+
 const PROMPT_DELAY = 3000;
 const MAX_PROMPT_ATTEMPTS = 3;
 let promptCounter = 0;
 let hasSubscribed = false;
 const storageKey = 'user email';
 
-main.insertAdjacentHTML('beforeend', blockHelpTemplate({sprite}));
+
 const buttonHelp = document.querySelectorAll('.help__button');
 const buttonScroll = document.querySelector('.button-scroll');
 const openHelpModalBtn = document.querySelector('.button-subscribe');
@@ -23,10 +20,11 @@ const thanksNotification = document.querySelector('.help__thanks')
 buttonHelp.forEach(button => {
     const buttonHint = button.querySelector('.help__button-hint');
     button.addEventListener('mouseover', () => {
-        buttonHint.classList.add('is-visible')
+        elementIsVisible(buttonHint);
     })
     button.addEventListener('mouseout', () => {
-        buttonHint.classList.remove('is-visible')
+        elementIsHidden(buttonHint);
+        
     }) 
 })
 
@@ -61,8 +59,8 @@ function onSubscribe(event) {
     event.preventDefault();
     hasSubscribed = true;
     closeModal();
-    thanksNotification.classList.add('is-visible');
-    setTimeout(() => { thanksNotification.classList.remove('is-visible') }, 5000)
+    elementIsVisible(thanksNotification)
+    setTimeout(() => { elementIsHidden(thanksNotification) }, 5000)
 }
 function autoOpenModal() {
      if (promptCounter === MAX_PROMPT_ATTEMPTS || hasSubscribed) {
@@ -82,11 +80,11 @@ function autoOpenModal() {
 function btnScrollIsVisible(){
     setInterval(() => {
         if (window.pageYOffset > 400) {
-            buttonScroll.classList.add('is-visible');
+             elementIsVisible(buttonScroll)
             buttonScroll.addEventListener('click', scrollTo);
         }
-        else{
-            buttonScroll.classList.remove('is-visible');
+        else {
+            elementIsHidden(buttonScroll);           
             buttonScroll.removeEventListener('click', scrollTo);
         }
     }, 1000
@@ -94,3 +92,10 @@ function btnScrollIsVisible(){
     
 }
 btnScrollIsVisible()
+
+function elementIsVisible(element) {
+    element.classList.add('is-visible');
+}
+function elementIsHidden(element) {
+     element.classList.remove('is-visible');
+}
