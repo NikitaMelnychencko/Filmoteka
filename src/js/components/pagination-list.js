@@ -3,17 +3,32 @@ import { renderGallery } from '../layout/gallery'
 import pagination from '../../views/components/pagination_list.hbs'
 import svg from '../../images/svg/sprite.svg';
 
+import { GENRES_MAP, init } from '../data/genres';
+
 const MAX_SHOWN_PAGES = 9;
 const PAGES_GAP = 2;
 
-refs.main.insertAdjacentHTML("beforeend", pagination({ svg }));
+export function primaryPagination() {
+    const pagesContainer = refs.main.querySelector('.pagination-container');
+    pagesContainer.insertAdjacentHTML("beforeend", pagination({ svg }));
+    pagesContainer.addEventListener('click', onClick);
+}
 
-let totalPages = 1000;
 
-const pagesContainer = refs.main.querySelector('.pagination-container');
-pagesContainer.addEventListener('click', onClick);
+let totalPages = 20;
 
-renderPagination(1, totalPages);
+const searchQuery = 'love';
+const options = ""
+
+
+//pagesContainer.addEventListener('click', onClick);
+
+// init();
+// renderGallery().then((data => {
+//     console.log(data.total_pages)
+//     renderPagination(1, data.total_pages);
+// }));
+//renderPagination(1, totalPages);
 
 function onClick(e) {
     e.preventDefault();
@@ -38,17 +53,22 @@ function onClick(e) {
     if (e.target.className.includes('next')) {
         page = Number(refs.main.querySelector('.active').textContent) + 1;
     }
-    renderPagination(page, totalPages);
-    renderGallery('', page)
+    //renderPagination(page, totalPages);
+    //renderGallery('', page)
+    renderGallery(searchQuery, page, options).then((data => {
+        console.log(data.total_pages)
+        renderPagination(page, data.total_pages);
+    }));
 }
 
-function renderPagination(currentPage, totalPages) {
+export function renderPagination(currentPage, totalPages) {
     document.querySelector('.pagination-numbers').innerHTML = createPagination(currentPage, totalPages);
     hideArrows(currentPage, totalPages);
     return currentPage;
 }
 
 function hideArrows(currentPage, totalPages) {
+    const pagesContainer = refs.main.querySelector('.pagination-container');
     if (currentPage == 1) {
         pagesContainer.querySelector('.previous').disabled = true
     } else {
@@ -66,7 +86,7 @@ export function createPagination(currentPage, totalPages) {
     const center = Math.ceil(MAX_SHOWN_PAGES / 2);
     let str = ``;
     if (totalPages <= MAX_SHOWN_PAGES) {
-        for (let p = 1; p <= pages; p += 1) {
+        for (let p = 1; p <= totalPages; p += 1) {
             str += isActive(p, currentPage, totalPages)
         }
     } else {

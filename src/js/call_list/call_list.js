@@ -10,6 +10,11 @@ import backdrop_markup from '../../views/components/backdrop.hbs';
 import { homeMarkUp, openInput } from '../layout/hero_home';
 import modal_markup from '../../views/components/modal.hbs';
 import svg from '../../images/svg/sprite.svg';
+import { GENRES_MAP, init } from '../data/genres';
+import { renderGallery } from '../layout/gallery';
+import { renderPagination, primaryPagination } from '../components/pagination-list';
+
+
 
 function pageRender(value, heroValue) {
   //backdrop include plugin "modal window"
@@ -19,5 +24,15 @@ function pageRender(value, heroValue) {
   if (value.hero_tittle === 'Search Movies') {
     openInput();
   }
+  // pagination
+  primaryPagination();
+
 }
+
+init();
 pageRender(mainTittle.home, homeMarkUp);
+//renderGallery();
+renderGallery().then((data => {
+  console.log(data.total_pages)
+  renderPagination(1, data.total_pages);
+}));

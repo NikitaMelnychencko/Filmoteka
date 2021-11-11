@@ -6,8 +6,8 @@ import card from '../../views/components/card_galery.hbs';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 let currentPage = undefined;
-init();
-renderGallery();
+// init();
+// renderGallery();
 
 // Tests
 //renderGallery("titanic", 3);
@@ -21,13 +21,13 @@ renderGallery();
 export async function renderGallery(searchQuery, page = 1, options = 'home') {
     currentPage = page;
     let movies = undefined;
+    init();
     if (!searchQuery) {
-        movies = (await renderMovieGlobal(currentPage, '', '', options)).results;
+        movies = (await renderMovieGlobal(currentPage, '', '', options));
     } else {
-        movies = (await renderMovieGlobal(currentPage, searchQuery, '', ''))
-            .results;
+        movies = (await renderMovieGlobal(currentPage, searchQuery, '', ''));
     }
-    renderMovies(movies);
+    renderMovies(movies.results);
     return movies;
 }
 
@@ -43,11 +43,11 @@ function getData(movies, genres) {
             id: m.id,
             title: m.title,
             vote_average: m.vote_average.toFixed(1),
-            genres: m.genre_ids.map(id => {
+            genres: !genres ? '-' : m.genre_ids.map(id => {
                 return { id, name: genres.get(id), url: '' };
             }),
             release_date: m.release_date,
-            release_date_year: m.release_date.slice(0, 4),
+            release_date_year: !m.release_date ? '-' : m.release_date.slice(0, 4),
             poster_path: !m.poster_path ? img : `${IMG_URL}${m.poster_path}`,
         };
     });
