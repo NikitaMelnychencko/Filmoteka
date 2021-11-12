@@ -31,9 +31,9 @@ export async function renderGallery(searchQuery, page = 1, options = 'home') {
 }
 
 export function renderMovies(movies) {
-    const moviesData = getData(movies, GENRES_MAP);
-    const gallery = document.querySelector('.gallery-list');
-    gallery.innerHTML = card(moviesData);
+  const moviesData = getData(movies, GENRES_MAP);
+  const gallery = document.querySelector('.gallery-list');
+  gallery.innerHTML = card(moviesData);
 }
 
 function getData(movies, genres) {
