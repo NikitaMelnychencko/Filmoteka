@@ -93,6 +93,10 @@
 
 .gallery-list__year {
   padding-left: 3px;
+  
+  &::before {
+  content: '|';
+  }
 }
 
 .gallery-list__rate {

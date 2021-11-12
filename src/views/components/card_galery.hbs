@@ -5,10 +5,10 @@
         <h3 class="gallery-list__title">{{title}}</h3>
         <div class="gallery-list__info">
             <p class="gallery-list__genre">{{#if genres}}{{#each genres}}
-                <a class="gallery-list__genre-link" href="">{{name}}{{#unless @last}},{{/unless}}</a>
+                {{name}}{{#unless @last}},{{/unless}}</a>
                 {{/each}}{{else}} - {{/if}}
             </p>
-            <p class="gallery-list__year"> | {{#if release_date_year}} {{release_date_year}} {{else}} - {{/if}}</p>
+            <p class="gallery-list__year">{{#if release_date_year}} {{release_date_year}} {{else}} - {{/if}}</p>
             <p class="gallery-list__rate">{{vote_average}}</p>
         </div>
     </div>
