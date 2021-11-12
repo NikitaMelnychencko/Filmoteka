@@ -36,6 +36,7 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
   // pagination
   primaryPagination(svg);
 }
+
 function addHeroClass(valueAdd, valueRemove) {
   const heroRef = document.querySelector('.hero');
   heroRef.classList.add(`${valueAdd}`);

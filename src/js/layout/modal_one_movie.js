@@ -4,7 +4,6 @@ import { renderParamsCard } from '../components/fetch'
 
 
 let id = "id";
-let linksID = [];
 
 const modalContent = document.querySelector('.modal__content')
 

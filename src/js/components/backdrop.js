@@ -1,4 +1,5 @@
 const backdrop = document.querySelector('.backdrop');
+console.log(backdrop);
 export function renderBackdrop() {
   backdrop.classList.add('backdrop_is-open');
   document.body.style.overflow = 'hidden';
