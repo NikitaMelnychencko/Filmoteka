@@ -1,6 +1,6 @@
 import { GENRES_MAP, initGenres } from '../data/genres';
 import { renderMovieGlobal } from '../components/fetch';
-import { renderPagination, hidePaggination } from '../components/pagination-list';
+import { renderPagination, hidePagination } from '../components/pagination-list';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
 //import { clearSerchQuery } from './hero_home';
@@ -26,7 +26,7 @@ export async function renderGallery(search, page = 1, options = 'home') {
     }
 
     if (!movies) {
-        hidePaggination(true);
+        hidePagination(true);
         return
     }
 
@@ -40,6 +40,9 @@ export function renderMovies(movies) {
     const moviesData = getData(movies, GENRES_MAP);
     const gallery = document.querySelector('.gallery-list');
     gallery.innerHTML = card(moviesData);
+    const id = gallery.querySelector('li');
+    console.dir(id);
+
 }
 
 function getData(movies, genres) {
