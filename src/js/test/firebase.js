@@ -48,24 +48,16 @@ async function getUser(userId, store ) {
 
 
 function writeNewPost(userId, store) {
-  const db = getDatabase();
 
   const postData = {
-    author: username,
-    uid: uid,
-    body: body,
-    title: title,
-    starCount: 0,
-    authorPic: picture
+    2: 99999
   };
-
-  // Get a key for a new Post.
-  const newPostKey = push(child(ref(db), 'posts')).key;
 
   // Write the new post's data simultaneously in the posts list and the user's post list.
   const updates = {};
-  updates['/posts/' + newPostKey] = postData;
-  updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+  updates['users/' + userId +"/"+ store] = postData;
 
+  console.log(updates);
   return update(ref(db), updates);
 }
+writeNewPost("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue')
