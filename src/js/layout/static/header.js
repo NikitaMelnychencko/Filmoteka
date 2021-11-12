@@ -1,6 +1,8 @@
 import { pageRender } from '../../call_list/call_list.js';
 import mainTittle from '../../data/main.json';
 import { homeMarkUp } from '../../layout/hero_home';
+import { renderGallery } from '../../layout/gallery';
+import myLibraryMarkUp from '../../../views/partials/hero_my_list.hbs';
 
 const refs = {
   myUlEle: document.querySelectorAll('.nav__title >li a'),
@@ -20,9 +22,14 @@ function toggleTodo(event) {
   let item = target.textContent;
   console.log(item);
 
-  if (item === 'my library') {
+  if (item === 'home') {
     // Сюда передать функцию
     pageRender(mainTittle.home, homeMarkUp);
+    renderGallery();
+  }
+  if (item === 'my library') {
+    const myLib = myLibraryMarkUp;
+    pageRender(mainTittle.my_library_watched, myLib);
   }
 }
 
