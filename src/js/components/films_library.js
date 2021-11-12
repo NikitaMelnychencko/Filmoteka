@@ -10,8 +10,6 @@ import {
   collection,
   getDoc,
   addDoc,
-  query,
-  where,
   doc,
 } from 'firebase/firestore';
 import { refs } from '../refs/refs';
@@ -32,21 +30,21 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-const filmData = {
-  name: value,
-  genre: [value, value],
-  age: value,
-  vote: value,
-  votes: value,
-  popularity: value,
-  about: value,
-  img: link,
-};
+// const filmData = {
+//   name: value,
+//   genre: [value, value],
+//   age: value,
+//   vote: value,
+//   votes: value,
+//   popularity: value,
+//   about: value,
+//   img: link,
+// };
 
-// const email = 'test@gmail.com';
-// const password = 'tesdadt1';
-const email = 'test3@gmail.com';
-const password = 'tesdadt122';
+const email = 'test@gmail.com';
+const password = 'tesdadt1';
+// const email = 'test3@gmail.com';
+// const password = 'tesdadt122';
 const pageChoose = `watched`;
 
 // get
@@ -78,36 +76,36 @@ onAuthStateChanged(auth, user => {
     const uid = user.uid;
     console.log(uid);
     getUsers(db, `${uid}`, `${pageChoose}`);
+    sessionStorage.setItem('userId', `${uid}`);
   } else {
   }
 });
-
 // Reg User
 // Post
 
-async function postUsers(db, userId, group) {
-  try {
-    const docRef = await addDoc(
-      collection(db, `users/${userId}/${group}/films`),
-      {
-        first: 'Ada',
-        last: 'Lovelace',
-        born: 1815,
-      },
-    );
-    console.log('Document written with ID: ', docRef.id);
-  } catch (e) {
-    console.error('Error adding document: ', e);
-  }
-}
-createUserWithEmailAndPassword(auth, email, password)
-  .then(userCredential => {
-    const user = userCredential.user;
-    const uid = user.uid;
-    postUsers(db, `${uid}`, `watched`);
-    // postUsers(db, uid, `queue`);
-  })
-  .catch(error => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
+// async function postUsers(db, userId, group) {
+//   try {
+//     const docRef = await addDoc(
+//       collection(db, `users/${userId}/${group}/films`),
+//       {
+//         first: 'Ada',
+//         last: 'Lovelace',
+//         born: 1815,
+//       },
+//     );
+//     console.log('Document written with ID: ', docRef.id);
+//   } catch (e) {
+//     console.error('Error adding document: ', e);
+//   }
+// }
+// createUserWithEmailAndPassword(auth, email, password)
+//   .then(userCredential => {
+//     const user = userCredential.user;
+//     const uid = user.uid;
+//     postUsers(db, `${uid}`, `watched`);
+//     // postUsers(db, uid, `queue`);
+//   })
+//   .catch(error => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//   });
