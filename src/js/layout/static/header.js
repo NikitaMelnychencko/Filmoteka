@@ -24,7 +24,7 @@ function canheHeader(event) {
   }
   if (item === 'my library') {
     // here render header page Button
-    const myLib = myLibraryMarkUp;
+    const myLib = myLibraryMarkUp();
     pageRender(
       mainTittle.my_library_watched,
       myLib,
@@ -32,8 +32,8 @@ function canheHeader(event) {
       'hero--home',
     );
   }
-  if (item === '  log in') {
-  }
+  // if (item === '  log in') {
+  // }
 }
 
 refs.myUlEle.forEach(function (link) {

@@ -1,24 +1,28 @@
 import { renderBackdrop, closeBackdrop } from './backdrop';
 
 let modalTimerId = null;
-const refsModal = {
-  modalClose: document.querySelector('.modal'),
-  modal_content: document.querySelector('.modal__content'),
-  buttonCloseModal: document.querySelector('[data-action="close-modal"]'),
-  backdrop: document.querySelector('.backdrop'),
-};
+
+function refsModal() {
+  const refsModalz = {
+    modalClose: document.querySelector('.modal'),
+    modal_content: document.querySelector('.modal__content'),
+    buttonCloseModal: document.querySelector('[data-action="close-modal"]'),
+    backdrop: document.querySelector('.backdrop'),
+  };
+  return refsModalz;
+}
 
 export function renderModal(modalContent) {
   renderBackdrop();
-  refsModal.modal_content.innerHTML = modalContent;
-  refsModal.modalClose.classList.add('modal_is-open');
+  refsModal().modal_content.innerHTML = modalContent;
+  refsModal().modalClose.classList.add('modal_is-open');
   modalAddListener();
 }
 
 function modalAddListener() {
-  refsModal.buttonCloseModal.addEventListener('click', closeModal);
+  refsModal().buttonCloseModal.addEventListener('click', closeModal);
   window.addEventListener('keydown', modalCloseEcsKey);
-  refsModal.backdrop.addEventListener('click', clickBackdropClose);
+  refsModal().backdrop.addEventListener('click', clickBackdropClose);
 }
 
 function modalCloseEcsKey(evt) {
@@ -28,7 +32,7 @@ function modalCloseEcsKey(evt) {
 }
 
 function clickBackdropClose(evt) {
-  if (evt.target === refsModal.backdrop) {
+  if (evt.target === refsModal().backdrop) {
     closeModal();
   }
 }
@@ -42,14 +46,14 @@ function closeModal() {
 }
 
 function clearDelay() {
-  refsModal.modal_content.innerHTML = '';
+  refsModal().modal_content.innerHTML = '';
   clearTimeout(modalTimerId);
 }
 
 function modalRemoveListener() {
-  refsModal.buttonCloseModal.removeEventListener('click', closeModal);
+  refsModal().buttonCloseModal.removeEventListener('click', closeModal);
   window.removeEventListener('keydown', modalCloseEcsKey);
-  refsModal.backdrop.removeEventListener('click', clickBackdropClose);
+  refsModal().backdrop.removeEventListener('click', clickBackdropClose);
 }
 
 // setTimeout(e => renderModal('TEST'), 200); //test
