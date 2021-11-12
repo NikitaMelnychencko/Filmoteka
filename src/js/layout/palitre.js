@@ -1,8 +1,11 @@
 const palitre__saturation = document.querySelector('.palitre__saturation');
 const palitre__brightness = document.querySelector('.palitre__brightness');
 const palitre__ring = document.querySelector('.palitre__ring');
+const palitre = document.querySelector('.palitre');
+const current_color = document.querySelector('.palitre__current-color');
 const brightness = palitre__brightness.getContext('2d');
 const palitreHolst = document.querySelectorAll('.palitre__holst');
+const palitre_ring_dot = document.querySelector('.palitre__dot');
 const graph = {
   ringRadius: 80,
   setRadius: 120,
@@ -88,4 +91,40 @@ ring.arc(
 );
 
 ring.strokeStyle = '#fff000';
-ring.stroke();
+// ring.stroke();
+
+palitre.onclick = function (e) {
+  // показывает координаты точки клика
+  // console.log((300 - e.offsetX) / 300, (300 - e.offsetY) / 300);
+  let X = -(300 - e.offsetX) / 300;
+  let Y = (300 - e.offsetY) / 300;
+  let atanCursor = Math.atan(X / Y);
+  let zz = (atanCursor * 180) / Math.PI;
+
+  function lz() {
+    if (X > 0 && Y < 0) {
+      return zz + 180;
+    } else if (X < 0 && Y < 0) {
+      return zz + 180;
+    } else if (X < 0 && Y >= 0) {
+      return zz + 360;
+    } else if (X >= 0 && Y >= 0) {
+      return zz;
+    }
+    return zz;
+  }
+
+  console.log(lz());
+
+  const mg = lz();
+
+  function setCurrentColor(mg) {
+    current_color.style.backgroundColor = `hsl(${mg}, 100%, 50%)`;
+  }
+
+  setCurrentColor(mg);
+
+  palitre_ring_dot.style.transform = `translate(${X * 300 + 300 - 25}px,${
+    -Y * 300 + 300 - 25
+  }px)`;
+};

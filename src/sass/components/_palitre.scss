@@ -13,57 +13,69 @@
   }
 }
 
-// .palitre__ring {
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   border-radius: 50%;
-//   width: 500px;
-//   height: 500px;
-//   transform: translate(-50%, -50%);
-//   box-shadow: 0 0 10px rgba(#000, 0.5);
-//   background: radial-gradient(
-//       circle at 50% 0,
-//       hsl(0%, 100%, 50%, 1) 10%,
-//       hsl(0%, 100%, 50%, 0) 35%
-//     ),
-//     radial-gradient(
-//       circle at 100% 21%,
-//       hsl(60%, 100%, 50%, 1) 10%,
-//       hsl(60%, 100%, 50%, 0) 35%
-//     ),
-//     radial-gradient(
-//       circle at 100% 79%,
-//       hsl(120%, 100%, 50%, 1) 10%,
-//       hsl(120%, 100%, 50%, 0) 35%
-//     ),
-//     radial-gradient(
-//       circle at 50% 100%,
-//       hsl(180%, 100%, 50%, 1) 10%,
-//       hsl(180%, 100%, 50%, 0) 35%
-//     ),
-//     radial-gradient(
-//       circle at 0% 79%,
-//       hsl(235%, 100%, 50%, 1) 10%,
-//       hsl(235%, 100%, 50%, 0) 35%
-//     ),
-//     radial-gradient(
-//       circle at 0% 21%,
-//       hsl(300%, 100%, 50%, 1) 10%,
-//       hsl(300%, 100%, 50%, 0) 35%
-//     );
-//   &:before {
-//     content: '';
-//     position: absolute;
-//     width: 80%;
-//     height: 80%;
-//     background-color: #ffffff;
-//     border-radius: 50%;
-//     top: 10%;
-//     left: 10%;
-//     box-shadow: inset 0 0 10px rgba(#000, 0.5);
-//   }
-// }
+.palitre__dot {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1002;
+  transition: all 250ms;
+}
+.palitre__ring {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  width: 450px;
+  height: 450px;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(#000, 0.5);
+  background: radial-gradient(
+      circle at 50% 0,
+      hsl(0%, 100%, 50%, 1) 10%,
+      hsl(0%, 100%, 50%, 0) 35%
+    ),
+    radial-gradient(
+      circle at 100% 21%,
+      hsl(60%, 100%, 50%, 1) 10%,
+      hsl(60%, 100%, 50%, 0) 35%
+    ),
+    radial-gradient(
+      circle at 100% 79%,
+      hsl(120%, 100%, 50%, 1) 10%,
+      hsl(120%, 100%, 50%, 0) 35%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      hsl(180%, 100%, 50%, 1) 10%,
+      hsl(180%, 100%, 50%, 0) 35%
+    ),
+    radial-gradient(
+      circle at 0% 79%,
+      hsl(235%, 100%, 50%, 1) 10%,
+      hsl(235%, 100%, 50%, 0) 35%
+    ),
+    radial-gradient(
+      circle at 0% 21%,
+      hsl(300%, 100%, 50%, 1) 10%,
+      hsl(300%, 100%, 50%, 0) 35%
+    );
+  &::before {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    background-color: #ffffff;
+    border-radius: 50%;
+    top: 10%;
+    left: 10%;
+    box-shadow: inset 0 0 10px rgba(#000, 0.5);
+  }
+}
 
 .palitre__current-color {
   position: absolute;
@@ -114,6 +126,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  outline: 1px solid rgb(0, 255, 21);
 }
 
 .palitre__saturation {
@@ -124,44 +137,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  // cursor: pointer;
+  outline: 1px solid rgb(76, 0, 255);
 }
 
-.palitre__ring {
-  // width: 500px;
-  // height: 500px;
-  overflow: hidden;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  // background: radial-gradient(
-  //     circle at 50% 0,
-  //     hsl(0%, 100%, 50%, 1) 10%,
-  //     hsl(0%, 100%, 50%, 0) 35%
-  //   ),
-  //   radial-gradient(
-  //     circle at 100% 21%,
-  //     hsl(60%, 100%, 50%, 1) 10%,
-  //     hsl(60%, 100%, 50%, 0) 35%
-  //   ),
-  //   radial-gradient(
-  //     circle at 100% 79%,
-  //     hsl(120%, 100%, 50%, 1) 10%,
-  //     hsl(120%, 100%, 50%, 0) 35%
-  //   ),
-  //   radial-gradient(
-  //     circle at 50% 100%,
-  //     hsl(180%, 100%, 50%, 1) 10%,
-  //     hsl(180%, 100%, 50%, 0) 35%
-  //   ),
-  //   radial-gradient(
-  //     circle at 0% 79%,
-  //     hsl(235%, 100%, 50%, 1) 10%,
-  //     hsl(235%, 100%, 50%, 0) 35%
-  //   ),
-  //   radial-gradient(
-  //     circle at 0% 21%,
-  //     hsl(300%, 100%, 50%, 1) 10%,
-  //     hsl(300%, 100%, 50%, 0) 35%
-  //   );
-}
+// .palitre__ring {
+//   overflow: hidden;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   outline: 1px solid red;
+
+// }
