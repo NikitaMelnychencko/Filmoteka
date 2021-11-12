@@ -1,7 +1,7 @@
 import json from '../testcard.json'
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import {getDatabase, ref, set , get,child} from 'firebase/database';
+import {getDatabase, ref, set , get,child,push} from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,11 +28,11 @@ function writeUserData(userId,store) {
      0: 123847, 1: 123456, 2: 36589 
   });
 }
-writeUserData("azLL3vjsCIYtiNzjKFPlfy4TL700",'Queue',)
+//writeUserData("azLL3vjsCIYtiNzjKFPlfy4TL700",'Queue',)
 
 // get
 
-async function getUser(userId, store, ) {
+async function getUser(userId, store ) {
   get(child(dbRef, 'users/' + userId +"/"+ store)).then((snapshot) => {
     if (snapshot.exists()) {
       console.log(snapshot.val());
@@ -44,4 +44,28 @@ async function getUser(userId, store, ) {
   });
 }
 
-getUser("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue', )
+//getUser("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue', )
+
+
+function writeNewPost(userId, store) {
+  const db = getDatabase();
+
+  const postData = {
+    author: username,
+    uid: uid,
+    body: body,
+    title: title,
+    starCount: 0,
+    authorPic: picture
+  };
+
+  // Get a key for a new Post.
+  const newPostKey = push(child(ref(db), 'posts')).key;
+
+  // Write the new post's data simultaneously in the posts list and the user's post list.
+  const updates = {};
+  updates['/posts/' + newPostKey] = postData;
+  updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+
+  return update(ref(db), updates);
+}
