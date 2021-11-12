@@ -1,10 +1,28 @@
 // root
+:root {
+  /** sunny side **/
+  --blue-background: #00bfff;
+  --blue-border: #72cce3;
+  --blue-color: #96dcee;
+  --yellow-background: #fffaa8;
+  --yellow-border: #f5eb71;
+  /** dark side **/
+  --indigo-background: #808fc7;
+  --indigo-border: #5d6baa;
+  --indigo-color: #6b7abb;
+  --gray-border: #e8e8ea;
+  --gray-dots: #e8e8ea;
+  /** general **/
+  --white: #fff;
+  --button: #ff6b01;
+}
 
 //text
 $primary-text-color: #000000;
 $secondary-text-color: #8c8c8c;
 $third-text-color: #545454;
-$selection-text-color: #ff6b08;
+// $selection-text-color: #ff6b01;
+$selection-text-color: var(--button);
 $form-text-color: #ffffff;
 $warning-text-color: #ff001b;
 
@@ -14,25 +32,29 @@ $secondary-title-text-color: #ffffff;
 
 //accent
 
-$accent-color: #ff6b08;
+// $accent-color: #ff6b08;
+$accent-color: var(--button);
 $accent-btn-color: #ffffff;
-$second-accent-btn-color: #ff6b01;
+$second-accent-btn-color: var(--button);
 
 //background
 $primary-background-color: #ffffff;
-$secondary-background-color: #ff6b08;
+// $secondary-background-color: #ff6b08;
+$secondary-background-color: var(--button);
 $third-background-color: inherit;
 $fourth-background-color: #f7f7f7;
 $sixes-background-color: #000000;
 
 //svg-fill
-$primary-svg-color: #ff6b08;
+// $primary-svg-color: #ff6b08;
+$primary-svg-color: var(--button);
 
 //buttons
 $primary-btn-color: inherit;
-$active-btn-color: #ff6b08;
+// $active-btn-color: #ff6b08;
+$active-btn-color: var(--button);
 $arrow-btn-color: #f7f7f7;
-$primary-btn-text-color:#000000;
+$primary-btn-text-color: #000000;
 $active-btn-text-color: #ffffff;
 
 //logo
@@ -64,19 +86,3 @@ $global-toggle__label-size: $global-toggle-height - ($global-toggle-gutter * 2);
 
 // dark-theme toggle
 $dark-button-scale: 0.4;
-:root {
-  /** sunny side **/
-  --blue-background: #00bfff;
-  --blue-border: #72cce3;
-  --blue-color: #96dcee;
-  --yellow-background: #fffaa8;
-  --yellow-border: #f5eb71;
-  /** dark side **/
-  --indigo-background: #808fc7;
-  --indigo-border: #5d6baa;
-  --indigo-color: #6b7abb;
-  --gray-border: #e8e8ea;
-  --gray-dots: #e8e8ea;
-  /** general **/
-  --white: #fff;
-}

@@ -1,5 +1,9 @@
 import modal_theme from '../../views/partials/modal_theme.hbs';
 import { renderModal } from '../components/modal';
-const modalThemeContent = modal_theme(); //need insert object with movie detail
+import { palitre } from './palitre';
+const modalThemeContent = modal_theme(); //need insert object with movie detail //test
 
-renderModal(modalThemeContent); //test
+setTimeout(e => {
+  renderModal(modalThemeContent);
+  palitre();
+}, 100);
