@@ -88,6 +88,7 @@
 .ourteam__list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between
 }
 .ourteam__item {
   border-radius: 0px 0px 4px 4px;
@@ -101,8 +102,7 @@
   }
 
   @media screen and (min-width: $tablet-general) and (max-width: $tablet-only) {
-    width: calc((100% - 5px * 2) / 4);
-    margin: 0 20px 32px 16px;
+    width: 140px;
   }
   @media screen and (min-width: $desktop-up) {
     width: calc((100% - 5px * 5) / 6);
