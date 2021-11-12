@@ -18,12 +18,10 @@
 @import './components/nuv_list';
 @import './components/pagination_list';
 @import './components/modal';
-@import './components/spinner';
-//=========layout===============
+@import './components/scrollbar';
 //=========static===============
-@import './layout/static/header';
 @import './layout/static/footer';
-//=========main================
+//=========main===============
 @import './layout/gallery';
 @import './layout/modal_one_movie';
 @import './layout/modal_team_list';
