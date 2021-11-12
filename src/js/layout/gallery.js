@@ -1,9 +1,9 @@
 import { GENRES_MAP, initGenres } from '../data/genres';
 import { renderMovieGlobal } from '../components/fetch';
 import { renderPagination, hidePagination } from '../components/pagination-list';
+import { clearInput } from './hero_home';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
-import { clearInput } from './hero_home';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -40,9 +40,6 @@ export function renderMovies(movies) {
     const moviesData = getData(movies, GENRES_MAP);
     const gallery = document.querySelector('.gallery-list');
     gallery.innerHTML = card(moviesData);
-    const id = gallery.querySelector('li');
-    console.dir(id);
-
 }
 
 function getData(movies, genres) {
