@@ -17,12 +17,13 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 export async function renderGallery(searchQuery, page = 1, options = 'home') {
     let movies = undefined;
-    //initGenres();
     if (!searchQuery) {
         movies = (await renderMovieGlobal(page, '', '', options));
     } else {
         movies = (await renderMovieGlobal(page, searchQuery, '', ''));
     }
+
+    console.log(movies);
 
     renderMovies(movies.results);
     renderPagination(page, movies.total_pages);
