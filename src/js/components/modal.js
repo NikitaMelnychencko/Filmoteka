@@ -1,5 +1,6 @@
 import { renderBackdrop, closeBackdrop } from './backdrop';
 
+let modalTimerId = null;
 const refsModal = {
   modalClose: document.querySelector('.modal'),
   modal_content: document.querySelector('.modal__content'),
@@ -33,11 +34,16 @@ function clickBackdropClose(evt) {
 }
 
 function closeModal() {
-  refsModal.modal_content.innerHTML = '';
+  modalTimerId = setTimeout(clearDelay, 250);
   const modal = document.querySelector('.modal');
   modal.classList.remove('modal_is-open');
   modalRemoveListener();
   closeBackdrop();
+}
+
+function clearDelay() {
+  refsModal.modal_content.innerHTML = '';
+  clearTimeout(modalTimerId);
 }
 
 function modalRemoveListener() {

@@ -12,13 +12,20 @@ import './components/pagination-list';
 import './components/scroll_too';
 import './components/color_switcher';
 import './components/modal';
+import './components/fetch-filter';
+import './components/error';
+import './components/filter';
+import './components/spinner';
 //=========layout===============
 //=========static===============
 import './layout/static/header';
 import './layout/static/footer';
+
 //=========main================
 import './layout/gallery';
 import './layout/modal_one_movie';
 import './layout/modal_team_list';
 import './layout/hero_home';
 import './layout/hero_my_list';
+//=========test================
+import './test/firebase.js';
