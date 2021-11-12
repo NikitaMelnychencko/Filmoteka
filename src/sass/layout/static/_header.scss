@@ -20,7 +20,6 @@
 
 .nav__title {
   display: flex;
-  font-family: Roboto;
   font-weight: 500;
   font-size: 8px;
   line-height: 1.16;
@@ -43,8 +42,6 @@
 
 .header__hero {
   display: none;
-  font-family: Roboto;
-  font-style: normal;
   font-weight: 500;
   font-size: 30px;
   line-height: 1.16;
@@ -100,7 +97,6 @@
 @media screen and (min-width: 768px) {
   .header__body {
     padding-top: 41px;
-    // padding-bottom: 97px;
   }
   .header__hero {
     display: block;
@@ -128,10 +124,7 @@
     display: block;
   }
 }
-@media screen and (min-width: 1024px) {
-  // .header__body {
-  // }
-}
+
 
 .path {
   stroke-dasharray: 1000;
@@ -139,11 +132,4 @@
   animation: dash 5s linear alternate infinite;
 }
 
-@keyframes dash {
-  from {
-    stroke-dashoffset: 822;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
+
