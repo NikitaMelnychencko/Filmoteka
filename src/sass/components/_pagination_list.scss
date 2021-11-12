@@ -11,8 +11,7 @@
     padding-bottom: 60px;
   }
 }
-
-.hidden-pagination {
+.pagination-container--hidden {
   display: none;
 }
 .pagination-numbers {
@@ -43,7 +42,7 @@
     opacity: 0.5;
   }
 }
-.arrow {
+.arrow-button {
   background: $arrow-btn-color;
   
   &:disabled {
@@ -56,14 +55,14 @@
     opacity: 0.5;
   }
 }
-.next {
+.arrow-button--next {
     transform: scale(-1, 1)
 }
-.active {
+.page-button--active {
   color: $active-btn-text-color;
   background: $active-btn-color;
 }
-.mobile-hidden {
+.page-button--mobile-hidden {
   display: none;
 
   @media screen and (min-width: $tablet-general) {
