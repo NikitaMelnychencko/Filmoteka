@@ -81,7 +81,7 @@ $global-toggle-gutter: 5px;
 $global-toggle-radius: 50%;
 $global-toggle__label-speed: 0.15s;
 $global-toggle__label-ease: ease-in;
-$global-toggle-radius: $global-toggle-height / 2;
+$global-toggle-radius: ($global-toggle-height / 2);
 $global-toggle__label-size: $global-toggle-height - ($global-toggle-gutter * 2);
 
 // dark-theme toggle
