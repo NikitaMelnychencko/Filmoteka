@@ -1,6 +1,7 @@
 import heroHome from '../../views/partials/hero_home.hbs';
 import searchSvg from '../../images/svg/sprite.svg';
 import { renderGallery } from './gallery.js';
+import { addSpinner, removeSpinner } from '../components/spinner.js';
 export const homeMarkUp = heroHome({ searchSvg });
 export let searchQuery = undefined;
 export function openInput() {
@@ -13,6 +14,7 @@ export function openInput() {
   refs.searchForm.addEventListener('submit', onSearch);
   function onSearch(e) {
     e.preventDefault();
+    addSpinner();
     searchQuery = e.currentTarget.elements.query.value;
     const page = 1;
 
@@ -24,6 +26,7 @@ export function openInput() {
     } else {
       refs.warning.classList.add('is-hidden');
       renderGallery(searchQuery);
+      removeSpinner();
     }
   }
 }
