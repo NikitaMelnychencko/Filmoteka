@@ -40,6 +40,7 @@ function onClick(e) {
 }
 
 export function renderPagination(currentPage, totalPages) {
+    hidePaggination(false)
     document.querySelector('.pagination-numbers').innerHTML = createPagination(currentPage, totalPages);
     hideArrows(currentPage, totalPages);
     return currentPage;
@@ -135,4 +136,11 @@ function hideForMobile(page, currentPage, totalPages) {
 
 function createAllPages(page, className) {
     return `<li class="page-item"><button class="page-button ${className}">${page}</button></li>`
+}
+
+export function hidePaggination(state) {
+    const pagesContainer = refs.main.querySelector('.pagination-container');
+    if (state) {
+        pagesContainer.classList.add('hidden-pagination')
+    } else { pagesContainer.classList.remove('hidden-pagination') }
 }

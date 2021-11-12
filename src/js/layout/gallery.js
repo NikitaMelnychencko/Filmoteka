@@ -1,8 +1,10 @@
 import { GENRES_MAP, initGenres } from '../data/genres';
 import { renderMovieGlobal } from '../components/fetch';
-import { renderPagination } from '../components/pagination-list';
+import { renderPagination, hidePaggination } from '../components/pagination-list';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
+//import searchQuery from './hero_home';
+import { clearSerchQuery } from './hero_home';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -15,15 +17,24 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 // renderGallery (search) - отрисовывает первую страницу по слову вопросу
 // renderGallery ('', page) - отрисовывает страницу №page самых популярных фильмов
 
-export async function renderGallery(searchQuery, page = 1, options = 'home') {
+export async function renderGallery(search, page = 1, options = 'home') {
     let movies = undefined;
-    if (!searchQuery) {
+    if (!search) {
         movies = (await renderMovieGlobal(page, '', '', options));
+        clearSerchQuery();
+        //searchQuery = undefined;
     } else {
-        movies = (await renderMovieGlobal(page, searchQuery, '', ''));
+        movies = (await renderMovieGlobal(page, search, '', ''));
     }
 
-    console.log(movies);
+    // console.log(searchQuery);
+    //console.log(movies.then());
+
+    if (!movies) {
+        console.log('opps')
+        hidePaggination(true);
+        return
+    }
 
     renderMovies(movies.results);
     renderPagination(page, movies.total_pages);
@@ -32,9 +43,9 @@ export async function renderGallery(searchQuery, page = 1, options = 'home') {
 }
 
 export function renderMovies(movies) {
-  const moviesData = getData(movies, GENRES_MAP);
-  const gallery = document.querySelector('.gallery-list');
-  gallery.innerHTML = card(moviesData);
+    const moviesData = getData(movies, GENRES_MAP);
+    const gallery = document.querySelector('.gallery-list');
+    gallery.innerHTML = card(moviesData);
 }
 
 function getData(movies, genres) {

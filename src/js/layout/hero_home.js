@@ -31,3 +31,8 @@ export function openInput() {
     }
   }
 }
+
+export function clearSerchQuery() {
+  searchQuery = undefined;
+}
+
