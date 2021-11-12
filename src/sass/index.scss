@@ -4,7 +4,6 @@
 @import './utils/fonts';
 @import './utils/placeholder';
 @import './utils/variables';
-@import './utils/spinner';
 //=============base==============
 @import './base/globalClass';
 @import './base/reset';
@@ -20,11 +19,10 @@
 @import './components/pagination_list';
 @import './components/modal';
 @import './components/scrollbar';
-//=========layout===============
+@import './components/spinner';
 //=========static===============
-@import './layout/static/header';
 @import './layout/static/footer';
-//=========main================
+//=========main===============
 @import './layout/gallery';
 @import './layout/modal_one_movie';
 @import './layout/modal_team_list';
