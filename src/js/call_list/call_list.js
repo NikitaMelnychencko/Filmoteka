@@ -15,6 +15,7 @@ import { renderGallery } from '../layout/gallery';
 import { primaryPagination } from '../components/pagination-list';
 import { initGenres } from '../data/genres';
 import blockHelpTemplate from '../../views/components/block_help.hbs';
+import {blockhelpOpen} from '../components/block_help.js'
 
 export function pageRender(value, heroValue, valueAdd, valueRemove) {
   //backdrop include plugin "modal window"
@@ -35,6 +36,7 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
   }
   // pagination
   primaryPagination(svg);
+  blockhelpOpen()
 }
 function addHeroClass(valueAdd, valueRemove) {
   const heroRef = document.querySelector('.hero');
