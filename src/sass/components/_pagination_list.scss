@@ -45,6 +45,8 @@
   &:disabled {
     color: #000000;
     fill: #000000;
+
+    cursor: default;
       
     background-color: $arrow-btn-color;
     opacity: 0.5;
