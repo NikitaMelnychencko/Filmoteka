@@ -21,6 +21,7 @@ export function openInput() {
     console.log(searchQuery.length <= 1);
     if (searchQuery.length <= 1) {
       refs.warning.classList.remove('is-hidden');
+      removeSpinner();
       return (refs.warning.textContent =
         'Search result not successful. Enter the correct movie name and try again!');
     } else {
