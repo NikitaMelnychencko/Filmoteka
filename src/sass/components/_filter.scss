@@ -1,0 +1,14 @@
+.filter_panel{
+   min-width: 260px;
+    width: 260px;
+    border: 1px solid #e3e3e3;
+    border-radius: var(--imageBorderRadius);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.filter-list{
+position: relative;
+}

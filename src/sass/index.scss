@@ -4,7 +4,6 @@
 @import './utils/fonts';
 @import './utils/placeholder';
 @import './utils/variables';
-@import './utils/spinner';
 //=============base==============
 @import './base/globalClass';
 @import './base/reset';
@@ -19,8 +18,9 @@
 @import './components/nuv_list';
 @import './components/pagination_list';
 @import './components/modal';
+@import './components/filter';
 @import './components/scrollbar';
-//=========layout===============
+@import './components/spinner';
 //=========static===============
 @import './layout/static/header';
 @import './layout/static/header_library';
@@ -32,3 +32,4 @@
 @import './layout/modal_team_list';
 @import './layout/hero_home';
 @import './layout/hero_my_list';
+@import './layout/error';
