@@ -1,60 +1,32 @@
+import { pageRender } from '../../call_list/call_list.js';
+import mainTittle from '../../data/main.json';
+import { homeMarkUp } from '../../layout/hero_home';
+
 const refs = {
-  myUlEle: document.querySelectorAll('.nav__title > li'),
+  myUlEle: document.querySelectorAll('.nav__title >li a'),
 };
 
-refs.myUlEle.forEach((n, i, a) => {
-  n.addEventListener('click', () =>
-    a.forEach(m => m.classList.toggle('nav__current', m === n)),
+refs.myUlEle.forEach((list, id, a) => {
+  list.addEventListener('click', () =>
+    a.forEach(elem => elem.classList.toggle('nav__current', elem === list)),
   );
 });
 
-// refs.clicMyLib.forEach(list => {
-//   list.addEventListener('click', function (eve) {
-// //     eve.preventDefault();
-//     console.log(eve);
-//     if (eve.target.textContent == 'my library') {
-//       refs.removeSerch.classList.add('hidden');
-//       refs.headBtn.classList.remove('hidden');
-//     } else if (eve.target.textContent == 'home') {
-//       refs.headBtn.classList.add('hidden');
-//       refs.removeSerch.classList.remove('hidden');
-//     } else if (eve.target.textContent !== 'login') {
-//       // Передать функцию модального окна авторизации
+// функция для рендера
 
-//       console.log('Open modal Auteri');
-//     }
-//   });
-// });
+function toggleTodo(event) {
+  event.preventDefault();
+  let target = event.target;
+  let item = target.textContent;
+  console.log(item);
 
-// function appendfotoTpl(articles) {
-//   refs.headBtn.insertAdjacentHTML('beforeend', buttonHeader(articles));
-// }
+  if (item === 'my library') {
+    // Сюда передать функцию
+    pageRender(mainTittle.home, homeMarkUp);
+  }
+}
 
-// function removefotoTpl(event) {
-//   refs.headBtn.remove(buttonHeader(event));
-// }
-// eve.preventDefault()
-
-// Модальное окно
-// function onOpenModal(event) {
-//   window.addEventListener('keydown', closeEsc);
-//   refs.bodymodal.insertAdjacentHTML('beforeend', modalWindow(event));
-//   console.log('Modal');
-// }
-// function onCloseModal() {
-//   window.removeEventListener('keydown', closeEsc);
-//   document.body.classList.remove('show-modal');
-// }
-
-// function mouseCloseMOdal(event) {
-//   if (event.currentTarget === event.target) {
-//     onCloseModal();
-//   }
-// }
-
-// function closeEsc(event) {
-//   console.log(event.currentTarget);
-//   if (event.code === 'Escape') {
-//     onCloseModal();
-//   }
-// }
+refs.myUlEle.forEach(function (link) {
+  link.addEventListener('click', toggleTodo);
+});
+// toggleTodo();

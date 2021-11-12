@@ -2,7 +2,6 @@
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 0;
   right: 0;
 }
 .header__wraper {
@@ -15,7 +14,7 @@
 }
 .header__body {
   padding-top: 48px;
-  padding-bottom: 101px;
+  // padding-bottom: 101px;
   background-size: 100% 100%;
 }
 
@@ -105,7 +104,7 @@
 @media screen and (min-width: 768px) {
   .header__body {
     padding-top: 41px;
-    padding-bottom: 97px;
+    // padding-bottom: 97px;
   }
   .header__hero {
     display: block;
@@ -136,4 +135,19 @@
 @media screen and (min-width: 1024px) {
   // .header__body {
   // }
+}
+
+.path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 5s linear alternate infinite;
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 822;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
