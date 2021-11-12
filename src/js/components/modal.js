@@ -29,12 +29,10 @@ function modalCloseEcsKey(evt) {
 }
 
 function buttonClose(evt) {
-  if (
-    evt.target.id === 'close-modal' ||
-    evt.target.parentElement.id === 'close-modal'
-  ) {
-    closeModal();
+  if (evt.target.id === 'close-modal'||evt.target.parentElement.id === 'close-modal') {
+    return closeModal();
   }
+  return
 }
 
 export function closeModal() {
