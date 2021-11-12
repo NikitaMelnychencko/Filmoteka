@@ -3,7 +3,7 @@ import { renderMovieGlobal } from '../components/fetch';
 import { renderPagination, hidePagination } from '../components/pagination-list';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
-//import { clearSerchQuery } from './hero_home';
+import { clearInput } from './hero_home';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -19,8 +19,8 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 export async function renderGallery(search, page = 1, options = 'home') {
     let movies = undefined;
     if (!search) {
+        clearInput();
         movies = (await renderMovieGlobal(page, '', '', options));
-        // clearSerchQuery();
     } else {
         movies = (await renderMovieGlobal(page, search, '', ''));
     }
