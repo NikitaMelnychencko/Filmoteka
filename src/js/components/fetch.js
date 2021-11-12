@@ -32,11 +32,7 @@ export function renderParamsCard(id) {
   const REQUEST_ADRESS = `${ID_URL}${id}?api_key=${API_KEY}&language=en-US`;
   return baseFetch(REQUEST_ADRESS)
     .then(response => {
-      if (response.status === 200) {
-        return response.json();
-      } else {
-        throw new Error(renderErrorServer());
-      }
+        return response;
     })
     .catch(error => {});
 }
