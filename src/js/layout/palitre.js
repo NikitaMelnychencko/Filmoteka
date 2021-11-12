@@ -128,14 +128,14 @@ export function palitre() {
 
       function setCurrentColor(mg) {
         current_color.style.backgroundColor = `hsl(${mg}, 100%, 50%)`;
-        document.documentElement.style.cssText = `--button: hsl(${mg}, 100%, 50%)`;
+        document.documentElement.style.cssText = `--button: hsl(${mg}deg, 100%, 50%)`;
       }
 
       setCurrentColor(mg);
 
       // palitre_ring_dot.style.transform = `translate(-50%, -230px), rotate(${mg}deg)`;
       palitre_ring_dot.style.transform = `rotate(${mg + 45}deg)`;
-      palitre_ring_dot.style.backgroundColor = `hsl(${mg}, 100%, 50%)`;
+      palitre_ring_dot.style.backgroundColor = `hsl(${mg}deg, 100%, 50%)`;
       return;
     }
   };

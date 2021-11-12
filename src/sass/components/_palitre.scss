@@ -48,33 +48,33 @@
   box-shadow: 0 0 10px rgba(#000, 0.5);
   background: radial-gradient(
       circle at 50% 0,
-      hsl(0%, 100%, 50%, 1) 10%,
-      hsl(0%, 100%, 50%, 0) 35%
+      hsl(0deg, 100%, 50%, 1) 10%,
+      hsl(0deg, 100%, 50%, 0) 35%
     ),
     radial-gradient(
       circle at 100% 21%,
-      hsl(60%, 100%, 50%, 1) 10%,
-      hsl(60%, 100%, 50%, 0) 35%
+      hsl(60deg, 100%, 50%, 1) 10%,
+      hsl(60deg, 100%, 50%, 0) 35%
     ),
     radial-gradient(
       circle at 100% 79%,
-      hsl(120%, 100%, 50%, 1) 10%,
-      hsl(120%, 100%, 50%, 0) 35%
+      hsl(120deg, 100%, 50%, 1) 10%,
+      hsl(120deg, 100%, 50%, 0) 35%
     ),
     radial-gradient(
       circle at 50% 100%,
-      hsl(180%, 100%, 50%, 1) 10%,
-      hsl(180%, 100%, 50%, 0) 35%
+      hsl(180deg, 100%, 50%, 1) 10%,
+      hsl(180deg, 100%, 50%, 0) 35%
     ),
     radial-gradient(
       circle at 0% 79%,
-      hsl(235%, 100%, 50%, 1) 10%,
-      hsl(235%, 100%, 50%, 0) 35%
+      hsl(235deg, 100%, 50%, 1) 10%,
+      hsl(235deg, 100%, 50%, 0) 35%
     ),
     radial-gradient(
       circle at 0% 21%,
-      hsl(300%, 100%, 50%, 1) 10%,
-      hsl(300%, 100%, 50%, 0) 35%
+      hsl(300deg, 100%, 50%, 1) 10%,
+      hsl(300deg, 100%, 50%, 0) 35%
     );
   &::before {
     content: '';
