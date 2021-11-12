@@ -124,7 +124,7 @@ palitre.onclick = function (e) {
 
   setCurrentColor(mg);
 
-  palitre_ring_dot.style.transform = `translate(${X * 300 + 300 - 25}px,${
-    -Y * 300 + 300 - 25
-  }px)`;
+  // palitre_ring_dot.style.transform = `translate(-50%, -230px), rotate(${mg}deg)`;
+  palitre_ring_dot.style.transform = `rotate(${mg + 45}deg)`;
+  palitre_ring_dot.style.backgroundColor = `hsl(${mg}, 100%, 50%)`;
 };
