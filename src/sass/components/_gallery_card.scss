@@ -4,21 +4,25 @@
   max-width: 280px;
   margin: 15px;
   cursor: pointer;
+  background-color: $primary-background-color;
+  border-radius: 5px;
+  
+  z-index: auto;
   transform: scale(1);
+  transition: all $time-cubic;
 
 
   &:hover,
   &:focus {
+    z-index: 2;
     transform: scale(1.05);
-  .gallery-list__img {
-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
+    
+    .gallery-list__img {
+      box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
       1px 4px 6px rgba(0, 0, 0, 0.16);
+    }
   }
-}
 
-
-  
-  
   @media screen and (min-width: $tablet-general) {
     max-width: 294px;
   }
@@ -33,11 +37,9 @@ box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
   width: 280px;
   border-radius: 5px;
 
-  // &:hover,
-  // &:focus {
-  //   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-  //     1px 4px 6px rgba(0, 0, 0, 0.16);}
-
+  box-shadow: none;
+  transition: all $time-cubic;
+  
   @media screen and (min-width: $tablet-general) {
     width: 294px;
   }
@@ -48,7 +50,6 @@ box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
 
 .gallery-list__card {
   padding-top: 10px;
-  
 }
 
 .gallery-list__title {
@@ -66,7 +67,8 @@ box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
   
   color: $primary-title-text-color;
 
- &:hover {
+ &:hover,
+ &:focus {
     white-space: normal;
   }
 }
