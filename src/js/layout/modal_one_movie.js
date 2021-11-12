@@ -23,6 +23,9 @@ function renderMovieSeorchParam() {
     });
 }
 const imagesRef = document.querySelector('.gallery-list');
+imagesRef.closest('li')
+console.log(imagesRef.closest('li'));
+
 
 function seorchId() {
   imagesRef.addEventListener('click', e => {
