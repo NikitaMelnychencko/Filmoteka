@@ -6,11 +6,11 @@ import { renderParamsCard } from '../components/fetch'
 let id = "id";
 let linksID = [];
 
-const test = document.querySelector('.modal__content')
+const modalContent = document.querySelector('.modal__content')
 
 function renderParamCard(data) {
   const marcup = modal_one_movie_markup(data);
-  test.innerHTML = marcup;
+  modalContent.innerHTML = marcup;
 }
 
 function renderMovieSeorchParam() {
@@ -22,20 +22,15 @@ function renderMovieSeorchParam() {
     .catch(() => {
     });
 }
-const imagesRef = document.querySelector('.gallery-list li');
-console.log(imagesRef);
+const imagesRef = document.querySelector('.gallery-list');
 
 function seorchId() {
-  const imagesRef = document.querySelector('.gallery-list');
   imagesRef.addEventListener('click', e => {
     e.preventDefault()
-    console.log(e.target.parentNode);
-    if (e.target.nodeName !== 'IMG' || e.target.nodeName !== 'H3') {
-      console.log('Выход');
+    if (e.target.nodeName === 'UL') {
       return;
     }
-    // console.log(id);
-    id = e.target.parentNode.dataset.id
+    id = e.target.dataset.id
     renderMovieSeorchParam(id)
   })
 }

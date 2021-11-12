@@ -1,15 +1,16 @@
 {{#each this}}
 <li class="gallery-list__item" data-id="{{id}}">
-    <img class="gallery-list__img" src={{poster_path}} alt=" {{title}}">
-    <div class="gallery-list__card">
-        <h3 class="gallery-list__title">{{title}}</h3>
-        <div class="gallery-list__info">
-            <p class="gallery-list__genre">{{#if genres}}{{#each genres}}
-                <a class="gallery-list__genre-link" href="">{{name}}{{#unless @last}},{{/unless}}</a>
+    <img class="gallery-list__img" src={{poster_path}} alt="{{title}}" data-id="{{id}}">
+    <div class="gallery-list__card" data-id="{{id}}">
+        <h3 class="gallery-list__title" data-id="{{id}}">{{title}}</h3>
+        <div class="gallery-list__info" data-id="{{id}}">
+            <p class="gallery-list__genre" data-id="{{id}}">{{#if genres}}{{#each genres}}
+                <a class="gallery-list__genre-link" href="" data-id="{{id}}">{{name}}{{#unless @last}},{{/unless}}</a>
                 {{/each}}{{else}} - {{/if}}
             </p>
-            <p class="gallery-list__year"> | {{#if release_date_year}} {{release_date_year}} {{else}} - {{/if}}</p>
-            <p class="gallery-list__rate">{{vote_average}}</p>
+            <p class="gallery-list__year" data-id="{{id}}"> | {{#if release_date_year}} {{release_date_year}} {{else}} -
+                {{/if}}</p>
+            <p class="gallery-list__rate" data-id="{{id}}">{{vote_average}}</p>
         </div>
     </div>
 </li>
