@@ -1,9 +1,9 @@
 //==========utils=================
+@import './utils/variables';
 @import './utils/animation';
 @import './utils/breakpoints';
 @import './utils/fonts';
 @import './utils/placeholder';
-@import './utils/variables';
 //=============base==============
 @import './base/globalClass';
 @import './base/reset';
@@ -23,9 +23,8 @@
 @import './components/spinner';
 //=========static===============
 @import './layout/static/header';
-@import './layout/static/header_library';
 @import './layout/static/footer';
-@import './layout/static/modal_wind';
+//@import './layout/static/modal_wind';
 //=========main================
 @import './layout/gallery';
 @import './layout/modal_one_movie';
