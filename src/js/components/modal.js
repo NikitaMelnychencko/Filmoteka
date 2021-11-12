@@ -6,11 +6,7 @@ function refsModal() {
   const refsModalz = {
     modalClose: document.querySelector('.modal'),
     modal_content: document.querySelector('.modal__content'),
-    buttonCloseModal: document.querySelector("[data-action='close-modal']"),
-    backdrop: document.querySelector('.backdrop'),
   };
-  // console.log(refsModalz.buttonCloseModal);
-  // console.log(refsModalz.closeBtn);
   return refsModalz;
 }
 
@@ -22,10 +18,8 @@ export function renderModal(modalContent) {
 }
 
 function modalAddListener() {
-  console.dir(refsModal().buttonCloseModal);
-  refsModal().buttonCloseModal.addEventListener('click', ff);
+  refsModal().modalClose.addEventListener('click', buttonClose);
   window.addEventListener('keydown', modalCloseEcsKey);
-  refsModal().backdrop.addEventListener('click', clickBackdropClose);
 }
 
 function modalCloseEcsKey(evt) {
@@ -33,19 +27,17 @@ function modalCloseEcsKey(evt) {
     closeModal();
   }
 }
-refsModal().buttonCloseModal.onc;
-function ff(evt) {
-  console.log(evt);
-  console.log('tatatat');
-}
 
-function clickBackdropClose(evt) {
-  if (evt.target === refsModal().backdrop) {
+function buttonClose(evt) {
+  if (
+    evt.target.id === 'close-modal' ||
+    evt.target.parentElement.id === 'close-modal'
+  ) {
     closeModal();
   }
 }
 
-function closeModal() {
+export function closeModal() {
   modalTimerId = setTimeout(clearDelay, 250);
   const modal = document.querySelector('.modal');
   modal.classList.remove('modal_is-open');
@@ -59,9 +51,8 @@ function clearDelay() {
 }
 
 function modalRemoveListener() {
-  refsModal().buttonCloseModal.removeEventListener('click', closeModal);
+  refsModal().modalClose.removeEventListener('click', buttonClose);
   window.removeEventListener('keydown', modalCloseEcsKey);
-  refsModal().backdrop.removeEventListener('click', clickBackdropClose);
 }
 
 // setTimeout(e => renderModal('TEST'), 200); //test
