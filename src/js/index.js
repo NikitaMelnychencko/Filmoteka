@@ -15,6 +15,7 @@ import './components/modal';
 import './components/fetch-filter';
 import './components/error';
 import './components/filter';
+import './components/spinner';
 //=========layout===============
 //=========static===============
 import './layout/static/header';
