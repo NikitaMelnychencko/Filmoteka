@@ -1,19 +1,7 @@
-//Import the functions you need from the SDKs you need
-import json from '../data/main.json'
+import json from '../testcard.json'
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import {
-  getFirestore,
-  collection,
-  getDoc,
-  addDoc,
-  setDoc,
-  query,
-  where,
-  doc,
-  updateDoc,
-   arrayUnion, arrayRemove 
-} from 'firebase/firestore';
+import {getDatabase, ref, set , get,child} from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,6 +10,7 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyBU3Wc3Z3R37hTZkFlOc3KVu8xNH1dedWg",
   authDomain: "fir-test-a5c95.firebaseapp.com",
+  databaseURL: "https://fir-test-a5c95-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "fir-test-a5c95",
   storageBucket: "fir-test-a5c95.appspot.com",
   messagingSenderId: "182392685843",
@@ -30,60 +19,29 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-// get
-async function getUsers(db, velue, grup) {
-  const docRef = doc(db, `${velue}/${grup}`);
-  //const usersCol = collection(db, velue)
-  const usersSnapshot = await getDoc(docRef);
-  if (usersSnapshot.exists()) {
-    console.log('Document data:', usersSnapshot.data());
-    return usersSnapshot.data();
-  } else {
-    console.log('No such document!');
-  }
-}
-getUsers(db, 'users', '82Gz74gHWziXivF9ZDtL');
+const db = getDatabase();
+const dbRef = ref(getDatabase());
 
 //Post
-// async function postUsers(db, value) {
-//   try {
-//     const docRef = await addDoc(collection(db, value), {
-//       films: [{}, {}, {}]
-//     });
-//     console.log('Document written with ID: ', docRef.id);
-//   } catch (e) {
-//     console.error('Error adding document: ', e);
-//   }
-// }
-// postUsers(db, 'use');
-
-const congo = {name: 'drama', value: 130, about: {name: 'drama'}, tabel:{}}
-const movie = [{ name: 'drama', value: 130, about: { name: 'drama' }, tabel: {} }]
-
-console.log(json);
-async function postUsers(db, value,user,movie) {
-  try {
-    const docRef = await setDoc(doc(db, `${value}`, `${user}`), {
-      json
-     })    
-    console.log('Document written with ID: ', docRef.id);
-  } catch (e) {
-    console.error('Error adding document: ', e);
-  }
+function writeUserData(userId,store) {
+  set(ref(db, 'users/' + userId +"/"+ store), {
+     0: 123847, 1: 123456, 2: 36589 
+  });
 }
- //postUsers(db, 'Watched','azLL3vjsCIYtiNzjKFPlfy4TL722',congo);
- //postUsers(db, 'Queue','azLL3vjsCIYtiNzjKFPlfy4TL722', congo);
+writeUserData("azLL3vjsCIYtiNzjKFPlfy4TL700",'Queue',)
 
-async function updateUsers(db, value,user,movie) {
-  try {
-    const docRef = await updateDoc(doc(db, `${value}`, `${user}`), {
-      json
-     })    
-    console.log('Document written with ID: ', docRef.id);
-  } catch (e) {
-    console.error('Error adding document: ', e);
-  }
+// get
+
+async function getUser(userId, store, ) {
+  get(child(dbRef, 'users/' + userId +"/"+ store)).then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val());
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
 }
- updateUsers(db, 'Watched','azLL3vjsCIYtiNzjKFPlfy4TL722',congo);
+
+getUser("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue', )
