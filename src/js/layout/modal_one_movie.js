@@ -22,19 +22,18 @@ function renderMovieSeorchParam() {
     .catch(() => {
     });
 }
-const imagesRef = document.querySelector('.gallery-list');
-imagesRef.closest('li')
-console.log(imagesRef.closest('li'));
-
 
 function seorchId() {
+  const imagesRef = document.querySelector('.gallery-list');
   imagesRef.addEventListener('click', e => {
     e.preventDefault()
     if (e.target.nodeName === 'UL') {
       return;
     }
-    id = e.target.dataset.id
+    id = e.target.closest('.gallery-list__item').dataset.id;
+    console.log(id)
     renderMovieSeorchParam(id)
   })
 }
+
 seorchId()
