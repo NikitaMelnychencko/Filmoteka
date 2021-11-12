@@ -1,0 +1,104 @@
+.modal__close-button {
+  position: absolute;
+  background: none;
+  outline: none;
+  border: none;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  display: block;
+  padding: 8px;
+  transition: all $time-cubic;
+  &:focus,
+  &:hover {
+    filter: drop-shadow(0 0 5px $accent-color);
+  }
+}
+
+.global-button {
+  border: $button-border;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 44px;
+  width: 113px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  color: $primary-text-color;
+  background: none;
+  justify-content: center;
+  transition: all $time-cubic;
+  @media screen and (min-width: $tablet-general) {
+    width: 125px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    width: 152px;
+    &:first-child {
+      margin-right: 15px;
+    }
+  }
+  &:hover,
+  &:focus {
+    background: $second-accent-btn-color;
+    color: $accent-btn-color;
+    border-color: $second-accent-btn-color;
+  }
+}
+%button {
+  height: 44px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: $form-text-color;
+
+  cursor: pointer;
+  transition: background-color $time-cubic, border-color $time-cubic;
+}
+.hero-library__button {
+  @extend %button;
+  width: 130px;
+  background-color: transparent;
+  border: 1px solid $form-text-color;
+
+  transition: box-shadow $time-cubic;
+
+  &:hover,
+  &:focus,
+  &--active {
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+    background-color: $second-accent-btn-color;
+    border-color: $second-accent-btn-color;
+  }
+
+  &--watched {
+    margin-right: 15px;
+  }
+
+  @media screen and (min-width: $tablet-general) {
+    width: 136px;
+  }
+}
+
+.help__form-button {
+  @extend %button;
+  width: 100%;
+  background-color: $accent-color;
+  border-style: none;
+
+  &:hover,
+  &:focus {
+    background-color: $accent-btn-color;
+    color: $accent-color;
+    border: 1px solid $accent-color;
+  }
+}
