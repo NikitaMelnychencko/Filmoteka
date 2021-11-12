@@ -26,15 +26,17 @@ function canheHeader(event) {
     
 
   }
-  // if (item === 'my library') {
-  //   // here render header page Button
-  //   const myLib = myLibraryMarkUp();
-  //   pageRender(mainTittle.my_library_watched, myLib, 'hero--my-library', 'hero--home');
-  //   initGenres ()
-  //   renderGallery();
-    
-  // } if (item === '  log in') {
-    
+  if (item === 'my library') {
+    // here render header page Button
+    const myLib = myLibraryMarkUp();
+    pageRender(
+      mainTittle.my_library_watched,
+      myLib,
+      'hero--my-library',
+      'hero--home',
+    );
+  }
+  // if (item === '  log in') {
   // }
 }
 
