@@ -45,7 +45,7 @@
     }
 
     @media screen and (min-width: $desktop-up) {
-      max-width: 1200px;
+      max-width: 1024px;
       background-image: linear-gradient(
           to right,
           rgba(0, 0, 0, 0.1),
@@ -80,7 +80,6 @@
     background-repeat: no-repeat;
     background-position: center;
     box-shadow: 0 0 100px black;
-
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -135,10 +134,10 @@
   @extend %hide;
 }
 
-.hero__wrap{
-  position: relative;
+.hero__wrap {
+  // position: relative;
   display: flex;
   @media screen and (min-width: $tablet-general) {
-  justify-content: space-around;
+    justify-content: space-around;
   }
 }
