@@ -6,9 +6,11 @@ function refsModal() {
   const refsModalz = {
     modalClose: document.querySelector('.modal'),
     modal_content: document.querySelector('.modal__content'),
-    buttonCloseModal: document.querySelector('[data-action="close-modal"]'),
+    buttonCloseModal: document.querySelector("[data-action='close-modal']"),
     backdrop: document.querySelector('.backdrop'),
   };
+  // console.log(refsModalz.buttonCloseModal);
+  // console.log(refsModalz.closeBtn);
   return refsModalz;
 }
 
@@ -20,7 +22,8 @@ export function renderModal(modalContent) {
 }
 
 function modalAddListener() {
-  refsModal().buttonCloseModal.addEventListener('click', closeModal);
+  console.dir(refsModal().buttonCloseModal);
+  refsModal().buttonCloseModal.addEventListener('click', ff);
   window.addEventListener('keydown', modalCloseEcsKey);
   refsModal().backdrop.addEventListener('click', clickBackdropClose);
 }
@@ -29,6 +32,11 @@ function modalCloseEcsKey(evt) {
   if (evt.code === 'Escape') {
     closeModal();
   }
+}
+refsModal().buttonCloseModal.onc;
+function ff(evt) {
+  console.log(evt);
+  console.log('tatatat');
 }
 
 function clickBackdropClose(evt) {
