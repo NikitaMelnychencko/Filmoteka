@@ -56,6 +56,10 @@
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: $form-text-color;
 
   cursor: pointer;
   transition: background-color $time-cubic, border-color $time-cubic;
@@ -65,10 +69,7 @@
   width: 130px;
   background-color: transparent;
   border: 1px solid $form-text-color;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  color: $form-text-color;
+
   transition: box-shadow $time-cubic;
 
   &:hover,
@@ -322,5 +323,18 @@
     background: transparent;
     border-radius: 50%;
     opacity: 0;
+  }
+}
+.help__form-button {
+  @extend %button;
+  width: 100%;
+  background-color: $accent-color;
+  border-style: none;
+
+  &:hover,
+  &:focus {
+    background-color: $accent-btn-color;
+    color: $accent-color;
+    border: 1px solid $accent-color;
   }
 }
