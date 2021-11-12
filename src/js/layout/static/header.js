@@ -3,7 +3,10 @@ import mainTittle from '../../data/main.json';
 import { homeMarkUp } from '../../layout/hero_home';
 import { renderGallery } from '../../layout/gallery';
 import myLibraryMarkUp from '../../../views/partials/hero_my_list.hbs';
-import { refs } from '../../refs/refs.js';
+
+const refs = {
+  myUlEle: document.querySelectorAll('.nav__title >li a'),
+};
 
 refs.myUlEle.forEach((list, id, a) => {
   list.addEventListener('click', () =>
@@ -12,30 +15,25 @@ refs.myUlEle.forEach((list, id, a) => {
 });
 
 // функция для рендера
-function canheHeader(event) {
+
+function toggleTodo(event) {
   event.preventDefault();
   let target = event.target;
   let item = target.textContent;
   console.log(item);
+
   if (item === 'home') {
-    // here render header page serch
-    pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
+    // Сюда передать функцию
+    pageRender(mainTittle.home, homeMarkUp);
     renderGallery();
   }
   if (item === 'my library') {
-    // here render header page Button
     const myLib = myLibraryMarkUp;
-    pageRender(
-      mainTittle.my_library_watched,
-      myLib,
-      'hero--my-library',
-      'hero--home',
-    );
-  }
-  if (item === '  log in') {
+    pageRender(mainTittle.my_library_watched, myLib);
   }
 }
 
 refs.myUlEle.forEach(function (link) {
-  link.addEventListener('click', canheHeader);
+  link.addEventListener('click', toggleTodo);
 });
+// toggleTodo();

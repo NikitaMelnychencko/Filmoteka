@@ -16,7 +16,7 @@ import { primaryPagination } from '../components/pagination-list';
 import { initGenres } from '../data/genres';
 import blockHelpTemplate from '../../views/components/block_help.hbs';
 
-export function pageRender(value, heroValue, valueAdd, valueRemove) {
+export function pageRender(value, heroValue, headerValue) {
   //backdrop include plugin "modal window"
   const backdropMarkUp = backdrop_markup(modal_markup({ svg }));
   const spinnerMarkUp = spinner();
@@ -29,19 +29,13 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
     spinnerMarkUp,
     blockHelpMarkup,
   });
-  addHeroClass(valueAdd, valueRemove);
   if (value.hero_tittle === 'Search Movies') {
     openInput();
   }
   // pagination
   primaryPagination(svg);
 }
-function addHeroClass(valueAdd, valueRemove) {
-  const heroRef = document.querySelector('.hero');
-  heroRef.classList.add(`${valueAdd}`);
-  heroRef.classList.remove(`${valueRemove}`);
-}
 
 initGenres();
-pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
+pageRender(mainTittle.home, homeMarkUp);
 renderGallery();
