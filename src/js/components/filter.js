@@ -54,7 +54,6 @@ function filterMain(data) {
             }
         })
     })
-    // console.log(marcup);
 }
 
 // filterMain()
