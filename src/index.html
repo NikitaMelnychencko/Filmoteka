@@ -15,7 +15,35 @@
 </head>
 
 <body>
-  <header></header>
+
+  <header class="header">
+    <div class="header__body container">
+      <div class="header__wraper ">
+        <div class="header__main">
+          <a class="header__title" href="/">
+            <svg class="icon-film" width="16" height="12">
+              <use href=../src/images/svg/sprite.svg/#icon-film></use>
+            </svg>
+
+            <h1 class="header__hero">Filmoteka</h1>
+
+          </a>
+        </div>
+        <nav class="nav">
+          <ul class="nav__title">
+            <li class="nav__list "><a href="/" class="nav__link nav__current">home</a></li>
+            <li class="nav__list">
+              <svg class="icon-user" width="16" height="12">
+                <use href="../src/images/svg/sprite.svg/#icon-user"></use>
+              </svg>
+              <a href="/" class="nav__link"> log in</a>
+            </li>
+            <li class="nav__list"><a href="/" class="nav__link">my library</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
   <main></main>
   <footer class="footer">
     <div class="container footer__container">
@@ -33,7 +61,8 @@
       </div>
     </div>
   </footer>
-  
+
   <script src="./js/index.js"></script>
 </body>
+
 </html>

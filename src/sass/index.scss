@@ -1,9 +1,9 @@
 //==========utils=================
+@import './utils/variables';
 @import './utils/animation';
 @import './utils/breakpoints';
 @import './utils/fonts';
 @import './utils/placeholder';
-@import './utils/variables';
 //=============base==============
 @import './base/globalClass';
 @import './base/reset';
@@ -22,12 +22,13 @@
 @import './components/scrollbar';
 @import './components/spinner';
 //=========static===============
+@import './layout/static/header';
 @import './layout/static/footer';
-//=========main===============
+//@import './layout/static/modal_wind';
+//=========main================
 @import './layout/gallery';
 @import './layout/modal_one_movie';
 @import './layout/modal_team_list';
 @import './layout/hero_home';
 @import './layout/hero_my_list';
-@import  './layout/error';
-
+@import './layout/error';
