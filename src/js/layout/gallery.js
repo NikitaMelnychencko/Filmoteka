@@ -30,17 +30,16 @@ export async function renderGallery(search, page = 1, options = 'home') {
         return
     }
 
-    renderMovies(movies);
-    //renderPagination(page, movies.total_pages);
+    renderMovies(movies.results);
+    renderPagination(page, movies.total_pages);
     initGenres();
     return movies;
 }
 
-export function renderMovies(movies, page) {
-    const moviesData = getData(movies.results, GENRES_MAP);
+export function renderMovies(movies) {
+    const moviesData = getData(movies, GENRES_MAP);
     const gallery = document.querySelector('.gallery-list');
     gallery.innerHTML = card(moviesData);
-    renderPagination(page, movies.total_pages);;
 }
 
 function getData(movies, genres) {
