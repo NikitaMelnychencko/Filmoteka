@@ -48,11 +48,9 @@ export function renderPagination(currentPage, totalPages) {
 
 function hideArrows(currentPage, totalPages) {
     const pagesContainer = refs.main.querySelector('.pagination-container');
-    //console.log(totalPages)
     if (totalPages === 0) {
-        // console.log('jhvv')
-        pagesContainer.querySelector('.arrow-button--previous').classList.add('hidden-arrow');
-        pagesContainer.querySelector('.arrow-button--next').classList.add('hidden-arrow');
+        pagesContainer.querySelector('.previous').classList.add('hidden-arrow');
+        pagesContainer.querySelector('.next').classList.add('hidden-arrow');
     }
 
     if (currentPage == 1) {
