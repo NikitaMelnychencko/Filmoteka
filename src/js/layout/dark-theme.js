@@ -1,12 +1,43 @@
 import { setTheme } from './modal_theme';
 
-// export function darkTheme() {
-//   document.querySelector('#dark-toggle');
-// }
+function dark_toggle() {
+  return document.querySelector('#dark-toggle');
+}
+
+export function darkTheme() {
+  dark_toggle().addEventListener('change', changeTheme);
+  initialiseCheckOnDownload();
+}
+
+function changeTheme(evt) {
+  if (evt.target.checked) {
+    setDarkTheme();
+
+    return;
+  }
+  setLightTheme();
+
+  return;
+}
 
 function setDarkTheme() {
-  sessionStorage.setItem('darkTheme', JSON.stringify({ theme: 'dark' }));
+  localStorage.setItem('darkTheme', JSON.stringify('dark'));
   setTheme();
 }
 
-setDarkTheme();
+function setLightTheme() {
+  localStorage.removeItem('darkTheme');
+  setTheme();
+}
+
+export function defaultTheme() {
+  localStorage.removeItem('darkTheme');
+}
+
+function initialiseCheckOnDownload() {
+  if (JSON.parse(localStorage.getItem('darkTheme')) == 'dark') {
+    dark_toggle().setAttribute('checked', 'true');
+    return;
+  }
+  return;
+}

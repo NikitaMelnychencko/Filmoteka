@@ -1,4 +1,5 @@
 .palitre {
+  margin-top: 20px;
   width: 280px;
   height: 280px;
   position: relative;
@@ -8,6 +9,7 @@
     height: 350px;
   }
   @media screen and (min-width: $desktop-up) {
+    margin-top: 20px;
     width: 600px;
     height: 600px;
   }

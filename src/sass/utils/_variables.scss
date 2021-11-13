@@ -58,7 +58,7 @@ $primary-svg-color: var(--button);
 $primary-btn-color: inherit;
 // $active-btn-color: #ff6b08;
 $active-btn-color: var(--button);
-$arrow-btn-color: #f7f7f7;
+$arrow-btn-color: var(--footer-background);
 $primary-btn-text-color: var(--primary-text-color);
 $active-btn-text-color: #ffffff;
 
@@ -91,6 +91,7 @@ $global-toggle__label-size: $global-toggle-height - ($global-toggle-gutter * 2);
 
 // dark-theme toggle
 $dark-button-scale: 0.4;
+
 //shadow
 $container-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
 // spinner

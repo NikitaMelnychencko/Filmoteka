@@ -196,7 +196,7 @@
 .dark-toggle {
   display: flex;
   align-items: center;
-
+  z-index: 3001;
   .dark-toggle__checkbox {
     display: none;
   }
@@ -261,6 +261,7 @@
     /** Sun/Moon element **/
     /** Gray dots on the moon **/
     cursor: pointer;
+    z-index: 3001;
   }
   .dark-toggle__label-background {
     width: 10px * $dark-button-scale;

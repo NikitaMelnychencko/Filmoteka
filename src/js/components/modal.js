@@ -29,10 +29,13 @@ function modalCloseEcsKey(evt) {
 }
 
 function buttonClose(evt) {
-  if (evt.target.id === 'close-modal'||evt.target.parentElement.id === 'close-modal') {
+  if (
+    evt.target.id === 'close-modal' ||
+    evt.target.parentElement.id === 'close-modal'
+  ) {
     return closeModal();
   }
-  return
+  return;
 }
 
 export function closeModal() {
@@ -41,6 +44,7 @@ export function closeModal() {
   modal.classList.remove('modal_is-open');
   modalRemoveListener();
   closeBackdrop();
+  closeModalSignal();
 }
 
 function clearDelay() {
@@ -53,4 +57,7 @@ function modalRemoveListener() {
   window.removeEventListener('keydown', modalCloseEcsKey);
 }
 
+export function closeModalSignal() {
+  return;
+}
 // setTimeout(e => renderModal('TEST'), 200); //test

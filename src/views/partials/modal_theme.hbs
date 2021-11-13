@@ -3,7 +3,6 @@
   <div class='modal-theme__scroll-box'>
     <form name='theme'>
       <div class='modal-theme__dark-box dark-toggle'>
-
         <input
           id='dark-toggle'
           class='dark-toggle__checkbox'
@@ -11,7 +10,7 @@
           name='theme-switcher'
           value='Dark theme'
         />
-        <label for='global-toggle' class='dark-toggle__label'>
+        <label for='dark-toggle' class='dark-toggle__label'>
           <span class='dark-toggle__label-background'></span>
         </label>
       </div>
@@ -74,12 +73,8 @@
       </div>
 
       <div class='modal-theme__button-box'>
-        <button class='modal-theme__button' data-action='default-theme'>Restore
-          default</button>
-        <button
-          class='modal-theme__button'
-          data-action='apply-theme'
-        >Apply</button>
+        <button class='modal-theme__button' id='default-theme'>Restore default</button>
+        <button class='modal-theme__button' id='apply-theme'>Apply</button>
       </div>
     </form>
   </div>
