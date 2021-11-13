@@ -45,8 +45,9 @@
   }
 }
 .arrow-button {
+  color: inherit;
   background: $arrow-btn-color;
-  
+
   &:disabled {
     color: $primary-btn-text-color;
     fill: $primary-btn-text-color;

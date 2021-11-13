@@ -3,6 +3,22 @@ import { renderModal } from '../components/modal';
 import { renderParamsCard } from '../components/fetch';
 
 let id = 'id';
+let objService = ''
+let arrObj = ''
+
+function renderMovieSeorchParam(id) {
+  renderParamsCard(id)
+    .then(data => {
+      renderModal();
+      renderParamCard(data);
+      objService = data
+      arrObj = JSON.stringify({ objService })
+      localStorage.setItem('idFilm', id)
+      localStorage.setItem('marcupFilm', arrObj)
+
+    })
+    .catch(() => { });
+}
 
 function renderParamCard(data) {
   const modalContent = document.querySelector('.modal__content');
@@ -10,25 +26,20 @@ function renderParamCard(data) {
   modalContent.innerHTML = marcup;
 }
 
-function renderMovieSeorchParam(id) {
-  renderParamsCard(id)
-    .then(data => {
-      renderModal();
-      renderParamCard(data);
-    })
-    .catch(() => {});
-}
-
 export function seorchId() {
   const imagesRef = document.querySelector('.gallery-list');
   imagesRef.addEventListener('click', e => {
+    localStorage.removeItem('idFilm', id)
+    localStorage.removeItem('marcupFilm', arrObj)
+
     e.preventDefault();
     if (e.target.nodeName === 'UL') {
       return;
     }
     id = e.target.closest('.gallery-list__item').dataset.id;
     renderMovieSeorchParam(id);
+
   });
+
 }
 
-// renderModal(modalContent); //function open modal with string html. test
