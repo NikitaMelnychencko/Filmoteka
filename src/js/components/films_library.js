@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   createUserWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 import {
   getDatabase,
@@ -63,8 +64,9 @@ async function regUser(email, password) {
       const errorMessage = error.message;
     });
 }
+
 // Aut User
-async function signUser(email, password) {
+async function signInUser(email, password) {
   signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
       const user = userCredential.user;
@@ -72,17 +74,37 @@ async function signUser(email, password) {
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.log('111');
     });
 }
+// signInUser('tesdt@gmail.com', 'tesdaddt1');
+
+async function signOutUser() {
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+    })
+    .catch(error => {
+      // An error happened.
+    });
+}
+// signOutUser();
+// console.log(auth);
+
 // State User
-onAuthStateChanged(auth, user => {
-  if (user) {
-    const uid = user.uid;
-    // console.log(uid);
-    sessionStorage.setItem('userId', `${uid}`);
-  } else {
-  }
-});
+async function AuthState(user) {
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      const uid = user.uid;
+      // console.log(uid);
+      sessionStorage.setItem('userId', `${uid}`);
+    } else {
+    }
+  });
+}
+window.onload = function () {
+  AuthState(user);
+};
 
 //getId
 async function getIdUser(userId, store, id) {
