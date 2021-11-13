@@ -22,24 +22,25 @@ function onClick(e) {
     let page = Number(e.target.textContent);
 
     if (e.target.className.includes('end')) {
-        page = Number(refs.main.querySelector('.active').textContent) + 5
+        page = Number(refs.main.querySelector('.page-button--active').textContent) + 5
     }
 
     if (e.target.className.includes('begin')) {
-        page = Number(refs.main.querySelector('.active').textContent) - 5;
+        page = Number(refs.main.querySelector('.page-button--active').textContent) - 5;
     }
 
-    if (e.target.className.includes('previous')) {
-        page = refs.main.querySelector('.active').textContent - 1;
+    if (e.target.className.includes('arrow-button--previous')) {
+        page = refs.main.querySelector('.page-button--active').textContent - 1;
     }
-    if (e.target.className.includes('next')) {
-        page = Number(refs.main.querySelector('.active').textContent) + 1;
+    if (e.target.className.includes('arrow-button--next')) {
+        page = Number(refs.main.querySelector('.page-button--active').textContent) + 1;
     }
 
     renderGallery(searchQuery, page)
 }
 
 export function renderPagination(currentPage, totalPages) {
+    hidePagination(false)
     document.querySelector('.pagination-numbers').innerHTML = createPagination(currentPage, totalPages);
     hideArrows(currentPage, totalPages);
     return currentPage;
@@ -47,23 +48,21 @@ export function renderPagination(currentPage, totalPages) {
 
 function hideArrows(currentPage, totalPages) {
     const pagesContainer = refs.main.querySelector('.pagination-container');
-    //console.log(totalPages)
     if (totalPages === 0) {
-        // console.log('jhvv')
         pagesContainer.querySelector('.previous').classList.add('hidden-arrow');
         pagesContainer.querySelector('.next').classList.add('hidden-arrow');
     }
 
     if (currentPage == 1) {
-        pagesContainer.querySelector('.previous').disabled = true
+        pagesContainer.querySelector('.arrow-button--previous').disabled = true
     } else {
-        pagesContainer.querySelector('.previous').disabled = false
+        pagesContainer.querySelector('.arrow-button--previous').disabled = false
     }
 
     if (currentPage == totalPages) {
-        pagesContainer.querySelector('.next').disabled = true
+        pagesContainer.querySelector('.arrow-button--next').disabled = true
     } else {
-        pagesContainer.querySelector('.next').disabled = false
+        pagesContainer.querySelector('.arrow-button--next').disabled = false
     }
 }
 
@@ -80,16 +79,16 @@ export function createPagination(currentPage, totalPages) {
             for (let p = 2; p <= center + PAGES_GAP; p += 1) {
                 str += isActive(p, currentPage, totalPages);
             }
-            str += createAllPages('...', 'end mobile-hidden')
+            str += createAllPages('...', 'end page-button--mobile-hidden')
         } else {
             if (currentPage <= totalPages - center) {
-                str += createAllPages('...', 'begin mobile-hidden')
+                str += createAllPages('...', 'begin page-button--mobile-hidden')
                 for (let p = currentPage - PAGES_GAP; p <= currentPage + PAGES_GAP; p += 1) {
                     str += isActive(p, currentPage, totalPages);
                 }
-                str += createAllPages('...', 'end mobile-hidden')
+                str += createAllPages('...', 'end page-button--mobile-hidden')
             } else {
-                str += createAllPages('...', 'begin mobile-hidden')
+                str += createAllPages('...', 'begin page-button--mobile-hidden')
                 for (let p = totalPages - center - 1; p < totalPages; p += 1) {
                     str += isActive(p, currentPage, totalPages);
                 }
@@ -102,7 +101,7 @@ export function createPagination(currentPage, totalPages) {
 
 function isActive(page, currentPage, totalPages) {
     if (page == currentPage) {
-        return createAllPages(page, 'active')
+        return createAllPages(page, 'page-button--active')
     } else {
         return hideForMobile(page, currentPage, totalPages)
     }
@@ -116,23 +115,30 @@ function hideForMobile(page, currentPage, totalPages) {
         if (page <= 5) {
             return createAllPages(page, '')
         } else {
-            return createAllPages(page, 'mobile-hidden');
+            return createAllPages(page, 'page-button--mobile-hidden');
         }
     }
     if (currentPage < totalPages - PAGES_GAP) {
         if (page >= currentPage - PAGES_GAP && page <= currentPage + PAGES_GAP) {
             return createAllPages(page, '')
         } else {
-            return createAllPages(page, 'mobile-hidden');
+            return createAllPages(page, 'page-button--mobile-hidden');
         }
     }
     if (page >= totalPages - 4) {
         return createAllPages(page, '')
     } else {
-        return createAllPages(page, 'mobile-hidden');
+        return createAllPages(page, 'page-button--mobile-hidden');
     }
 }
 
 function createAllPages(page, className) {
     return `<li class="page-item"><button class="page-button ${className}">${page}</button></li>`
+}
+
+export function hidePagination(state) {
+    const pagesContainer = refs.main.querySelector('.pagination-container');
+    if (state) {
+        pagesContainer.classList.add('pagination-container--hidden')
+    } else { pagesContainer.classList.remove('pagination-container--hidden') }
 }

@@ -1,6 +1,45 @@
 import modal_one_movie_markup from '../../views/partials/modal_one_movie.hbs';
-import testcard from '../testcard.json'; //test object with movie detail. delete after start function
 import { renderModal } from '../components/modal';
-const modalContent = modal_one_movie_markup(testcard); //need insert object with movie detail
+import { renderParamsCard } from '../components/fetch';
 
-//renderModal(modalContent); //function open modal with string html. test
+let id = 'id';
+let objService = ''
+let arrObj = ''
+
+function renderMovieSeorchParam(id) {
+  renderParamsCard(id)
+    .then(data => {
+      renderModal();
+      renderParamCard(data);
+      objService = data
+      arrObj = JSON.stringify({ objService })
+      localStorage.setItem('idFilm', id)
+      localStorage.setItem('marcupFilm', arrObj)
+
+    })
+    .catch(() => { });
+}
+
+function renderParamCard(data) {
+  const modalContent = document.querySelector('.modal__content');
+  const marcup = modal_one_movie_markup(data);
+  modalContent.innerHTML = marcup;
+}
+
+export function seorchId() {
+  const imagesRef = document.querySelector('.gallery-list');
+  imagesRef.addEventListener('click', e => {
+    localStorage.removeItem('idFilm', id)
+    localStorage.removeItem('marcupFilm', arrObj)
+
+    e.preventDefault();
+    if (e.target.nodeName === 'UL') {
+      return;
+    }
+    id = e.target.closest('.gallery-list__item').dataset.id;
+    renderMovieSeorchParam(id);
+
+  });
+
+}
+
