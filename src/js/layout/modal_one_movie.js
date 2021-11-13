@@ -1,7 +1,7 @@
 import modal_one_movie_markup from '../../views/partials/modal_one_movie.hbs';
 import { renderModal } from '../components/modal';
 import { renderParamsCard } from '../components/fetch';
-import{writeUserData}from '../components/films_library.js'
+import{postUserData,userId}from '../components/films_library.js'
 let id = 'id';
 let objService = ''
 let arrObj = ''
@@ -24,7 +24,7 @@ function renderParamCard(data) {
   const modalContent = document.querySelector('.modal__content');
   const marcup = modal_one_movie_markup(data);
   modalContent.innerHTML = marcup;
-  addToDataBase()
+  addToDataBase(data)
 }
 
 export function seorchId() {
@@ -43,13 +43,13 @@ export function seorchId() {
   });
 
 }
-function addToDataBase(){
+function addToDataBase(data){
   const buttonList = document.querySelector('.modal-one-movie__button-box')
   buttonList.addEventListener('click', e => {
     if (e.target.nodeName!=='BUTTON') {
       return
     }
-    console.dir(e.target.textContent) 
-    //writeUserData()
+    const idFilm = localStorage.getItem('idFilm')
+    postUserData(userId,e.target.dataset.set,idFilm,data)
   })
 }
