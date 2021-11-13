@@ -117,7 +117,7 @@ async function getUser(userId, store) {
 // Post
 function writeUserData(userId, store) {
   set(ref(db, 'users/' + userId + '/' + store), {
-    0: filmId,
+    filmId: filmData,
   });
 }
 // writeUserData(`${userId}`, `watched`);
