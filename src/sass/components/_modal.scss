@@ -25,24 +25,6 @@
   height: 14px;
 }
 
-.modal__close-button {
-  position: absolute;
-  background: none;
-  outline: none;
-  border: none;
-  top: 10px;
-  right: 10px;
-  width: 30px;
-  height: 30px;
-  display: block;
-  padding: 8px;
-  transition: all $time-cubic;
-  &:focus,
-  &:hover {
-    filter: drop-shadow(0 0 5px $accent-color);
-  }
-}
-
 .modal_is-open {
   opacity: 1;
   pointer-events: initial;
