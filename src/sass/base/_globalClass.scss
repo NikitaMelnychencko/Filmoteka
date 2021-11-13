@@ -6,12 +6,12 @@ body {
   line-height: 1.33;
   background-color: $fourth-background-color;
   @media screen and (min-width: $desktop-up) {
-    //-----set govnoimage)))
-    // background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    //   url('../images/img/background/bg1.jpg');
-    // background-size: cover;
-    // background-attachment: fixed;
-    //-----set govnoimage)))
+    // -----set govnoimage)))
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('../images/img/background/bg1.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    // -----set govnoimage)))
   }
   &::before {
     content: '';
