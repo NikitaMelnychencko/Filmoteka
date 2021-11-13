@@ -26,9 +26,9 @@
   text-transform: uppercase;
 }
 .nav__list {
-  cursor: progress;
   position: relative;
   display: flex;
+  cursor: pointer;
 }
 
 .nav__list:not(:last-child) {
@@ -109,7 +109,7 @@
   .header__title {
     display: flex;
     align-items: center;
-    cursor: progress;
+    cursor: pointer;
   }
 
   .nav__title {
