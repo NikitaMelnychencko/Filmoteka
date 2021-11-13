@@ -16,6 +16,7 @@ import './components/fetch-filter';
 import './components/error';
 import './components/filter';
 import './components/spinner';
+import './components/films_library';
 //=========layout===============
 //=========static===============
 import './layout/static/header';
@@ -28,4 +29,4 @@ import './layout/modal_team_list';
 import './layout/hero_home';
 import './layout/hero_my_list';
 //=========test================
-import './test/firebase.js';
+// import './test/firebase.js';

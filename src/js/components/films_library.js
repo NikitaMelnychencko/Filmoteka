@@ -6,13 +6,14 @@ import {
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
 import {
-  getFirestore,
-  collection,
-  getDoc,
-  addDoc,
-  doc,
-} from 'firebase/firestore';
-import { refs } from '../refs/refs';
+  getDatabase,
+  ref,
+  set,
+  get,
+  child,
+  update,
+  remove,
+} from 'firebase/database';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCrhBW63SM95ZUKCf6EsxC1CtzGhzdJBtQ',
@@ -27,43 +28,46 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const db = getDatabase();
+const dbRef = ref(getDatabase());
 const auth = getAuth();
+const user = auth.currentUser;
+const userId = sessionStorage.getItem('userId');
+// const email = sessionStorage.getItem('email');
+// const password = sessionStorage.getItem('password');
 
-// const filmData = {
-//   name: value,
-//   genre: [value, value],
-//   age: value,
-//   vote: value,
-//   votes: value,
-//   popularity: value,
-//   about: value,
-//   img: link,
-// };
-
-const email = 'test@gmail.com';
-const password = 'tesdadt1';
+const filmId = 534536;
+// const email = 'test@gmail.com';
+// const password = 'tesdadt1';
 // const email = 'test3@gmail.com';
 // const password = 'tesdadt122';
-const pageChoose = `watched`;
+// const email = 'eosipopo@gmail.com';
+// const password = '12345679';
 
-// get
-async function getUsers(db, userId, group) {
-  const docRef = doc(db, `users/${userId}/${group}/films`);
-  const usersSnapshot = await getDoc(docRef);
-  if (usersSnapshot.exists()) {
-    console.log('Document data:', usersSnapshot.data());
-    return usersSnapshot.data();
-  } else {
-    console.log('No such document!');
-  }
-}
+// sessionStorage = JSON.stringify({
+//   email: 'eosipopo@gmail.com',
+//   password: '12345679',
+// });
+
+// getUser(`${userId}`, `watched`);
+// getUser(`${userId}`, 'queue');
+// writeUserData(`${userId}`, `watched`);
+// writeUserData(`${userId}`, 'queue');
+
+// Reg User
+createUserWithEmailAndPassword(auth, email, password)
+  .then(userCredential => {
+    const user = userCredential.user;
+  })
+  .catch(error => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
 
 // Aut User
 signInWithEmailAndPassword(auth, email, password)
   .then(userCredential => {
     const user = userCredential.user;
-    onAuthStateChanged;
   })
   .catch(error => {
     const errorCode = error.code;
@@ -75,37 +79,61 @@ onAuthStateChanged(auth, user => {
   if (user) {
     const uid = user.uid;
     console.log(uid);
-    getUsers(db, `${uid}`, `${pageChoose}`);
     sessionStorage.setItem('userId', `${uid}`);
   } else {
   }
 });
-// Reg User
-// Post
 
-// async function postUsers(db, userId, group) {
-//   try {
-//     const docRef = await addDoc(
-//       collection(db, `users/${userId}/${group}/films`),
-//       {
-//         first: 'Ada',
-//         last: 'Lovelace',
-//         born: 1815,
-//       },
-//     );
-//     console.log('Document written with ID: ', docRef.id);
-//   } catch (e) {
-//     console.error('Error adding document: ', e);
-//   }
-// }
-// createUserWithEmailAndPassword(auth, email, password)
-//   .then(userCredential => {
-//     const user = userCredential.user;
-//     const uid = user.uid;
-//     postUsers(db, `${uid}`, `watched`);
-//     // postUsers(db, uid, `queue`);
-//   })
-//   .catch(error => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//   });
+//getId
+async function getIdUser(userId, store, id) {
+  get(child(dbRef, 'users/' + userId + '/' + store + '/' + id))
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+      } else {
+        console.log('No data available');
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+// getIdUser('azLL3vjsCIYtiNzjKFPlfy4TL722', 'queue', 2);
+
+// get
+async function getUser(userId, store) {
+  get(child(dbRef, 'users/' + userId + '/' + store))
+    .then(snapshot => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+      } else {
+        console.log('No data available');
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+// getUser(`${userId}`, `watched`);
+
+// Post
+function writeUserData(userId, store) {
+  set(ref(db, 'users/' + userId + '/' + store), {
+    0: filmId,
+  });
+}
+// writeUserData(`${userId}`, `watched`);
+
+//update
+function updateData(userId, store) {
+  update(ref(db, 'users/' + userId + '/' + store), {
+    2: 99999,
+  });
+}
+//updateData("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue')
+
+//delete
+function deleteData(userId, store, idDoc) {
+  remove(ref(db, 'users/' + userId + '/' + store + '/' + idDoc));
+}
+//deleteData("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue','2')
