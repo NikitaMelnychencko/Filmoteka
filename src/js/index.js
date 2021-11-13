@@ -16,6 +16,7 @@ import './components/fetch-filter';
 import './components/error';
 import './components/filter';
 import './components/spinner';
+import './components/films_library';
 //=========layout===============
 //=========static===============
 import './layout/static/header';
@@ -31,4 +32,4 @@ import './layout/modal_theme';
 import './layout/palitre';
 import './layout/dark-theme';
 //=========test================
-import './test/firebase.js';
+// import './test/firebase.js';
