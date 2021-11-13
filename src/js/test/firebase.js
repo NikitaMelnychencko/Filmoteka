@@ -1,7 +1,7 @@
 import json from '../testcard.json'
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import {getDatabase, ref, set , get,child,push} from 'firebase/database';
+import {getDatabase, ref, set , get,child,update,remove} from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,10 +28,9 @@ function writeUserData(userId,store) {
      0: 123847, 1: 123456, 2: 36589 
   });
 }
-//writeUserData("azLL3vjsCIYtiNzjKFPlfy4TL700",'Queue',)
+writeUserData("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue',)
 
 // get
-
 async function getUser(userId, store ) {
   get(child(dbRef, 'users/' + userId +"/"+ store)).then((snapshot) => {
     if (snapshot.exists()) {
@@ -43,21 +42,33 @@ async function getUser(userId, store ) {
     console.error(error);
   });
 }
+//getUser("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue' )
 
-//getUser("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue', )
-
-
-function writeNewPost(userId, store) {
-
-  const postData = {
-    2: 99999
-  };
-
-  // Write the new post's data simultaneously in the posts list and the user's post list.
-  const updates = {};
-  updates['users/' + userId +"/"+ store] = postData;
-
-  console.log(updates);
-  return update(ref(db), updates);
+//getId
+async function getIdUser(userId, store, id ) {
+  get(child(dbRef, 'users/' + userId +"/"+ store +"/"+ id)).then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val());
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
 }
-writeNewPost("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue')
+
+getIdUser("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue', 2 )
+
+//update
+function updateData(userId, store) {
+  update(ref(db, 'users/' + userId +"/"+ store), {
+    2: 99999 
+  });
+}
+//updateData("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue')
+
+//delete
+function deleteData(userId, store,idDoc) {
+  remove(ref(db, 'users/' + userId + "/" + store+ "/"+ idDoc))
+}
+//deleteData("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue','2')
