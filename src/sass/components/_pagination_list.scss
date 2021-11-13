@@ -28,23 +28,25 @@
 
   color: $primary-btn-text-color;
   fill: $primary-text-color;
-
   background-color: $primary-btn-color;
+  opacity: 1;
+
   border-radius: 5px;
   border: 0;
+  
+  transition: all $time-cubic;
     
-  &:hover,
-  &:focus {
+  &:hover {
     color: #ffffff;
-    fill: #ffffff;
-      
+    fill: #ffffff; 
     background-color: $active-btn-color;
     opacity: 0.5;
   }
 }
 .arrow-button {
+  color: inherit;
   background: $arrow-btn-color;
-  
+
   &:disabled {
     color: #000000;
     fill: #000000;
