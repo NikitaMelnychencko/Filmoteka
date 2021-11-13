@@ -38,7 +38,6 @@ export function seorchId() {
     }
     id = e.target.closest('.gallery-list__item').dataset.id;
     renderMovieSeorchParam(id);
-
   });
 
 }
