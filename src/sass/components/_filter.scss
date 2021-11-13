@@ -9,6 +9,14 @@
     overflow: hidden;
 }
 
-.filter-list{
+.filter {
 position: relative;
+display: flex;
+justify-content: center;
+z-index: 10000;
+}
+
+.filter-list_item{
+    cursor: pointer;
+    margin-top: 10px;
 }

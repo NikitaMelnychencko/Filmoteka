@@ -12,9 +12,10 @@ import './components/pagination-list';
 import './components/scroll_too';
 import './components/color_switcher';
 import './components/modal';
-import './components/fetch-filter';
+import './components/fetch_filter_sort';
 import './components/error';
-import './components/filter';
+import './components/filter_sort';
+import './components/filter_genres';
 import './components/spinner';
 import './components/films_library';
 //=========layout===============
