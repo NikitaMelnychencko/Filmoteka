@@ -200,7 +200,7 @@
   background: 0;
   border: 0;
   padding: 0;
-  color: dodgerblue;
+  color: #f08e4c;
   cursor: pointer;
   margin-left: 10px;
 }
@@ -212,4 +212,58 @@
 .signin-wpapper.load {
   visibility: hidden;
   opacity: 0;
+}
+
+.cl-btn-mod{
+  position: absolute;
+  top: -70px;
+  right: 10px;
+  margin: 20px auto;
+  width: 50px;
+  cursor: pointer;
+}
+.cl-btn-mod-in {
+  width: inherit;
+  text-align: center;
+}
+.cl-btn-mod-txt { 
+  font-size: 9px; 
+  line-height: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #f08e4c;
+  transition: all .3s ease-in;
+  opacity: 0;
+  cursor: pointer;
+  font-family: Verdana;
+}
+.cl-btn-mod-in:before, .cl-btn-mod-in:after {
+  position: absolute;
+  content: '';
+  height: 4px;
+  width: inherit;
+  background: #f08e4c;
+  left: 0;
+  transition: all .3s ease-in;
+}
+.cl-btn-mod-in:before {
+  top: calc(50% - 4px); 
+  transform: rotate(45deg);  
+}
+.cl-btn-mod-in:after {  
+  bottom: 50%;
+  transform: rotate(-45deg);  
+}
+.cl-btn-mod:hover .cl-btn-mod-txt {
+  opacity: 1;
+}
+.cl-btn-mod:hover .cl-btn-mod-in:before,
+.cl-btn-mod:hover .cl-btn-mod-in:after {
+  transform: rotate(0);
+}
+.cl-btn-mod:hover .cl-btn-mod-in:before {
+  top: 0;
+}
+.cl-btn-mod:hover .cl-btn-mod-in:after {
+  bottom: 0;
 }
