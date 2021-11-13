@@ -38,8 +38,8 @@
   transition: all $time-cubic;
     
   &:hover {
-    color: #ffffff;
-    fill: #ffffff; 
+    color: $active-btn-text-color;
+    fill: $active-btn-text-color; 
     background-color: $active-btn-color;
     opacity: 0.75;
   }

@@ -7,6 +7,12 @@ import svg from '../../images/svg/sprite.svg';
 
 const MAX_SHOWN_PAGES = 9;
 const PAGES_GAP = 2;
+const STEPS = new Map([
+    ['previous', -1],
+    ['next', 1],
+    ['begin', -5],
+    ['end', +5],
+])
 
 export function primaryPagination() {
     const pagesContainer = refs.main.querySelector('.pagination-container');
@@ -33,21 +39,24 @@ function getNextPage(button) {
     //console.log(buttonClasses)
     let nextPage = Number(button.textContent);
     console.log(currentPage)
+    console.log(button.dataset.move);
+    console.log(STEPS.get(button.dataset.move))
 
-    if (button.className.includes('end')) {
-        nextPage = Number(refs.main.querySelector('.page-button--active').textContent) + 5
-    }
 
-    if (button.className.includes('begin')) {
-        nextPage = Number(refs.main.querySelector('.page-button--active').textContent) - 5;
-    }
+    // if (button.className.includes('end')) {
+    //     nextPage = Number(refs.main.querySelector('.page-button--active').textContent) + 5
+    // }
 
-    if (button.className.includes('arrow-button--previous')) {
-        nextPage = refs.main.querySelector('.page-button--active').textContent - 1;
-    }
-    if (button.className.includes('arrow-button--next')) {
-        nextPage = Number(refs.main.querySelector('.page-button--active').textContent) + 1;
-    }
+    // if (button.className.includes('begin')) {
+    //     nextPage = Number(refs.main.querySelector('.page-button--active').textContent) - 5;
+    // }
+
+    // if (button.className.includes('arrow-button--previous')) {
+    //     nextPage = refs.main.querySelector('.page-button--active').textContent - 1;
+    // }
+    // if (button.className.includes('arrow-button--next')) {
+    //     nextPage = Number(refs.main.querySelector('.page-button--active').textContent) + 1;
+    // }
     console.log(nextPage)
     return nextPage;
 }
@@ -56,6 +65,8 @@ export function renderPagination(currentPage, totalPages) {
     //hidePagination(false);
     document.querySelector('.pagination-container').innerHTML = pagination(createPagination(currentPage, totalPages));
     //hideArrows(currentPage, totalPages);
+    console.log(STEPS)
+    console.log(STEPS.get('begin'))
     return currentPage;
 }
 
@@ -81,7 +92,7 @@ function hideArrows(currentPage, totalPages) {
 
 export function createPagination(currentPage, totalPages) {
     const icon = `<svg class='page-button-svg'><use href=${svg}#icon-arrow-left ></use></button >`
-    const buttonsArray = [create(icon, 'arrow-button arrow-button--previous')];
+    const buttonsArray = [create(icon, 'arrow-button arrow-button--previous', 'previous')];
 
     const center = Math.ceil(MAX_SHOWN_PAGES / 2);
 
@@ -95,16 +106,16 @@ export function createPagination(currentPage, totalPages) {
             for (let p = 2; p <= center + PAGES_GAP; p += 1) {
                 buttonsArray.push(isActive(p, currentPage, totalPages));
             }
-            buttonsArray.push(create('...', 'end page-button--mobile-hidden'));
+            buttonsArray.push(create('...', 'end page-button--mobile-hidden', 'end'));
         } else {
             if (currentPage <= totalPages - center) {
-                buttonsArray.push(create('...', 'begin page-button--mobile-hidden'));
+                buttonsArray.push(create('...', 'begin page-button--mobile-hidden', 'begin'));
                 for (let p = currentPage - PAGES_GAP; p <= currentPage + PAGES_GAP; p += 1) {
                     buttonsArray.push(isActive(p, currentPage, totalPages));
                 }
-                buttonsArray.push(create('...', 'end page-button--mobile-hidden'));
+                buttonsArray.push(create('...', 'end page-button--mobile-hidden', 'end'));
             } else {
-                buttonsArray.push(create('...', 'begin page-button--mobile-hidden'));
+                buttonsArray.push(create('...', 'begin page-button--mobile-hidden', 'begin'));
                 for (let p = totalPages - center - 1; p < totalPages; p += 1) {
                     buttonsArray.push(isActive(p, currentPage, totalPages));
                 }
@@ -112,7 +123,7 @@ export function createPagination(currentPage, totalPages) {
         }
         buttonsArray.push(isActive(totalPages, currentPage, totalPages));
     }
-    buttonsArray.push(create(icon, 'arrow-button arrow-button--next'));
+    buttonsArray.push(create(icon, 'arrow-button arrow-button--next', 'next'));
     console.log(buttonsArray);
     return buttonsArray;
 }
@@ -150,10 +161,12 @@ function hideForMobile(page, currentPage, totalPages) {
     }
 }
 
-function create(page, className) {
+function create(page, className, dataMove) {
+    console.log(dataMove)
     const button = {
         page,
         classes: 'page-button ' + className,
+        step: dataMove,
     }
     return button;
 }
