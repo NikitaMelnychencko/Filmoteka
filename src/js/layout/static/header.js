@@ -5,6 +5,7 @@ import { renderGallery } from '../../layout/gallery';
 import myLibraryMarkUp from '../../../views/partials/hero_my_list.hbs';
 import { refs } from '../../refs/refs.js';
 import { initGenres } from '../../data/genres';
+import { renderBackdrop } from '../../components/backdrop';
 
 refs.myUlEle.forEach((list, id, a) => {
   list.addEventListener('click', () =>
@@ -36,6 +37,7 @@ function canheHeader(event) {
     );
   }
   if (item === 'log in') {
+    renderBackdrop();
   }
 }
 
