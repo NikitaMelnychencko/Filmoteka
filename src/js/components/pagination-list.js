@@ -1,48 +1,61 @@
 import { refs } from '../refs/refs.js'
 import { renderGallery } from '../layout/gallery'
+import { searchQuery } from '../layout/hero_home';
 import pagination from '../../views/components/pagination_list.hbs'
-import { searchQuery } from '../layout/hero_home.js';
+import svg from '../../images/svg/sprite.svg';
+
 
 const MAX_SHOWN_PAGES = 9;
 const PAGES_GAP = 2;
 
-export function primaryPagination(svg) {
+export function primaryPagination() {
     const pagesContainer = refs.main.querySelector('.pagination-container');
-    pagesContainer.insertAdjacentHTML("beforeend", pagination({ svg }));
-    pagesContainer.addEventListener('click', onClick);
+    console.log(pagesContainer)
+    console.log(svg)
+    //pagesContainer.insertAdjacentHTML("beforeend", pagination);
+    pagesContainer.addEventListener('click', onPageClick);
 }
 
-function onClick(e) {
+function onPageClick(e) {
     e.preventDefault();
 
     if (e.target.nodeName !== 'BUTTON') {
         return;
     };
 
-    let page = Number(e.target.textContent);
+    const pressedButton = e.target;
+    renderGallery(searchQuery, getNextPage(pressedButton))
+}
 
-    if (e.target.className.includes('end')) {
-        page = Number(refs.main.querySelector('.page-button--active').textContent) + 5
+function getNextPage(button) {
+    const currentPage = Number(refs.main.querySelector('.page-button--active').textContent);
+    const buttonClasses = button.classList;
+    //console.log(buttonClasses)
+    let nextPage = Number(button.textContent);
+    console.log(currentPage)
+
+    if (button.className.includes('end')) {
+        nextPage = Number(refs.main.querySelector('.page-button--active').textContent) + 5
     }
 
-    if (e.target.className.includes('begin')) {
-        page = Number(refs.main.querySelector('.page-button--active').textContent) - 5;
+    if (button.className.includes('begin')) {
+        nextPage = Number(refs.main.querySelector('.page-button--active').textContent) - 5;
     }
 
-    if (e.target.className.includes('arrow-button--previous')) {
-        page = refs.main.querySelector('.page-button--active').textContent - 1;
+    if (button.className.includes('arrow-button--previous')) {
+        nextPage = refs.main.querySelector('.page-button--active').textContent - 1;
     }
-    if (e.target.className.includes('arrow-button--next')) {
-        page = Number(refs.main.querySelector('.page-button--active').textContent) + 1;
+    if (button.className.includes('arrow-button--next')) {
+        nextPage = Number(refs.main.querySelector('.page-button--active').textContent) + 1;
     }
-
-    renderGallery(searchQuery, page)
+    console.log(nextPage)
+    return nextPage;
 }
 
 export function renderPagination(currentPage, totalPages) {
-    hidePagination(false)
-    document.querySelector('.pagination-numbers').innerHTML = createPagination(currentPage, totalPages);
-    hideArrows(currentPage, totalPages);
+    //hidePagination(false);
+    document.querySelector('.pagination-container').innerHTML = pagination(createPagination(currentPage, totalPages));
+    //hideArrows(currentPage, totalPages);
     return currentPage;
 }
 
@@ -67,41 +80,46 @@ function hideArrows(currentPage, totalPages) {
 }
 
 export function createPagination(currentPage, totalPages) {
+    const icon = `<svg class='page-button-svg'><use href=${svg}#icon-arrow-left ></use></button >`
+    const buttonsArray = [create(icon, 'arrow-button arrow-button--previous')];
+
     const center = Math.ceil(MAX_SHOWN_PAGES / 2);
-    let str = ``;
+
     if (totalPages <= MAX_SHOWN_PAGES) {
         for (let p = 1; p <= totalPages; p += 1) {
-            str += isActive(p, currentPage, totalPages)
+            buttonsArray.push(isActive(p, currentPage, totalPages))
         }
     } else {
-        str += isActive(1, currentPage, totalPages)
+        buttonsArray.push(isActive(1, currentPage, totalPages));
         if (currentPage <= center) {
             for (let p = 2; p <= center + PAGES_GAP; p += 1) {
-                str += isActive(p, currentPage, totalPages);
+                buttonsArray.push(isActive(p, currentPage, totalPages));
             }
-            str += createAllPages('...', 'end page-button--mobile-hidden')
+            buttonsArray.push(create('...', 'end page-button--mobile-hidden'));
         } else {
             if (currentPage <= totalPages - center) {
-                str += createAllPages('...', 'begin page-button--mobile-hidden')
+                buttonsArray.push(create('...', 'begin page-button--mobile-hidden'));
                 for (let p = currentPage - PAGES_GAP; p <= currentPage + PAGES_GAP; p += 1) {
-                    str += isActive(p, currentPage, totalPages);
+                    buttonsArray.push(isActive(p, currentPage, totalPages));
                 }
-                str += createAllPages('...', 'end page-button--mobile-hidden')
+                buttonsArray.push(create('...', 'end page-button--mobile-hidden'));
             } else {
-                str += createAllPages('...', 'begin page-button--mobile-hidden')
+                buttonsArray.push(create('...', 'begin page-button--mobile-hidden'));
                 for (let p = totalPages - center - 1; p < totalPages; p += 1) {
-                    str += isActive(p, currentPage, totalPages);
+                    buttonsArray.push(isActive(p, currentPage, totalPages));
                 }
             }
         }
-        str += isActive(totalPages, currentPage, totalPages)
+        buttonsArray.push(isActive(totalPages, currentPage, totalPages));
     }
-    return str;
+    buttonsArray.push(create(icon, 'arrow-button arrow-button--next'));
+    console.log(buttonsArray);
+    return buttonsArray;
 }
 
 function isActive(page, currentPage, totalPages) {
     if (page == currentPage) {
-        return createAllPages(page, 'page-button--active')
+        return create(page, 'page-button--active')
     } else {
         return hideForMobile(page, currentPage, totalPages)
     }
@@ -109,36 +127,40 @@ function isActive(page, currentPage, totalPages) {
 
 function hideForMobile(page, currentPage, totalPages) {
     if (totalPages <= MAX_SHOWN_PAGES - 4) {
-        return createAllPages(page, '')
+        return create(page, '')
     }
     if (currentPage <= 1 + PAGES_GAP) {
         if (page <= 5) {
-            return createAllPages(page, '')
+            return create(page, '')
         } else {
-            return createAllPages(page, 'page-button--mobile-hidden');
+            return create(page, 'page-button--mobile-hidden');
         }
     }
     if (currentPage < totalPages - PAGES_GAP) {
         if (page >= currentPage - PAGES_GAP && page <= currentPage + PAGES_GAP) {
-            return createAllPages(page, '')
+            return create(page, '')
         } else {
-            return createAllPages(page, 'page-button--mobile-hidden');
+            return create(page, 'page-button--mobile-hidden');
         }
     }
     if (page >= totalPages - 4) {
-        return createAllPages(page, '')
+        return create(page, '')
     } else {
-        return createAllPages(page, 'page-button--mobile-hidden');
+        return create(page, 'page-button--mobile-hidden');
     }
 }
 
-function createAllPages(page, className) {
-    return `<li class="page-item"><button class="page-button ${className}">${page}</button></li>`
+function create(page, className) {
+    const button = {
+        page,
+        classes: 'page-button ' + className,
+    }
+    return button;
 }
 
-export function hidePagination(state) {
-    const pagesContainer = refs.main.querySelector('.pagination-container');
-    if (state) {
-        pagesContainer.classList.add('pagination-container--hidden')
-    } else { pagesContainer.classList.remove('pagination-container--hidden') }
-}
+// export function hidePagination(state) {
+//     const pagesContainer = refs.main.querySelector('.pagination-container');
+//     if (state) {
+//         pagesContainer.classList.add('pagination-container--hidden')
+//     } else { pagesContainer.classList.remove('pagination-container--hidden') }
+// }

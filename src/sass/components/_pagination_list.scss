@@ -15,7 +15,7 @@
 .pagination-container--hidden {
   display: none;
 }
-.pagination-numbers {
+.pagination-list {
     display: flex;
 }
 .page-button {
@@ -34,14 +34,14 @@
 
   border-radius: 5px;
   border: 0;
-
+  
   transition: all $time-cubic;
     
   &:hover {
-    color: $active-btn-text-color;
-    fill: $active-btn-text-color;
+    color: #ffffff;
+    fill: #ffffff; 
     background-color: $active-btn-color;
-    opacity: 0.5;
+    opacity: 0.75;
   }
 }
 .arrow-button {
@@ -75,7 +75,7 @@
 .page-button-svg {
     width: 16px;
     height: 16px;
-    
+
     pointer-events: none;
 }
 .hidden-arrow {

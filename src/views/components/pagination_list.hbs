@@ -1,11 +1,10 @@
-<button class="page-button arrow-button arrow-button--previous">
-    <svg class='page-button-svg'>
-        <use href={{{svg}}}#icon-arrow-left></use>
-</button>
-<ul class="pagination-numbers">
-
+<ul class='pagination-list'>
+    </li>
+    {{#each this}}
+    <li class="page-item">
+        <button class="{{this.classes}}">
+            {{{this.page}}}
+        </button>
+    </li>
+    {{/each}}
 </ul>
-<button class="page-button arrow-button arrow-button--next">
-    <svg class='page-button-svg'>
-        <use href={{{svg}}}#icon-arrow-left></use>
-</button>
