@@ -38,6 +38,11 @@
   width: 24px;
   height: 24px;
   margin-right: 12px;
+  display: flex;
+  align-self: center;
+  animation-name: myFilmAnime;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
 }
 
 .header__hero {
@@ -94,7 +99,7 @@
   display: flex;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $tablet-general) {
   .header__body {
     padding-top: 41px;
   }
@@ -124,11 +129,3 @@
     display: block;
   }
 }
-
-.path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: dash 5s linear alternate infinite;
-}
-
-
