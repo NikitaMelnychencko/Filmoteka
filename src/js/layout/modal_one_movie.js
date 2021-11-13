@@ -1,7 +1,7 @@
 import modal_one_movie_markup from '../../views/partials/modal_one_movie.hbs';
 import { renderModal } from '../components/modal';
 import { renderParamsCard } from '../components/fetch';
-
+import{writeUserData}from '../components/films_library.js'
 let id = 'id';
 let objService = ''
 let arrObj = ''
@@ -15,15 +15,16 @@ function renderMovieSeorchParam(id) {
       arrObj = JSON.stringify({ objService })
       localStorage.setItem('idFilm', id)
       localStorage.setItem('marcupFilm', arrObj)
-
     })
     .catch(() => { });
+  
 }
 
 function renderParamCard(data) {
   const modalContent = document.querySelector('.modal__content');
   const marcup = modal_one_movie_markup(data);
   modalContent.innerHTML = marcup;
+  addToDataBase()
 }
 
 export function seorchId() {
@@ -38,8 +39,17 @@ export function seorchId() {
     }
     id = e.target.closest('.gallery-list__item').dataset.id;
     renderMovieSeorchParam(id);
-
+    
   });
 
 }
-
+function addToDataBase(){
+  const buttonList = document.querySelector('.modal-one-movie__button-box')
+  buttonList.addEventListener('click', e => {
+    if (e.target.nodeName!=='BUTTON') {
+      return
+    }
+    console.dir(e.target.textContent) 
+    //writeUserData()
+  })
+}

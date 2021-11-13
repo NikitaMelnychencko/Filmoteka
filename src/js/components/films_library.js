@@ -139,7 +139,7 @@ async function getUser(userId, store) {
 // getUser(`${userId}`, `watched`);
 
 // Post
-async function writeUserData(userId, store) {
+export async function writeUserData(userId, store) {
   set(ref(db, 'users/' + userId + '/' + store), {
     filmId: filmData,
   });
