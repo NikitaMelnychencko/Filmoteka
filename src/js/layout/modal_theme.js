@@ -1,6 +1,6 @@
 import modal_theme from '../../views/partials/modal_theme.hbs';
 import { renderModal } from '../components/modal';
-import { palitre, defaultAccent } from './palitre';
+import { palitre, defaultAccent, saveAccent } from './palitre';
 import { darkTheme, defaultTheme } from './dark-theme';
 const modalThemeContent = modal_theme(); //need insert object with movie detail //test
 
@@ -8,6 +8,8 @@ setTimeout(e => {
   renderModal(modalThemeContent);
   initModalTheme();
 }, 100);
+
+setTheme();
 
 function initModalTheme() {
   darkTheme();
@@ -18,14 +20,19 @@ function initModalTheme() {
 }
 
 function modalThemeButtons(evt) {
-  evt.preventDefault();
   if (evt.target.id === 'default-theme') {
+    evt.preventDefault();
     defaultTheme();
     defaultAccent();
-    console.log('default');
+    setTheme();
+    return;
   } else if (evt.target.id === 'apply-theme') {
-    console.log('apply');
+    evt.preventDefault();
+    saveAccent();
+    setTheme();
+    return;
   }
+  saveAccent();
   setTheme();
   return;
 }
@@ -39,11 +46,12 @@ function initDataTheme() {
 }
 
 function initAccent() {
-  if (initDataAccent() !== null) {
-    const setColor = initDataAccent();
+  console.log(JSON.parse(localStorage.getItem('colorAccent')));
+  const setColor = initDataAccent();
+  if (initDataAccent() !== null && initDataAccent() !== undefined) {
     return `--button: hsl(${setColor.h}deg, ${setColor.s}%, ${setColor.l}%); --clear-accent-color: hsl(${setColor.h}deg, 100%, 50%)`;
   }
-  return setTheme('');
+  return '';
 }
 
 export function setTheme() {

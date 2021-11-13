@@ -32,6 +32,7 @@ function setLightTheme() {
 
 export function defaultTheme() {
   localStorage.removeItem('darkTheme');
+  dark_toggle().removeAttribute('checked', 'true');
 }
 
 function initialiseCheckOnDownload() {

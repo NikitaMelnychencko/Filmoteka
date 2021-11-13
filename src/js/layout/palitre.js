@@ -1,5 +1,3 @@
-import { setTheme } from './modal_theme';
-
 export function palitre() {
   viewPort();
   initPalitre();
@@ -78,9 +76,12 @@ const setColor = {
 
 export function defaultAccent() {
   localStorage.removeItem('colorAccent');
+  setDot(25, '#palitre-ring-dot'); //25
+  setDot(267, '#palitre__saturation-dot'); //267
+  setDot(133, '#palitre__brightness-dot'); //133
 }
 
-function saveAccent() {
+export function saveAccent() {
   localStorage.setItem(
     'colorAccent',
     JSON.stringify({
@@ -107,17 +108,11 @@ function initDots() {
   setDot(setColor.h, '#palitre-ring-dot'); //25
   setDot((setColor.s / 100) * 86 + 48, '#palitre__saturation-dot'); //267
   setDot((setColor.l / 100) * 94 + 220, '#palitre__brightness-dot'); //133
-  console.log(
-    setColor.h,
-    (setColor.s / 100) * 86 + 48,
-    (setColor.l / 100) * 94 + 220,
-  );
   return;
 }
 
 function setCurrentColor() {
   saveAccent();
-  setTheme();
   return;
 }
 
