@@ -13,7 +13,9 @@ function renderMovieSeorchParam(id) {
       renderParamCard(data);
       objService = data
       arrObj = JSON.stringify({ objService })
-      localStorage.setItem(id, arrObj)
+      localStorage.setItem('idFilm', id)
+      localStorage.setItem('marcupFilm', arrObj)
+
     })
     .catch(() => { });
 }
@@ -27,7 +29,9 @@ function renderParamCard(data) {
 export function seorchId() {
   const imagesRef = document.querySelector('.gallery-list');
   imagesRef.addEventListener('click', e => {
-    localStorage.removeItem(id, arrObj)
+    localStorage.removeItem('idFilm', id)
+    localStorage.removeItem('marcupFilm', arrObj)
+
     e.preventDefault();
     if (e.target.nodeName === 'UL') {
       return;
@@ -39,4 +43,3 @@ export function seorchId() {
 
 }
 
-// renderModal(modalContent); //function open modal with string html. test
