@@ -4,10 +4,15 @@ import { palitre, defaultAccent, saveAccent } from './palitre';
 import { darkTheme, defaultTheme } from './dark-theme';
 const modalThemeContent = modal_theme(); //need insert object with movie detail //test
 
-setTimeout(e => {
+export function renderThemeModal() {
   renderModal(modalThemeContent);
   initModalTheme();
-}, 100);
+}
+
+// setTimeout(e => {
+//   renderModal(modalThemeContent);
+//   initModalTheme();
+// }, 100);
 
 setTheme();
 
