@@ -53,25 +53,27 @@ const filmId = 534536;
 // getUser(`${userId}`, 'queue');
 
 // Reg User
-createUserWithEmailAndPassword(auth, email, password)
-  .then(userCredential => {
-    const user = userCredential.user;
-  })
-  .catch(error => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
-
+async function regUser(email, password) {
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(userCredential => {
+      const user = userCredential.user;
+    })
+    .catch(error => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+}
 // Aut User
-signInWithEmailAndPassword(auth, email, password)
-  .then(userCredential => {
-    const user = userCredential.user;
-  })
-  .catch(error => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
-
+async function signUser(email, password) {
+  signInWithEmailAndPassword(auth, email, password)
+    .then(userCredential => {
+      const user = userCredential.user;
+    })
+    .catch(error => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+}
 // State User
 onAuthStateChanged(auth, user => {
   if (user) {
@@ -115,7 +117,7 @@ async function getUser(userId, store) {
 // getUser(`${userId}`, `watched`);
 
 // Post
-function writeUserData(userId, store) {
+async function writeUserData(userId, store) {
   set(ref(db, 'users/' + userId + '/' + store), {
     filmId: filmData,
   });
@@ -123,7 +125,7 @@ function writeUserData(userId, store) {
 // writeUserData(`${userId}`, `watched`);
 
 //update
-function updateData(userId, store) {
+async function updateData(userId, store) {
   update(ref(db, 'users/' + userId + '/' + store), {
     2: 99999,
   });
@@ -131,7 +133,7 @@ function updateData(userId, store) {
 //updateData("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue')
 
 //delete
-function deleteData(userId, store, idDoc) {
+async function deleteData(userId, store, idDoc) {
   remove(ref(db, 'users/' + userId + '/' + store + '/' + idDoc));
 }
 //deleteData("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue','2')
