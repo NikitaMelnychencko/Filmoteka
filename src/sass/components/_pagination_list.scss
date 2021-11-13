@@ -30,16 +30,16 @@
   color: $primary-btn-text-color;
   fill: $primary-text-color;
   background-color: $primary-btn-color;
+  opacity: 1;
 
   border-radius: 5px;
   border: 0;
 
-  transform: all $time-cubic;
+  transition: all $time-cubic;
     
   &:hover {
-    color: #ffffff;
-    fill: #ffffff;
-      
+    color: $active-btn-text-color;
+    fill: $active-btn-text-color;
     background-color: $active-btn-color;
     opacity: 0.5;
   }
@@ -48,17 +48,16 @@
   background: $arrow-btn-color;
   
   &:disabled {
-    color: #000000;
-    fill: #000000;
+    color: $primary-btn-text-color;
+    fill: $primary-btn-text-color;
+    background-color: $arrow-btn-color;
+    opacity: 0.25;
 
     cursor: default;
-      
-    background-color: $arrow-btn-color;
-    opacity: 0.5;
   }
 }
 .arrow-button--next {
-    transform: scale(-1, 1)
+    transform: scale(-1, 1);
 }
 .page-button--active {
   color: $active-btn-text-color;
@@ -75,6 +74,7 @@
 .page-button-svg {
     width: 16px;
     height: 16px;
+    
     pointer-events: none;
 }
 .hidden-arrow {
