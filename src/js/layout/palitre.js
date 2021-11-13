@@ -1,32 +1,26 @@
+import { setTheme } from './modal_theme';
+
 export function palitre() {
-  // const palitre__saturation = document.querySelector('.palitre__saturation');
-  // const palitre__brightness = document.querySelector('.palitre__brightness');
-  const palitre__ring = document.querySelector('.palitre__ring');
   const palitre = document.querySelector('.palitre');
-  const current_color = document.querySelector('.palitre__current-color');
-  // const brightness = palitre__brightness.getContext('2d');
   const palitreHolst = document.querySelectorAll('.palitre__holst');
-  const palitre_ring_dot = document.querySelector('.palitre__dot');
-  // const bodyz = document.querySelector('body');
+
   const graph = {
     ringRadius: 80,
     setRadius: 120,
     ringLineWidth: 30,
     setLineWidth: 20,
     holst: 280,
+    ringHolst: 180 / 2,
     centerPosition() {
       return this.holst / 2;
     },
-    // mobile() {
-    //   this.holst = 280,
-    //   this.ringRadius = 120,
-    // },
     tablet() {
       this.holst = 350;
       this.ringRadius = 100;
       this.setRadius = 145;
       this.ringLineWidth = 35;
       this.setLineWidth = 25;
+      this.ringHolst = 250 / 2;
     },
     desktop() {
       this.holst = 600;
@@ -34,6 +28,7 @@ export function palitre() {
       this.setRadius = 260;
       this.ringLineWidth = 45;
       this.setLineWidth = 35;
+      this.ringHolst = 450 / 2;
     },
   };
 
@@ -60,83 +55,116 @@ export function palitre() {
 
   viewPort();
 
-  // brightness.lineWidth = graph.setLineWidth; // толщина линии
-  // brightness.arc(
-  //   graph.centerPosition(),
-  //   graph.centerPosition(),
-  //   graph.setRadius,
-  //   (3 * Math.PI) / 4,
-  //   (5 * Math.PI) / 4,
-  // );
-  // brightness.stroke();
+  //br 219-313=94 /do not delete
+  //sat 47-133=86 /do not delete
 
-  // const saturation = palitre__saturation.getContext('2d');
-  // saturation.lineWidth = graph.setLineWidth; // толщина линии
-  // saturation.arc(
-  //   graph.centerPosition(),
-  //   graph.centerPosition(),
-  //   graph.setRadius,
-  //   (7 * Math.PI) / 4,
-  //   Math.PI / 4,
-  // );
-  // saturation.stroke();
+  const setColor = {
+    h: 25,
+    s: 100,
+    l: 50,
+    set_h(val) {
+      this.h = val;
+    },
+    set_s(evt) {
+      this.s = ((evt - 48) / 86) * 100;
+    },
+    set_l(evt) {
+      this.l = ((evt - 220) / 94) * 100;
+    },
+  };
 
-  // const ring = palitre__ring.getContext('2d');
-  // ring.lineWidth = graph.ringLineWidth; // толщина линии
+  function initPalitre() {
+    setCurrentColor();
+    setDot(25, '#palitre-ring-dot');
+    setDot(267, '#palitre__brightness-dot');
+    setDot(133, '#palitre__saturation-dot');
+    return;
+  }
 
-  // ring.arc(
-  //   graph.centerPosition(),
-  //   graph.centerPosition(),
-  //   graph.ringRadius,
-  //   0,
-  //   2 * Math.PI,
-  // );
+  initPalitre();
 
-  // ring.strokeStyle = '#fff000';
-  // ring.stroke();
-  const defColor = 25;
-  palitre_ring_dot.style.transform = `rotate(${defColor + 45}deg)`;
   palitre.onclick = function (e) {
-    if (e.target === palitre__ring) {
-      // показывает координаты точки клика
-      // console.log((300 - e.offsetX) / 300, (300 - e.offsetY) / 300);
-      let X = -(300 - e.offsetX) / 300;
-      let Y = (300 - e.offsetY) / 300;
-      let atanCursor = Math.atan(X / Y);
-      let zz = (atanCursor * 180) / Math.PI;
+    console.dir(e.target);
+    if (e.target.id === 'palitre__ring') {
+      setRingColor(e);
+    } else if (e.target.id === 'palitre-ring-dot') {
+      console.log('mm');
+    } else if (
+      e.target.id === 'palitre__saturation' ||
+      e.target.id === 'palitre__brightness'
+    ) {
+      satBrColor(e);
+    }
+    return;
+  };
 
-      function lz() {
-        if (X > 0 && Y < 0) {
-          return zz + 180;
-        } else if (X < 0 && Y < 0) {
-          return zz + 180;
-        } else if (X < 0 && Y >= 0) {
-          return zz + 360;
-        } else if (X >= 0 && Y >= 0) {
-          return zz;
-        }
-        return zz;
-      }
+  function setCurrentColor() {
+    sessionStorage.setItem(
+      'accent',
+      JSON.stringify(
+        `--button: hsl(${setColor.h}deg, ${setColor.s}%, ${setColor.l}%);--clear-accent-color: hsl(${setColor.h}deg, 100%, 50%);`,
+      ),
+    );
+    setTheme();
+    return;
+  }
 
-      console.log(e.target);
+  function setRingColor(e) {
+    const srgc = degBlock(e, graph.ringHolst);
+    const palitre_ring_dot = document.querySelector('#palitre-ring-dot');
+    palitre_ring_dot.style.transform = `rotate(${srgc + 45}deg)`;
+    setDot(srgc, '#palitre-ring-dot');
+    setColor.set_h(srgc);
+    setCurrentColor();
+    return;
+  }
 
-      // function rotate(){
-      //   if(lz())
-      // }
-
-      let mg = lz();
-
-      function setCurrentColor(mg) {
-        current_color.style.backgroundColor = `hsl(${mg}, 100%, 50%)`;
-        document.documentElement.style.cssText = `--button: hsl(${mg}deg, 100%, 50%)`;
-      }
-
-      setCurrentColor(mg);
-
-      // palitre_ring_dot.style.transform = `translate(-50%, -230px), rotate(${mg}deg)`;
-      palitre_ring_dot.style.transform = `rotate(${mg + 45}deg)`;
-      palitre_ring_dot.style.backgroundColor = `hsl(${mg}deg, 100%, 50%)`;
+  function satBrColor(e) {
+    const sbc = degBlock(e, graph.holst / 2);
+    if (sbc > 220 && sbc < 314) {
+      setColor.set_l(sbc);
+      satBr(sbc, '#palitre__brightness-dot');
       return;
     }
-  };
+    if (sbc > 48 && sbc < 134) {
+      setColor.set_s(sbc);
+      satBr(sbc, '#palitre__saturation-dot');
+      return;
+    }
+
+    return;
+  }
+
+  function satBr(e, id) {
+    setColor.set_s(e);
+    setDot(e, id);
+    setCurrentColor();
+    return;
+  }
+
+  function setDot(srgc, id) {
+    const _dot = document.querySelector(id);
+    _dot.style.transform = `rotate(${srgc + 45}deg)`;
+    return;
+  }
+
+  function degBlock(e, holst) {
+    let X = -(holst - e.offsetX) / holst;
+    let Y = (holst - e.offsetY) / holst;
+    let atanCursor = Math.atan(X / Y);
+    let atanBlock = (atanCursor * 180) / Math.PI;
+    function degB() {
+      if (X > 0 && Y < 0) {
+        return atanBlock + 180;
+      } else if (X < 0 && Y < 0) {
+        return atanBlock + 180;
+      } else if (X < 0 && Y >= 0) {
+        return atanBlock + 360;
+      } else if (X >= 0 && Y >= 0) {
+        return atanBlock;
+      }
+      return atanBlock;
+    }
+    return degB();
+  }
 }

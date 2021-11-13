@@ -17,36 +17,20 @@
       </div>
 
       <div class='palitre'>
-        <div class='palitre__dot'></div>
-        {{! <canvas
-          class='palitre__brightness palitre__holst'
-          width='280px'
-          height='280px'
-        ></canvas> }}
-
-        {{! <canvas
-          class='palitre__ring palitre__holst'
-          width='280px'
-          height='280px'
-        ></canvas> }}
-        {{! <div
-          class='palitre__ring palitre__holst'
-          width='280px'
-          height='280px'
-        ></div> }}
-    <svg class='palitre__ring palitre__holst'           width='280px'
-          height='280px'>
-      <use href={{{svg}}}#icon-close-modal></use>
-    </svg>
-        <div class='palitre__current-color'>
-
-        </div>
-        {{! <canvas
+        <div
           class='palitre__saturation palitre__holst'
-          width='280px'
-          height='280px'
-        ></canvas> }}
+          id='palitre__saturation'
+        ></div>
+        <div class='palitre__saturation-dot' id='palitre__saturation-dot'></div>
+        <div
+          class='palitre__brightness palitre__holst'
+          id='palitre__brightness'
+        ></div>
+        <div class='palitre__brightness-dot' id='palitre__brightness-dot'></div>
 
+        <div class='palitre__ring palitre__holst' id='palitre__ring'></div>
+        <div class='palitre__dot' id='palitre-ring-dot'></div>
+        <div class='palitre__current-color'></div>
       </div>
       <div class='modal-theme__checklist-box'>
         <div class='global-toggle'>

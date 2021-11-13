@@ -53,3 +53,57 @@ $time-cubic: 250ms cubic-bezier(0.4, 0, 0.2, 1);
     stroke-dashoffset: 0;
   }
 }
+
+@keyframes palitre-current {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes palitre-ring {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes palitre-current-dot {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes palitre-left {
+  0% {
+    opacity: 0;
+    transform: translate(-40%, -52%) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-52%, -52%) scale(1);
+  }
+}
+@keyframes palitre-right {
+  0% {
+    opacity: 0;
+    transform: translate(-60%, -48%) scale(0.9) rotate(180deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-48%, -48%) scale(1) rotate(180deg);
+  }
+}

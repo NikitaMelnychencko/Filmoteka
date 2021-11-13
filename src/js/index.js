@@ -29,5 +29,6 @@ import './layout/hero_home';
 import './layout/hero_my_list';
 import './layout/modal_theme';
 import './layout/palitre';
+import './layout/dark-theme';
 //=========test================
 import './test/firebase.js';
