@@ -46,7 +46,6 @@ function initDataTheme() {
 }
 
 function initAccent() {
-  console.log(JSON.parse(localStorage.getItem('colorAccent')));
   const setColor = initDataAccent();
   if (initDataAccent() !== null && initDataAccent() !== undefined) {
     return `--button: hsl(${setColor.h}deg, ${setColor.s}%, ${setColor.l}%); --clear-accent-color: hsl(${setColor.h}deg, 100%, 50%)`;
@@ -54,10 +53,17 @@ function initAccent() {
   return '';
 }
 
-export function setTheme() {
-  const darkColor =
-    '--background: #1D1D21; --primary-text-color: #ffffff; --footer-background: #232328; --third-text-color: #B8B8C6;';
+function darkColors() {
+  const setColor = initDataAccent();
+  if (initDataAccent() !== null && initDataAccent() !== undefined) {
+    return `--background: #1D1D21; --primary-text-color: #ffffff; --footer-background: #232328; --third-text-color: #B8B8C6; --gallery-card-shadow: 0 0 8px hsl(${setColor.h}deg, ${setColor.s}%, ${setColor.l}%);`;
+  }
+  return `--background: #1D1D21; --primary-text-color: #ffffff; --footer-background: #232328; --third-text-color: #B8B8C6; --gallery-card-shadow: 0 0 8px hsl(25deg, 100%, 50%);`;
+}
 
+export function setTheme() {
+  const color = initDataAccent();
+  const darkColor = darkColors();
   const accent = initAccent();
   if (initDataTheme() === 'dark') {
     document.documentElement.style.cssText = `${darkColor}${accent}`;

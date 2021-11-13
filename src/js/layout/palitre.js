@@ -98,7 +98,6 @@ function initPalitre() {
     setColor.h = setCurrentColor.h;
     setColor.s = setCurrentColor.s;
     setColor.l = setCurrentColor.l;
-    console.log(setColor.h, setColor.s, setColor.l);
     return;
   }
   return;

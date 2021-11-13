@@ -15,6 +15,7 @@ function renderMovieSeorchParam(id) {
     .then(data => {
       renderModal();
       renderParamCard(data);
+      console.log(data);
     })
     .catch(() => {});
 }
@@ -30,5 +31,3 @@ export function seorchId() {
     renderMovieSeorchParam(id);
   });
 }
-
-// renderModal(modalContent); //function open modal with string html. test

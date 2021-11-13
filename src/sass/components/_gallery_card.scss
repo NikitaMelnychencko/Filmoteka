@@ -1,10 +1,9 @@
-.gallery-list__item{
+.gallery-list__item {
   display: block;
   height: 440px;
   max-width: 280px;
   margin: 15px;
   cursor: pointer;
-  
 
   @media screen and (min-width: $tablet-general) {
     max-width: 294px;
@@ -14,16 +13,16 @@
   }
 }
 
-.gallery-list__img{
+.gallery-list__img {
   display: block;
   height: 398px;
   width: 280px;
   border-radius: 5px;
-
+  transition: all $time-cubic;
   &:hover,
   &:focus {
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
-      1px 4px 6px rgba(0, 0, 0, 0.16);}
+    box-shadow: $gallery-card-shadow;
+  }
 
   @media screen and (min-width: $tablet-general) {
     width: 294px;
@@ -35,7 +34,6 @@
 
 .gallery-list__card {
   padding-top: 10px;
-  
 }
 
 .gallery-list__title {
@@ -46,14 +44,14 @@
   font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
-  
+
   white-space: nowrap;
-  overflow: hidden; 
+  overflow: hidden;
   text-overflow: ellipsis;
-  
+
   color: $primary-title-text-color;
 
- &:hover {
+  &:hover {
     white-space: normal;
   }
 }
@@ -78,7 +76,7 @@
   max-width: 190px;
 
   white-space: nowrap;
-  overflow: hidden; 
+  overflow: hidden;
   text-overflow: ellipsis;
 
   &:hover {
@@ -103,8 +101,8 @@
   margin-left: 10px;
   width: 36px;
   height: 16px;
-  
+
   background-color: $secondary-background-color;
   color: $form-text-color;
   border-radius: 5px;
-} 
+}
