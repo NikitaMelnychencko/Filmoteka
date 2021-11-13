@@ -15,7 +15,7 @@
 .pagination-container--hidden {
   display: none;
 }
-.pagination-numbers {
+.pagination-list {
     display: flex;
 }
 .page-button {
@@ -41,7 +41,7 @@
     color: $active-btn-text-color;
     fill: $active-btn-text-color;
     background-color: $active-btn-color;
-    opacity: 0.5;
+    opacity: 0.75;
   }
 }
 .arrow-button {
@@ -74,7 +74,7 @@
 .page-button-svg {
     width: 16px;
     height: 16px;
-    
+
     pointer-events: none;
 }
 .hidden-arrow {
