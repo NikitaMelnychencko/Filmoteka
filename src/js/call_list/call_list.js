@@ -15,10 +15,8 @@ import { renderGallery } from '../layout/gallery';
 import { primaryPagination } from '../components/pagination-list';
 import { initGenres } from '../data/genres';
 import blockHelpTemplate from '../../views/components/block_help.hbs';
-
-export function pageRender(value, heroValue, headerValue) {
-import {blockhelpOpen} from '../components/block_help.js'
-import {seorchId} from '../layout/modal_one_movie.js'
+import { blockhelpOpen } from '../components/block_help.js';
+import { seorchId } from '../layout/modal_one_movie.js';
 export function pageRender(value, heroValue, valueAdd, valueRemove) {
   //backdrop include plugin "modal window"
   const backdropMarkUp = backdrop_markup(modal_markup({ svg }));
@@ -32,15 +30,15 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
     spinnerMarkUp,
     blockHelpMarkup,
   });
+  addHeroClass(valueAdd, valueRemove);
   if (value.hero_tittle === 'Search Movies') {
     openInput();
   }
   // pagination
   primaryPagination(svg);
-  blockhelpOpen()
-  seorchId()
+  blockhelpOpen();
+  seorchId();
 }
-
 
 function addHeroClass(valueAdd, valueRemove) {
   const heroRef = document.querySelector('.hero');
@@ -49,5 +47,5 @@ function addHeroClass(valueAdd, valueRemove) {
 }
 
 initGenres();
-pageRender(mainTittle.home, homeMarkUp);
+pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
 renderGallery();
