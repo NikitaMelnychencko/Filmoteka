@@ -77,7 +77,7 @@ async function signInUser(email, password) {
       console.log('111');
     });
 }
-// signInUser('tesdt@gmail.com', 'tesdaddt1');
+// signInUser('test@gmail.com', 'tesdadt1');
 
 async function signOutUser() {
   signOut(auth)
@@ -89,7 +89,7 @@ async function signOutUser() {
     });
 }
 // signOutUser();
-// console.log(auth);
+console.log(auth);
 
 // State User
 async function AuthState(user) {
