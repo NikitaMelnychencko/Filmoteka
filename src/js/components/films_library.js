@@ -51,8 +51,6 @@ const filmId = 534536;
 
 // getUser(`${userId}`, `watched`);
 // getUser(`${userId}`, 'queue');
-// writeUserData(`${userId}`, `watched`);
-// writeUserData(`${userId}`, 'queue');
 
 // Reg User
 createUserWithEmailAndPassword(auth, email, password)
@@ -78,7 +76,7 @@ signInWithEmailAndPassword(auth, email, password)
 onAuthStateChanged(auth, user => {
   if (user) {
     const uid = user.uid;
-    console.log(uid);
+    // console.log(uid);
     sessionStorage.setItem('userId', `${uid}`);
   } else {
   }
