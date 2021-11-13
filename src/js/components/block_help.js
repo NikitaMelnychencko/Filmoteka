@@ -1,7 +1,7 @@
 
 import scrollTo from './scroll_too';
 export function blockhelpOpen() {
-    const PROMPT_DELAY = 3000;
+    const PROMPT_DELAY = 30000;
     const MAX_PROMPT_ATTEMPTS = 3;
     let promptCounter = 0;
     let hasSubscribed = false;

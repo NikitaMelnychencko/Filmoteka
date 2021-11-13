@@ -34,19 +34,20 @@
 
   border-radius: 5px;
   border: 0;
-
+  
   transition: all $time-cubic;
     
   &:hover {
-    color: $active-btn-text-color;
-    fill: $active-btn-text-color;
+    color: #ffffff;
+    fill: #ffffff; 
     background-color: $active-btn-color;
     opacity: 0.75;
   }
 }
 .arrow-button {
+  color: inherit;
   background: $arrow-btn-color;
-  
+
   &:disabled {
     color: $primary-btn-text-color;
     fill: $primary-btn-text-color;
