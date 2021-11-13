@@ -32,7 +32,7 @@ $primary-svg-color: #ff6b08;
 $primary-btn-color: inherit;
 $active-btn-color: #ff6b08;
 $arrow-btn-color: #f7f7f7;
-$primary-btn-text-color:#000000;
+$primary-btn-text-color: #000000;
 $active-btn-text-color: #ffffff;
 
 //logo
@@ -49,5 +49,7 @@ $placeholder-color: #ffffff;
 // backdrop
 $backdrop-color: rgba(0, 0, 0, 0.25);
 
+//shadow
+$container-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
 // spinner
 $spinner-primary-color: #ff6b08;
