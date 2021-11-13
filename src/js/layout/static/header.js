@@ -4,6 +4,7 @@ import { homeMarkUp } from '../../layout/hero_home';
 import { renderGallery } from '../../layout/gallery';
 import myLibraryMarkUp from '../../../views/partials/hero_my_list.hbs';
 import { refs } from '../../refs/refs.js';
+import { initGenres } from '../../data/genres';
 
 refs.myUlEle.forEach((list, id, a) => {
   list.addEventListener('click', () =>
@@ -17,14 +18,16 @@ function canheHeader(event) {
   let target = event.target;
   let item = target.textContent.trim();
   console.log(item);
+
   if (item === 'home') {
     // here render header page serch
-    pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
+    initGenres();
     renderGallery();
+    pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
   }
   if (item === 'my library') {
     // here render header page Button
-    const myLib = myLibraryMarkUp;
+    const myLib = myLibraryMarkUp();
     pageRender(
       mainTittle.my_library_watched,
       myLib,

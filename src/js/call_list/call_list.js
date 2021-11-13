@@ -17,6 +17,9 @@ import { initGenres } from '../data/genres';
 import blockHelpTemplate from '../../views/components/block_help.hbs';
 
 export function pageRender(value, heroValue, headerValue) {
+import {blockhelpOpen} from '../components/block_help.js'
+import {seorchId} from '../layout/modal_one_movie.js'
+export function pageRender(value, heroValue, valueAdd, valueRemove) {
   //backdrop include plugin "modal window"
   const backdropMarkUp = backdrop_markup(modal_markup({ svg }));
   const spinnerMarkUp = spinner();
@@ -34,6 +37,15 @@ export function pageRender(value, heroValue, headerValue) {
   }
   // pagination
   primaryPagination(svg);
+  blockhelpOpen()
+  seorchId()
+}
+
+
+function addHeroClass(valueAdd, valueRemove) {
+  const heroRef = document.querySelector('.hero');
+  heroRef.classList.add(`${valueAdd}`);
+  heroRef.classList.remove(`${valueRemove}`);
 }
 
 initGenres();
