@@ -151,7 +151,7 @@ export async function getUser(userId, store) {
     });
   let arr = [];
   for (let key in value) {
-    arr.push(JSON.parse(value[key]));
+    arr.push(JSON.parse(value[key]).objService);
   }
   return arr;
 }
