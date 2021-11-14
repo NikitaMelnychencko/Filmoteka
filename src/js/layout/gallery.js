@@ -1,6 +1,7 @@
 import { GENRES_MAP, initGenres } from '../data/genres';
 import { renderMovieGlobal } from '../components/fetch';
-import { renderPagination } from '../components/pagination-list';
+import { renderPagination, hidePagination } from '../components/pagination-list';
+import { clearInput } from './hero_home';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
 
@@ -15,13 +16,18 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 // renderGallery (search) - отрисовывает первую страницу по слову вопросу
 // renderGallery ('', page) - отрисовывает страницу №page самых популярных фильмов
 
-export async function renderGallery(searchQuery, page = 1, options = 'home') {
+export async function renderGallery(search, page = 1, options = 'home') {
     let movies = undefined;
-    //initGenres();
-    if (!searchQuery) {
+    if (!search) {
+        //clearInput()
         movies = (await renderMovieGlobal(page, '', '', options));
     } else {
-        movies = (await renderMovieGlobal(page, searchQuery, '', ''));
+        movies = (await renderMovieGlobal(page, search, '', ''));
+    }
+
+    if (!movies) {
+        renderPagination(0, 0);
+        return
     }
 
     renderMovies(movies.results);
@@ -31,9 +37,9 @@ export async function renderGallery(searchQuery, page = 1, options = 'home') {
 }
 
 export function renderMovies(movies) {
-  const moviesData = getData(movies, GENRES_MAP);
-  const gallery = document.querySelector('.gallery-list');
-  gallery.innerHTML = card(moviesData);
+    const moviesData = getData(movies, GENRES_MAP);
+    const gallery = document.querySelector('.gallery-list');
+    gallery.innerHTML = card(moviesData);
 }
 
 function getData(movies, genres) {

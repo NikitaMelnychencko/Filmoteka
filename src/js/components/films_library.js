@@ -33,7 +33,7 @@ const db = getDatabase();
 const dbRef = ref(getDatabase());
 const auth = getAuth();
 const user = auth.currentUser;
-const userId = sessionStorage.getItem('userId');
+export const userId = sessionStorage.getItem('userId');
 // const email = sessionStorage.getItem('email');
 // const password = sessionStorage.getItem('password');
 
@@ -74,10 +74,9 @@ async function signInUser(email, password) {
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log('111');
     });
 }
-// signInUser('test@gmail.com', 'tesdadt1');
+ signInUser('test@gmail.com', 'tesdadt1');
 
 async function signOutUser() {
   signOut(auth)
@@ -108,12 +107,13 @@ window.onload = function () {
 
 //getId
 async function getIdUser(userId, store, id) {
-  get(child(dbRef, 'users/' + userId + '/' + store + '/' + id))
+  return await get(child(dbRef, 'users/' + userId + '/' + store + '/' + id))
     .then(snapshot => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        return snapshot.val()
+
       } else {
-        console.log('No data available');
+        return null;
       }
     })
     .catch(error => {
@@ -123,39 +123,43 @@ async function getIdUser(userId, store, id) {
 // getIdUser('azLL3vjsCIYtiNzjKFPlfy4TL722', 'queue', 2);
 
 // get
-async function getUser(userId, store) {
-  get(child(dbRef, 'users/' + userId + '/' + store))
+export async function getUser(userId, store) {
+  let value =  await get(child(dbRef, 'users/' + userId + '/' + store ))
     .then(snapshot => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+
+        return snapshot.val()
       } else {
-        console.log('No data available');
+        return null;
       }
     })
     .catch(error => {
       console.error(error);
     });
+  let arr = []
+  for (let key in value) {
+   arr.push(JSON.parse(value[key])) 
+  }
+  console.log(arr);
+  return arr
 }
-// getUser(`${userId}`, `watched`);
+//getUser(`${userId}`, `watched`);
 
 // Post
-async function writeUserData(userId, store) {
-  set(ref(db, 'users/' + userId + '/' + store), {
-    filmId: filmData,
-  });
+export async function postUserData(userId, store, idFilm, markupFilm) {
+  await set(ref(db, 'users/' + userId + '/' + store+'/'+idFilm),markupFilm 
+  );
 }
-// writeUserData(`${userId}`, `watched`);
+// postUserData(`${userId}`, `watched`);
 
 //update
-async function updateData(userId, store) {
-  update(ref(db, 'users/' + userId + '/' + store), {
-    2: 99999,
-  });
+async function updateData(userId, store, idFilm, markupFilm) {
+  await update(ref(db, 'users/' + userId + '/' + store + '/' + idFilm), markupFilm);
 }
 //updateData("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue')
 
 //delete
-async function deleteData(userId, store, idDoc) {
-  remove(ref(db, 'users/' + userId + '/' + store + '/' + idDoc));
+async function deleteData(userId, store, idFilm) {
+  remove(ref(db, 'users/' + userId + '/' + store + '/' + idFilm));
 }
 //deleteData("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue','2')
