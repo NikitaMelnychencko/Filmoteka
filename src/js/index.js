@@ -21,6 +21,9 @@ import './filter/fetch_filter_sort';
 import './filter/fetch_filter_genres';
 import './filter/filter_sort';
 import './filter/filter_genres';
+import './filter/fetch_filter_year';
+import './filter/filter_year';
+
 //=========layout===============
 //=========static===============
 import './layout/static/header';

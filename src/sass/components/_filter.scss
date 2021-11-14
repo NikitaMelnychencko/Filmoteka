@@ -1,68 +1,86 @@
 .filter{
-position: relative;
-z-index: 10000;
 display: flex;
 width: 100%;
 padding: 15px;
-
 }
 
-.filter__sort{
-    margin-right: 100px;
-}
 
-.filter-list__sort .open,
-.filter-list__genres .open{
+.filter__movie-sort,
+.filter__movie-genres{
+    margin-right: 15px;
     display: block;
+    font-size: 14px;
+    line-height: 1.14;
+    color: #545454;
 }
 
-.filter-list__sort,
-.filter-list__genres{
-    display: none;
-    min-width: 100%;
+.filter-link__sort,
+.filter-link__genres{
+    color: #545454;
+    font-size: 16px;
+    line-height: 1.19;
+    transition: color 100ms $time-cubic;
+
+}
+
+.filter-link__sort:hover,
+.filter-link__sort:focus,
+.filter-link__genres:focus,
+.filter-link__genres:hover{
+    color: $accent-color;
+}
+
+.ilter-link__play{
+    display: block;
+    width: 45px;
+    height: 45px;
+}
+
+// .filter-list__sort,
+// .filter-list__genres,
+// .filter-list__year{
+//     display: none;
+// }
+
+.open{
+    display: block;
+    position: absolute;
+    z-index: 1000;
+    min-width: 150px;
     margin: 0;
     padding-top: 10px;
     padding-bottom: 5px;
     padding-left: 12px;
     padding-right: 12px;
-    background: $secondary-background-color;
+    background: $fourth-background-color;
     border-radius: 3px;
     white-space: nowrap;
-
 }
-
-.open{
-    display: block;
-}
-
-
 
 .filter-item__sort,
 .filter-item__genres{
-   
     cursor: pointer;
     margin-top: 10px;
     font-size: 14px;
     line-height: 1.14;
-    color: $form-text-color;
+    color: $secondary-text-color;
+    transition: color 100ms $time-cubic;
+
 //   @media screen and (min-width: $tablet-general) {
 //     font-size: 16px;
 //     line-height: 1.19;
 //   }
 }
 
-
-.filter-list__genres{
-   
-}
-
-.filter-item__genres{
-
+.filter-item__sort:hover,
+.filter-item__sort:focus,
+.filter-item__genres:hover,
+.filter-item__genres:focus{
+    color: $accent-color;
 
 }
 
 .filter-item__genres:not(:last-child){
 margin-right: 5px;
 }
-
 

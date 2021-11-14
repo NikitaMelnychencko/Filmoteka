@@ -13,25 +13,23 @@ function onRenderGenre(evt) {
         return;
     }
     idGenres = evt.target.id
+    renderGallery('', 'filter', idGenres);
     filterGenre(idGenres)
 }
+
 function filterGenre() {
     filterGlobalGenres(idGenres)
         .then(data => {
-
             renderMovies(data.results)
         }).catch(() => {
             alert("error");
         });
 }
 
-
-const linkOpen = document.querySelector('.filter-title__genres')
-const listGenres = document.querySelector('.filter-list__genres')
-console.log(listGenres);
-linkOpen.addEventListener('click', onOpenList)
-
-function onOpenList(evt) {
-    evt.preventDefault()
-    listGenres.classList.toggle('open')
+const linkOpenGenres = document.querySelector('.filter-link__genres');
+const listGenres = document.querySelector('.filter-list__genres');
+linkOpenGenres.addEventListener('click', onOpenListGenres);
+function onOpenListGenres(evt) {
+    evt.preventDefault();
+    listGenres.classList.toggle('open');
 }
