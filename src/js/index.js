@@ -19,8 +19,8 @@ import './components/films_library';
 //=========Filter===============
 import './filter/fetch_filter_sort';
 import './filter/fetch_filter_genres';
-import './filter/filter_genres';
 import './filter/filter_sort';
+import './filter/filter_genres';
 //=========layout===============
 //=========static===============
 import './layout/static/header';

@@ -10,7 +10,7 @@ export function filterGlobal(popularityDesc, popularityAsc, releaseDateDesc, rel
         console.log(REQUEST_ADRESS);
         return baseFetch(REQUEST_ADRESS);
     } else if (popularityAsc === 'popularity.asc') {
-        const REQUEST_ADRESS = `${URL_DISCOVER}&sort_by=${popularityAsc}&&${INCLUDE}&page=1&with_watch_monetization_types=flatrate`
+        const REQUEST_ADRESS = `${URL_DISCOVER}&sort_by=${popularityAsc}&${INCLUDE}&page=1&with_watch_monetization_types=flatrate`
         return baseFetch(REQUEST_ADRESS);
 
     } else if (releaseDateDesc === 'primary_release_date.desc') {

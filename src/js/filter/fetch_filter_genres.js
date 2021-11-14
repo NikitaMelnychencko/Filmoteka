@@ -4,10 +4,13 @@ const BASE_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}
 
 
 export function filterGlobalGenres(idGenres) {
-    if (idGenres) {
+    if (!idGenres) {
+        return
+    } else {
         const REQUEST_ADRESS = `${BASE_URL}&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=${idGenres}&with_watch_monetization_types=flatrate`
         return baseFetch(REQUEST_ADRESS);
     }
+
 }
 
 function baseFetch(REQUEST_ADRESS) {

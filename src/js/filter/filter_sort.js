@@ -2,7 +2,6 @@
 import { filterGlobal } from './fetch_filter_sort';
 import { renderGallery, renderMovies } from '../layout/gallery';
 import filter from '../../views/components/filter/filter_sort.hbs';
-import { renderPagination } from '../components/pagination-list';
 const main = document.querySelector('.hero');
 
 
@@ -12,7 +11,6 @@ let popularityDesc = 'popularity.desc';
 let popularityAsc = 'popularity.asc';
 let releaseTitleDesc = "original_title.desc"
 let releaseTitleAsc = "original_title.asc"
-
 //раскрытие списка сортировки
 
 function filterPopularityDesc() {
