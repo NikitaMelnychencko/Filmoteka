@@ -26,7 +26,7 @@ export async function renderGallery(search, page = 1, options = 'home') {
     }
 
     if (!movies) {
-        hidePagination(true);
+        renderPagination(0, 0);
         return
     }
 
