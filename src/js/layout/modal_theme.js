@@ -9,11 +9,6 @@ export function renderThemeModal() {
   initModalTheme();
 }
 
-// setTimeout(e => {
-//   renderModal(modalThemeContent);
-//   initModalTheme();
-// }, 100);
-
 setTheme();
 
 function initModalTheme() {
