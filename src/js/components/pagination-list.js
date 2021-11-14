@@ -73,7 +73,7 @@ function searchButtonByName(className) {
 
 function createPagination(currentPage, totalPages) {
     const icon = `<svg class='page-button-svg'><use href=${svg}#icon-arrow-left ></use>`
-    const buttonsArray = [create(icon, 'arrow-button arrow-button--previous', 'previous')];
+    const buttonsArray = [createButton(icon, 'arrow-button arrow-button--previous', 'previous')];
 
     const center = Math.ceil(MAX_SHOWN_PAGES / 2);
 
@@ -87,16 +87,16 @@ function createPagination(currentPage, totalPages) {
             for (let p = 2; p <= center + PAGES_GAP; p += 1) {
                 buttonsArray.push(isActive(p, currentPage, totalPages));
             }
-            buttonsArray.push(create('...', 'end page-button--mobile-hidden', 'end'));
+            buttonsArray.push(createButton('...', 'end page-button--mobile-hidden', 'end'));
         } else {
             if (currentPage <= totalPages - center) {
-                buttonsArray.push(create('...', 'begin page-button--mobile-hidden', 'begin'));
+                buttonsArray.push(createButton('...', 'begin page-button--mobile-hidden', 'begin'));
                 for (let p = currentPage - PAGES_GAP; p <= currentPage + PAGES_GAP; p += 1) {
                     buttonsArray.push(isActive(p, currentPage, totalPages));
                 }
-                buttonsArray.push(create('...', 'end page-button--mobile-hidden', 'end'));
+                buttonsArray.push(createButton('...', 'end page-button--mobile-hidden', 'end'));
             } else {
-                buttonsArray.push(create('...', 'begin page-button--mobile-hidden', 'begin'));
+                buttonsArray.push(createButton('...', 'begin page-button--mobile-hidden', 'begin'));
                 for (let p = totalPages - center - 1; p < totalPages; p += 1) {
                     buttonsArray.push(isActive(p, currentPage, totalPages));
                 }
@@ -104,13 +104,13 @@ function createPagination(currentPage, totalPages) {
         }
         buttonsArray.push(isActive(totalPages, currentPage, totalPages));
     }
-    buttonsArray.push(create(icon, 'arrow-button arrow-button--next', 'next'));
+    buttonsArray.push(createButton(icon, 'arrow-button arrow-button--next', 'next'));
     return buttonsArray;
 }
 
 function isActive(page, currentPage, totalPages) {
     if (page == currentPage) {
-        return create(page, 'page-button--active')
+        return createButton(page, 'page-button--active')
     } else {
         return hideForMobile(page, currentPage, totalPages)
     }
@@ -118,30 +118,30 @@ function isActive(page, currentPage, totalPages) {
 
 function hideForMobile(page, currentPage, totalPages) {
     if (totalPages <= MAX_SHOWN_PAGES - 4) {
-        return create(page, '')
+        return createButton(page, '')
     }
     if (currentPage <= 1 + PAGES_GAP) {
         if (page <= 5) {
-            return create(page, '')
+            return createButton(page, '')
         } else {
-            return create(page, 'page-button--mobile-hidden');
+            return createButton(page, 'page-button--mobile-hidden');
         }
     }
     if (currentPage < totalPages - PAGES_GAP) {
         if (page >= currentPage - PAGES_GAP && page <= currentPage + PAGES_GAP) {
-            return create(page, '')
+            return createButton(page, '')
         } else {
-            return create(page, 'page-button--mobile-hidden');
+            return createButton(page, 'page-button--mobile-hidden');
         }
     }
     if (page >= totalPages - 4) {
-        return create(page, '')
+        return createButton(page, '')
     } else {
-        return create(page, 'page-button--mobile-hidden');
+        return createButton(page, 'page-button--mobile-hidden');
     }
 }
 
-function create(page, className, dataMove) {
+function createButton(page, className, dataMove) {
     const button = {
         page,
         classes: 'page-button ' + className,
