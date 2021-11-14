@@ -24,3 +24,14 @@ function filterGenre() {
             alert("error");
         });
 }
+
+
+const linkOpen = document.querySelector('.filter-title__genres')
+const listGenres = document.querySelector('.filter-list__genres')
+console.log(listGenres);
+linkOpen.addEventListener('click', onOpenList)
+
+function onOpenList(evt) {
+    evt.preventDefault()
+    linkOpen.classList.toggle('open')
+}
