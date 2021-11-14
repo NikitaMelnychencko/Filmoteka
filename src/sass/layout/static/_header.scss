@@ -53,8 +53,8 @@
   margin-right: 12px;
   display: flex;
   align-self: center;
-  animation-name: myFilmAnime;
-  animation-duration: 1000ms;
+  animation-name: heartbeat;
+  animation-duration: 1500ms;
   animation-iteration-count: infinite;
 }
 
@@ -84,7 +84,7 @@
   display: flex;
 }
 
-.nav__current::after {
+.nav__current:first-child:after {
   content: '';
   position: absolute;
   left: 0;
@@ -101,7 +101,7 @@
 .hidden {
   display: none;
   opacity: 0;
-  visibility: hidden;
+  // visibility: hidden;
 }
 .serch {
   background-color: initial;

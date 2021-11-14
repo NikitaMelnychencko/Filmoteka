@@ -25,20 +25,24 @@
             <svg class="icon-film" width="16" height="12">
               <use href=../src/images/svg/sprite.svg/#icon-film></use>
             </svg>
-
             <h1 class="header__hero">Filmoteka</h1>
 
           </a>
         </div>
         <nav class="nav">
-          <button class="nav__login">
-            <svg class="icon-user" width="16" height="12">
-              <use href="../src/images/svg/sprite.svg/#icon-user"></use>
-            </svg>
-            <a href="/" class="nav__link"> log in</a>
-          </button>
           <ul class="nav__title">
-           
+            <li  class="nav__list" data-action="login">
+              <svg class="icon-user" width="16" height="12">
+                <use href="../src/images/svg/sprite.svg/#icon-user"></use>
+              </svg>
+              <a href="" class="nav__link"> log in</a>
+            </li>
+            <li class="nav__list hidden" data-action="logout">
+              <svg class="icon-user" width="16" height="12">
+                <use href="../src/images/svg/sprite.svg/#icon-logout"></use>
+              </svg>
+              <a href="" class="nav__link">log out</a>
+            </li>
             <li class="nav__list "><a href="/" class="nav__link nav__current">home</a></li>
             <li class="nav__list"><a href="/" class="nav__link">my library</a></li>
           </ul>
@@ -46,7 +50,7 @@
       </div>
     </div>
 
-    <div class="backdrop-sing">
+    <div class="backdrop-sing is-hidden">
       <div class="modal-signup  modal-signup--js">
         <div class="signup-wpapper ">
           <h2 class="modal__title">Sing up</h2>

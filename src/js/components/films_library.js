@@ -76,9 +76,9 @@ async function signInUser(email, password) {
       const errorMessage = error.message;
     });
 }
- signInUser('test@gmail.com', 'tesdadt1');
+signInUser('test@gmail.com', 'tesdadt1');
 
-async function signOutUser() {
+export async function signOutUser() {
   signOut(auth)
     .then(() => {
       // Sign-out successful.
@@ -110,8 +110,7 @@ async function getIdUser(userId, store, id) {
   return await get(child(dbRef, 'users/' + userId + '/' + store + '/' + id))
     .then(snapshot => {
       if (snapshot.exists()) {
-        return snapshot.val()
-
+        return snapshot.val();
       } else {
         return null;
       }
@@ -124,11 +123,10 @@ async function getIdUser(userId, store, id) {
 
 // get
 async function getUser(userId, store) {
-  let value =  await get(child(dbRef, 'users/' + userId + '/' + store ))
+  let value = await get(child(dbRef, 'users/' + userId + '/' + store))
     .then(snapshot => {
       if (snapshot.exists()) {
-
-        return snapshot.val()
+        return snapshot.val();
       } else {
         return null;
       }
@@ -136,25 +134,30 @@ async function getUser(userId, store) {
     .catch(error => {
       console.error(error);
     });
-  let arr = []
+  let arr = [];
   for (let key in value) {
-   arr.push(JSON.parse(value[key])) 
+    arr.push(JSON.parse(value[key]));
   }
   console.log(arr);
-  return arr
+  return arr;
 }
 //getUser(`${userId}`, `watched`);
 
 // Post
 export async function postUserData(userId, store, idFilm, markupFilm) {
-  await set(ref(db, 'users/' + userId + '/' + store+'/'+idFilm),markupFilm 
+  await set(
+    ref(db, 'users/' + userId + '/' + store + '/' + idFilm),
+    markupFilm,
   );
 }
 // postUserData(`${userId}`, `watched`);
 
 //update
 async function updateData(userId, store, idFilm, markupFilm) {
-  await update(ref(db, 'users/' + userId + '/' + store + '/' + idFilm), markupFilm);
+  await update(
+    ref(db, 'users/' + userId + '/' + store + '/' + idFilm),
+    markupFilm,
+  );
 }
 //updateData("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue')
 

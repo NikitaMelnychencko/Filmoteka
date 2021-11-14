@@ -10,6 +10,8 @@ import {
   closeMd,
   closeBackdrop,
 } from '../../components/backdrop';
+import { signOutUser, userId } from '../../components/films_library';
+import { ref } from '@firebase/database';
 
 refs.myUlEle.forEach((list, id, a) => {
   list.addEventListener('click', () =>
@@ -19,11 +21,13 @@ refs.myUlEle.forEach((list, id, a) => {
 
 const refas = {
   singUP: document.querySelector('.signup-now__button'),
-  singInMod: document.querySelector('.modal-signin'),
+  singInMod: document.querySelector('.backdrop-sing'),
+  logIn: document.querySelector('[data-action="login"]'),
+  logOut: document.querySelector('[data-action="logout"]'),
 };
 
 refas.singUP.addEventListener('click', openSinUp);
-
+// function for render sing up sing in
 function openSinUp(eve) {
   eve.preventDefault();
   const item = eve.target.textContent.trim();
@@ -32,6 +36,7 @@ function openSinUp(eve) {
   }
 }
 
+// function close modal
 window.addEventListener('keydown', onCloseModal);
 
 function onCloseModal(eve) {
@@ -40,8 +45,15 @@ function onCloseModal(eve) {
     refs.sininModal.classList.add('is-hidden');
   }
 }
+window.addEventListener('click', mouseCloseMOdal);
 
-// функция для рендера
+function mouseCloseMOdal(event) {
+  if (event.target.className === 'backdrop-sing') {
+    refs.sininModal.classList.add('is-hidden');
+  }
+}
+
+// Funchtion for render header
 function canheHeader(event) {
   event.preventDefault();
   let target = event.target;
@@ -73,3 +85,7 @@ function canheHeader(event) {
 refs.myUlEle.forEach(function (link) {
   link.addEventListener('click', canheHeader);
 });
+
+if (userId === null) {
+  refs.logOut.classList.remove('hidden');
+}
