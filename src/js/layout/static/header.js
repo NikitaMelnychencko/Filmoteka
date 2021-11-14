@@ -6,7 +6,7 @@ import myLibraryMarkUp from '../../../views/partials/hero_my_list.hbs';
 import { refs } from '../../refs/refs.js';
 import { initGenres } from '../../data/genres';
 import { onLibButtons } from '../hero_my_list';
-import { getUser } from '../../components/films_library';
+//import { getUser } from '../../components/films_library';
 
 refs.myUlEle.forEach((list, id, a) => {
   list.addEventListener('click', () =>
@@ -19,13 +19,13 @@ function canheHeader(event) {
   event.preventDefault();
   let target = event.target;
   let item = target.textContent;
-  
+
   if (item === 'home') {
     // here render header page serch
     initGenres()
     renderGallery();
     pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
-    
+
 
   }
   if (item === 'my library') {
@@ -37,10 +37,13 @@ function canheHeader(event) {
       'hero--my-library',
       'hero--home',
     );
-    
+
     onLibButtons();
     const userId = sessionStorage.getItem('userId');
-    getUser(`${userId}`, `watched`);
+
+    renderGallery('library', `${userId}`, `watched`);
+
+    //getUser(`${userId}`, `watched`);
   }
   // if (item === '  log in') {
   // }

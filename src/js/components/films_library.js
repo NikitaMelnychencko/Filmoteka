@@ -16,6 +16,8 @@ import {
   remove,
 } from 'firebase/database';
 
+import { renderPagination } from './pagination-list';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyCrhBW63SM95ZUKCf6EsxC1CtzGhzdJBtQ',
   authDomain: 'goit-js10-films-library.firebaseapp.com',
@@ -76,7 +78,7 @@ async function signInUser(email, password) {
       const errorMessage = error.message;
     });
 }
- signInUser('test@gmail.com', 'tesdadt1');
+signInUser('test@gmail.com', 'tesdadt1');
 
 async function signOutUser() {
   signOut(auth)
@@ -124,7 +126,7 @@ async function getIdUser(userId, store, id) {
 
 // get
 export async function getUser(userId, store) {
-  let value =  await get(child(dbRef, 'users/' + userId + '/' + store ))
+  let value = await get(child(dbRef, 'users/' + userId + '/' + store))
     .then(snapshot => {
       if (snapshot.exists()) {
 
@@ -138,8 +140,10 @@ export async function getUser(userId, store) {
     });
   let arr = []
   for (let key in value) {
-   arr.push(JSON.parse(value[key])) 
+    console.log(value);
+    arr.push(JSON.parse(value[key]))
   }
+  //renderPagination('library', arr);
   console.log(arr);
   return arr
 }
@@ -147,7 +151,7 @@ export async function getUser(userId, store) {
 
 // Post
 export async function postUserData(userId, store, idFilm, markupFilm) {
-  await set(ref(db, 'users/' + userId + '/' + store+'/'+idFilm),markupFilm 
+  await set(ref(db, 'users/' + userId + '/' + store + '/' + idFilm), markupFilm
   );
 }
 // postUserData(`${userId}`, `watched`);

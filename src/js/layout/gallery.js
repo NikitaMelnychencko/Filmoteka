@@ -1,66 +1,57 @@
 import { GENRES_MAP, initGenres } from '../data/genres';
 import { renderMovieGlobal } from '../components/fetch';
 import { renderPagination } from '../components/pagination-list';
-import { clearInput } from './hero_home';
+import { clearInput, searchQuery } from './hero_home';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
 //import { filterGlobal } from '../filter/fetch_filter_sort';
+import { getUser } from '../components/films_library';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
-let globalOptions = "home";
-let globalOrder = '';
-let globalSearch = ''
+// let globalOptions = "home";
+// let globalOrder = '';
+// let globalSearch = ''
 
 const renderParams = {
-    globalOptions: 'home',
+    globalOptions: '',
     globalSearch: '',
     globalOrder: '',
 }
 
+export async function renderGallery(options = 'home', search, sortBy, page = 1) {
+    let movies = {};
 
-export async function renderGallery(options, search, sortBy, page = 1) {
-    let movies = undefined;
-    console.log('GlobalOptions in top -', globalOptions)
-    console.log('options in top -', options)
-    if (!options) { options = globalOptions }
-    console.log(options)
+    if (options === '') { options = renderParams.globalOptions }
+
     if (options === 'home') {
-        globalOptions = options;
-        clearInput();
-        globalSearch = '';
-        movies = (await renderMovieGlobal(page, '', '', globalOptions));
-        //console.log(movies);
-        //return movies;
+        renderParams.globalOptions = options;
+        movies = (await renderMovieGlobal(page, '', '', renderParams.globalOptions));
     }
 
     if (options === 'search') {
-        globalOptions = options;
-        globalSearch = search;
-        //clearInput();
-        console.log('Search arg - ', page, search)
-        movies = (await renderMovieGlobal(page, search, '', ''));
-        console.log(movies);
-        //return movies;
+        renderParams.globalOptions = options;
+        renderParams.globalSearch = search;
+        movies = (await renderMovieGlobal(page, renderParams.globalSearch, '', ''));
     }
 
-    if (options === 'sort') {
-        console.log('Globalorder first', globalOrder);
-        console.log('пришло sortBy', sortBy)
-        if (!sortBy) { sortBy = globalOrder }
-        globalOrder = sortBy
-        console.log('Globalorder after', globalOrder);
-        console.log('зашли в сорт')
-        globalOptions = options;
+    if (options === 'library') {
+        console.log('library', search, sortBy)
+        console.log(search);
+        const allMovies = (await getUser(search, sortBy));
+        console.log(allMovies);
+        movies['total_pages'] = Math.ceil(allMovies.length / 20);
+        console.log(movies.total_pages)
+        movies['results'] = allMovies.slice((page - 1) * 20, page * 20 - 1);
+        console.log(movies.results);
+    }
 
-        console.log('filterGlobal args - ', globalOrder, page)
-        movies = (await filterGlobal(globalOrder, page))
-        // movies = search;
-        console.log('получили фильмы', movies)
+    if (!movies) {
+        renderPagination(0, 0);
+        return
     }
 
     renderMovies(movies.results);
-    console.log(movies.results)
     renderPagination(page, movies.total_pages);
     initGenres();
     return movies;
@@ -73,14 +64,15 @@ export function renderMovies(movies) {
 }
 
 function getData(movies, genres) {
+    console.log('getData', movies)
     return movies.map(m => {
         return {
             id: m.id,
             title: m.title,
-            vote_average: m.vote_average.toFixed(1),
-            genres: !genres ? '-' : m.genre_ids.map(id => {
-                return { id, name: genres.get(id), url: '' };
-            }),
+            //vote_average: m.vote_average.toFixed(1),
+            // genres: !genres ? '-' : m.genre_ids.map(id => {
+            //     return { id, name: genres.get(id), url: '' };
+            // }),
             release_date: m.release_date,
             release_date_year: !m.release_date ? '-' : m.release_date.slice(0, 4),
             poster_path: !m.poster_path ? img : `${IMG_URL}${m.poster_path}`,
