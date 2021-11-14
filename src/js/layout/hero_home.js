@@ -23,7 +23,7 @@ export function openInput() {
         'Search result not successful. Enter the correct movie name and try again!');
     } else {
       refs.warning.classList.add('is-hidden');
-      renderGallery(searchQuery);
+      renderGallery('search', searchQuery);
       removeSpinner();
     }
   }
