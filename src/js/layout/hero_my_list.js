@@ -1,6 +1,7 @@
 import { pageRender } from '../call_list/call_list';
 import mainTittle from '../data/main.json';
 import { getUser, userId } from '../components/films_library';
+import { renderGallery } from '../layout/gallery';
 
 let userListArrey;
 
@@ -25,8 +26,10 @@ function onButtonsLibClick(event) {
 
   if (event.target.classList.contains('hero-library__button--watched')) {
     renameGalleryTitle(mainTittle.my_library_watched.gallery_title);
+    renderGallery('library', `${userId}`, `watched`);
   } else {
     renameGalleryTitle(mainTittle.my_library_queue.gallery_title);
+    renderGallery('library', `${userId}`, `queue`);
   }
 }
 

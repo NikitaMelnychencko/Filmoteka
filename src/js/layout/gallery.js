@@ -1,17 +1,13 @@
 import { GENRES_MAP, initGenres } from '../data/genres';
 import { renderMovieGlobal } from '../components/fetch';
 import { renderPagination } from '../components/pagination-list';
-import { clearInput, searchQuery } from './hero_home';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
 //import { filterGlobal } from '../filter/fetch_filter_sort';
 import { getUser } from '../components/films_library';
+import { addSpinner, removeSpinner } from '../components/spinner';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-
-// let globalOptions = "home";
-// let globalOrder = '';
-// let globalSearch = ''
 
 const renderParams = {
     globalOptions: '',
@@ -20,9 +16,12 @@ const renderParams = {
 }
 
 export async function renderGallery(options = 'home', search, sortBy, page = 1) {
+    addSpinner();
     let movies = {};
 
     if (options === '') { options = renderParams.globalOptions }
+    if (search === '') { search = renderParams.globalSearch }
+    if (sortBy === '') { sortBy = renderParams.globalOrder }
 
     if (options === 'home') {
         renderParams.globalOptions = options;
@@ -36,14 +35,14 @@ export async function renderGallery(options = 'home', search, sortBy, page = 1) 
     }
 
     if (options === 'library') {
-        console.log('library', search, sortBy)
-        console.log(search);
-        const allMovies = (await getUser(search, sortBy));
-        console.log(allMovies);
+        renderParams.globalOptions = options;
+        renderParams.globalSearch = search;
+        renderParams.globalOrder = sortBy;
+
+        const allMovies = (await getUser(renderParams.globalSearch, renderParams.globalOrder));
+
         movies['total_pages'] = Math.ceil(allMovies.length / 20);
-        console.log(movies.total_pages)
-        movies['results'] = allMovies.slice((page - 1) * 20, page * 20 - 1);
-        console.log(movies.results);
+        movies['results'] = allMovies.slice((page - 1) * 20, page * 20);
     }
 
     if (!movies) {
@@ -53,6 +52,8 @@ export async function renderGallery(options = 'home', search, sortBy, page = 1) 
 
     renderMovies(movies.results);
     renderPagination(page, movies.total_pages);
+    removeSpinner();
+
     initGenres();
     return movies;
 }
@@ -69,7 +70,7 @@ function getData(movies, genres) {
         return {
             id: m.id,
             title: m.title,
-            //vote_average: m.vote_average.toFixed(1),
+            vote_average: m.vote_average.toFixed(1),
             // genres: !genres ? '-' : m.genre_ids.map(id => {
             //     return { id, name: genres.get(id), url: '' };
             // }),
