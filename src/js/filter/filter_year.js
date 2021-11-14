@@ -3,10 +3,9 @@ import { renderGallery, renderMovies } from '../layout/gallery';
 
 let year = '';
 
-function onRenderYear(params) {
+function onRenderYear() {
     filterGlobalYear(data => {
-        console.log(data);
+        console.log(data.results);
     })
-
 }
 onRenderYear()

@@ -15,22 +15,24 @@ padding: 15px;
 }
 
 .filter-link__sort,
-.filter-link__genres{
+.filter-link__genres,
+.filter-link__year{
     color: #545454;
     font-size: 16px;
     line-height: 1.19;
     transition: color 100ms $time-cubic;
-
 }
 
 .filter-link__sort:hover,
 .filter-link__sort:focus,
 .filter-link__genres:focus,
-.filter-link__genres:hover{
+.filter-link__genres:hover,
+.filter-link__year:focus,
+.filter-link__year:hover{
     color: $accent-color;
 }
 
-.ilter-link__play{
+.filter-link__play{
     display: block;
     width: 45px;
     height: 45px;
