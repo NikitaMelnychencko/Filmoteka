@@ -4,6 +4,7 @@ import { renderGallery } from './gallery.js';
 import { addSpinner, removeSpinner } from '../components/spinner.js';
 export const homeMarkUp = heroHome({ searchSvg });
 export let searchQuery = undefined;
+
 export function openInput() {
   const refs = {
     searchForm: document.querySelector('.search-form'),

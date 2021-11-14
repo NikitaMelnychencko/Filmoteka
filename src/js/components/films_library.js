@@ -5,6 +5,7 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signOut,
+  updateProfile
 } from 'firebase/auth';
 import {
   getDatabase,
@@ -33,7 +34,7 @@ const db = getDatabase();
 const dbRef = ref(getDatabase());
 const auth = getAuth();
 const user = auth.currentUser;
-export const userId = sessionStorage.getItem('userId');
+export let userId = sessionStorage.getItem('userId');
 // const email = sessionStorage.getItem('email');
 // const password = sessionStorage.getItem('password');
 
@@ -54,31 +55,44 @@ const filmId = 534536;
 // getUser(`${userId}`, 'queue');
 
 // Reg User
-async function regUser(email, password) {
-  createUserWithEmailAndPassword(auth, email, password)
+export function regUser(email, password) {
+  return  createUserWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
-      const user = userCredential.user;
+      return userCredential.user.uid;
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
     });
+
 }
 
 // Aut User
-async function signInUser(email, password) {
-  signInWithEmailAndPassword(auth, email, password)
+export function signInUser(email, password) {
+  return  signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
-      const user = userCredential.user;
+      return userCredential.user;
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
     });
 }
- signInUser('test@gmail.com', 'tesdadt1');
+//signInUser('test@gmail.com', 'tesdadt1');
 
-async function signOutUser() {
+const auth = getAuth();
+export function updateInUser(name) {
+  updateProfile(auth.currentUser, {
+    displayName: `${name}`
+  }).then(() => {
+    // Profile updated!
+    // ...
+  }).catch((error) => {
+    // An error occurred
+    // ...
+  });
+}
+export async function signOutUser() {
   signOut(auth)
     .then(() => {
       // Sign-out successful.
@@ -140,7 +154,6 @@ async function getUser(userId, store) {
   for (let key in value) {
    arr.push(JSON.parse(value[key])) 
   }
-  console.log(arr);
   return arr
 }
 //getUser(`${userId}`, `watched`);
