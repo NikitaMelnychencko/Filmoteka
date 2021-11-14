@@ -50,6 +50,7 @@ function addToDataBase(data){
       return
     }
     const idFilm = localStorage.getItem('idFilm')
-    postUserData(userId,e.target.dataset.set,idFilm,data)
+    const markupFilm = localStorage.getItem('marcupFilm')
+    postUserData(userId,e.target.dataset.set,idFilm, markupFilm)
   })
 }
