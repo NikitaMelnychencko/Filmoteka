@@ -4,8 +4,13 @@ import { renderPagination, hidePagination } from '../components/pagination-list'
 import { clearInput } from './hero_home';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
+import { filterGlobal } from '../filter/fetch_filter_sort';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+let globalOptions = "home";
+let globalOrder = '';
+let globalSearch = ''
+
 
 // Tests
 //renderGallery("titanic", 3);
@@ -16,21 +21,48 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 // renderGallery (search) - отрисовывает первую страницу по слову вопросу
 // renderGallery ('', page) - отрисовывает страницу №page самых популярных фильмов
 
-export async function renderGallery(search, page = 1, options = 'home') {
+export async function renderGallery(options, search, sortBy, page = 1) {
     let movies = undefined;
-    if (!search) {
+    // console.log('GlobalOptions in top -', globalOptions)
+    // console.log('options in top -', options)
+    if (!options) { options = globalOptions }
+    // console.log(options)
+    if (options === 'home') {
+        globalOptions = options;
         clearInput();
-        movies = (await renderMovieGlobal(page, '', '', options));
-    } else {
-        movies = (await renderMovieGlobal(page, search, '', ''));
+        globalSearch = '';
+        movies = (await renderMovieGlobal(page, '', '', globalOptions));
+        //console.log(movies);
+        //return movies;
     }
 
-    if (!movies) {
-        hidePagination(true);
-        return
+    if (options === 'search') {
+        globalOptions = options;
+        globalSearch = search;
+        //clearInput();
+        // console.log('Search arg - ', page, search)
+        movies = (await renderMovieGlobal(page, search, '', ''));
+        // console.log(movies);
+        //return movies;
+    }
+
+    if (options === 'sort') {
+        // console.log('Globalorder first', globalOrder);
+        // console.log('пришло sortBy', sortBy)
+        if (!sortBy) { sortBy = globalOrder }
+        globalOrder = sortBy
+        // console.log('Globalorder after', globalOrder);
+        // console.log('зашли в сорт')
+        globalOptions = options;
+
+        // console.log('filterGlobal args - ', globalOrder, page)
+        movies = (await filterGlobal(globalOrder, page))
+        // movies = search;
+        // console.log('получили фильмы', movies)
     }
 
     renderMovies(movies.results);
+    console.log(movies.results)
     renderPagination(page, movies.total_pages);
     initGenres();
     return movies;
@@ -57,4 +89,3 @@ function getData(movies, genres) {
         };
     });
 }
-

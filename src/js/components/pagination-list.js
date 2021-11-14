@@ -36,7 +36,7 @@ function onClick(e) {
         page = Number(refs.main.querySelector('.page-button--active').textContent) + 1;
     }
 
-    renderGallery(searchQuery, page)
+    renderGallery('', searchQuery, '', page)
 }
 
 export function renderPagination(currentPage, totalPages) {
