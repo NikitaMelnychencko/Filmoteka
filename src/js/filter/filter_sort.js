@@ -1,10 +1,9 @@
 
-
 import { filterGlobal } from './fetch_filter_sort';
 import { renderGallery, renderMovies } from '../layout/gallery';
-import filter from '../../views/components/filter_sort.hbs';
-
-const main = document.querySelector('.hero')
+import filter from '../../views/components/filter/filter_sort.hbs';
+import { renderPagination } from '../components/pagination-list';
+const main = document.querySelector('.hero');
 
 
 let releaseDateDesc = 'primary_release_date.desc';
@@ -13,7 +12,6 @@ let popularityDesc = 'popularity.desc';
 let popularityAsc = 'popularity.asc';
 let releaseTitleDesc = "original_title.desc"
 let releaseTitleAsc = "original_title.asc"
-
 
 //раскрытие списка сортировки
 
@@ -68,43 +66,37 @@ function filterTitleAsc() {
         });
 }
 
-
 function filterMain(data) {
     const marcup = filter(data)
     main.insertAdjacentHTML("beforeend", marcup);
 }
 filterMain()
 
-
-const filterList = document.querySelector('.filter-list')
+const filterList = document.querySelector('.filter-list__sort');
 filterList.addEventListener('click', onRenderFiletr)
-
 
 function onRenderFiletr(evt) {
     evt.preventDefault()
     const linck = evt.target.dataset.atribute
     if (linck === "release-date-desc") {
         filterReleaseDateDesc()
+
     } else if (linck === "release-date-ask") {
         filterReleaseDateAsk()
 
     } else if (linck === "popularity-desc") {
         filterPopularityDesc()
+
     } else if (linck === "popularity-asc") {
         filterPopularityAsc()
 
     } else if (linck === "original-title-desc") {
         filterTitleDesc()
+
     } else if (linck === "original-title-asc") {
         filterTitleAsc()
     }
-}
-
-
-
-
-
-
+};
 
 
 

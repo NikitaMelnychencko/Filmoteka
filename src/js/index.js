@@ -12,12 +12,15 @@ import './components/pagination-list';
 import './components/scroll_too';
 import './components/color_switcher';
 import './components/modal';
-import './components/fetch_filter_sort';
 import './components/error';
-import './components/filter_sort';
-import './components/filter_genres';
 import './components/spinner';
 import './components/films_library';
+
+//=========Filter===============
+import './filter/fetch_filter_sort';
+import './filter/fetch_filter_genres';
+import './filter/filter_genres';
+import './filter/filter_sort';
 //=========layout===============
 //=========static===============
 import './layout/static/header';
