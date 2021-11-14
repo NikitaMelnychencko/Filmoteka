@@ -5,6 +5,8 @@ import { renderGallery } from '../../layout/gallery';
 import myLibraryMarkUp from '../../../views/partials/hero_my_list.hbs';
 import { refs } from '../../refs/refs.js';
 import { initGenres } from '../../data/genres';
+import { onLibButtons } from '../hero_my_list';
+import { getUser } from '../../components/films_library';
 
 refs.myUlEle.forEach((list, id, a) => {
   list.addEventListener('click', () =>
@@ -35,6 +37,10 @@ function canheHeader(event) {
       'hero--my-library',
       'hero--home',
     );
+    
+    onLibButtons();
+    const userId = sessionStorage.getItem('userId');
+    getUser(`${userId}`, `watched`);
   }
   // if (item === '  log in') {
   // }

@@ -6,6 +6,7 @@ export const imgMarkup = errorRend({ img });
 export const imgMarkupMain = errorServ({ imgMainError });
 import { renderGallery } from '../layout/gallery';
 import { clearInput } from '../layout/hero_home';
+import { seorchId } from '../layout/modal_one_movie.js';
 
 //выводит ошибку при не вверном вводе в поиске
 export function renderErrorSearch() {
@@ -18,6 +19,7 @@ export function renderErrorSearch() {
     if (el.target) {
       clearInput();
       renderGallery();
+      //seorchId()
     }
   });
 }
