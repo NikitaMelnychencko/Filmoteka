@@ -46,6 +46,9 @@ function addHeroClass(valueAdd, valueRemove) {
   heroRef.classList.remove(`${valueRemove}`);
 }
 
-initGenres();
 pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
-renderGallery();
+initGenres()
+  .then(renderGallery)
+  .catch(renderGallery);
+
+//renderGallery();
