@@ -17,6 +17,19 @@
 .header__button {
   text-align: center;
 }
+.nav {
+  display: flex;
+}
+
+.nav__login {
+  background: none;
+  border: none;
+  display: flex;
+  font-weight: 500;
+  line-height: 1.16;
+  text-transform: uppercase;
+  margin-right: 30px;
+}
 
 .nav__title {
   display: flex;

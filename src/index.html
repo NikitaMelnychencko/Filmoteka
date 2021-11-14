@@ -25,46 +25,29 @@
               <use href=../src/images/svg/sprite.svg/#icon-film></use>
             </svg>
 
-      <h1 class="header__hero">Filmoteka</h1>
-      
-      </a>
-    </div> 
-    <nav class="nav">
-      <ul class="nav__title">
-        <li class="nav__list "><a class="nav__link nav__current" >home</a></li>
-        <li class="nav__list">
-          <a class="nav__link" >   <svg class="icon-user"  width="16" height="12">
-            <use href="../src/images/svg/sprite.svg/#icon-user"></use>
-        </svg> log in</a>
-        </li>
-      <li class="nav__list"><a class="nav__link" >my library</a></li>
-    </ul>
-    </nav>
-</div>
-</div>
-</header>
             <h1 class="header__hero">Filmoteka</h1>
 
           </a>
         </div>
         <nav class="nav">
+          <button class="nav__login">
+            <svg class="icon-user" width="16" height="12">
+              <use href="../src/images/svg/sprite.svg/#icon-user"></use>
+            </svg>
+            <a href="/" class="nav__link"> log in</a>
+          </button>
           <ul class="nav__title">
+           
             <li class="nav__list "><a href="/" class="nav__link nav__current">home</a></li>
-            <li class="nav__list">
-              <svg class="icon-user" width="16" height="12">
-                <use href="../src/images/svg/sprite.svg/#icon-user"></use>
-              </svg>
-              <a href="/" class="nav__link"> log in</a>
-            </li>
             <li class="nav__list"><a href="/" class="nav__link">my library</a></li>
           </ul>
         </nav>
       </div>
     </div>
 
-    <div class="backdrop-sing is-hidden">
-      <div class="modal-signup modal-signup--js">
-        <div class="signup-wpapper">
+    <div class="backdrop-sing">
+      <div class="modal-signup  modal-signup--js">
+        <div class="signup-wpapper ">
           <h2 class="modal__title">Sing up</h2>
           <form action="" class="modal__form-registration">
             <ul class="modal__list-input">
@@ -100,8 +83,9 @@
           </form>
         </div>
       </div>
-      <div class="modal-signin ">
-        <div class="signin-wpapper">
+      
+      <div class="modal-signin">
+        <div class="signin-wpappers">
           <h2 class="modal__title">Sign in</h2>
           <form action="" class="modal__form-login">
             <ul class="modal__list-input">
@@ -157,5 +141,4 @@
 
   <script src="./js/index.js"></script>
 </body>
-
 </html>
