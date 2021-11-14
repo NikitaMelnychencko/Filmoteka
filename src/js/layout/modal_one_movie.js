@@ -5,7 +5,6 @@ import { renderParamsCard } from '../components/fetch';
 let id = 'id';
 let objService = ''
 let arrObj = ''
-
 function renderMovieSeorchParam(id) {
   renderParamsCard(id)
     .then(data => {
