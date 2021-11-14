@@ -3,4 +3,6 @@ export const refs = {
   footerLink: document.querySelector('[data-action="open-modal-teamlist"]'),
   myUlEle: document.querySelectorAll('.nav__title >li a'),
   sininModal: document.querySelector('.backdrop-sing'),
+  formReg: document.querySelector('.modal__form-registration'),
+  formLog: document.querySelector('.modal__form-login'),
 };

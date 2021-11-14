@@ -4,6 +4,7 @@ import { renderGallery } from './gallery.js';
 import { addSpinner, removeSpinner } from '../components/spinner.js';
 export const homeMarkUp = heroHome({ searchSvg });
 export let searchQuery = undefined;
+
 export function openInput() {
   const refs = {
     searchForm: document.querySelector('.search-form'),
@@ -16,7 +17,7 @@ export function openInput() {
     addSpinner();
     searchQuery = e.currentTarget.elements.query.value;
     const page = 1;
-    if (searchQuery.length <= 1) {
+    if (searchQuery.length < 1) {
       refs.warning.classList.remove('is-hidden');
       removeSpinner();
       return (refs.warning.textContent =
