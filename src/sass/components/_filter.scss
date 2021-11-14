@@ -11,7 +11,7 @@ padding: 15px;
     margin-right: 100px;
 }
 
-// .filter-list__sort .open,
+.filter-list__sort .open,
 .filter-list__genres .open{
     display: block;
 }
@@ -29,6 +29,10 @@ padding: 15px;
     border-radius: 3px;
     white-space: nowrap;
 
+}
+
+.open{
+    display: block;
 }
 
 

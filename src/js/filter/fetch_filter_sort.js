@@ -17,5 +17,3 @@ function baseFetch(REQUEST_ADRESS) {
             }
         }).catch(error => alert(errorNot));
 }
-
-

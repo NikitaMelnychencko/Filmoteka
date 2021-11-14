@@ -33,5 +33,5 @@ linkOpen.addEventListener('click', onOpenList)
 
 function onOpenList(evt) {
     evt.preventDefault()
-    linkOpen.classList.toggle('open')
+    listGenres.classList.toggle('open')
 }
