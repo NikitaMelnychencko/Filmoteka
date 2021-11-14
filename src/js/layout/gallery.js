@@ -19,7 +19,7 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 export async function renderGallery(search, page = 1, options = 'home') {
     let movies = undefined;
     if (!search) {
-        clearInput();
+        //clearInput()
         movies = (await renderMovieGlobal(page, '', '', options));
     } else {
         movies = (await renderMovieGlobal(page, search, '', ''));

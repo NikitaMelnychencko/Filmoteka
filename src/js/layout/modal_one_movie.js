@@ -37,8 +37,10 @@ export function seorchId() {
     if (e.target.nodeName === 'UL') {
       return;
     }
-    id = e.target.closest('.gallery-list__item').dataset.id;
-    renderMovieSeorchParam(id);
+    if (e.target.closest('.gallery-list__item') !== null) {
+      id = e.target.closest('.gallery-list__item').dataset.id;
+      renderMovieSeorchParam(id); 
+    }
     
   });
 
