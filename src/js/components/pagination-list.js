@@ -1,108 +1,116 @@
 import { refs } from '../refs/refs.js'
 import { renderGallery } from '../layout/gallery'
+import { searchQuery } from '../layout/hero_home';
 import pagination from '../../views/components/pagination_list.hbs'
-import { searchQuery } from '../layout/hero_home.js';
-//import { globalOptions } from '../layout/gallery';
+import svg from '../../images/svg/sprite.svg';
+
 
 const MAX_SHOWN_PAGES = 9;
 const PAGES_GAP = 2;
+const STEPS = new Map([
+    ['previous', -1],
+    ['next', 1],
+    ['begin', -5],
+    ['end', +5],
+])
 
-export function primaryPagination(svg) {
-    const pagesContainer = refs.main.querySelector('.pagination-container');
-    pagesContainer.insertAdjacentHTML("beforeend", pagination({ svg }));
-    pagesContainer.addEventListener('click', onClick);
+let pagesContainer = refs.main.querySelector('.pagination-container');
+
+export function primaryPagination() {
+    pagesContainer = refs.main.querySelector('.pagination-container');
+    pagesContainer.addEventListener('click', onPageClick);
 }
 
-function onClick(e) {
+function onPageClick(e) {
     e.preventDefault();
 
     if (e.target.nodeName !== 'BUTTON') {
         return;
     };
 
-    let page = Number(e.target.textContent);
+    const pressedButton = e.target;
+    renderGallery(searchQuery, getNextPage(pressedButton))
+}
 
-    if (e.target.className.includes('end')) {
-        page = Number(refs.main.querySelector('.page-button--active').textContent) + 5
-    }
+function getNextPage(button) {
+    const currentPage = Number(refs.main.querySelector('.page-button--active').textContent);
+    let nextPage = Number(button.textContent);
 
-    if (e.target.className.includes('begin')) {
-        page = Number(refs.main.querySelector('.page-button--active').textContent) - 5;
+    if (STEPS.get(button.dataset.move)) {
+        nextPage = currentPage + STEPS.get(button.dataset.move)
     }
-
-    if (e.target.className.includes('arrow-button--previous')) {
-        page = refs.main.querySelector('.page-button--active').textContent - 1;
-    }
-    if (e.target.className.includes('arrow-button--next')) {
-        page = Number(refs.main.querySelector('.page-button--active').textContent) + 1;
-    }
-
-    renderGallery('', searchQuery, page)
+    return nextPage;
 }
 
 export function renderPagination(currentPage, totalPages) {
-    hidePagination(false)
-    document.querySelector('.pagination-numbers').innerHTML = createPagination(currentPage, totalPages);
-    hideArrows(currentPage, totalPages);
+    if (totalPages === 0) {
+        clearPagination();
+        return
+    }
+
+    pagesContainer.classList.remove('pagination-container--hidden')
+    pagesContainer.innerHTML = pagination(createPagination(currentPage, totalPages))
+
+    disableArrows(currentPage, totalPages);
+
     return currentPage;
 }
 
-function hideArrows(currentPage, totalPages) {
-    const pagesContainer = refs.main.querySelector('.pagination-container');
-    if (totalPages === 0) {
-        pagesContainer.querySelector('.previous').classList.add('hidden-arrow');
-        pagesContainer.querySelector('.next').classList.add('hidden-arrow');
-    }
-
-    if (currentPage == 1) {
-        pagesContainer.querySelector('.arrow-button--previous').disabled = true
-    } else {
-        pagesContainer.querySelector('.arrow-button--previous').disabled = false
-    }
-
-    if (currentPage == totalPages) {
-        pagesContainer.querySelector('.arrow-button--next').disabled = true
-    } else {
-        pagesContainer.querySelector('.arrow-button--next').disabled = false
-    }
+function disableArrows(currentPage, totalPages) {
+    switchDisable('arrow-button--previous', currentPage === 1);
+    switchDisable('arrow-button--next', currentPage === totalPages);
+    switchDisable('page-button--active', currentPage);
 }
 
-export function createPagination(currentPage, totalPages) {
+function switchDisable(button, condition) {
+    searchButtonByName(button).disabled = condition;
+}
+
+function searchButtonByName(className) {
+    const button = pagesContainer.querySelector(`.${className}`);
+    return button;
+}
+
+function createPagination(currentPage, totalPages) {
+    const icon = `<svg class='page-button-svg'><use href=${svg}#icon-arrow-left ></use>`
+    const buttonsArray = [create(icon, 'arrow-button arrow-button--previous', 'previous')];
+
     const center = Math.ceil(MAX_SHOWN_PAGES / 2);
-    let str = ``;
+
     if (totalPages <= MAX_SHOWN_PAGES) {
         for (let p = 1; p <= totalPages; p += 1) {
-            str += isActive(p, currentPage, totalPages)
+            buttonsArray.push(isActive(p, currentPage, totalPages))
         }
     } else {
-        str += isActive(1, currentPage, totalPages)
+        buttonsArray.push(isActive(1, currentPage, totalPages));
         if (currentPage <= center) {
             for (let p = 2; p <= center + PAGES_GAP; p += 1) {
-                str += isActive(p, currentPage, totalPages);
+                buttonsArray.push(isActive(p, currentPage, totalPages));
             }
-            str += createAllPages('...', 'end page-button--mobile-hidden')
+            buttonsArray.push(create('...', 'end page-button--mobile-hidden', 'end'));
         } else {
             if (currentPage <= totalPages - center) {
-                str += createAllPages('...', 'begin page-button--mobile-hidden')
+                buttonsArray.push(create('...', 'begin page-button--mobile-hidden', 'begin'));
                 for (let p = currentPage - PAGES_GAP; p <= currentPage + PAGES_GAP; p += 1) {
-                    str += isActive(p, currentPage, totalPages);
+                    buttonsArray.push(isActive(p, currentPage, totalPages));
                 }
-                str += createAllPages('...', 'end page-button--mobile-hidden')
+                buttonsArray.push(create('...', 'end page-button--mobile-hidden', 'end'));
             } else {
-                str += createAllPages('...', 'begin page-button--mobile-hidden')
+                buttonsArray.push(create('...', 'begin page-button--mobile-hidden', 'begin'));
                 for (let p = totalPages - center - 1; p < totalPages; p += 1) {
-                    str += isActive(p, currentPage, totalPages);
+                    buttonsArray.push(isActive(p, currentPage, totalPages));
                 }
             }
         }
-        str += isActive(totalPages, currentPage, totalPages)
+        buttonsArray.push(isActive(totalPages, currentPage, totalPages));
     }
-    return str;
+    buttonsArray.push(create(icon, 'arrow-button arrow-button--next', 'next'));
+    return buttonsArray;
 }
 
 function isActive(page, currentPage, totalPages) {
     if (page == currentPage) {
-        return createAllPages(page, 'page-button--active')
+        return create(page, 'page-button--active')
     } else {
         return hideForMobile(page, currentPage, totalPages)
     }
@@ -110,36 +118,39 @@ function isActive(page, currentPage, totalPages) {
 
 function hideForMobile(page, currentPage, totalPages) {
     if (totalPages <= MAX_SHOWN_PAGES - 4) {
-        return createAllPages(page, '')
+        return create(page, '')
     }
     if (currentPage <= 1 + PAGES_GAP) {
         if (page <= 5) {
-            return createAllPages(page, '')
+            return create(page, '')
         } else {
-            return createAllPages(page, 'page-button--mobile-hidden');
+            return create(page, 'page-button--mobile-hidden');
         }
     }
     if (currentPage < totalPages - PAGES_GAP) {
         if (page >= currentPage - PAGES_GAP && page <= currentPage + PAGES_GAP) {
-            return createAllPages(page, '')
+            return create(page, '')
         } else {
-            return createAllPages(page, 'page-button--mobile-hidden');
+            return create(page, 'page-button--mobile-hidden');
         }
     }
     if (page >= totalPages - 4) {
-        return createAllPages(page, '')
+        return create(page, '')
     } else {
-        return createAllPages(page, 'page-button--mobile-hidden');
+        return create(page, 'page-button--mobile-hidden');
     }
 }
 
-function createAllPages(page, className) {
-    return `<li class="page-item"><button class="page-button ${className}">${page}</button></li>`
+function create(page, className, dataMove) {
+    const button = {
+        page,
+        classes: 'page-button ' + className,
+        step: dataMove,
+    }
+    return button;
 }
 
-export function hidePagination(state) {
-    const pagesContainer = refs.main.querySelector('.pagination-container');
-    if (state) {
-        pagesContainer.classList.add('pagination-container--hidden')
-    } else { pagesContainer.classList.remove('pagination-container--hidden') }
+function clearPagination() {
+    pagesContainer.classList.add('pagination-container--hidden');
+    pagesContainer.innerHTML = '';
 }
