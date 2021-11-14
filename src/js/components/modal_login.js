@@ -1,5 +1,6 @@
-import { regUser, signInUser,postUserData,userId } from './films_library';
+import { regUser, signInUser,AuthState,updateInUser,user} from './films_library';
 import { refs } from '../refs/refs.js';
+
 
 refs.formLog.addEventListener('submit', e => {
   e.preventDefault();
@@ -16,6 +17,6 @@ refs.formReg.addEventListener('submit', e => {
   const passValue = formData.get('pass');
   const nameValue = formData.get('name');
   regUser(emailValue, passValue)
-  signInUser(emailValue, passValue)
-  postUserData(userId,"About",'Name',nameValue)
+  updateInUser(nameValue)
+  AuthState(user)
 })
