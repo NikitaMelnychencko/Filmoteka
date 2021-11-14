@@ -17,7 +17,7 @@ export function openInput() {
     addSpinner();
     searchQuery = e.currentTarget.elements.query.value;
     const page = 1;
-    if (searchQuery.length <= 1) {
+    if (searchQuery.length < 1) {
       refs.warning.classList.remove('is-hidden');
       removeSpinner();
       return (refs.warning.textContent =
