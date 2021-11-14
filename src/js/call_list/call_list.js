@@ -35,7 +35,7 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
     openInput();
   }
   // pagination
-  primaryPagination(svg);
+  primaryPagination();
   blockhelpOpen();
   seorchId();
 }

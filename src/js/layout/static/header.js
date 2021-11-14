@@ -75,6 +75,10 @@ function canheHeader(event) {
       'hero--my-library',
       'hero--home',
     );
+
+    onLibButtons();
+    const userId = sessionStorage.getItem('userId');
+    getUser(`${userId}`, `watched`);
   }
   if (item === 'log in') {
     // renderBackdrop();
