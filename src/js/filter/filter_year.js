@@ -5,7 +5,7 @@ let year = '';
 
 function onRenderYear() {
     filterGlobalYear(data => {
-        console.log(data.results);
+        console.log(data.results.release_date);
     })
 }
 onRenderYear()
