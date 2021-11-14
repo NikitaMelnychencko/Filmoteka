@@ -2,6 +2,7 @@ import { refs } from '../refs/refs.js'
 import { renderGallery } from '../layout/gallery'
 import pagination from '../../views/components/pagination_list.hbs'
 import { searchQuery } from '../layout/hero_home.js';
+//import { globalOptions } from '../layout/gallery';
 
 const MAX_SHOWN_PAGES = 9;
 const PAGES_GAP = 2;
@@ -36,7 +37,7 @@ function onClick(e) {
         page = Number(refs.main.querySelector('.page-button--active').textContent) + 1;
     }
 
-    renderGallery(searchQuery, page)
+    renderGallery('', searchQuery, page)
 }
 
 export function renderPagination(currentPage, totalPages) {

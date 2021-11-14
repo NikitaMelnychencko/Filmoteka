@@ -6,6 +6,8 @@ import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+export let globalOptions = "home";
+
 
 // Tests
 //renderGallery("titanic", 3);
@@ -16,21 +18,59 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 // renderGallery (search) - отрисовывает первую страницу по слову вопросу
 // renderGallery ('', page) - отрисовывает страницу №page самых популярных фильмов
 
-export async function renderGallery(search, page = 1, options = 'home') {
+export async function renderGallery(options, search, page = 1) {
     let movies = undefined;
-    if (!search) {
+    console.log(globalOptions)
+    console.log(options)
+    if (!options) { options = globalOptions }
+    console.log(options)
+    if (options === 'home') {
+        globalOptions = options;
         clearInput();
-        movies = (await renderMovieGlobal(page, '', '', options));
-    } else {
-        movies = (await renderMovieGlobal(page, search, '', ''));
+        movies = (await renderMovieGlobal(page, '', '', globalOptions));
+        console.log(movies);
+        //return movies;
     }
 
-    if (!movies) {
-        hidePagination(true);
-        return
+    if (options === 'search') {
+        globalOptions = options;
+        //clearInput();
+        console.log(page, search)
+        movies = (await renderMovieGlobal(page, search, '', ''));
+        console.log(movies);
+        //return movies;
     }
+
+    if (options === 'sort') {
+        movies = search;
+    }
+
+
+
+    // if (options === 'home') {
+    //     globalOptions = options;
+    //     clearInput();
+    //     movies = (await renderMovieGlobal(page, '', '', globalOptions));
+    //     console.log(movies);
+    //     return movies;
+    // }
+
+
+
+    // if (!search) {
+    //     clearInput();
+    //     movies = (await renderMovieGlobal(page, '', '', options));
+    // } else {
+    //     movies = (await renderMovieGlobal(page, search, '', ''));
+    // }
+
+    // if (!movies) {
+    //     hidePagination(true);
+    //     return
+    // }
 
     renderMovies(movies.results);
+    console.log(movies.results)
     renderPagination(page, movies.total_pages);
     initGenres();
     return movies;
