@@ -15,6 +15,7 @@
   cursor: pointer;
   background-repeat: no-repeat;
   background-position: center;
+  right: 10px;
 
   &:not(:last-child) {
     margin-bottom: 8px;
@@ -64,7 +65,7 @@
 .help__modal {
   position: fixed;
   bottom: 0;
-  right: 0;
+  right: 10px;
   z-index: 1000;
 
   background-color: $primary-background-color;
