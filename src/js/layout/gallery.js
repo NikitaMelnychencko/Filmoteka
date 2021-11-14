@@ -1,73 +1,57 @@
 import { GENRES_MAP, initGenres } from '../data/genres';
 import { renderMovieGlobal } from '../components/fetch';
-import { renderPagination, hidePagination } from '../components/pagination-list';
+import { renderPagination } from '../components/pagination-list';
 import { clearInput } from './hero_home';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
+//import { filterGlobal } from '../filter/fetch_filter_sort';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-export let globalOptions = "home";
+
+let globalOptions = "home";
+let globalOrder = '';
+let globalSearch = ''
 
 
-// Tests
-//renderGallery("titanic", 3);
-//renderGallery("borat");
-//renderGallery('', 3);
-
-// renderGallery () - отрисовывает первую страницу самых популярных фильмов
-// renderGallery (search) - отрисовывает первую страницу по слову вопросу
-// renderGallery ('', page) - отрисовывает страницу №page самых популярных фильмов
-
-export async function renderGallery(options, search, page = 1) {
+export async function renderGallery(options, search, sortBy, page = 1) {
     let movies = undefined;
-    console.log(globalOptions)
-    console.log(options)
+    console.log('GlobalOptions in top -', globalOptions)
+    console.log('options in top -', options)
     if (!options) { options = globalOptions }
     console.log(options)
     if (options === 'home') {
         globalOptions = options;
         clearInput();
+        globalSearch = '';
         movies = (await renderMovieGlobal(page, '', '', globalOptions));
-        console.log(movies);
+        //console.log(movies);
         //return movies;
     }
 
     if (options === 'search') {
         globalOptions = options;
+        globalSearch = search;
         //clearInput();
-        console.log(page, search)
+        console.log('Search arg - ', page, search)
         movies = (await renderMovieGlobal(page, search, '', ''));
         console.log(movies);
         //return movies;
     }
 
     if (options === 'sort') {
-        movies = search;
+        console.log('Globalorder first', globalOrder);
+        console.log('пришло sortBy', sortBy)
+        if (!sortBy) { sortBy = globalOrder }
+        globalOrder = sortBy
+        console.log('Globalorder after', globalOrder);
+        console.log('зашли в сорт')
+        globalOptions = options;
+
+        console.log('filterGlobal args - ', globalOrder, page)
+        movies = (await filterGlobal(globalOrder, page))
+        // movies = search;
+        console.log('получили фильмы', movies)
     }
-
-
-
-    // if (options === 'home') {
-    //     globalOptions = options;
-    //     clearInput();
-    //     movies = (await renderMovieGlobal(page, '', '', globalOptions));
-    //     console.log(movies);
-    //     return movies;
-    // }
-
-
-
-    // if (!search) {
-    //     clearInput();
-    //     movies = (await renderMovieGlobal(page, '', '', options));
-    // } else {
-    //     movies = (await renderMovieGlobal(page, search, '', ''));
-    // }
-
-    // if (!movies) {
-    //     hidePagination(true);
-    //     return
-    // }
 
     renderMovies(movies.results);
     console.log(movies.results)

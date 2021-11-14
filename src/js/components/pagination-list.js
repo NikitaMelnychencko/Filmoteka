@@ -29,7 +29,8 @@ function onPageClick(e) {
     };
 
     const pressedButton = e.target;
-    renderGallery(searchQuery, getNextPage(pressedButton))
+
+    renderGallery('', searchQuery, '', getNextPage(pressedButton))
 }
 
 function getNextPage(button) {
