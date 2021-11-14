@@ -137,8 +137,8 @@ async function getIdUser(userId, store, id) {
 // getIdUser('azLL3vjsCIYtiNzjKFPlfy4TL722', 'queue', 2);
 
 // get
-async function getUser(userId, store) {
-  let value = await get(child(dbRef, 'users/' + userId + '/' + store))
+export async function getUser(userId, store) {
+  let value =  await get(child(dbRef, 'users/' + userId + '/' + store ))
     .then(snapshot => {
       if (snapshot.exists()) {
         return snapshot.val();
