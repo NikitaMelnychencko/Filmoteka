@@ -12,6 +12,12 @@ let globalOptions = "home";
 let globalOrder = '';
 let globalSearch = ''
 
+const renderParams = {
+    globalOptions: 'home',
+    globalSearch: '',
+    globalOrder: '',
+}
+
 
 export async function renderGallery(options, search, sortBy, page = 1) {
     let movies = undefined;
