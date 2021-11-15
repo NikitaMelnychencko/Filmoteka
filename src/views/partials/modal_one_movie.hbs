@@ -3,7 +3,7 @@
     <div class='modal-one-movie__image-box'>
       <picture class='modal-one-movie__image'>
         <img
-          src='https://www.themoviedb.org/t/p/w500/{{backdrop_path}}'
+          src='https://www.themoviedb.org/t/p/w500/{{poster_path}}'
           alt='cover'
         />
       </picture>
@@ -23,11 +23,11 @@
         </tr>
         <tr class='modal-one-movie__table--row'>
           <td class='modal-one-movie__table--first-list'>Popularity</td>
-          <td class='modal-one-movie__table--second-list'>Original title</td>
+          <td class='modal-one-movie__table--second-list'>{{popularity}}</td>
         </tr>
         <tr class='modal-one-movie__table--row'>
           <td class='modal-one-movie__table--first-list'>Genre</td>
-          <td class='modal-one-movie__table--second-list'>{{popularity}}
+          <td class='modal-one-movie__table--second-list'>
             {{#each genres}}
               {{name}}
             {{/each}}</td>
