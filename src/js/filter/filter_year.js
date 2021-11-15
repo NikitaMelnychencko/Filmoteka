@@ -2,11 +2,11 @@ import { filterGlobalYear } from './fetch_filter_year';
 import { renderMovieGlobal } from '../components/fetch';
 import { renderGallery, renderMovies } from '../layout/gallery';
 import yearRend from '../../views/components/filter/filter_sort.hbs';
-import { removeClassOpen } from './filter_sort';
 let year = '';
 const containerYear = document.querySelector('.filter__movie-year');
 const listYear = document.querySelector('.filter-list__year');
 const itemYear = document.querySelectorAll('.filter-item__year');
+
 containerYear.addEventListener('click', onOpenListYear);
 
 let releaseDate = '';
@@ -34,4 +34,12 @@ function onRenderYear() {
         .then(data => {
             renderMovies(data.results)
         })
+}
+
+function removeClassOpen() {
+    const listOpenSort = document.querySelector('.filter-list__sort');
+    const listGenres = document.querySelector('.filter-list__genres');
+    listGenres.classList.remove('open');
+    listOpenSort.classList.remove('open');
+
 }

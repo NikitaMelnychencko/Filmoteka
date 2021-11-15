@@ -1,6 +1,5 @@
 import { filterGlobalGenres } from './fetch_filter_genres';
 import { renderGallery, renderMovies } from '../layout/gallery';
-// import { removeClassOpen } from './filter_sort'
 const main = document.querySelector('.hero')
 
 let idGenres = ''
@@ -46,5 +45,5 @@ function removeClassOpen() {
     const listYear = document.querySelector('.filter-list__year');
     listYear.classList.remove('open');
     listOpenSort.classList.remove('open');
-    listGenres.classList.remove('open');
+
 }
