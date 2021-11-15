@@ -2,8 +2,8 @@
     </li>
     {{#each this}}
     <li class="page-item">
-        <button class="{{this.classes}}" {{#if this.step}} data-move="{{this.step}}" {{/if}}>
-            {{{this.page}}}aria-label="back"
+        <button class="{{this.classes}}"aria-label="back" {{#if this.step}} data-move="{{this.step}}" {{/if}}>
+            {{{this.page}}}
         </button>
     </li>
     {{/each}}
