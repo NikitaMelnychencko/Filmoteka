@@ -1,12 +1,9 @@
 <div class='modal-one-movie'>
   <div class='modal-one-movie__scroll-box'>
     <div class='modal-one-movie__image-box'>
-      <picture class='modal-one-movie__image'>
-        <img
-          src='https://www.themoviedb.org/t/p/w500/{{poster_path}}'
-          alt='cover'
-        />
-      </picture>
+      <div class='modal-one-movie__image'>
+        <img src={{poster_path}} alt='{{title}}' />
+      </div>
     </div>
     <div class='modal-one-movie__text-box'>
       <h3 class='modal-one-movie__title'>{{original_title}}</h3>
