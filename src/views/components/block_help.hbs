@@ -20,7 +20,12 @@
         <use href='{{svg}}#icon-bell'></use>
       </svg>
     </button>
-    <button class='help__button' type='button' aria-label='settings'>
+    <button
+      class='help__button'
+      type='button'
+      aria-label='settings'
+      id='modal-settings'
+    >
       <span class='help__button-hint'>Settings</span>
       <svg class='help__svg'>
         <use href='{{svg}}#icon-gear-fill'></use>
@@ -46,7 +51,7 @@
           name='user-mail'
           placeholder='***@mail.com'
           required
-          pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'
+          pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\\\.[a-z]{2,4}$'
           title='***@mail.com'
         />
       </label>

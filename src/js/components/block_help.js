@@ -29,6 +29,7 @@ export function blockhelpOpen() {
     });
   });
 
+  buttonSettings.addEventListener('click', renderThemeModal);
   openHelpModalBtn.addEventListener('click', onOpenModalBtnClick);
   autoOpenModal();
 
@@ -99,6 +100,4 @@ export function blockhelpOpen() {
   function elementIsHidden(element) {
     element.classList.remove('is-visible');
   }
-
-  buttonSettings.addEventListener('click', renderThemeModal);
 }
