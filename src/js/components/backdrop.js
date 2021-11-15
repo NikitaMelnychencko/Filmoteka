@@ -12,7 +12,7 @@ export function renderBackdrop() {
 
 export function closeBackdrop() {
   backdrop().classList.remove('backdrop_is-open');
-  document.documentElement.style.overflow = 'overlay';
+  document.documentElement.style.overflow = 'auto';
   backdrop().removeEventListener('click', closeMd);
 }
 
