@@ -25,35 +25,43 @@
             <svg class="icon-film" width="16" height="12">
               <use href=../src/images/svg/sprite.svg/#icon-film></use>
             </svg>
-
             <h1 class="header__hero">Filmoteka</h1>
 
           </a>
         </div>
         <nav class="nav">
           <ul class="nav__title">
-            <li class="nav__list "><a href="/" class="nav__link nav__current">home</a></li>
-            <li class="nav__list">
+            <li  class="nav__list js-login" id="login">
               <svg class="icon-user" width="16" height="12">
                 <use href="../src/images/svg/sprite.svg/#icon-user"></use>
               </svg>
-              <a href="/" class="nav__link"> log in</a>
+              <a href="" class="nav__link"> log in</a>
             </li>
+            <li class="nav__list js-logOut hidden" id="logOut">
+              <svg class="icon-user" width="16" height="12">
+                <use href="../src/images/svg/sprite.svg/#icon-logout"></use>
+              </svg>
+              <a href="" class="nav__link">log out</a>
+            </li>
+            <li class="nav__list "><a href="/" class="nav__link nav__current">home</a></li>
             <li class="nav__list"><a href="/" class="nav__link">my library</a></li>
           </ul>
         </nav>
       </div>
     </div>
 
-    <div class="backdrop-sing is-hidden">
-      <div class="modal-signup is-hidden">
+    <div class="backdrop-sing hidden">
+      <div class="modal-signup ">
         <div class="cl-btn-mod">
           <div class="cl-btn-mod-in">
             <div class="cl-btn-mod-txt">Close</div>
           </div>
         </div>
-        <div class="signup-wpapper">
+        <div class="signup-wpapper hidden">
           <h2 class="modal__title">Sing up</h2>
+          <svg width="30px" height="30px" class="modal__back">
+            <use href="../src/images/svg/sprite.svg/#icon-back"></use>
+          </svg>
           <form action="" class="modal__form-registration">
             <ul class="modal__list-input">
               <li class="modal__list-item">
@@ -87,14 +95,7 @@
             <button type="submit" class="modal__button">Sign up</button>
           </form>
         </div>
-      </div>
-      <div class="modal-signin is-hidden">
         <div class="signin-wpapper">
-          <div class="cl-btn-mod">
-            <div class="cl-btn-mod-in">
-              <div class="cl-btn-mod-txt">Close</div>
-            </div>
-          </div>
           <h2 class="modal__title">Sign in</h2>
           <form action="" class="modal__form-login">
             <ul class="modal__list-input">
@@ -150,5 +151,4 @@
 
   <script src="./js/index.js"></script>
 </body>
-
 </html>
