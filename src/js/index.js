@@ -14,8 +14,6 @@ import './components/color_switcher';
 import './components/modal';
 import './components/error';
 import './components/spinner';
-import './components/films_library';
-
 //=========Filter===============
 import './filter/fetch_filter_sort';
 import './filter/fetch_filter_genres';

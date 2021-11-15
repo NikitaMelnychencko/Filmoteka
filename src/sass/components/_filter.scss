@@ -6,7 +6,8 @@ padding: 15px;
 
 
 .filter__movie-sort,
-.filter__movie-genres{
+.filter__movie-genres,
+.filter__movie-year{
     margin-right: 15px;
     display: block;
     font-size: 14px;
@@ -38,11 +39,24 @@ padding: 15px;
     height: 45px;
 }
 
-// .filter-list__sort,
-// .filter-list__genres,
-// .filter-list__year{
-//     display: none;
-// }
+
+.filter-list__year{
+    display: flex;
+    // flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.filter-item__year:not(:last-child){
+margin-right: 5px;
+margin-bottom: 5px;
+}
+
+
+.filter-list__sort,
+.filter-list__genres,
+.filter-list__year{
+    display: none;
+}
 
 .open{
     display: block;
@@ -85,4 +99,6 @@ padding: 15px;
 .filter-item__genres:not(:last-child){
 margin-right: 5px;
 }
+
+
 

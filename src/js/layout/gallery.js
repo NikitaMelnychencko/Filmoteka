@@ -3,11 +3,16 @@ import { renderMovieGlobal } from '../components/fetch';
 import { renderPagination } from '../components/pagination-list';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
+import { filterGlobal } from '../filter/fetch_filter_sort';
 //import { filterGlobal } from '../filter/fetch_filter_sort';
 import { getUser } from '../components/appFirebase';
 import { addSpinner, removeSpinner } from '../components/spinner';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+let globalOptions = "home";
+let globalOrder = '';
+let globalSearch = ''
+
 
 const renderParams = {
   globalOptions: '',
