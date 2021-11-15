@@ -63,9 +63,13 @@
   line-height: 1.15;
   text-align: center;
   letter-spacing: 0.03em;
-  color: #000000;
+  color: $secondary-title-text-color;
   margin-top: 0;
   margin-bottom: 12px;
+}
+.modal__label-txt,
+.signup-now__text{
+  color: $secondary-title-text-color;
 }
 .modal__list-input {
   margin-bottom: 10px;
@@ -94,7 +98,7 @@
 
   &:hover,
   &:focus {
-    border: 1px solid #ff6b01;
+    border: 1px solid $accent-color;
 
     outline: 0;
   }
@@ -107,11 +111,11 @@
   font-size: 16px;
   line-height: 1.87;
   padding: 10px 55px;
-  color: #ffffff;
+  color: $active-btn-text-color;
   cursor: pointer;
 
   letter-spacing: 0.06em;
-  background: #ff6b08;
+  background: $active-btn-color;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   border: 0;
@@ -141,44 +145,9 @@
   transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
   .modal__label:hover &,
   .modal__label:focus & {
-    fill: #f08e4c;
+    fill: $primary-svg-color;
   }
 }
-
-// @media screen and (max-width: 767px) {
-//   .modal-signup,
-//   .modal-signin {
-//     max-width: 450px;
-//   }
-//   .backdrop-sing {
-//     padding: 93px 12px;
-//   }
-//   .backdrop-sing .is-hidden .modal {
-//     transform: translateY(150%) scale(0.75);
-//   }
-// }
-
-// @media screen and (min-width: 768px) {
-//   .modal-signup,
-//   .modal-signin {
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     width: 450px;
-//   }
-
-//   .backdrop-sing.is-hidden .modal {
-//     transform: translate(-50%, 150%) scale(0.75);
-//   }
-// }
-// @media screen and (min-width: 1200px) {
-//   .modal-signup,
-//   .modal-signin {
-//     width: 528px;
-//     margin: 0;
-//   }
-// }
 
 .signin-spinner {
   position: absolute;
@@ -202,7 +171,7 @@
   background: 0;
   border: 0;
   padding: 0;
-  color: #f08e4c;
+  color: $active-btn-color;
   cursor: pointer;
   margin-left: 10px;
 }
@@ -221,7 +190,6 @@
   position: absolute;
   top: 0;
   right: 0;
-  //margin: 20px auto;
   width: 36px;
   cursor: pointer;
 }
@@ -234,7 +202,7 @@
   line-height: 40px;
   font-weight: bold;
   text-transform: uppercase;
-  color: #f08e4c;
+  color: $active-btn-color;
   transition: all 0.3s ease-in;
   opacity: 0;
   cursor: pointer;
@@ -246,7 +214,7 @@
   content: '';
   height: 4px;
   width: inherit;
-  background: #f08e4c;
+  background: $active-btn-color;
   left: 0;
   transition: all 0.3s ease-in;
 }
