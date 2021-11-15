@@ -23,13 +23,14 @@ function onButtonsLibClick(event) {
   }
   btnIsActive(event.target);
   userListArrey = getUser(`${userId}`, `${event.target.dataset.action}`);
-
+  
   if (event.target.classList.contains('hero-library__button--watched')) {
     renameGalleryTitle(mainTittle.my_library_watched.gallery_title);
     renderGallery('library', `${userId}`, `watched`);
   } else {
     renameGalleryTitle(mainTittle.my_library_queue.gallery_title);
     renderGallery('library', `${userId}`, `queue`);
+    console.log(121);
   }
 }
 

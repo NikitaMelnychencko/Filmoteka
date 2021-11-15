@@ -157,7 +157,7 @@ export async function getUser(userId, store) {
   }
   return arr;
 }
-getUser(`${userId}`, `watched`);
+//getUser(`${userId}`, `watched`);
 
 // Post
 export async function postUserData(userId, store, idFilm, markupFilm) {
