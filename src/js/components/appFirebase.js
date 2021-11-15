@@ -39,7 +39,6 @@ export const user = auth.currentUser;
 export let userId = sessionStorage.getItem('userId');
 // const email = sessionStorage.getItem('email');
 // const password = sessionStorage.getItem('password');
-
 const filmId = 534536;
 // const email = 'test@gmail.com';
 // const password = 'tesdadt1';
@@ -106,7 +105,6 @@ export async function signOutUser() {
     });
 }
 
-
 // State User
 export async function AuthState(user) {
   return await onAuthStateChanged(auth, user => {
@@ -160,6 +158,9 @@ export async function getUser(userId, store) {
 
 // Post
 export async function postUserData(userId, store, idFilm, markupFilm) {
+  if (userId===null) {
+    return
+  }
   return await set(
     ref(db, 'users/' + userId + '/' + store + '/' + idFilm),
     markupFilm,
@@ -175,6 +176,6 @@ async function updateData(userId, store, idFilm, markupFilm) {
 }
 
 //delete
-async function deleteData(userId, store, idFilm) {
+export async function deleteData(userId, store, idFilm) {
   return await remove(ref(db, 'users/' + userId + '/' + store + '/' + idFilm));
 }
