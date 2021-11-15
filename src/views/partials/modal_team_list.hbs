@@ -3,7 +3,7 @@
         <a class="ref__github" href="https://github.com/NikitaMelnychencko/Filmoteka" target="_blank"
             rel="noreferrer noopener" aria-label="Our Github">
             <img class="goit-logo" src="https://goit.ua/wp-content/themes/2/images/Layer.png" alt="GoIT"
-                title="Our Github">
+                title="Our Github" loading="lazy" width='274' height='398'>
         </a>
         <h2 lang="en" class="ourteam__title">Group 10</h2>
     </div>
@@ -13,17 +13,18 @@
             <li class="ourteam__item">
                 <div class="img__scale">
                     <a href="{{socialLink}}" target="_blank" aria-label="Members Github">
-                        <img src="{{imageMember}}" alt="{{name}}" class="ourteam__image" />
+                        <img src="{{imageMember}}" alt="{{name}}" class="ourteam__image" loading="lazy" width='274'
+                            height='398' />
                     </a>
-                    </div>
-                    <p lang="en" class="ourteam__subtitle">{{name}}</p>
-                    <p lang="en" class="ourteam__text text">{{position}}</p>
-                    
+                </div>
+                <p lang="en" class="ourteam__subtitle">{{name}}</p>
+                <p lang="en" class="ourteam__text text">{{position}}</p>
+
             </li>
             {{/each}}
         </ul>
     </div>
-    <button type='button' data-action='close-modal' class='modal__close-button'>
+    <button type='button' data-action='close-modal' class='modal__close-button' aria-label="close">
         <svg class='modal__close-button-svg'>
             <use href={{{svg}}}#icon-close-modal></use>
         </svg>
