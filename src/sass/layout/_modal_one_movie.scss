@@ -82,7 +82,7 @@
 }
 
 .modal-one-movie__caption {
-  @extend %hide
+  @extend %hide;
 }
 
 .modal-one-movie__table--first-list {
@@ -112,7 +112,7 @@
   background: $second-accent-btn-color;
   border-radius: 5px;
   margin-right: 11px;
-  color: $accent-btn-color;
+  color: $secondary-title-text-color;
   position: relative;
   &::after {
     content: '/';

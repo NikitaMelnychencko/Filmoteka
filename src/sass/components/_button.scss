@@ -52,21 +52,7 @@
     border-color: $second-accent-btn-color;
   }
 }
-%button {
-  height: 44px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  color: $form-text-color;
 
-  cursor: pointer;
-  transition: background-color $time-cubic, border-color $time-cubic;
-}
 .hero-library__button {
   @extend %button;
   width: 130px;
@@ -92,6 +78,243 @@
   }
 }
 
+.modal-theme__button {
+  border: $button-border;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 44px;
+  width: 113px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  color: $primary-text-color;
+  background: none;
+  justify-content: center;
+  transition: all $time-cubic;
+  &:first-child {
+    margin-right: 15px;
+  }
+  @media screen and (min-width: $tablet-general) {
+    width: 125px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    width: 152px;
+  }
+  &:hover,
+  &:focus {
+    background: $second-accent-btn-color;
+    color: $accent-btn-color;
+    border-color: $second-accent-btn-color;
+  }
+}
+
+//global toggle
+
+.global-toggle {
+  position: relative;
+  display: flex;
+  height: 50px;
+
+  .global-toggle__label {
+    display: block;
+    position: relative;
+    padding-left: $global-toggle-width;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    input:checked ~ .global-toggle__span {
+      background-color: $global-toggle-background-color-on;
+
+      &:after {
+        left: $global-toggle-width - $global-toggle__label-size -
+          $global-toggle-gutter;
+      }
+    }
+
+    .global-toggle__span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: $global-toggle-height;
+      width: $global-toggle-width;
+      border-radius: $global-toggle-radius;
+      background-color: $global-toggle-background-color-off;
+      transition: background-color $global-toggle__label-speed
+        $global-toggle__label-ease;
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: $global-toggle-gutter;
+        top: $global-toggle-gutter;
+        width: $global-toggle__label-size;
+        height: $global-toggle__label-size;
+        border-radius: $global-toggle-radius;
+        background: $global-toggle__label-color;
+        transition: left $global-toggle__label-speed $global-toggle__label-ease;
+      }
+    }
+    .global-toggle__text {
+      font-size: 16px;
+      height: $global-toggle-height;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 30px;
+    }
+  }
+}
+
+//toggle change theme: light-dar
+
+.dark-toggle {
+  display: flex;
+  align-items: center;
+  z-index: 3001;
+  .dark-toggle__checkbox {
+    display: none;
+  }
+  // .dark-toggle__checkbox:checked {
+  /** This will all flip from sun to moon **/
+  /** Change the label color **/
+  // }
+
+  .dark-toggle__checkbox:checked ~ .background {
+    background: var(--indigo-background);
+  }
+  .dark-toggle__checkbox:checked + .dark-toggle__label {
+    background: var(--indigo-color);
+    border-color: var(--indigo-border);
+    /** Change the cloud to stars **/
+    /** Change the sun into the moon **/
+    /** Show the dimples on the moon **/
+  }
+  .dark-toggle__checkbox:checked
+    + .dark-toggle__label
+    .dark-toggle__label-background {
+    left: 60px * $dark-button-scale;
+    width: 5px * $dark-button-scale;
+  }
+  .dark-toggle__checkbox:checked
+    + .dark-toggle__label
+    .dark-toggle__label-background:before {
+    width: 5px * $dark-button-scale;
+    height: 5px * $dark-button-scale;
+    top: -25px * $dark-button-scale;
+  }
+  .dark-toggle__checkbox:checked
+    + .dark-toggle__label
+    .dark-toggle__label-background:after {
+    width: 5px * $dark-button-scale;
+    height: 5px * $dark-button-scale;
+    left: -30px * $dark-button-scale;
+    top: 20px * $dark-button-scale;
+  }
+  .dark-toggle__checkbox:checked + .dark-toggle__label:before {
+    background: var(--white);
+    border-color: var(--gray-border);
+    animation-name: switch;
+    animation-duration: 350ms;
+    animation-fill-mode: forwards;
+  }
+  .dark-toggle__checkbox:checked + .dark-toggle__label:after {
+    transition-delay: 350ms;
+    opacity: 1;
+  }
+  .dark-toggle__label {
+    /** Placeholder element, starting at blue **/
+    width: 200px * $dark-button-scale;
+    height: 100px * $dark-button-scale;
+    background: var(--blue-color);
+    border-radius: 100px * $dark-button-scale;
+    border: 2px solid var(--blue-border);
+    display: flex;
+    position: relative;
+    transition: all 350ms ease-in;
+    /** The sun cloud and moon stars **/
+    /** Sun/Moon element **/
+    /** Gray dots on the moon **/
+    cursor: pointer;
+    z-index: 3001;
+  }
+  .dark-toggle__label-background {
+    width: 10px * $dark-button-scale;
+    height: 5px * $dark-button-scale;
+    border-radius: 5px * $dark-button-scale;
+    position: relative;
+    background: var(--white);
+    left: 135px * $dark-button-scale;
+    top: 45px * $dark-button-scale;
+    transition: all 150ms ease-in;
+  }
+  .dark-toggle__label-background:before {
+    content: '';
+    position: absolute;
+    top: -5px * $dark-button-scale;
+    width: 40px * $dark-button-scale;
+    height: 5px * $dark-button-scale;
+    border-radius: 5px * $dark-button-scale;
+    background: var(--white);
+    left: -20px * $dark-button-scale;
+    transition: all 150ms ease-in;
+  }
+  .dark-toggle__label-background:after {
+    content: '';
+    position: absolute;
+    top: 5px * $dark-button-scale;
+    width: 40px * $dark-button-scale;
+    height: 5px * $dark-button-scale;
+    border-radius: 5px * $dark-button-scale;
+    background: var(--white);
+    left: -10px * $dark-button-scale;
+    transition: all 150ms ease-in;
+  }
+  .dark-toggle__label:before {
+    animation-name: reverse;
+    animation-duration: 350ms;
+    animation-fill-mode: forwards;
+    transition: all 350ms ease-in;
+    content: '';
+    width: 82px * $dark-button-scale;
+    height: 82px * $dark-button-scale;
+    border: 2px solid var(--yellow-border);
+    top: 4px * $dark-button-scale;
+    left: 4px * $dark-button-scale;
+    position: absolute;
+    border-radius: 82px * $dark-button-scale;
+    background: var(--yellow-background);
+  }
+  .dark-toggle__label:after {
+    transition-delay: 0ms;
+    transition: all 250ms ease-in;
+    position: absolute;
+    content: '';
+    box-shadow: var(--gray-dots) -13px * $dark-button-scale 0 0 2px * $dark-button-scale,
+      var(--gray-dots) -24px * $dark-button-scale 14px * $dark-button-scale 0 -2px *
+        $dark-button-scale;
+    left: 143px * $dark-button-scale;
+    top: 23px * $dark-button-scale;
+    width: 10px * $dark-button-scale;
+    height: 10px * $dark-button-scale;
+    background: transparent;
+    border-radius: 50%;
+    opacity: 0;
+  }
+}
 .help__form-button {
   @extend %button;
   width: 100%;
