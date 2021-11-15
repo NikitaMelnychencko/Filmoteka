@@ -1,14 +1,6 @@
 .modal-theme {
   position: relative;
   padding: 0px 0 85px 0;
-  // @media screen and (min-width: $tablet-general) {
-  //   display: flex;
-  //   justify-content: space-between;
-  //   padding: 42px 0 40px 0;
-  // }
-  // @media screen and (min-width: $desktop-up) {
-  //   padding: 50px 0 40px 0;
-  // }
 }
 .modal-theme__scroll-box {
   max-height: calc(100vh - 120px);
@@ -37,10 +29,6 @@
   position: absolute;
   bottom: 41px;
   left: 0;
-  // @media screen and (min-width: $tablet-general) {
-  //   position: static;
-  //   padding: 0;
-  // }
   @media screen and (min-width: $desktop-up) {
   }
 }
