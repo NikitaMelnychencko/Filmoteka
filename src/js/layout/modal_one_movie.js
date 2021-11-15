@@ -1,7 +1,7 @@
 import modal_one_movie_markup from '../../views/partials/modal_one_movie.hbs';
 import { renderModal } from '../components/modal';
 import { renderParamsCard } from '../components/fetch';
-import{postUserData,userId}from '../components/films_library.js'
+import{postUserData,userId}from '../components/appFirebase.js'
 let id = 'id';
 let objService = ''
 let arrObj = ''

@@ -16,7 +16,7 @@ import './components/fetch-filter';
 import './components/error';
 import './components/filter';
 import './components/spinner';
-import './components/films_library';
+import './components/appFirebase';
 //=========layout===============
 //=========static===============
 import './layout/static/header';
