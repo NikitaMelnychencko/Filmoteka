@@ -1,5 +1,5 @@
 import heroHome from '../../views/partials/hero_home.hbs';
-import searchSvg from '../../images/svg/sprite.svg';
+import searchSvg from '../../images/svg/svg.svg';
 import { renderGallery } from './gallery.js';
 import { addSpinner, removeSpinner } from '../components/spinner.js';
 export const homeMarkUp = heroHome({ searchSvg });
