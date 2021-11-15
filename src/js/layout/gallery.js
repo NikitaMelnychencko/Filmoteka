@@ -64,19 +64,23 @@ export function renderMovies(movies) {
     gallery.innerHTML = card(moviesData);
 }
 
-function getData(movies, genres) {
-    console.log('getData', movies)
+function getData(movies, genresList) {
     return movies.map(m => {
+        let genr = []
+        if (!m.genres) {
+            if (!genresList) { return genr = ['-'] };
+            genr = m.genre_ids.map(id => genresList.get(id))
+        } else {
+            genr = m.genres.map(id => id.name);
+        }
         return {
             id: m.id,
             title: m.title,
             vote_average: m.vote_average.toFixed(1),
-            // genres: !genres ? '-' : m.genre_ids.map(id => {
-            //     return { id, name: genres.get(id), url: '' };
-            // }),
+            genres: genr,
             release_date: m.release_date,
             release_date_year: !m.release_date ? '-' : m.release_date.slice(0, 4),
             poster_path: !m.poster_path ? img : `${IMG_URL}${m.poster_path}`,
         };
-    });
+    })
 }
