@@ -1,6 +1,6 @@
 import { pageRender } from '../call_list/call_list';
 import mainTittle from '../data/main.json';
-import { getUser, userId } from '../components/films_library';
+import { getUser, userId } from '../components/appFirebase';
 import { renderGallery } from '../layout/gallery';
 
 let userListArrey;

@@ -10,7 +10,7 @@ import {
   closeMd,
   closeBackdrop,
 } from '../../components/backdrop';
-import { signOutUser, userId, auth } from '../../components/films_library';
+import { signOutUser } from '../../components/appFirebase';
 import {onLibButtons} from '../../layout/hero_my_list.js';
 
 
@@ -62,23 +62,20 @@ refs.myUlEle.forEach(function (link) {
 
 // function auth
 
-function swetchClass() {
+export function swetchClass() {
+  console.log(sessionStorage.getItem('userId') === null);
   if (sessionStorage.getItem('userId') === null) {
     refs.logIn.classList.remove('hidden');
     refs.logOut.classList.add('hidden');
-    console.log('1234');
   } else {
     refs.logIn.classList.add('hidden');
     refs.logOut.classList.remove('hidden');
-    console.log('57633');
   }
 }
 swetchClass();
-console.log(sessionStorage.getItem('userId'));
 
 refs.logOut.addEventListener('click', loginOutUser);
 
 function loginOutUser() {
-  signOutUser();
-  swetchClass();
+  signOutUser()
 }

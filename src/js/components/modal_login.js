@@ -4,9 +4,10 @@ import {
   AuthState,
   updateInUser,
   user,
-} from './films_library';
+} from './appFirebase';
 import { refs } from '../refs/refs.js';
 import { addSpinner,removeSpinner } from './spinner';
+
 
 refs.formLog.addEventListener('submit', e => {
   e.preventDefault();
@@ -17,6 +18,7 @@ refs.formLog.addEventListener('submit', e => {
   signInUser(emailValue, passValue)
   clearInput(refs.formLog, 2)
   removeSpinner()
+  addClass()
 })
 
 refs.formReg.addEventListener('submit', e => {
@@ -31,6 +33,7 @@ refs.formReg.addEventListener('submit', e => {
   AuthState(user)
   clearInput(refs.formReg, 3)
   removeSpinner()
+  addClass()
 })
 
 
@@ -67,11 +70,13 @@ function onCloseModal(eve) {
 }
 
 function mouseCloseMOdal(event) {
-  if (event.target.className === 'backdrop-sing') {
-    refs.sininModal.classList.add('hidden');
+  if (event.target.className === 'backdrop-sing'||event.target.className === 'cl-btn-mod-txt') {
+    addClass()
   }
 }
-
+function addClass() {
+  refs.sininModal.classList.add('hidden');
+}
 // back sing Up
 
 refs.backModal.addEventListener('click', backSingOut);
