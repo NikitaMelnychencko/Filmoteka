@@ -1,0 +1,127 @@
+.gallery-list__item {
+  display: block;
+  height: 440px;
+  max-width: 280px;
+  margin: 15px;
+  cursor: pointer;
+  background-color: $primary-background-color;
+  border-radius: 5px;
+
+  z-index: auto;
+  transform: scale(1);
+  transition: all $time-cubic;
+
+  &:hover,
+  &:focus {
+    z-index: 2;
+    transform: scale(1.05);
+
+    .gallery-list__img {
+      box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
+        0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+    }
+
+    .gallery-list__title {
+      white-space: normal;
+    }
+  }
+
+  @media screen and (min-width: $tablet-general) {
+    max-width: 294px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    max-width: 274px;
+  }
+}
+
+.gallery-list__img {
+  display: block;
+  height: 398px;
+  width: 280px;
+  border-radius: 5px;
+
+  box-shadow: none;
+  transition: all $time-cubic;
+
+  @media screen and (min-width: $tablet-general) {
+    width: 294px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    width: 274px;
+  }
+}
+
+.gallery-list__card {
+  padding-top: 10px;
+}
+
+.gallery-list__title {
+  max-height: 44px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  text-transform: uppercase;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  color: $primary-title-text-color;
+}
+
+.gallery-list__info {
+  display: flex;
+  align-items: baseline;
+  padding-top: 1px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+
+  color: $selection-text-color;
+}
+
+.gallery-list__genre {
+  display: inline;
+  align-items: center;
+
+  max-width: 190px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    white-space: normal;
+  }
+}
+
+.gallery-list__genre-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.gallery-list__year {
+  padding-left: 3px;
+
+  &::before {
+    content: '|';
+  }
+}
+
+.gallery-list__rate {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-left: 10px;
+  width: 36px;
+  height: 16px;
+
+  background-color: $secondary-background-color;
+  color: $form-text-color;
+  border-radius: 5px;
+}

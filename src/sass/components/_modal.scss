@@ -1,0 +1,35 @@
+.modal {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all $time-cubic;
+  transform: translate(-50%, 0) scale(0.9);
+  background-color: $primary-background-color;
+  z-index: 2000;
+  @media screen and (min-width: $tablet-general) {
+    transform: translate(-50%, -50%) scale(0.9);
+    top: 50%;
+  }
+}
+
+.modal__content {
+  min-width: 150px;
+  min-height: 150px;
+}
+
+.modal__close-button-svg {
+  stroke: $primary-text-color;
+  width: 14px;
+  height: 14px;
+}
+
+.modal_is-open {
+  opacity: 1;
+  pointer-events: initial;
+  transform: translate(-50%, 0) scale(1);
+  @media screen and (min-width: $tablet-general) {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

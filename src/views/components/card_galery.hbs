@@ -1,0 +1,16 @@
+{{#each this}}
+<li class="gallery-list__item" data-id="{{id}}">
+    <img class="gallery-list__img" src={{poster_path}} alt="{{title}}" loading="lazy" width='274' height='398'>
+    <div class="gallery-list__card">
+        <h3 class="gallery-list__title">{{title}}</h3>
+        <div class="gallery-list__info">
+            <p class="gallery-list__genre">{{#if genres}}{{#each genres}}
+                {{this}}{{#unless @last}},{{/unless}}
+                {{/each}}{{else}} - {{/if}}
+            </p>
+            <p class="gallery-list__year">{{#if release_date_year}} {{release_date_year}} {{else}} - {{/if}}</p>
+            <p class="gallery-list__rate">{{vote_average}}</p>
+        </div>
+    </div>
+</li>
+{{/each}}

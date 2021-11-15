@@ -1,9 +1,9 @@
 //==========utils=================
+@import './utils/variables';
 @import './utils/animation';
 @import './utils/breakpoints';
 @import './utils/fonts';
 @import './utils/placeholder';
-@import './utils/variables';
 //=============base==============
 @import './base/globalClass';
 @import './base/reset';
@@ -17,13 +17,21 @@
 @import './components/modal_login';
 @import './components/nuv_list';
 @import './components/pagination_list';
-//=========layout===============
+@import './components/modal';
+@import './components/palitre';
+@import './components/filter';
+@import './components/scrollbar';
+@import './components/spinner';
+@import './components/null_in_box';
 //=========static===============
 @import './layout/static/header';
 @import './layout/static/footer';
+//@import './layout/static/modal_wind';
 //=========main================
 @import './layout/gallery';
 @import './layout/modal_one_movie';
 @import './layout/modal_team_list';
 @import './layout/hero_home';
 @import './layout/hero_my_list';
+@import './layout/modal_theme';
+@import './layout/error';

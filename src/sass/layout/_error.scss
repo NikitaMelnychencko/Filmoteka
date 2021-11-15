@@ -1,0 +1,49 @@
+
+.hiden{
+    @extend %hide;
+}
+
+img{
+display: inline;
+}
+
+.page-error {
+    display: block;
+    height: 100vh;
+    text-align: center;
+    display: block;
+    font-size: 14px;
+
+}
+.page-error__serv{
+     text-align: center;
+    display: block;
+    font-size: 14px;
+}
+
+.error{
+        display: block;
+        font-size: 150px;
+}
+.error-text{
+    font-size: 30px;
+    line-height: 1.17;
+    color: $third-text-color;
+}
+
+.global-button-error{
+    display: inline-block;
+    width: 250px;
+    margin-top: 10px;
+@media screen and (min-width: $desktop-up) {
+    width: 400px;
+      margin-right: 0;
+      display: block;
+      margin-left:auto;
+      margin-right: auto;
+    }
+}
+
+
+
+

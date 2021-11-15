@@ -1,0 +1,19 @@
+.backdrop {
+  background: $backdrop-color;
+  opacity: 0;
+  background-color: transparent;
+  pointer-events: none;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  position: fixed;
+  transition: all $time-cubic;
+  z-index: 1000;
+}
+
+.backdrop_is-open {
+  opacity: 1;
+  background: $backdrop-color;
+  pointer-events: initial;
+}

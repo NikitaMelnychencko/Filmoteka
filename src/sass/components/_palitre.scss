@@ -1,0 +1,248 @@
+.palitre {
+  margin-top: 20px;
+  width: 280px;
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+  @media screen and (min-width: $tablet-general) {
+    width: 350px;
+    height: 350px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    margin-top: 20px;
+    width: 600px;
+    height: 600px;
+  }
+}
+
+.palitre__dot,
+.palitre__brightness-dot,
+.palitre__saturation-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 140px 140px;
+  transform: rotate(90 deg);
+  z-index: 1002;
+  transition: all 150ms;
+  animation-fill-mode: backwards;
+  animation-name: palitre-current-dot;
+  animation-duration: 300ms;
+  animation-iteration-count: 1;
+  @media screen and (min-width: $tablet-general) {
+    transform-origin: 175px 175px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    transform-origin: 300px 300px;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    width: 23px;
+    height: 23px;
+    background-color: rgb(255, 255, 255);
+    outline: 3px solid black;
+    box-shadow: 0 0 10px rgba(#000, 0.5);
+    cursor: pointer;
+    @media screen and (min-width: $tablet-general) {
+      width: 30px;
+      height: 30px;
+    }
+    @media screen and (min-width: $desktop-up) {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+.palitre__dot {
+  animation-delay: 800ms;
+  &::after {
+    top: 68px;
+    left: 68px;
+    @media screen and (min-width: $tablet-general) {
+      top: 80px;
+      left: 80px;
+    }
+    @media screen and (min-width: $desktop-up) {
+      top: 130px;
+      left: 130px;
+    }
+  }
+}
+.palitre__brightness-dot,
+.palitre__saturation-dot {
+  animation-delay: 1400ms;
+  &::after {
+    top: 41px;
+    left: 41px;
+    @media screen and (min-width: $tablet-general) {
+      top: 52px;
+      left: 52px;
+    }
+    @media screen and (min-width: $desktop-up) {
+      top: 90px;
+      left: 90px;
+    }
+  }
+}
+
+.palitre__ring {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  width: 190px;
+  height: 190px;
+  box-shadow: 0 0 10px rgba(#000, 0.5);
+  background: radial-gradient(
+      circle at 50% 0,
+      hsl(0deg, 100%, 50%, 1) 10%,
+      hsl(0deg, 100%, 50%, 0) 35%
+    ),
+    radial-gradient(
+      circle at 100% 21%,
+      hsl(60deg, 100%, 50%, 1) 10%,
+      hsl(60deg, 100%, 50%, 0) 35%
+    ),
+    radial-gradient(
+      circle at 100% 79%,
+      hsl(120deg, 100%, 50%, 1) 10%,
+      hsl(120deg, 100%, 50%, 0) 35%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      hsl(180deg, 100%, 50%, 1) 10%,
+      hsl(180deg, 100%, 50%, 0) 35%
+    ),
+    radial-gradient(
+      circle at 0% 79%,
+      hsl(235deg, 100%, 50%, 1) 10%,
+      hsl(235deg, 100%, 50%, 0) 35%
+    ),
+    radial-gradient(
+      circle at 0% 21%,
+      hsl(300deg, 100%, 50%, 1) 10%,
+      hsl(300deg, 100%, 50%, 0) 35%
+    );
+  transform: translate(-50%, -50%) scale(1);
+  animation-fill-mode: backwards;
+  animation-name: palitre-ring;
+  animation-duration: 600ms;
+  animation-iteration-count: 1;
+  animation-delay: 250ms;
+  &::before {
+    content: '';
+    cursor: default;
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    background-color: $primary-background-color;
+    border-radius: 50%;
+    top: 10%;
+    left: 10%;
+    box-shadow: inset 0 0 10px rgba(#000, 0.5);
+  }
+  @media screen and (min-width: $tablet-general) {
+    width: 250px;
+    height: 250px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    width: 450px;
+    height: 450px;
+  }
+}
+
+.palitre__current-color {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: $accent-color; //selected color
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  transform: translate(-50%, -50%) scale(1);
+  font-size: 12px;
+  box-shadow: 0 0 10px rgba(#000, 0.5);
+  @media screen and (min-width: $tablet-general) {
+    width: 120px;
+    height: 120px;
+    font-size: 16px;
+  }
+  @media screen and (min-width: $desktop-up) {
+    width: 220px;
+    height: 220px;
+    font-size: 36px;
+  }
+  animation-fill-mode: backwards;
+  animation-name: palitre-current;
+  animation-duration: 1000ms;
+  animation-iteration-count: 1;
+
+  &::before {
+    color: #ffffff;
+    top: 25%;
+  }
+  &::after {
+    color: black;
+    bottom: 25%;
+  }
+  &::before,
+  &::after {
+    content: 'Theme';
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+  }
+}
+
+.palitre__current-color::after {
+  content: 'Theme';
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.palitre__brightness {
+  transform: translate(-52%, -52%) scale(1);
+  background: linear-gradient(
+    to bottom,
+    rgb(255, 255, 255) 20%,
+    var(--clear-accent-color),
+    rgb(0, 0, 0) 80%
+  );
+  animation-name: palitre-left;
+}
+
+.palitre__saturation {
+  transform: translate(-48%, -48%) scale(1) rotate(180deg);
+  background: linear-gradient(
+    to bottom,
+    var(--clear-accent-color) 20%,
+    rgb(128, 128, 128) 80%
+  );
+
+  animation-name: palitre-right;
+}
+
+.palitre__brightness,
+.palitre__saturation {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-mask-image: url(../images/svg/doug.svg);
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  animation-fill-mode: backwards;
+  animation-duration: 600ms;
+  animation-iteration-count: 1;
+  animation-delay: 900ms;
+}
