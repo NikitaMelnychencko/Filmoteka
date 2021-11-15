@@ -1,21 +1,37 @@
 import { filterGlobalYear } from './fetch_filter_year';
+import { renderMovieGlobal } from '../components/fetch';
 import { renderGallery, renderMovies } from '../layout/gallery';
 import yearRend from '../../views/components/filter/filter_sort.hbs';
+import { removeClassOpen } from './filter_sort';
 let year = '';
-const linkOpenYear = document.querySelector('.filter-link__year');
+const containerYear = document.querySelector('.filter__movie-year');
 const listYear = document.querySelector('.filter-list__year');
-const itenmYear = document.querySelector('.filter-item__year')
-linkOpenYear.addEventListener('click', e)
+const itemYear = document.querySelectorAll('.filter-item__year');
+containerYear.addEventListener('click', onOpenListYear);
 
-function renderYear(year) {
-    const markup = yearRend(year)
-    yearRend.insertAdjacentHTML("beforeend", markup)
+let releaseDate = '';
+
+function onOpenListYear(evt) {
+    evt.preventDefault();
+    if (evt.target.nodeName !== 'A') {
+        listYear.classList.remove('open')
+    } else {
+        removeClassOpen()
+        listYear.classList.toggle('open')
+    }
 }
+
+itemYear.forEach(el => {
+    el.addEventListener('click', e => {
+        e.preventDefault();
+        releaseDate = e.target.textContent
+        renderGallery(releaseDate)
+    })
+})
 
 function onRenderYear() {
-    filterGlobalYear(data => {
-        console.log(data.release_date);
-    })
+    filterGlobalYear(year, '')
+        .then(data => {
+            renderMovies(data.results)
+        })
 }
-onRenderYear()
-

@@ -4,9 +4,8 @@ const BASE_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}
 
 
 export function filterGlobalYear(year, page) {
-    const REQUEST_ADRESS = `${BASE_URL}&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&year=1992&with_watch_monetization_types=flatrate`
-    console.log(REQUEST_ADRESS);
-    return baseFetch(REQUEST_ADRESS);
+    const REQUEST_ADRESS = `${BASE_URL}&include_adult=false&include_video=false&page=${page}&year=1995&with_watch_monetization_types=flatrate`
+    return baseFetch(REQUEST_ADRESS)
 }
 
 function baseFetch(REQUEST_ADRESS) {

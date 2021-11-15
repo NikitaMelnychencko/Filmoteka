@@ -2,7 +2,7 @@ import { renderGallery } from '../layout/gallery';
 import filter from '../../views/components/filter/filter_sort.hbs';
 const main = document.querySelector('.hero');
 
-function filterMain() {
+export function filterMain() {
     const markup = filter()
     main.insertAdjacentHTML("beforeend", markup);
 }
@@ -21,18 +21,23 @@ function onRenderFilter(evt) {
     renderGallery('sort', '', link);
 };
 
-const linkOpenSort = document.querySelector('.filter-link__sort')
-linkOpenSort.addEventListener('click', onOpenListSorts)
-const listOpenSort = document.querySelector('.filter-list__sort')
+const containerSort = document.querySelector('.filter__movie-sort');
+containerSort.addEventListener('click', onOpenListSorts);
+const listOpenSort = document.querySelector('.filter-list__sort');
 
 function onOpenListSorts(evt) {
     evt.preventDefault()
-
-    if (evt.target === linkOpenSort) {
-        console.log(evt.target === linkOpenSort);
-        listOpenSort.classList.toggle('open')
-    } else {
+    if (evt.target.nodeName !== 'A') {
         listOpenSort.classList.remove('open')
+    } else {
+        removeClassOpen()
+        listOpenSort.classList.toggle('open')
     }
+}
 
+function removeClassOpen() {
+    const listGenres = document.querySelector('.filter-list__genres');
+    const listYear = document.querySelector('.filter-list__year');
+    listYear.classList.remove('open')
+    listGenres.classList.remove('open')
 }
