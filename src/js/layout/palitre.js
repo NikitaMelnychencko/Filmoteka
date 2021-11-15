@@ -56,7 +56,6 @@ function viewPort() {
   }
 }
 
-
 const setColor = {
   h: 25,
   s: 100,

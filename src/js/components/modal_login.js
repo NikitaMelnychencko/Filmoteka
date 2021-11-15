@@ -48,7 +48,6 @@ function clearInput(ref,number) {
 refs.singUP.addEventListener('click', openSinUp);
 
 function openSinUp(eve) {
-  // eve.preventDefault();
   const item = eve.target.textContent.trim();
   console.log(item);
   if (item === 'Sign up Now') {
@@ -57,7 +56,6 @@ function openSinUp(eve) {
   }
 }
 
-// function close modal
 
 window.addEventListener('keydown', onCloseModal);
 window.addEventListener('click', mouseCloseMOdal);
@@ -77,7 +75,6 @@ function mouseCloseMOdal(event) {
 function addClass() {
   refs.sininModal.classList.add('hidden');
 }
-// back sing Up
 
 refs.backModal.addEventListener('click', backSingOut);
 

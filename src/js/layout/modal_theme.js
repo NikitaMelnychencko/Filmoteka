@@ -2,7 +2,7 @@ import modal_theme from '../../views/partials/modal_theme.hbs';
 import { renderModal } from '../components/modal';
 import { palitre, defaultAccent, saveAccent } from './palitre';
 import { darkTheme, defaultTheme } from './dark-theme';
-const modalThemeContent = modal_theme(); //need insert object with movie detail //test
+const modalThemeContent = modal_theme(); 
 
 export function renderThemeModal() {
   renderModal(modalThemeContent);

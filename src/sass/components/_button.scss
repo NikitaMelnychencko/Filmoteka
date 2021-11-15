@@ -193,9 +193,6 @@
   .dark-toggle__checkbox:checked + .dark-toggle__label {
     background: var(--indigo-color);
     border-color: var(--indigo-border);
-    /** Change the cloud to stars **/
-    /** Change the sun into the moon **/
-    /** Show the dimples on the moon **/
   }
   .dark-toggle__checkbox:checked
     + .dark-toggle__label
@@ -239,9 +236,6 @@
     display: flex;
     position: relative;
     transition: all 350ms ease-in;
-    /** The sun cloud and moon stars **/
-    /** Sun/Moon element **/
-    /** Gray dots on the moon **/
     cursor: pointer;
     z-index: 3001;
   }

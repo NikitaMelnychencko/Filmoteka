@@ -19,7 +19,7 @@ export function renderErrorSearch() {
     if (el.target) {
       clearInput();
       renderGallery();
-      //seorchId()
+      
     }
   });
 }
