@@ -29,7 +29,6 @@ function modalCloseEcsKey(evt) {
 }
 
 function buttonClose(evt) {
-  console.dir(evt.target);
   if (
     evt.target.id === 'close-modal' ||
     evt.target.parentElement.id === 'close-modal' ||
@@ -46,6 +45,7 @@ export function closeModal() {
   modal.classList.remove('modal_is-open');
   modalRemoveListener();
   closeBackdrop();
+  closeModalSignal();
 }
 
 function clearDelay() {
@@ -58,4 +58,7 @@ function modalRemoveListener() {
   window.removeEventListener('keydown', modalCloseEcsKey);
 }
 
+export function closeModalSignal() {
+  return;
+}
 // setTimeout(e => renderModal('TEST'), 200); //test
