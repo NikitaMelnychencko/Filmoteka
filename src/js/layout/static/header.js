@@ -5,8 +5,14 @@ import { renderGallery } from '../../layout/gallery';
 import myLibraryMarkUp from '../../../views/partials/hero_my_list.hbs';
 import { refs } from '../../refs/refs.js';
 import { initGenres } from '../../data/genres';
-import { onLibButtons } from '../hero_my_list';
-import { getUser } from '../../components/films_library';
+import {
+  renderBackdrop,
+  closeMd,
+  closeBackdrop,
+} from '../../components/backdrop';
+import { signOutUser, userId, auth } from '../../components/films_library';
+import {onLibButtons} from '../../layout/hero_my_list.js';
+
 
 refs.myUlEle.forEach((list, id, a) => {
   list.addEventListener('click', () =>
@@ -14,19 +20,18 @@ refs.myUlEle.forEach((list, id, a) => {
   );
 });
 
-// функция для рендера
+// Funchtion for render header
 function canheHeader(event) {
   event.preventDefault();
   let target = event.target;
-  let item = target.textContent;
-  
+  let item = target.textContent.trim();
+  console.log(item);
+
   if (item === 'home') {
     // here render header page serch
-    initGenres()
+    initGenres();
     renderGallery();
     pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
-    
-
   }
   if (item === 'my library') {
     // here render header page Button
@@ -37,15 +42,43 @@ function canheHeader(event) {
       'hero--my-library',
       'hero--home',
     );
-    
+
     onLibButtons();
     const userId = sessionStorage.getItem('userId');
-    getUser(`${userId}`, `watched`);
+
+    renderGallery('library', `${userId}`, `watched`);
+
+    //getUser(`${userId}`, `watched`);
   }
-  // if (item === '  log in') {
-  // }
+  if (item === 'log in') {
+    // renderBackdrop();
+    refs.sininModal.classList.remove('hidden');
+  }
 }
 
 refs.myUlEle.forEach(function (link) {
   link.addEventListener('click', canheHeader);
 });
+
+// function auth
+
+function swetchClass() {
+  if (sessionStorage.getItem('userId') === null) {
+    refs.logIn.classList.remove('hidden');
+    refs.logOut.classList.add('hidden');
+    console.log('1234');
+  } else {
+    refs.logIn.classList.add('hidden');
+    refs.logOut.classList.remove('hidden');
+    console.log('57633');
+  }
+}
+swetchClass();
+console.log(sessionStorage.getItem('userId'));
+
+refs.logOut.addEventListener('click', loginOutUser);
+
+function loginOutUser() {
+  signOutUser();
+  swetchClass();
+}

@@ -17,6 +17,19 @@
 .header__button {
   text-align: center;
 }
+.nav {
+  display: flex;
+}
+
+.nav__login {
+  background: none;
+  border: none;
+  display: flex;
+  font-weight: 500;
+  line-height: 1.16;
+  text-transform: uppercase;
+  margin-right: 30px;
+}
 
 .nav__title {
   display: flex;
@@ -26,9 +39,9 @@
   text-transform: uppercase;
 }
 .nav__list {
-  cursor: progress;
   position: relative;
   display: flex;
+  cursor: pointer;
 }
 
 .nav__list:not(:last-child) {
@@ -38,6 +51,11 @@
   width: 24px;
   height: 24px;
   margin-right: 12px;
+  display: flex;
+  align-self: center;
+  animation-name: heartbeat;
+  animation-duration: 1500ms;
+  animation-iteration-count: infinite;
 }
 
 .header__hero {
@@ -66,7 +84,7 @@
   display: flex;
 }
 
-.nav__current::after {
+.nav__current:first-child:after {
   content: '';
   position: absolute;
   left: 0;
@@ -83,7 +101,7 @@
 .hidden {
   display: none;
   opacity: 0;
-  visibility: hidden;
+  // visibility: hidden;
 }
 .serch {
   background-color: initial;
@@ -94,7 +112,7 @@
   display: flex;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $tablet-general) {
   .header__body {
     padding-top: 41px;
   }
@@ -104,7 +122,7 @@
   .header__title {
     display: flex;
     align-items: center;
-    cursor: progress;
+    cursor: pointer;
   }
 
   .nav__title {
@@ -124,11 +142,3 @@
     display: block;
   }
 }
-
-.path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: dash 5s linear alternate infinite;
-}
-
-

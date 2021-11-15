@@ -5,7 +5,7 @@
         <h3 class="gallery-list__title">{{title}}</h3>
         <div class="gallery-list__info">
             <p class="gallery-list__genre">{{#if genres}}{{#each genres}}
-                {{name}}{{#unless @last}},{{/unless}}</a>
+                {{this}}{{#unless @last}},{{/unless}}
                 {{/each}}{{else}} - {{/if}}
             </p>
             <p class="gallery-list__year">{{#if release_date_year}} {{release_date_year}} {{else}} - {{/if}}</p>

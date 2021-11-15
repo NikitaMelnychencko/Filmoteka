@@ -17,6 +17,8 @@ import {
   remove,
 } from 'firebase/database';
 
+import { renderPagination } from './pagination-list';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyCrhBW63SM95ZUKCf6EsxC1CtzGhzdJBtQ',
   authDomain: 'goit-js10-films-library.firebaseapp.com',
@@ -83,9 +85,7 @@ export async function updateInUser(name) {
   return await updateProfile(auth.currentUser, {
     displayName: `${name}`,
   })
-    .then((data) => {
-
-    })
+    .then(data => {})
     .catch(error => {
       // An error occurred
       // ...
@@ -96,6 +96,8 @@ export async function signOutUser(auth) {
   return await signOut(auth)
     .then(() => {
       // Sign-out successful.
+      userId = null;
+      sessionStorage.removeItem('userId');
     })
     .catch(error => {
       // An error happened.
@@ -111,7 +113,7 @@ export async function AuthState(user) {
       userId = user.uid;
       return sessionStorage.setItem('userId', `${userId}`);
     } else {
-      return
+      return;
     }
   });
 }
@@ -138,7 +140,7 @@ async function getIdUser(userId, store, id) {
 
 // get
 export async function getUser(userId, store) {
-  let value =  await get(child(dbRef, 'users/' + userId + '/' + store ))
+  let value = await get(child(dbRef, 'users/' + userId + '/' + store))
     .then(snapshot => {
       if (snapshot.exists()) {
         return snapshot.val();

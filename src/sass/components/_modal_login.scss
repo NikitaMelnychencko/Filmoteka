@@ -9,7 +9,9 @@
   transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2000;
 
-  &.is-hidden {
+  &.is-hidden,
+  .modal-signup.is-hidden,
+  .modal-signin.is-hidden {
     opacity: 0;
     pointer-events: none;
   }
@@ -46,7 +48,6 @@
       transform: translate(-50%, -50%);
       width: 450px;
     }
-
   }
   @media screen and (min-width: 1200px) {
     & {
@@ -216,7 +217,7 @@
   opacity: 0;
 }
 
-.cl-btn-mod{
+.cl-btn-mod {
   position: absolute;
   top: 0;
   right: 0;
@@ -228,33 +229,34 @@
   width: inherit;
   text-align: center;
 }
-.cl-btn-mod-txt { 
-  font-size: 9px; 
+.cl-btn-mod-txt {
+  font-size: 9px;
   line-height: 40px;
   font-weight: bold;
   text-transform: uppercase;
   color: #f08e4c;
-  transition: all .3s ease-in;
+  transition: all 0.3s ease-in;
   opacity: 0;
   cursor: pointer;
   font-family: Verdana;
 }
-.cl-btn-mod-in:before, .cl-btn-mod-in:after {
+.cl-btn-mod-in:before,
+.cl-btn-mod-in:after {
   position: absolute;
   content: '';
   height: 4px;
   width: inherit;
   background: #f08e4c;
   left: 0;
-  transition: all .3s ease-in;
+  transition: all 0.3s ease-in;
 }
 .cl-btn-mod-in:before {
-  top: calc(50% - 4px); 
-  transform: rotate(45deg);  
+  top: calc(50% - 4px);
+  transform: rotate(45deg);
 }
-.cl-btn-mod-in:after {  
+.cl-btn-mod-in:after {
   bottom: 50%;
-  transform: rotate(-45deg);  
+  transform: rotate(-45deg);
 }
 .cl-btn-mod:hover .cl-btn-mod-txt {
   opacity: 1;
@@ -270,3 +272,9 @@
   bottom: 0;
 }
 
+.modal__back {
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  fill: $primary-svg-color;
+}
