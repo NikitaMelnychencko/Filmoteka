@@ -79,7 +79,7 @@ export async function renderGallery(
 }
 
 export function renderMovies(movies) {
-  if (movies.length === 0) return;
+  if (movies.length === 0) return
   const moviesData = getData(movies, GENRES_MAP);
   const gallery = document.querySelector('.gallery-list');
   gallery.innerHTML = card(moviesData);
