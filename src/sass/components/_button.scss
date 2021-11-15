@@ -53,21 +53,6 @@
   }
 }
 
-%button {
-  height: 44px;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  color: $form-text-color;
-
-  cursor: pointer;
-  transition: background-color $time-cubic, border-color $time-cubic;
-}
 .hero-library__button {
   @extend %button;
   width: 130px;
