@@ -9,9 +9,7 @@
   transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2000;
 
-  &.is-hidden ,
-  .modal-signup.is-hidden,
-  .modal-signin.is-hidden{
+  &.is-hidden {
     opacity: 0;
     pointer-events: none;
   }
@@ -71,9 +69,7 @@
 .modal__list-input {
   margin-bottom: 10px;
 }
-.modal__list-item:not(:last-child) {
-  margin-bottom: 10px;
-}
+
 .modal__label {
   position: relative;
   display: flex;
@@ -82,6 +78,10 @@
   font-size: 12px;
   line-height: 1.16;
   letter-spacing: 0.01em;
+
+  &+.modal__label{
+    margin-top: 10px; 
+  }
 }
 .modal__field-input {
   height: 40px;
@@ -117,8 +117,7 @@
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 25px;
-  margin-top: 20px;
+  margin-top: 40px;
   transition: All 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:active {
     top: 0.3em;
@@ -211,6 +210,7 @@
   visibility: visible;
   opacity: 1;
 }
+
 .signin-wpapper.load {
   visibility: hidden;
   opacity: 0;
@@ -269,3 +269,4 @@
 .cl-btn-mod:hover .cl-btn-mod-in:after {
   bottom: 0;
 }
+

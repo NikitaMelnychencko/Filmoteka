@@ -92,7 +92,7 @@ export async function updateInUser(name) {
     });
 }
 
-export async function signOutUser() {
+export async function signOutUser(auth) {
   return await signOut(auth)
     .then(() => {
       // Sign-out successful.
@@ -101,7 +101,7 @@ export async function signOutUser() {
       // An error happened.
     });
 }
-// signOutUser();
+// signOutUser(auth);
 console.log(auth);
 
 // State User
