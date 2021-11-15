@@ -10,7 +10,7 @@ import backdrop_markup from '../../views/components/backdrop.hbs';
 import { homeMarkUp, openInput } from '../layout/hero_home';
 import nullInBox  from '../../views/components/null_in_box.hbs';
 import modal_markup from '../../views/components/modal.hbs';
-import svg from '../../images/svg/sprite.svg';
+import svg from '../../images/svg/svg.svg';
 import img from '../../images/img/null_in_box/null_in_box.jpg'
 import spinner from '../../views/components/spinner.hbs';
 import { renderGallery } from '../layout/gallery';
