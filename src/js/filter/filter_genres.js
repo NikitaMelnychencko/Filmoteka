@@ -31,5 +31,10 @@ const listGenres = document.querySelector('.filter-list__genres');
 linkOpenGenres.addEventListener('click', onOpenListGenres);
 function onOpenListGenres(evt) {
     evt.preventDefault();
-    listGenres.classList.toggle('open');
+    if (evt.target === linkOpenGenres) {
+        listGenres.classList.toggle('open');
+    } else {
+        listGenres.classList.remove('open');
+    }
+
 }

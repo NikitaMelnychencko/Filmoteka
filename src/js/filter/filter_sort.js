@@ -27,6 +27,12 @@ const listOpenSort = document.querySelector('.filter-list__sort')
 
 function onOpenListSorts(evt) {
     evt.preventDefault()
-    listOpenSort.classList.toggle('open')
+
+    if (evt.target === linkOpenSort) {
+        console.log(evt.target === linkOpenSort);
+        listOpenSort.classList.toggle('open')
+    } else {
+        listOpenSort.classList.remove('open')
+    }
 
 }
