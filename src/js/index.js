@@ -14,13 +14,15 @@ import './components/color_switcher';
 import './components/modal';
 import './components/error';
 import './components/spinner';
-import './components/films_library';
-
 //=========Filter===============
 import './filter/fetch_filter_sort';
 import './filter/fetch_filter_genres';
-import './filter/filter_genres';
 import './filter/filter_sort';
+import './filter/filter_genres';
+import './filter/fetch_filter_year';
+import './filter/filter_year';
+
+import './components/appFirebase';
 //=========layout===============
 //=========static===============
 import './layout/static/header';

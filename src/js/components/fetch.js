@@ -18,6 +18,7 @@ export function renderMovieGlobal(page, searchQuery, id, options) {
     const REQUEST_ADRESS = `${SEARCH_URL}?api_key=${API_KEY}&query=${searchQuery}&page=${page}&language=uk-ua`;
     return baseFetch(REQUEST_ADRESS)
       .then(data => {
+        console.log(data);
         if (data.results.length === 0) {
           throw new Error(renderErrorSearch());
         } else {
@@ -32,7 +33,7 @@ export function renderParamsCard(id) {
   const REQUEST_ADRESS = `${ID_URL}${id}?api_key=${API_KEY}&language=en-US`;
   return baseFetch(REQUEST_ADRESS)
     .then(response => {
-        return response;
+      return response;
     })
     .catch(error => { });
 }

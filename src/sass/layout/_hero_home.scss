@@ -45,12 +45,13 @@
 .warning {
   position: absolute;
   top: 155px;
-  left: 0;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.17;
   color: $warning-text-color;
+  width: 320px;
   @media screen and (min-width: $tablet-general) {
+    width: 460px;
     text-align: center;
   }
 }

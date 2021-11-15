@@ -1,12 +1,9 @@
 <div class='modal-one-movie'>
   <div class='modal-one-movie__scroll-box'>
     <div class='modal-one-movie__image-box'>
-      <picture class='modal-one-movie__image'>
-        <img
-          src='https://www.themoviedb.org/t/p/w500/{{backdrop_path}}'
-          alt='cover'
-        />
-      </picture>
+      <div class='modal-one-movie__image'>
+        <img src={{poster_path}} alt='{{title}}' loading="lazy" width='274' height='398' />
+      </div>
     </div>
     <div class='modal-one-movie__text-box'>
       <h3 class='modal-one-movie__title'>{{original_title}}</h3>
@@ -23,20 +20,18 @@
         </tr>
         <tr class='modal-one-movie__table--row'>
           <td class='modal-one-movie__table--first-list'>Popularity</td>
-          <td class='modal-one-movie__table--second-list'>Original title</td>
+          <td class='modal-one-movie__table--second-list'>{{popularity}}</td>
         </tr>
         <tr class='modal-one-movie__table--row'>
           <td class='modal-one-movie__table--first-list'>Genre</td>
-          <td class='modal-one-movie__table--second-list'>{{popularity}}
+          <td class='modal-one-movie__table--second-list'>
             {{#each genres}}
-              {{name}}
+            {{name}}
             {{/each}}</td>
         </tr>
         <tr class='modal-one-movie__table--row'>
           <td class='modal-one-movie__table--first-list'>Original title</td>
-          <td
-            class='modal-one-movie__table--second-list'
-          >{{original_title}}</td>
+          <td class='modal-one-movie__table--second-list'>{{original_title}}</td>
         </tr>
       </table>
       <div class='modal-one-movie__about-box'>
@@ -47,8 +42,9 @@
       </div>
 
       <div class='modal-one-movie__button-box'>
-        <button class='global-button btn__watch'>Add to watched</button>
-        <button class='global-button btn__queue'>Add to queue</button>
+        <button class='global-button btn__watch' data-set='watched' aria-label="watched">Add to
+          watched</button>
+        <button class='global-button btn__queue' data-set='queue' aria-label="queue">Add to queue</button>
       </div>
     </div>
   </div>

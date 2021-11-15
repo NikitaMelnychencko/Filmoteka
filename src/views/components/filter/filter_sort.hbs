@@ -1,18 +1,21 @@
 <div class="filter container">
-    <div class="filter__sort card ">
-        <h2 class="filter-title__sort">Сортировать по:</h2>
+    <div class="filter__movie-sort card ">
+        <a href="" class="filter-link__sort">Сортировать
+            {{!-- <svg class="filter-link__play">
+                <use href="{{{svgPlay}}}#icon-playfilter"></use>
+            </svg> --}}
+        </a>
         <ul class="filter-list__sort">
-            <li class="filter-item__sort" data-atribute='popularity-desc'>Популярности (убывание)</li>
-            <li class="filter-item__sort" data-atribute='popularity-asc'>Популярности(возрастание)</li>
-            <li class="filter-item__sort" data-atribute='release-date-desc'>Дате выпуска (убывание)</li>
-            <li class="filter-item__sort" data-atribute='release-date-ask'>Дате выпуска (возрастание)</li>
-            <li class="filter-item__sort" data-atribute='original-title-desc'>Названию (А-Я)</li>
-            <li class="filter-item__sort" data-atribute='original-title-asc'>Названию (Я-А)</li>
+            <li class="filter-item__sort" data-atribute='popularity.desc'>Популярности (убывание)</li>
+            <li class="filter-item__sort" data-atribute='popularity.asc'>Популярности(возрастание)</li>
+            <li class="filter-item__sort" data-atribute='primary_release_date.desc'>Дате выпуска (убывание)</li>
+            <li class="filter-item__sort" data-atribute='primary_release_date.asc'>Дате выпуска (возрастание)</li>
+            <li class="filter-item__sort" data-atribute='original_title.asc'>Названию (А-Я)</li>
+            <li class="filter-item__sort" data-atribute='original_title.desc'>Названию (Я-А)</li>
         </ul>
     </div>
-
     <div class="filter__movie-genres">
-        <h2 class="filter-title__genres">Жанры</h2>
+        <a href="" class="filter-link__genres">Жанр</a>
         <ul class="filter-list__genres">
             <li class="filter-item__genres" id='28'>Action</li>
             <li class="filter-item__genres" id='12'>Adventure</li>
@@ -35,4 +38,78 @@
             <li class="filter-item__genres" id='37'>Western</li>
         </ul>
     </div>
+    <div class="filter__movie-year">
+        <a href="" class="filter-link__year">Год</a>
+        <ul class="filter-list__year">
+            <li class="filter-item__year">2021</li>
+            {{!-- <li class="filter-item__year">2020</li>
+            <li class="filter-item__year">2019</li>
+            <li class="filter-item__year">2018</li>
+            <li class="filter-item__year">2017</li>
+            <li class="filter-item__year">2016</li>
+            <li class="filter-item__year">2015</li>
+            <li class="filter-item__year">2014</li>
+            <li class="filter-item__year">2013</li>
+            <li class="filter-item__year">2012</li>
+            <li class="filter-item__year">2011</li>
+            <li class="filter-item__year">2010</li>
+            <li class="filter-item__year">2009</li>
+            <li class="filter-item__year">2008</li>
+            <li class="filter-item__year">2007</li>
+            <li class="filter-item__year">2006</li>
+            <li class="filter-item__year">2005</li>
+            <li class="filter-item__year">2004</li>
+            <li class="filter-item__year">2003</li>
+            <li class="filter-item__year">2002</li>
+            <li class="filter-item__year">2001</li>
+            <li class="filter-item__year">2000</li>
+            <li class="filter-item__year">1999</li>
+            <li class="filter-item__year">1998</li>
+            <li class="filter-item__year">1997</li>
+            <li class="filter-item__year">1996</li>
+            <li class="filter-item__year">1995</li>
+            <li class="filter-item__year">1994</li>
+            <li class="filter-item__year">1993</li>
+            <li class="filter-item__year">1992</li>
+            <li class="filter-item__year">1991</li>
+            <li class="filter-item__year">1990</li>
+            <li class="filter-item__year">1989</li>
+            <li class="filter-item__year">1988</li>
+            <li class="filter-item__year">1987</li>
+            <li class="filter-item__year">1986</li>
+            <li class="filter-item__year">1985</li>
+            <li class="filter-item__year">1984</li>
+            <li class="filter-item__year">1983</li>
+            <li class="filter-item__year">1982</li>
+            <li class="filter-item__year">1981</li>
+            <li class="filter-item__year">1980</li>
+            <li class="filter-item__year">1979</li>
+            <li class="filter-item__year">1978</li>
+            <li class="filter-item__year">1977</li>
+            <li class="filter-item__year">1976</li>
+            <li class="filter-item__year">1975</li>
+            <li class="filter-item__year">1974</li>
+            <li class="filter-item__year">1973</li>
+            <li class="filter-item__year">1972</li>
+            <li class="filter-item__year">1971</li>
+            <li class="filter-item__year">1970</li>
+            <li class="filter-item__year">1969</li>
+            <li class="filter-item__year">1968</li>
+            <li class="filter-item__year">1967</li>
+            <li class="filter-item__year">1966</li>
+            <li class="filter-item__year">1965</li>
+            <li class="filter-item__year">1964</li>
+            <li class="filter-item__year">1963</li>
+            <li class="filter-item__year">1962</li>
+            <li class="filter-item__year">1961</li>
+            <li class="filter-item__year">1960</li>
+            <li class="filter-item__year">1959</li>
+            <li class="filter-item__year">1958</li>
+            <li class="filter-item__year">1957</li>
+            <li class="filter-item__year">1956</li> --}}
+
+
+        </ul>
+    </div>
+
 </div>

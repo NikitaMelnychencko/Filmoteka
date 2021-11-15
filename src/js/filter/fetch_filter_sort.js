@@ -4,34 +4,6 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const URL_DISCOVER = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US`
 const INCLUDE = 'include_adult=false&include_video=false'
 
-// export function filterGlobal(popularityDesc, popularityAsc, releaseDateDesc, releaseDateAsk, releaseTitleDesc, releaseTitleAsk) {
-//     if (popularityDesc === 'popularity.desc') {
-//         const REQUEST_ADRESS = `${URL_DISCOVER}&sort_by=${popularityDesc}&${INCLUDE}&page=1&with_watch_monetization_types=flatrate`
-//         console.log(REQUEST_ADRESS);
-//         return baseFetch(REQUEST_ADRESS);
-//     } else if (popularityAsc === 'popularity.asc') {
-//         const REQUEST_ADRESS = `${URL_DISCOVER}&sort_by=${popularityAsc}&&${INCLUDE}&page=1&with_watch_monetization_types=flatrate`
-//         return baseFetch(REQUEST_ADRESS);
-
-//     } else if (releaseDateDesc === 'primary_release_date.desc') {
-//         const REQUEST_ADRESS = `${URL_DISCOVER}&sort_by=${releaseDateDesc}&${INCLUDE}&page=1&with_watch_monetization_types=flatrate`
-//         return baseFetch(REQUEST_ADRESS);
-//     } else if (releaseDateAsk === 'primary_release_date.asc') {
-//         const REQUEST_ADRESS = `${URL_DISCOVER}&sort_by=${releaseDateAsk}&${INCLUDE}&page=1&with_watch_monetization_types=flatrate`
-//         return baseFetch(REQUEST_ADRESS);
-//     } else if (releaseTitleDesc === 'original_title.desc') {
-//         const REQUEST_ADRESS = `${URL_DISCOVER}&sort_by=${releaseTitleDesc}&${INCLUDE}&page=1&with_watch_monetization_types=flatrate`
-//         return baseFetch(REQUEST_ADRESS);
-//     }
-
-//     else if (releaseTitleAsk === 'original_title.asc') {
-//         const REQUEST_ADRESS = `${URL_DISCOVER}&sort_by=${releaseTitleAsk}&${INCLUDE}&page=1&with_watch_monetization_types=flatrate`
-//         return baseFetch(REQUEST_ADRESS);
-//     }
-
-
-// }
-
 export function filterGlobal(order, page) {
     const REQUEST_ADRESS = `${URL_DISCOVER}&sort_by=${order}&${INCLUDE}&page=${page}&with_watch_monetization_types=flatrate`
     return baseFetch(REQUEST_ADRESS);
@@ -45,5 +17,3 @@ function baseFetch(REQUEST_ADRESS) {
             }
         }).catch(error => alert(errorNot));
 }
-
-

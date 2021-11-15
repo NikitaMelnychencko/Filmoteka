@@ -5,6 +5,7 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import {
   getDatabase,
@@ -15,6 +16,8 @@ import {
   update,
   remove,
 } from 'firebase/database';
+import { swetchClass } from '../layout/static/header';
+import { renderPagination } from './pagination-list';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCrhBW63SM95ZUKCf6EsxC1CtzGhzdJBtQ',
@@ -32,11 +35,10 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase();
 const dbRef = ref(getDatabase());
 const auth = getAuth();
-const user = auth.currentUser;
-const userId = sessionStorage.getItem('userId');
+export const user = auth.currentUser;
+export let userId = sessionStorage.getItem('userId');
 // const email = sessionStorage.getItem('email');
 // const password = sessionStorage.getItem('password');
-
 const filmId = 534536;
 // const email = 'test@gmail.com';
 // const password = 'tesdadt1';
@@ -54,10 +56,11 @@ const filmId = 534536;
 // getUser(`${userId}`, 'queue');
 
 // Reg User
-async function regUser(email, password) {
-  createUserWithEmailAndPassword(auth, email, password)
+export function regUser(email, password) {
+  return createUserWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
-      const user = userCredential.user;
+      swetchClass()
+      return userCredential.user.uid;
     })
     .catch(error => {
       const errorCode = error.code;
@@ -66,96 +69,113 @@ async function regUser(email, password) {
 }
 
 // Aut User
-async function signInUser(email, password) {
-  signInWithEmailAndPassword(auth, email, password)
+export function signInUser(email, password) {
+  return signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
-      const user = userCredential.user;
+      swetchClass()
+      return userCredential.user;
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log('111');
     });
 }
-// signInUser('test@gmail.com', 'tesdadt1');
 
-async function signOutUser() {
-  signOut(auth)
+export async function updateInUser(name) {
+  return await updateProfile(auth.currentUser, {
+    displayName: `${name}`,
+  })
+    .then(data => {})
+    .catch(error => {
+      // An error occurred
+      // ...
+    });
+}
+
+export async function signOutUser() {
+  return await signOut(auth)
     .then(() => {
       // Sign-out successful.
+      userId = null;
+      sessionStorage.removeItem('userId');
+      swetchClass()
     })
     .catch(error => {
       // An error happened.
     });
 }
-// signOutUser();
-console.log(auth);
 
 // State User
-async function AuthState(user) {
-  onAuthStateChanged(auth, user => {
+export async function AuthState(user) {
+  return await onAuthStateChanged(auth, user => {
     if (user) {
-      const uid = user.uid;
-      // console.log(uid);
-      sessionStorage.setItem('userId', `${uid}`);
+      userId = user.uid;
+      return sessionStorage.setItem('userId', `${userId}`);
     } else {
+      return;
     }
   });
 }
+
 window.onload = function () {
   AuthState(user);
 };
 
 //getId
 async function getIdUser(userId, store, id) {
-  get(child(dbRef, 'users/' + userId + '/' + store + '/' + id))
+  return await get(child(dbRef, 'users/' + userId + '/' + store + '/' + id))
     .then(snapshot => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        return snapshot.val();
       } else {
-        console.log('No data available');
+        return null;
       }
     })
     .catch(error => {
       console.error(error);
     });
 }
-// getIdUser('azLL3vjsCIYtiNzjKFPlfy4TL722', 'queue', 2);
 
 // get
-async function getUser(userId, store) {
-  get(child(dbRef, 'users/' + userId + '/' + store))
+export async function getUser(userId, store) {
+  let value = await get(child(dbRef, 'users/' + userId + '/' + store))
     .then(snapshot => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
+        return snapshot.val();
       } else {
-        console.log('No data available');
+        return null;
       }
     })
     .catch(error => {
       console.error(error);
     });
+  let arr = [];
+  for (let key in value) {
+    arr.push(JSON.parse(value[key]).objService);
+  }
+  return arr;
 }
-// getUser(`${userId}`, `watched`);
 
 // Post
-async function writeUserData(userId, store) {
-  set(ref(db, 'users/' + userId + '/' + store), {
-    filmId: filmData,
-  });
+export async function postUserData(userId, store, idFilm, markupFilm) {
+  if (userId===null) {
+    return
+  }
+  return await set(
+    ref(db, 'users/' + userId + '/' + store + '/' + idFilm),
+    markupFilm,
+  );
 }
-// writeUserData(`${userId}`, `watched`);
 
 //update
-async function updateData(userId, store) {
-  update(ref(db, 'users/' + userId + '/' + store), {
-    2: 99999,
-  });
+async function updateData(userId, store, idFilm, markupFilm) {
+  return await update(
+    ref(db, 'users/' + userId + '/' + store + '/' + idFilm),
+    markupFilm,
+  );
 }
-//updateData("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue')
 
 //delete
-async function deleteData(userId, store, idDoc) {
-  remove(ref(db, 'users/' + userId + '/' + store + '/' + idDoc));
+export async function deleteData(userId, store, idFilm) {
+  return await remove(ref(db, 'users/' + userId + '/' + store + '/' + idFilm));
 }
-//deleteData("azLL3vjsCIYtiNzjKFPlfy4TL722",'Queue','2')
