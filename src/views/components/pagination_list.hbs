@@ -3,7 +3,7 @@
     {{#each this}}
     <li class="page-item">
         <button class="{{this.classes}}" {{#if this.step}} data-move="{{this.step}}" {{/if}}>
-            {{{this.page}}}
+            {{{this.page}}}aria-label="back"
         </button>
     </li>
     {{/each}}
