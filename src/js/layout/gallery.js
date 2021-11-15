@@ -4,6 +4,7 @@ import { renderPagination } from '../components/pagination-list';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
 import { filterGlobal } from '../filter/fetch_filter_sort';
+import { filterGlobalGenres } from '../filter/fetch_filter_genres';
 //import { filterGlobal } from '../filter/fetch_filter_sort';
 import { getUser } from '../components/appFirebase';
 import { addSpinner, removeSpinner } from '../components/spinner';
@@ -26,6 +27,10 @@ export async function renderGallery(
   sortBy,
   page = 1,
 ) {
+
+  //console.log('open render')
+  console.log(renderParams);
+  console.log('пришли параметры', options, search, sortBy, page)
   addSpinner();
   let movies = {};
 
@@ -64,6 +69,24 @@ export async function renderGallery(
     movies['results'] = allMovies.slice((page - 1) * 20, page * 20);
   }
 
+  if (options === 'sort') {
+    renderParams.globalOptions = options;
+    renderParams.globalOrder = sortBy;
+
+    movies = (await filterGlobal(renderParams.globalOrder, page))
+  }
+
+  if (options === 'filter') {
+    renderParams.globalOptions = options;
+    renderParams.globalOrder = sortBy;
+
+    movies = (await filterGlobalGenres(renderParams.globalOrder, page))
+  }
+
+
+
+  console.log(renderParams, page)
+
   if (!movies) {
     renderPagination(0, 0);
     removeSpinner();
@@ -77,6 +100,8 @@ export async function renderGallery(
   initGenres();
   return movies;
 }
+
+
 
 export function renderMovies(movies) {
   if (movies.length === 0) return;
