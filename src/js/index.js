@@ -24,6 +24,7 @@ import './filter/filter_genres';
 import './filter/fetch_filter_year';
 import './filter/filter_year';
 
+import './components/appFirebase';
 //=========layout===============
 //=========static===============
 import './layout/static/header';

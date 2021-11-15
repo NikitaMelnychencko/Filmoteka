@@ -9,7 +9,9 @@
   transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2000;
 
-  &.is-hidden {
+  &.is-hidden,
+  .modal-signup.is-hidden,
+  .modal-signin.is-hidden {
     opacity: 0;
     pointer-events: none;
   }
@@ -46,7 +48,6 @@
       transform: translate(-50%, -50%);
       width: 450px;
     }
-
   }
   @media screen and (min-width: 1200px) {
     & {
@@ -69,9 +70,7 @@
 .modal__list-input {
   margin-bottom: 10px;
 }
-.modal__list-item:not(:last-child) {
-  margin-bottom: 10px;
-}
+
 .modal__label {
   position: relative;
   display: flex;
@@ -80,6 +79,10 @@
   font-size: 12px;
   line-height: 1.16;
   letter-spacing: 0.01em;
+
+  &+.modal__label{
+    margin-top: 10px; 
+  }
 }
 .modal__field-input {
   height: 40px;
@@ -115,8 +118,7 @@
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 25px;
-  margin-top: 20px;
+  margin-top: 40px;
   transition: All 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:active {
     top: 0.3em;
@@ -200,7 +202,7 @@
   background: 0;
   border: 0;
   padding: 0;
-  color: dodgerblue;
+  color: #f08e4c;
   cursor: pointer;
   margin-left: 10px;
 }
@@ -209,7 +211,70 @@
   visibility: visible;
   opacity: 1;
 }
+
 .signin-wpapper.load {
   visibility: hidden;
   opacity: 0;
+}
+
+.cl-btn-mod {
+  position: absolute;
+  top: 0;
+  right: 0;
+  //margin: 20px auto;
+  width: 36px;
+  cursor: pointer;
+}
+.cl-btn-mod-in {
+  width: inherit;
+  text-align: center;
+}
+.cl-btn-mod-txt {
+  font-size: 9px;
+  line-height: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #f08e4c;
+  transition: all 0.3s ease-in;
+  opacity: 0;
+  cursor: pointer;
+  font-family: Verdana;
+}
+.cl-btn-mod-in:before,
+.cl-btn-mod-in:after {
+  position: absolute;
+  content: '';
+  height: 4px;
+  width: inherit;
+  background: #f08e4c;
+  left: 0;
+  transition: all 0.3s ease-in;
+}
+.cl-btn-mod-in:before {
+  top: calc(50% - 4px);
+  transform: rotate(45deg);
+}
+.cl-btn-mod-in:after {
+  bottom: 50%;
+  transform: rotate(-45deg);
+}
+.cl-btn-mod:hover .cl-btn-mod-txt {
+  opacity: 1;
+}
+.cl-btn-mod:hover .cl-btn-mod-in:before,
+.cl-btn-mod:hover .cl-btn-mod-in:after {
+  transform: rotate(0);
+}
+.cl-btn-mod:hover .cl-btn-mod-in:before {
+  top: 0;
+}
+.cl-btn-mod:hover .cl-btn-mod-in:after {
+  bottom: 0;
+}
+
+.modal__back {
+  position: absolute;
+  top: 5px;
+  left: 7px;
+  fill: $primary-svg-color;
 }
