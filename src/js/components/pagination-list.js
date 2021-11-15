@@ -1,7 +1,7 @@
 import { refs } from '../refs/refs.js'
 import { renderGallery } from '../layout/gallery'
 import pagination from '../../views/components/pagination_list.hbs'
-import svg from '../../images/svg/sprite.svg';
+import svg from '../../images/svg/svg.svg';
 import scrollTo from './scroll_too.js';
 
 
