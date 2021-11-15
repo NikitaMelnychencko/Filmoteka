@@ -29,7 +29,6 @@ function modalCloseEcsKey(evt) {
 }
 
 function buttonClose(evt) {
-  console.dir(evt.target);
   if (
     evt.target.id === 'close-modal' ||
     evt.target.parentElement.id === 'close-modal' ||
