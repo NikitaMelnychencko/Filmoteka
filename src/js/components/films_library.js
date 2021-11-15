@@ -17,6 +17,8 @@ import {
   remove,
 } from 'firebase/database';
 
+import { renderPagination } from './pagination-list';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyCrhBW63SM95ZUKCf6EsxC1CtzGhzdJBtQ',
   authDomain: 'goit-js10-films-library.firebaseapp.com',

@@ -14,18 +14,18 @@ export function openInput() {
   refs.searchForm.addEventListener('submit', onSearch);
   function onSearch(e) {
     e.preventDefault();
-    addSpinner();
+    // addSpinner();
     searchQuery = e.currentTarget.elements.query.value;
     const page = 1;
     if (searchQuery.length < 1) {
       refs.warning.classList.remove('is-hidden');
-      removeSpinner();
+      // removeSpinner();
       return (refs.warning.textContent =
         'Search result not successful. Enter the correct movie name and try again!');
     } else {
       refs.warning.classList.add('is-hidden');
-      renderGallery(searchQuery);
-      removeSpinner();
+      renderGallery('search', searchQuery);
+      // removeSpinner();
     }
   }
 }

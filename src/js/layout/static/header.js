@@ -11,7 +11,8 @@ import {
   closeBackdrop,
 } from '../../components/backdrop';
 import { signOutUser, userId, auth } from '../../components/films_library';
-import { ref } from '@firebase/database';
+import {onLibButtons} from '../../layout/hero_my_list.js';
+
 
 refs.myUlEle.forEach((list, id, a) => {
   list.addEventListener('click', () =>
@@ -42,9 +43,12 @@ function canheHeader(event) {
       'hero--home',
     );
 
-    // onLibButtons();
+    onLibButtons();
     const userId = sessionStorage.getItem('userId');
-    getUser(`${userId}`, `watched`);
+
+    renderGallery('library', `${userId}`, `watched`);
+
+    //getUser(`${userId}`, `watched`);
   }
   if (item === 'log in') {
     // renderBackdrop();
