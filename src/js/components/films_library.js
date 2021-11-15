@@ -85,9 +85,7 @@ export async function updateInUser(name) {
   return await updateProfile(auth.currentUser, {
     displayName: `${name}`,
   })
-    .then((data) => {
-
-    })
+    .then(data => {})
     .catch(error => {
       // An error occurred
       // ...
@@ -98,6 +96,8 @@ export async function signOutUser() {
   return await signOut(auth)
     .then(() => {
       // Sign-out successful.
+      userId = null;
+      sessionStorage.removeItem('userId');
     })
     .catch(error => {
       // An error happened.
@@ -113,7 +113,7 @@ export async function AuthState(user) {
       userId = user.uid;
       return sessionStorage.setItem('userId', `${userId}`);
     } else {
-      return
+      return;
     }
   });
 }
