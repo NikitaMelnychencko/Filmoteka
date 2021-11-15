@@ -1,8 +1,9 @@
 import { refs } from '../refs/refs.js'
 import { renderGallery } from '../layout/gallery'
-import { searchQuery } from '../layout/hero_home';
 import pagination from '../../views/components/pagination_list.hbs'
 import svg from '../../images/svg/sprite.svg';
+import scrollTo from './scroll_too.js';
+
 
 
 const MAX_SHOWN_PAGES = 9;
@@ -29,7 +30,9 @@ function onPageClick(e) {
     };
 
     const pressedButton = e.target;
-    renderGallery(searchQuery, getNextPage(pressedButton))
+
+    renderGallery('', '', '', getNextPage(pressedButton))
+    scrollTo()
 }
 
 function getNextPage(button) {

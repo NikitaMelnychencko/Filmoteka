@@ -105,5 +105,16 @@ $time-cubic: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   100% {
     opacity: 1;
     transform: translate(-48%, -48%) scale(1) rotate(180deg);
+@keyframes myFilmAnime {
+  0% {
+    stroke-dasharray: 140 540;
+    stroke-dashoffset: -474;
+    stroke-width: 8px;
+  }
+
+  100% {
+    stroke-dasharray: 760;
+    stroke-dashoffset: 0;
+    stroke-width: 2px;
   }
 }
