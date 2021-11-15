@@ -1,11 +1,9 @@
 import { renderGallery } from '../layout/gallery';
 import filter from '../../views/components/filter/filter_sort.hbs';
-import play from '../../images/svg/sprite.svg';
-export const svgPlay = filter({ play })
 const main = document.querySelector('.hero');
 
 function filterMain() {
-    const markup = filter({ play })
+    const markup = filter()
     main.insertAdjacentHTML("beforeend", markup);
 }
 
