@@ -6,13 +6,13 @@ function backdrop() {
 
 export function renderBackdrop() {
   backdrop().classList.add('backdrop_is-open');
-  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
   backdrop().addEventListener('click', closeMd);
 }
 
 export function closeBackdrop() {
   backdrop().classList.remove('backdrop_is-open');
-  document.body.style.overflow = 'scroll';
+  document.documentElement.style.overflow = 'overlay';
   backdrop().removeEventListener('click', closeMd);
 }
 
