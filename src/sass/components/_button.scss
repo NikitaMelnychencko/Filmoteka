@@ -112,8 +112,6 @@
   }
 }
 
-//global toggle
-
 .global-toggle {
   position: relative;
   display: flex;
@@ -179,7 +177,6 @@
   }
 }
 
-//toggle change theme: light-dar
 
 .dark-toggle {
   display: flex;
@@ -188,10 +185,7 @@
   .dark-toggle__checkbox {
     display: none;
   }
-  // .dark-toggle__checkbox:checked {
-  /** This will all flip from sun to moon **/
-  /** Change the label color **/
-  // }
+
 
   .dark-toggle__checkbox:checked ~ .background {
     background: var(--indigo-background);

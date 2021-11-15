@@ -1,5 +1,3 @@
-// function addSpinner - добавляет спинер
-// function removeSpinner - убирает спинер
 
 function getRefs() {
   const refs = {

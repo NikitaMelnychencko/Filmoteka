@@ -56,8 +56,6 @@ function viewPort() {
   }
 }
 
-//br 219-313=94 /do not delete
-//sat 47-133=86 /do not delete
 
 const setColor = {
   h: 25,
@@ -76,9 +74,9 @@ const setColor = {
 
 export function defaultAccent() {
   localStorage.removeItem('colorAccent');
-  setDot(25, '#palitre-ring-dot'); //25
-  setDot(267, '#palitre__saturation-dot'); //267
-  setDot(133, '#palitre__brightness-dot'); //133
+  setDot(25, '#palitre-ring-dot'); 
+  setDot(267, '#palitre__saturation-dot'); 
+  setDot(133, '#palitre__brightness-dot'); 
 }
 
 export function saveAccent() {
@@ -104,9 +102,9 @@ function initPalitre() {
 }
 
 function initDots() {
-  setDot(setColor.h, '#palitre-ring-dot'); //25
-  setDot((setColor.s / 100) * 86 + 48, '#palitre__saturation-dot'); //267
-  setDot((setColor.l / 100) * 94 + 220, '#palitre__brightness-dot'); //133
+  setDot(setColor.h, '#palitre-ring-dot'); 
+  setDot((setColor.s / 100) * 86 + 48, '#palitre__saturation-dot'); 
+  setDot((setColor.l / 100) * 94 + 220, '#palitre__brightness-dot'); 
   return;
 }
 

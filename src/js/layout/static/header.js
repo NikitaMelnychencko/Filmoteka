@@ -20,7 +20,7 @@ refs.myUlEle.forEach((list, id, a) => {
   );
 });
 
-// Funchtion for render header
+
 function canheHeader(event) {
   event.preventDefault();
   let target = event.target;
@@ -28,13 +28,11 @@ function canheHeader(event) {
   console.log(item);
 
   if (item === 'home') {
-    // here render header page serch
     initGenres();
     renderGallery();
     pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
   }
   if (item === 'my library') {
-    // here render header page Button
     const myLib = myLibraryMarkUp();
     pageRender(
       mainTittle.my_library_watched,
@@ -47,11 +45,8 @@ function canheHeader(event) {
     const userId = sessionStorage.getItem('userId');
 
     renderGallery('library', `${userId}`, `watched`);
-
-    //getUser(`${userId}`, `watched`);
   }
   if (item === 'log in') {
-    // renderBackdrop();
     refs.sininModal.classList.remove('hidden');
   }
 }
@@ -60,7 +55,6 @@ refs.myUlEle.forEach(function (link) {
   link.addEventListener('click', canheHeader);
 });
 
-// function auth
 
 export function swetchClass() {
   console.log(sessionStorage.getItem('userId') === null);
