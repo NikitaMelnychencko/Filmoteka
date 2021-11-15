@@ -1,7 +1,3 @@
-// example
-// pageRender(mainTittle.home)
-// pageRender(mainTittle.my_library_watched)
-// pageRender(mainTittle.my_library_queue)
 
 import main from '../../views/layout/main.hbs';
 import { refs } from '../refs/refs.js';
@@ -21,7 +17,6 @@ import { blockhelpOpen } from '../components/block_help.js';
 import { seorchId } from '../layout/modal_one_movie.js';
 
 export function pageRender(value, heroValue, valueAdd, valueRemove) {
-  //backdrop include plugin "modal window"
   const backdropMarkUp = backdrop_markup(modal_markup({ svg }));
   const spinnerMarkUp = spinner();
   const currentValue = value;
@@ -58,7 +53,6 @@ initGenres()
   .then(renderGallery)
   .catch(renderGallery);
 
-//renderGallery();
 
 function markupNullImg(value) {
   if (value === 'Movie bookmarks') {

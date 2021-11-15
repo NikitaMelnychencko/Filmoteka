@@ -61,4 +61,4 @@ function modalRemoveListener() {
 export function closeModalSignal() {
   return;
 }
-// setTimeout(e => renderModal('TEST'), 200); //test
+

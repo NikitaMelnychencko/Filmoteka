@@ -1,6 +1,3 @@
-// Вызов функции renderMuvieGlobal(page, searchQuery) для "input"
-// Вызов функции renderMuvieGlobal(page, '', '', home) для страници "Home"
-// Вызов функции renderParamsCard(id) для страници карточки фильма
 
 import { renderErrorSearch, renderErrorServer } from './error';
 const API_KEY = '843d6905879c9b52f41f5f6a1e2c8966';

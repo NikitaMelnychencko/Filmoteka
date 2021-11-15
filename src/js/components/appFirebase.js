@@ -37,23 +37,8 @@ const dbRef = ref(getDatabase());
 const auth = getAuth();
 export const user = auth.currentUser;
 export let userId = sessionStorage.getItem('userId');
-// const email = sessionStorage.getItem('email');
-// const password = sessionStorage.getItem('password');
 const filmId = 534536;
-// const email = 'test@gmail.com';
-// const password = 'tesdadt1';
-// const email = 'test3@gmail.com';
-// const password = 'tesdadt122';
-// const email = 'eosipopo@gmail.com';
-// const password = '12345679';
 
-// sessionStorage = JSON.stringify({
-//   email: 'eosipopo@gmail.com',
-//   password: '12345679',
-// });
-
-// getUser(`${userId}`, `watched`);
-// getUser(`${userId}`, 'queue');
 
 // Reg User
 export function regUser(email, password) {
