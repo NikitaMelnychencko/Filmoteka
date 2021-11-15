@@ -18,7 +18,7 @@ function renderMovieSeorchParam(id) {
       localStorage.setItem('idFilm', id);
       localStorage.setItem('marcupFilm', arrObj);
     })
-    .catch(() => {});
+    .catch(() => { });
 }
 
 function imgFix(m) {
