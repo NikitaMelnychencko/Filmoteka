@@ -25,7 +25,6 @@ function canheHeader(event) {
   event.preventDefault();
   let target = event.target;
   let item = target.textContent.trim();
-  console.log(item);
 
   if (item === 'home') {
     initGenres();
@@ -57,7 +56,6 @@ refs.myUlEle.forEach(function (link) {
 
 
 export function swetchClass() {
-  console.log(sessionStorage.getItem('userId') === null);
   if (sessionStorage.getItem('userId') === null) {
     refs.logIn.classList.remove('hidden');
     refs.logOut.classList.add('hidden');

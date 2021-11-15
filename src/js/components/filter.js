@@ -16,7 +16,6 @@ const sort = document.querySelector('.filter-muvie__list');
 
 function onOpenSort(evt) {
     evt.preventDefault()
-    console.log('object');
 
 }
 

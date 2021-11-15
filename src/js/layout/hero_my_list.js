@@ -29,7 +29,6 @@ function onButtonsLibClick(event) {
   } else {
     renameGalleryTitle(mainTittle.my_library_queue.gallery_title);
     renderGallery('library', `${userId}`, `queue`);
-    console.log(121);
   }
 }
 

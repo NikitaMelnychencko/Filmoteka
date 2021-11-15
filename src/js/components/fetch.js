@@ -15,7 +15,6 @@ export function renderMovieGlobal(page, searchQuery, id, options) {
     const REQUEST_ADRESS = `${SEARCH_URL}?api_key=${API_KEY}&query=${searchQuery}&page=${page}&language=uk-ua`;
     return baseFetch(REQUEST_ADRESS)
       .then(data => {
-        console.log(data);
         if (data.results.length === 0) {
           throw new Error(renderErrorSearch());
         } else {

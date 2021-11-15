@@ -49,7 +49,6 @@ refs.singUP.addEventListener('click', openSinUp);
 
 function openSinUp(eve) {
   const item = eve.target.textContent.trim();
-  console.log(item);
   if (item === 'Sign up Now') {
     refs.singOutMod.classList.remove('hidden');
     refs.singInMod.classList.add('hidden');
