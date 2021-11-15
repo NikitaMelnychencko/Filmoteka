@@ -1,22 +1,69 @@
-import { regUser, signInUser,AuthState,updateInUser,user} from './films_library';
+import {
+  regUser,
+  signInUser,
+  AuthState,
+  updateInUser,
+  user,
+} from './films_library';
 import { refs } from '../refs/refs.js';
-
 
 refs.formLog.addEventListener('submit', e => {
   e.preventDefault();
-  const formData = new FormData(e.currentTarget)
+  const formData = new FormData(e.currentTarget);
   const emailValue = formData.get('email');
   const passValue = formData.get('pass');
-  signInUser(emailValue,passValue)
-})
+  signInUser(emailValue, passValue);
+});
 
 refs.formReg.addEventListener('submit', e => {
   e.preventDefault();
-  const formData = new FormData(e.currentTarget)
+  const formData = new FormData(e.currentTarget);
   const emailValue = formData.get('email');
   const passValue = formData.get('pass');
   const nameValue = formData.get('name');
-  regUser(emailValue, passValue)
-  updateInUser(nameValue)
-  AuthState(user)
-})
+  regUser(emailValue, passValue);
+  updateInUser(nameValue);
+  AuthState(user);
+});
+
+// function for render sing up sing in
+
+refs.singUP.addEventListener('click', openSinUp);
+
+function openSinUp(eve) {
+  // eve.preventDefault();
+  const item = eve.target.textContent.trim();
+  console.log(item);
+  if (item === 'Sign up Now') {
+    refs.singOutMod.classList.remove('hidden');
+    refs.singInMod.classList.add('hidden');
+  }
+}
+
+// function close modal
+
+window.addEventListener('keydown', onCloseModal);
+window.addEventListener('click', mouseCloseMOdal);
+
+function onCloseModal(eve) {
+  const cli = eve.code;
+  if (cli === 'Escape') {
+    refs.sininModal.classList.add('hidden');
+  }
+}
+
+function mouseCloseMOdal(event) {
+  if (event.target.className === 'backdrop-sing') {
+    refs.sininModal.classList.add('hidden');
+  }
+}
+
+// back sing Up
+
+refs.backModal.addEventListener('click', backSingOut);
+
+function backSingOut(event) {
+  const item = event;
+  refs.singOutMod.classList.add('hidden');
+  refs.singInMod.classList.remove('hidden');
+}

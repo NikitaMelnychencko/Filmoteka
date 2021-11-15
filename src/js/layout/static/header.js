@@ -10,7 +10,7 @@ import {
   closeMd,
   closeBackdrop,
 } from '../../components/backdrop';
-import { signOutUser, userId } from '../../components/films_library';
+import { signOutUser, userId, auth } from '../../components/films_library';
 import { ref } from '@firebase/database';
 
 refs.myUlEle.forEach((list, id, a) => {
@@ -18,40 +18,6 @@ refs.myUlEle.forEach((list, id, a) => {
     a.forEach(elem => elem.classList.toggle('nav__current', elem === list)),
   );
 });
-
-const refas = {
-  singUP: document.querySelector('.signup-now__button'),
-  singInMod: document.querySelector('.backdrop-sing'),
-  logIn: document.querySelector('[data-action="login"]'),
-  logOut: document.querySelector('[data-action="logout"]'),
-};
-
-refas.singUP.addEventListener('click', openSinUp);
-// function for render sing up sing in
-function openSinUp(eve) {
-  eve.preventDefault();
-  const item = eve.target.textContent.trim();
-  if (item === 'Sign up Now') {
-    refas.singInMod.classList.add('is-hidden');
-  }
-}
-
-// function close modal
-window.addEventListener('keydown', onCloseModal);
-
-function onCloseModal(eve) {
-  const cli = eve.code;
-  if (cli === 'Escape') {
-    refs.sininModal.classList.add('is-hidden');
-  }
-}
-window.addEventListener('click', mouseCloseMOdal);
-
-function mouseCloseMOdal(event) {
-  if (event.target.className === 'backdrop-sing') {
-    refs.sininModal.classList.add('is-hidden');
-  }
-}
 
 // Funchtion for render header
 function canheHeader(event) {
@@ -76,13 +42,13 @@ function canheHeader(event) {
       'hero--home',
     );
 
-    onLibButtons();
+    // onLibButtons();
     const userId = sessionStorage.getItem('userId');
     getUser(`${userId}`, `watched`);
   }
   if (item === 'log in') {
     // renderBackdrop();
-    refs.sininModal.classList.remove('is-hidden');
+    refs.sininModal.classList.remove('hidden');
   }
 }
 
@@ -90,6 +56,25 @@ refs.myUlEle.forEach(function (link) {
   link.addEventListener('click', canheHeader);
 });
 
-if (userId === null) {
-  refs.logOut.classList.remove('hidden');
+// function auth
+
+function swetchClass() {
+  if (sessionStorage.getItem('userId') === null) {
+    refs.logIn.classList.remove('hidden');
+    refs.logOut.classList.add('hidden');
+    console.log('1234');
+  } else {
+    refs.logIn.classList.add('hidden');
+    refs.logOut.classList.remove('hidden');
+    console.log('57633');
+  }
+}
+swetchClass();
+console.log(sessionStorage.getItem('userId'));
+
+refs.logOut.addEventListener('click', loginOutUser);
+
+function loginOutUser() {
+  signOutUser();
+  swetchClass();
 }

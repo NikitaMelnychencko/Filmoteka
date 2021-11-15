@@ -94,6 +94,8 @@ export async function signOutUser() {
   return await signOut(auth)
     .then(() => {
       // Sign-out successful.
+      userId = null;
+      sessionStorage.removeItem('userId');
     })
     .catch(error => {
       // An error happened.
