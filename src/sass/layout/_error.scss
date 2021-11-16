@@ -7,13 +7,12 @@ img{
 display: inline;
 }
 
-.page-error {
+.page__error {
     display: block;
-    height: calc(100vh - 230px - 129px);;
+    height: calc(100vh - 230px - 129px);
     text-align: center;
     display: block;
     font-size: 14px;
-
 }
 .page-error__serv{
      text-align: center;
@@ -25,7 +24,7 @@ display: inline;
         display: block;
         font-size: 150px;
 }
-.error-text{
+.error__text{
     font-weight: 500;
   font-size: 30px;
   line-height: 20px;
@@ -33,7 +32,7 @@ display: inline;
   margin-bottom: 21px;
 }
 
-.global-button-error{
+.button__error{
     margin-top: 15px;
     margin-right: auto;
     margin-left: auto;
@@ -67,9 +66,3 @@ display: inline;
     border-color: $second-accent-btn-color;
   }
 }
-
-
-
-
-
-
