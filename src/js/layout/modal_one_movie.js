@@ -1,7 +1,7 @@
 import modal_one_movie_markup from '../../views/partials/modal_one_movie.hbs';
 import { renderModal } from '../components/modal';
 import { renderParamsCard } from '../components/fetch';
-import { postUserData, userId } from '../components/appFirebase.js';
+import { postUserData, userId,deleteData } from '../components/appFirebase.js';
 import img from '../../images/img/png/gallery/no-image.png';
 let id = 'id';
 let objService = '';
@@ -18,7 +18,7 @@ function renderMovieSeorchParam(id) {
       localStorage.setItem('idFilm', id);
       localStorage.setItem('marcupFilm', arrObj);
     })
-    .catch(() => {});
+    .catch(() => { });
 }
 
 function imgFix(m) {
@@ -59,6 +59,7 @@ function addToDataBase(data) {
     }
     const idFilm = localStorage.getItem('idFilm');
     const markupFilm = localStorage.getItem('marcupFilm');
-    postUserData(userId, e.target.dataset.set, idFilm, markupFilm);
+    postUserData(userId, e.target.ariaLabel, idFilm, markupFilm);
+    deleteData(userId, e.target.dataset.set, idFilm);
   });
 }
