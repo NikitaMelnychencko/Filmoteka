@@ -5,9 +5,7 @@ const URL_DISCOVER = `https://api.themoviedb.org/3/discover/movie?api_key=${API_
 const INCLUDE = 'include_adult=false&include_video=false'
 
 export function filterGlobal(order, page, year, genre) {
-    // const REQUEST_ADRESS = `${URL_DISCOVER}&sort_by=${order}&${INCLUDE}&page=${page}&with_watch_monetization_types=flatrate`
     const REQUEST_ADRESS = `${URL_DISCOVER}&sort_by=${order}&include_adult=false&include_video=false&page=${page}&primary_release_year=${year}&with_genres=${genre}&with_watch_monetization_types=flatrate`;
-
     return baseFetch(REQUEST_ADRESS);
 }
 

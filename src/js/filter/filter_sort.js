@@ -4,7 +4,10 @@ import { filterGlobal } from './fetch_filter_sort'
 // import { renderMovieGlobal } from '../components/fetch';
 
 const main = document.querySelector('.hero')
-let value = ''
+let valueSort = '';
+let valueGenre = '';
+let valueYear = '';
+let test = ""
 
 export function filterMain() {
     const markup = filter()
@@ -14,21 +17,19 @@ filterMain();
 
 
 const filterListSort = document.querySelector('.filter-list__sort');
-filterListSort.addEventListener('click', onRenderFilter)
-
-function onRenderFilter(evt) {
-    evt.preventDefault();
-    if (evt.target.nodeName !== 'LI') {
-        return;
-    }
-    const link = evt.target.dataset.atribute;
-    renderGallery('sort', '', link);
-};
+const itemSort = document.querySelectorAll('.filter-item__sort')
+filterListSort.addEventListener('input', onRenderFilter);
 
 const containerSort = document.querySelector('.filter__movie-sort');
 containerSort.addEventListener('click', onOpenListSorts);
-console.log(containerSort);
 const listOpenSort = document.querySelector('.filter-list__sort');
+
+// itemSort.forEach(test => {
+//     test.addEventListener('click', el => {
+//         el.preventDefault()
+//         valueSort = el.target.textContent;
+//     })
+// })
 
 function onOpenListSorts(evt) {
     evt.preventDefault()
@@ -39,23 +40,31 @@ function onOpenListSorts(evt) {
         listOpenSort.classList.toggle('open')
     }
 }
-// filterGlobal("popularity.asc", 1, 2010, 28)
+
+function onRenderFilter(evt) {
+    evt.preventDefault();
+    if (evt.target.nodeName !== 'LI') {
+        return;
+    }
+    console.log('object');
+    const link = evt.target.dataset.atribute;
+    renderGallery('sort', '', link);
+};
+
 
 // genre
 
 let genre = ''
-
 const filterList = document.querySelector('.filter__movie-genres');
-filterList.addEventListener('input', onRenderGenre);
+filterList.addEventListener('click', onRenderGenre);
+
 
 function onRenderGenre(evt) {
     evt.preventDefault()
-    console.log(evt.target);
     if (evt.target.nodeName !== 'LI') {
         return;
     }
     genre = evt.target.id
-    console.log(genre);
     renderGallery('filter', '', genre);
 }
 function filterGenre() {
@@ -70,6 +79,7 @@ function filterGenre() {
 const containerGenres = document.querySelector('.filter__movie-genres');
 const listGenres = document.querySelector('.filter-list__genres');
 containerGenres.addEventListener('click', onOpenListGenres);
+
 function onOpenListGenres(evt) {
     evt.preventDefault();
     if (evt.target.nodeName !== 'INPUT') {
@@ -78,26 +88,27 @@ function onOpenListGenres(evt) {
         // removeClassOpen()
         listGenres.classList.toggle('open');
     }
-
 }
 // year
 
 let year = '';
+
 const containerYear = document.querySelector('.filter__movie-year');
 const listYear = document.querySelector('.filter-list__year');
 const itemYear = document.querySelectorAll('.filter-item__year');
-containerYear.addEventListener('input', onOpenListYear);
+containerYear.addEventListener('click', onOpenListYear);
+
 itemYear.forEach(el => {
     el.addEventListener('click', e => {
         e.preventDefault();
-        releaseDate = e.target.textContent
-        renderGallery(releaseDate)
+        year = e.target.textContent
+        console.log(year);
+        renderGallery('sort', '', year);
     })
 })
 
 function onOpenListYear(evt) {
     evt.preventDefault();
-    console.log(evt.target);
     if (evt.target.nodeName !== 'INPUT') {
         listYear.classList.remove('open')
     } else {
@@ -109,10 +120,10 @@ function onOpenListYear(evt) {
 function onRenderYear() {
     filterGlobal(year, '')
         .then(data => {
-            console.log(data.results);
             renderMovies(data.results)
         })
 }
+
 // onRenderYear()
 function removeClassOpen() {
     const listOpenSort = document.querySelector('.filter-list__sort');
