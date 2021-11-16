@@ -9,7 +9,7 @@ display: inline;
 
 .page-error {
     display: block;
-    height: 100vh;
+    height: calc(100vh - 230px - 129px);;
     text-align: center;
     display: block;
     font-size: 14px;
