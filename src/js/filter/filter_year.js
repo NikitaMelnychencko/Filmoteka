@@ -32,9 +32,11 @@ itemYear.forEach(el => {
 function onRenderYear() {
     filterGlobalYear(year, '')
         .then(data => {
+            console.log(data.results);
             renderMovies(data.results)
         })
 }
+onRenderYear()
 
 function removeClassOpen() {
     const listOpenSort = document.querySelector('.filter-list__sort');
