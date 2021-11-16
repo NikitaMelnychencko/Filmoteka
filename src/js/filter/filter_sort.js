@@ -1,5 +1,6 @@
 import { renderGallery } from '../layout/gallery';
 import filter from '../../views/components/filter/filter_sort.hbs';
+import { filterGlobal } from './fetch_filter_sort'
 const main = document.querySelector('.hero');
 
 export function filterMain() {
@@ -41,3 +42,7 @@ function removeClassOpen() {
     listYear.classList.remove('open')
     listGenres.classList.remove('open')
 }
+
+
+
+// filterGlobal("popularity.asc", 1, 2010, 28)
