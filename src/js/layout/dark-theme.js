@@ -12,11 +12,9 @@ export function darkTheme() {
 function changeTheme(evt) {
   if (evt.target.checked) {
     setDarkTheme();
-
     return;
   }
   setLightTheme();
-
   return;
 }
 
@@ -32,13 +30,12 @@ function setLightTheme() {
 
 export function defaultTheme() {
   localStorage.removeItem('darkTheme');
-  dark_toggle().removeAttribute('checked', 'true');
+  dark_toggle().checked = '';
 }
 
 function initialiseCheckOnDownload() {
   if (JSON.parse(localStorage.getItem('darkTheme')) == 'dark') {
-    dark_toggle().setAttribute('checked', 'true');
-    return;
+    dark_toggle().checked = 'checked';
   }
   return;
 }

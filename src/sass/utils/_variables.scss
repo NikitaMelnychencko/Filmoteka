@@ -1,35 +1,49 @@
 // root
 :root {
-  /** sunny side **/
-  --blue-background: #00bfff;
-  --blue-border: #72cce3;
-  --blue-color: #96dcee;
-  --yellow-background: #fffaa8;
-  --yellow-border: #f5eb71;
-  /** dark side **/
-  --indigo-background: #808fc7;
-  --indigo-border: #5d6baa;
-  --indigo-color: #6b7abb;
-  --gray-border: #e8e8ea;
-  --gray-dots: #e8e8ea;
-  /** general **/
-  --white: #fff;
-  --button: #ff6b01;
+  //accent
+  --accent-color: #ff6b01;
   --clear-accent-color: #ff6b01;
+  --selection-text-color: #ff6b01;
+  --second-accent-btn-color: #ff6b01;
+  --secondary-background-color: #ff6b01;
+  --primary-svg-color: #ff6b01;
+  --active-btn-color: #ff6b01;
+  --spinner-primary-color: #ff6b01;
+  //dark-theme
   --background: #ffffff;
-  --footer-background: ##f7f7f7;
+  --accent-btn-color: #ffffff;
+  --fourth-background-color: #f7f7f7;
   --third-text-color: #545454;
   --primary-text-color: #000000;
+  --button-border: #000000;
+  --primary-title-text-color: #000000;
   --gallery-card-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
     0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+  $primary-btn-text-color: #000000;
 }
+
+//button-theme
+$blue-background: #00bfff;
+$blue-background: #72cce3;
+$blue-color: #96dcee;
+$yellow-background: #fffaa8;
+$yellow-border: #f5eb71;
+/** dark side **/
+$indigo-background: #808fc7;
+$indigo-border: #5d6baa;
+$indigo-color: #6b7abb;
+$gray-border: #e8e8ea;
+$gray-dots: #e8e8ea;
+/** general **/
+$white: #ffffff;
+//scale
+$dark-button-scale: 0.4;
 
 //text
 $primary-text-color: var(--primary-text-color);
 $secondary-text-color: #8c8c8c;
 $third-text-color: var(--third-text-color);
-// $selection-text-color: #ff6b01;
-$selection-text-color: var(--button);
+$selection-text-color: var(--selection-text-color);
 $form-text-color: #ffffff;
 $warning-text-color: #ff001b;
 
@@ -39,29 +53,26 @@ $secondary-title-text-color: #ffffff;
 
 //accent
 
-// $accent-color: #ff6b08;
-$accent-color: var(--button);
-$accent-btn-color: var(--background);
-$second-accent-btn-color: var(--button);
+$clear-accent-color: var(--clear-accent-color);
+$accent-color: var(--accent-color);
+$accent-btn-color: var(--accent-btn-color);
+$second-accent-btn-color: var(--second-accent-btn-color);
 
 //background
 $primary-background-color: var(--background);
-// $secondary-background-color: #ff6b08;
-$secondary-background-color: var(--button);
+$secondary-background-color: var(--secondary-background-color);
 $third-background-color: inherit;
-$fourth-background-color: var(--footer-background);
+$fourth-background-color: var(--fourth-background-color);
 $sixes-background-color: #000000;
 
 //svg-fill
-// $primary-svg-color: #ff6b08;
-$primary-svg-color: var(--button);
+$primary-svg-color: var(--primary-svg-color);
 
 //buttons
 $primary-btn-color: inherit;
-// $active-btn-color: #ff6b08;
-$active-btn-color: var(--button);
+$active-btn-color: var(--active-btn-color);
 $arrow-btn-color: var(--footer-background);
-$primary-btn-text-color: var(--primary-text-color);
+$primary-btn-text-color: var(--primary-btn-text-color);
 $active-btn-text-color: #ffffff;
 
 //logo
@@ -70,7 +81,7 @@ $secondary-logo-color: #8d8d8d;
 
 //border
 $primary-border-color: #676767;
-$button-border: 1px solid var(--primary-text-color);
+$button-border: 1px solid var(--button-border);
 
 //input
 $placeholder-color: #ffffff;
@@ -78,24 +89,8 @@ $placeholder-color: #ffffff;
 // backdrop
 $backdrop-color: rgba(0, 0, 0, 0.25);
 
-// toggle
-$global-toggle-background-color-on: $second-accent-btn-color;
-$global-toggle-background-color-off: $secondary-text-color;
-$global-toggle__label-color: $accent-btn-color;
-$global-toggle-width: 70px;
-$global-toggle-height: 35px;
-$global-toggle-gutter: 5px;
-$global-toggle-radius: 50%;
-$global-toggle__label-speed: 0.15s;
-$global-toggle__label-ease: ease-in;
-$global-toggle-radius: $global-toggle-height / 2;
-$global-toggle__label-size: $global-toggle-height - ($global-toggle-gutter * 2);
-
-// dark-theme toggle
-$dark-button-scale: 0.4;
-
 //shadow
 $container-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
 $gallery-card-shadow: var(--gallery-card-shadow);
 // spinner
-$spinner-primary-color: var(--button);
+$spinner-primary-color: var(--spinner-primary-color);
