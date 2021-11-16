@@ -4,7 +4,7 @@ import { renderPagination } from '../components/pagination-list';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
 import { filterGlobal } from '../filter/fetch_filter_sort';
-import { filterGlobalGenres } from '../filter/fetch_filter_genres';
+// import { filterGlobalGenres } from '../filter/fetch_filter_genres';
 //import { filterGlobal } from '../filter/fetch_filter_sort';
 import { getUser } from '../components/appFirebase';
 import { addSpinner, removeSpinner } from '../components/spinner';

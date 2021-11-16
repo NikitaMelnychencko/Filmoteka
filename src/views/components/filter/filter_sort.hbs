@@ -1,11 +1,7 @@
 <div class="filter container">
     <div class="filter__movie-sort card ">
-        <a href="" class="filter-link__sort">Sort
-            {{!-- <svg class="filter-link__play">
-                <use href="{{{svgPlay}}}#icon-playfilter"></use>
-            </svg> --}}
-        </a>
-        <ul class="filter-list__sort animate__animated animate__zoomIn">
+        <input class="filter-link__sort" name="sort" placeholder="Sort">
+        <ul class="filter-list__sort">
             <li class="filter-item__sort" data-atribute='popularity.desc'>Popularity (decreasing)</li>
             <li class="filter-item__sort" data-atribute='popularity.asc'>Popularity (increasing)</li>
             <li class="filter-item__sort" data-atribute='primary_release_date.desc'>Release date (decreasing)</li>
@@ -15,9 +11,9 @@
         </ul>
     </div>
     <div class="filter__movie-genres">
-        <a href="" class="filter-link__genres">Genre</a>
-        <ul class="filter-list__genres animate__animated animate__zoomIn">
-            <li class="filter-item__genres" id='28'>Action</li>
+        <input class="filter-link__genres" name="genre" placeholder="Genre">
+        <ul class="filter-list__genres">
+            <li class=" filter-item__genres" id='28'>Action</li>
             <li class="filter-item__genres" id='12'>Adventure</li>
             <li class="filter-item__genres" id='16'>Animation</li>
             <li class="filter-item__genres" id='35'>Comedy</li>
@@ -39,7 +35,7 @@
         </ul>
     </div>
     <div class="filter__movie-year">
-        <a href="" class="filter-link__year">Year</a>
+        <input class="filter-link__year" name="year" placeholder="Year">
         <ul class="filter-list__year">
             <li class="filter-item__year">2021</li>
             <li class="filter-item__year">2020</li>
@@ -109,5 +105,4 @@
             <li class="filter-item__year">1956</li>
         </ul>
     </div>
-
 </div>
