@@ -42,11 +42,6 @@ function getNextPage(button) {
     if (STEPS.get(button.dataset.move)) {
         nextPage = currentPage + STEPS.get(button.dataset.move)
     }
-    if (e.target.className.includes('arrow-button--next')) {
-        page = Number(refs.main.querySelector('.page-button--active').textContent) + 1;
-    }
-
-    renderGallery('', searchQuery, '', page)
     return nextPage;
 }
 

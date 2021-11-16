@@ -13,8 +13,8 @@ function onRenderGenre(evt) {
         return;
     }
     idGenres = evt.target.id
-    renderGallery('sort', 'filter', idGenres);
-    filterGenre(idGenres)
+    renderGallery('filter', '', idGenres);
+    //filterGenre(idGenres)
 }
 
 function filterGenre() {
