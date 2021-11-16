@@ -1,6 +1,6 @@
 import errorRend from '../../views/components/error_search.hbs';
 import errorServ from '../../views/components/error_server.hbs';
-import img from '../../images/img/png/error/404.webp';
+import img from '../../images/img/png/error/404_error-preview.webp';
 import imgMainError from '../../images/img/png/error/404-Error.png';
 export const imgMarkup = errorRend({ img });
 export const imgMarkupMain = errorServ({ imgMainError });
