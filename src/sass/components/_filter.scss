@@ -1,6 +1,5 @@
 .filter{
 display: flex;
-width: 100%;
 padding: 15px;
 }
 
@@ -8,7 +7,7 @@ padding: 15px;
 .filter__movie-sort,
 .filter__movie-genres,
 .filter__movie-year{
-    margin-right: 15px;
+    
     display: block;
     font-size: 14px;
     line-height: 1.14;
@@ -18,10 +17,11 @@ padding: 15px;
 .filter-link__sort,
 .filter-link__genres,
 .filter-link__year{
+    margin-right: 15px;
     color: #545454;
     font-size: 16px;
     line-height: 1.19;
-    transition: color 100ms $time-cubic;
+    transition: color $time-cubic;
 }
 
 .filter-link__sort:hover,
@@ -40,13 +40,6 @@ padding: 15px;
 }
 
 
-.filter-list__year{
-    display: flex;
-    // flex-direction: column;
-    flex-wrap: wrap;
-}
-
-
 .filter-item__year:not(:last-child){
 margin-right: 5px;
 margin-bottom: 5px;
@@ -59,6 +52,13 @@ margin-bottom: 5px;
     display: none;
 }
 
+.filter-list__year.open{
+    width: 220px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
 .open{
     display: block;
     position: absolute;
@@ -69,10 +69,13 @@ margin-bottom: 5px;
     padding-bottom: 5px;
     padding-left: 12px;
     padding-right: 12px;
-    background: $fourth-background-color;
+    background: $primary-background-color;
     border-radius: 3px;
     white-space: nowrap;
+    // transition:  $time-cubic;
+
 }
+
 
 .filter-item__sort,
 .filter-item__genres,
@@ -82,20 +85,17 @@ margin-bottom: 5px;
     font-size: 14px;
     line-height: 1.14;
     color: $secondary-text-color;
-    transition: color 100ms $time-cubic;
+    transition: color $time-cubic;
 
-//   @media screen and (min-width: $tablet-general) {
-//     font-size: 16px;
-//     line-height: 1.19;
-//   }
 }
 
 .filter-item__sort:hover,
 .filter-item__sort:focus,
 .filter-item__genres:hover,
-.filter-item__genres:focus{
+.filter-item__genres:focus,
+.filter-item__year:hover,
+.filter-item__year:focus{
     color: $accent-color;
-
 }
 
 .filter-item__genres:not(:last-child){
