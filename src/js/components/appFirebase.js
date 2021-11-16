@@ -72,6 +72,7 @@ export function regUser(email, password) {
 export function signInUser(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
+      console.log(userCredential)
       swetchClass()
       return userCredential.user;
     })
