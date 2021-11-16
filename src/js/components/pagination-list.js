@@ -4,8 +4,6 @@ import pagination from '../../views/components/pagination_list.hbs'
 import svg from '../../images/svg/svg.svg';
 import scrollTo from './scroll_too.js';
 
-
-
 const MAX_SHOWN_PAGES = 9;
 const PAGES_GAP = 2;
 const STEPS = new Map([
@@ -16,6 +14,9 @@ const STEPS = new Map([
 ])
 
 let pagesContainer = refs.main.querySelector('.pagination-container');
+
+let currentPage = 1;
+let totalPages = 0;
 
 export function primaryPagination() {
     pagesContainer = refs.main.querySelector('.pagination-container');
@@ -33,6 +34,7 @@ function onPageClick(e) {
 
     renderGallery('', '', '', getNextPage(pressedButton))
     scrollTo()
+    console.log(currentPage, totalPages)
 }
 
 function getNextPage(button) {
@@ -45,21 +47,23 @@ function getNextPage(button) {
     return nextPage;
 }
 
-export function renderPagination(currentPage, totalPages) {
+export function renderPagination(current, total) {
+    currentPage = current;
+    totalPages = total;
     if (totalPages === 0) {
         clearPagination();
         return
     }
 
     pagesContainer.classList.remove('pagination-container--hidden')
-    pagesContainer.innerHTML = pagination(createPagination(currentPage, totalPages))
+    pagesContainer.innerHTML = pagination(createPagination())
 
-    disableArrows(currentPage, totalPages);
+    disableArrows();
 
     return currentPage;
 }
 
-function disableArrows(currentPage, totalPages) {
+function disableArrows() {
     switchDisable('arrow-button--previous', currentPage === 1);
     switchDisable('arrow-button--next', currentPage === totalPages);
     switchDisable('page-button--active', currentPage);
@@ -74,79 +78,80 @@ function searchButtonByName(className) {
     return button;
 }
 
-function createPagination(currentPage, totalPages) {
+function createPagination() {
     const icon = `<svg class='page-button-svg'><use href=${svg}#icon-arrow-left ></use>`
-    const buttonsArray = [createButton(icon, 'arrow-button arrow-button--previous', 'previous')];
+    const buttonsArray = [createButton(icon, 'to previous page', 'arrow-button arrow-button--previous', 'previous')];
 
     const center = Math.ceil(MAX_SHOWN_PAGES / 2);
 
     if (totalPages <= MAX_SHOWN_PAGES) {
-        for (let p = 1; p <= totalPages; p += 1) {
-            buttonsArray.push(isActive(p, currentPage, totalPages))
-        }
+        buttonsArray.push(...createNumericButton(1, totalPages))
     } else {
-        buttonsArray.push(isActive(1, currentPage, totalPages));
+        buttonsArray.push(isActive(1));
         if (currentPage <= center) {
-            for (let p = 2; p <= center + PAGES_GAP; p += 1) {
-                buttonsArray.push(isActive(p, currentPage, totalPages));
-            }
-            buttonsArray.push(createButton('...', 'end page-button--mobile-hidden', 'end'));
+            buttonsArray.push(...createNumericButton(2, center + PAGES_GAP))
+            buttonsArray.push(createButton('...', 'to 5 next pages', 'end page-button--mobile-hidden', 'end'));
         } else {
             if (currentPage <= totalPages - center) {
-                buttonsArray.push(createButton('...', 'begin page-button--mobile-hidden', 'begin'));
-                for (let p = currentPage - PAGES_GAP; p <= currentPage + PAGES_GAP; p += 1) {
-                    buttonsArray.push(isActive(p, currentPage, totalPages));
-                }
-                buttonsArray.push(createButton('...', 'end page-button--mobile-hidden', 'end'));
+                buttonsArray.push(createButton('...', 'to 5 previous pages', 'begin page-button--mobile-hidden', 'begin'));
+                buttonsArray.push(...createNumericButton(currentPage - PAGES_GAP, currentPage + PAGES_GAP))
+                buttonsArray.push(createButton('...', 'to 5 next pages', 'end page-button--mobile-hidden', 'end'));
             } else {
-                buttonsArray.push(createButton('...', 'begin page-button--mobile-hidden', 'begin'));
-                for (let p = totalPages - center - 1; p < totalPages; p += 1) {
-                    buttonsArray.push(isActive(p, currentPage, totalPages));
-                }
+                buttonsArray.push(createButton('...', 'to 5 previous pages', 'begin page-button--mobile-hidden', 'begin'));
+                buttonsArray.push(...createNumericButton(totalPages - center - 1, totalPages - 1))
             }
         }
-        buttonsArray.push(isActive(totalPages, currentPage, totalPages));
+        buttonsArray.push(isActive(totalPages));
     }
-    buttonsArray.push(createButton(icon, 'arrow-button arrow-button--next', 'next'));
+    buttonsArray.push(createButton(icon, 'to next page', 'arrow-button arrow-button--next', 'next'));
     return buttonsArray;
 }
 
-function isActive(page, currentPage, totalPages) {
+function createNumericButton(from, to) {
+    let pages = [];
+    for (let p = from; p <= to; p += 1) {
+        pages.push(isActive(p));
+    }
+    return pages;
+}
+
+function isActive(page) {
     if (page == currentPage) {
-        return createButton(page, 'page-button--active')
+        return createButton(page, page, 'page-button--active')
     } else {
-        return hideForMobile(page, currentPage, totalPages)
+        return hideForMobile(page)
     }
 }
 
-function hideForMobile(page, currentPage, totalPages) {
+function hideForMobile(page) {
     if (totalPages <= MAX_SHOWN_PAGES - 4) {
-        return createButton(page, '')
+        return createButton(page, page, '')
     }
     if (currentPage <= 1 + PAGES_GAP) {
         if (page <= 5) {
-            return createButton(page, '')
+            return createButton(page, page, '')
         } else {
-            return createButton(page, 'page-button--mobile-hidden');
+            return createButton(page, page, 'page-button--mobile-hidden');
         }
     }
     if (currentPage < totalPages - PAGES_GAP) {
         if (page >= currentPage - PAGES_GAP && page <= currentPage + PAGES_GAP) {
-            return createButton(page, '')
+            return createButton(page, page, '')
         } else {
-            return createButton(page, 'page-button--mobile-hidden');
+            return createButton(page, page, 'page-button--mobile-hidden');
         }
     }
     if (page >= totalPages - 4) {
-        return createButton(page, '')
+        return createButton(page, page, '')
     } else {
-        return createButton(page, 'page-button--mobile-hidden');
+        return createButton(page, page, 'page-button--mobile-hidden');
     }
 }
 
-function createButton(page, className, dataMove) {
+function createButton(page, label, className, dataMove) {
     const button = {
         page,
+        label,
         classes: 'page-button ' + className,
         step: dataMove,
     }
