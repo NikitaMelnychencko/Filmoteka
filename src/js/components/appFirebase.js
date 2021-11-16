@@ -122,7 +122,7 @@ window.onload = function () {
 };
 
 //getId
-async function getIdUser(userId, store, id) {
+export async function getIdUser(userId, store, id) {
   return await get(child(dbRef, 'users/' + userId + '/' + store + '/' + id))
     .then(snapshot => {
       if (snapshot.exists()) {
@@ -167,13 +167,13 @@ export async function postUserData(userId, store, idFilm, markupFilm) {
   );
 }
 
-//update
-async function updateData(userId, store, idFilm, markupFilm) {
-  return await update(
-    ref(db, 'users/' + userId + '/' + store + '/' + idFilm),
-    markupFilm,
-  );
-}
+// //update
+// async function updateData(userId, store, idFilm, markupFilm) {
+//   return await update(
+//     ref(db, 'users/' + userId + '/' + store + '/' + idFilm),
+//     markupFilm,
+//   );
+// }
 
 //delete
 export async function deleteData(userId, store, idFilm) {
