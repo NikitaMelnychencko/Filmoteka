@@ -2,134 +2,127 @@ import { renderGallery, renderMovies } from '../layout/gallery';
 import filter from '../../views/components/filter/filter_sort.hbs';
 import { filterGlobal } from './fetch_filter_sort'
 // import { renderMovieGlobal } from '../components/fetch';
-
 const main = document.querySelector('.hero')
+
 let valueSort = '';
 let valueGenre = '';
 let valueYear = '';
 let test = ""
 
-export function filterMain() {
+function filterMain() {
     const markup = filter()
     main.insertAdjacentHTML("beforeend", markup);
 }
 filterMain();
 
+const refs = {
+    InputSort: document.querySelector('.filter-link__sort'),
+    listOpenSort: document.querySelector('.filter-list__sort'),
+    inputGenres: document.querySelector('.filter-link__genres'),
+    filterList: document.querySelector('.filter-list__genres'),
+    listGenres: document.querySelector('.filter-list__genres'),
+    inputYear: document.querySelector('.filter-link__year'),
+    listYear: document.querySelector('.filter-list__year'),
+    itemYear: document.querySelectorAll('.filter-item__year'),
+    body: document.querySelector('body'),
+}
 
-const filterListSort = document.querySelector('.filter-list__sort');
-const itemSort = document.querySelectorAll('.filter-item__sort')
-filterListSort.addEventListener('input', onRenderFilter);
-
-const containerSort = document.querySelector('.filter__movie-sort');
-containerSort.addEventListener('click', onOpenListSorts);
-const listOpenSort = document.querySelector('.filter-list__sort');
-
-// itemSort.forEach(test => {
-//     test.addEventListener('click', el => {
-//         el.preventDefault()
-//         valueSort = el.target.textContent;
-//     })
-// })
+refs.InputSort.addEventListener('click', onOpenListSorts);
+refs.listOpenSort.addEventListener('click', onRenderFilter);
 
 function onOpenListSorts(evt) {
     evt.preventDefault()
-    if (evt.target.nodeName !== 'INPUT') {
-        listOpenSort.classList.remove('open')
-    } else {
-        // removeClassOpen()
-        listOpenSort.classList.toggle('open')
-    }
+    refs.InputSort.value = '';
+    removeClassOpenYearGenres()
+    refs.listOpenSort.classList.toggle('open')
 }
 
 function onRenderFilter(evt) {
     evt.preventDefault();
     if (evt.target.nodeName !== 'LI') {
         return;
+    } else {
+        refs.listOpenSort.classList.remove('open')
+        refs.InputSort.value = evt.target.textContent
     }
-    console.log('object');
-    const link = evt.target.dataset.atribute;
+    let link = evt.target.dataset.atribute;
     renderGallery('sort', '', link);
 };
 
 
 // genre
-
 let genre = ''
-const filterList = document.querySelector('.filter__movie-genres');
-filterList.addEventListener('click', onRenderGenre);
+refs.inputGenres.addEventListener('click', onOpenListGenres);
+refs.filterList.addEventListener('click', onRenderGenre);
 
+function onOpenListGenres(evt) {
+    evt.preventDefault();
+    refs.inputGenres.value = '';
+    refs.listGenres.classList.toggle('open');
+    removeClassOpenYearSort()
+}
 
 function onRenderGenre(evt) {
     evt.preventDefault()
     if (evt.target.nodeName !== 'LI') {
         return;
+    } else {
+        refs.listGenres.classList.remove('open');
+        refs.inputGenres.value = evt.target.textContent
+        genre = evt.target.id
     }
-    genre = evt.target.id
     renderGallery('filter', '', genre);
 }
-function filterGenre() {
-    filterGlobal('', '', '', genre)
-        .then(data => {
-            renderMovies(data.results)
-        }).catch(() => {
-            alert("error");
-        });
-}
 
-const containerGenres = document.querySelector('.filter__movie-genres');
-const listGenres = document.querySelector('.filter-list__genres');
-containerGenres.addEventListener('click', onOpenListGenres);
 
-function onOpenListGenres(evt) {
-    evt.preventDefault();
-    if (evt.target.nodeName !== 'INPUT') {
-        listGenres.classList.remove('open');
-    } else {
-        // removeClassOpen()
-        listGenres.classList.toggle('open');
-    }
-}
 // year
-
 let year = '';
-
-const containerYear = document.querySelector('.filter__movie-year');
-const listYear = document.querySelector('.filter-list__year');
-const itemYear = document.querySelectorAll('.filter-item__year');
-containerYear.addEventListener('click', onOpenListYear);
-
-itemYear.forEach(el => {
-    el.addEventListener('click', e => {
-        e.preventDefault();
-        year = e.target.textContent
-        console.log(year);
-        renderGallery('sort', '', year);
-    })
-})
+refs.inputYear.addEventListener('click', onOpenListYear);
+refs.listYear.addEventListener('click', onTest);
 
 function onOpenListYear(evt) {
     evt.preventDefault();
-    if (evt.target.nodeName !== 'INPUT') {
-        listYear.classList.remove('open')
+    refs.inputYear.value = '';
+    refs.listYear.classList.toggle('open')
+    removeClassOpenGenresSort()
+}
+
+function onTest(evt) {
+    evt.preventDefault()
+    console.log(evt.target);
+    if (evt.target.nodeName !== 'LI') {
+        return;
     } else {
-        // removeClassOpen()
-        listYear.classList.toggle('open')
+        refs.listGenres.classList.remove('open');
+        refs.inputYear.value = evt.target.textContent
+        year = evt.target.textContent
     }
+    renderGallery('sort', '', year);
 }
 
-function onRenderYear() {
-    filterGlobal(year, '')
-        .then(data => {
-            renderMovies(data.results)
-        })
+
+// remove Open
+function removeClassOpenYearGenres() {
+    refs.listYear.classList.remove('open');
+    refs.listGenres.classList.remove('open');
 }
 
-// onRenderYear()
-function removeClassOpen() {
-    const listOpenSort = document.querySelector('.filter-list__sort');
-    const listGenres = document.querySelector('.filter-list__genres');
-    const listYear = document.querySelector('.filter-list__year');
-    listYear.classList.remove('open');
-    listGenres.classList.remove('open');
-    listOpenSort.classList.remove('open');
+function removeClassOpenYearSort() {
+    refs.listYear.classList.remove('open');
+    refs.listOpenSort.classList.remove('open');
 }
+
+function removeClassOpenGenresSort() {
+    refs.listGenres.classList.remove('open');
+    refs.listOpenSort.classList.remove('open');
+}
+
+
+// function onRemoveOpenClass(evt) {
+//     evt.preventDefault()
+//     console.log(evt.target);
+//     refs.listYear.classList.remove('open');
+//     refs.listOpenSort.classList.remove('open');
+//     refs.listGenres.classList.remove('open');
+
+// }

@@ -12,4 +12,5 @@ export const refs = {
   logIn: document.querySelector('.js-login'),
   logOut: document.querySelector('.js-logOut'),
   backModal: document.querySelector('.modal__back'),
+
 };
