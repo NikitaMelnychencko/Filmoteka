@@ -7,6 +7,7 @@ import {
 } from './appFirebase';
 import { refs } from '../refs/refs.js';
 import { addSpinner, removeSpinner } from './spinner';
+import { compile } from 'handlebars';
 
 refs.formLog.addEventListener('submit', e => {
   e.preventDefault();
@@ -54,14 +55,20 @@ function openSinUp(eve) {
 }
 
 // function close modal
-
-window.addEventListener('keydown', onCloseModal);
 refs.singinModal.addEventListener('click', mouseCloseMOdal);
+window.addEventListener('keydown', onCloseModal);
+
+function removeList() {
+  window.removeEventListener('keydown', onCloseModal);
+  addClass();
+}
 
 function onCloseModal(eve) {
   if (eve.code === 'Escape') {
-    refs.singinModal.classList.add('modal-auth--hidden');
+    removeList();
+    console.log(eve.code);
   }
+  return window.addEventListener('keydown', onCloseModal);
 }
 
 function mouseCloseMOdal(event) {
@@ -69,8 +76,9 @@ function mouseCloseMOdal(event) {
     event.target.className === 'backdrop-sing' ||
     event.target.className === 'cl-btn-mod-txt'
   ) {
-    addClass();
+    return addClass();
   }
+  return;
 }
 
 function addClass() {
@@ -80,7 +88,7 @@ function addClass() {
 // back sing Up
 refs.backModal.addEventListener('click', backSingOut);
 
-function backSingOut(event) {
+function backSingOut() {
   refs.singOutMod.classList.add('modal-singup--hidden');
   refs.singInMod.classList.remove('modal-singin--hidden');
 }
