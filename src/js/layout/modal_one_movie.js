@@ -1,8 +1,9 @@
 import modal_one_movie_markup from '../../views/partials/modal_one_movie.hbs';
-import { renderModal } from '../components/modal';
+import { renderModal, closeModal } from '../components/modal';
 import { renderParamsCard } from '../components/fetch';
-import { postUserData, userId,deleteData } from '../components/appFirebase.js';
+import { postUserData, userId, deleteData } from '../components/appFirebase.js';
 import img from '../../images/img/png/gallery/no-image.png';
+import { refs } from '../refs/refs.js';
 let id = 'id';
 let objService = '';
 let arrObj = '';
@@ -18,7 +19,7 @@ function renderMovieSeorchParam(id) {
       localStorage.setItem('idFilm', id);
       localStorage.setItem('marcupFilm', arrObj);
     })
-    .catch(() => { });
+    .catch(() => {});
 }
 
 function imgFix(m) {
@@ -54,12 +55,15 @@ export function seorchId() {
 function addToDataBase(data) {
   const buttonList = document.querySelector('.modal-one-movie__button-box');
   buttonList.addEventListener('click', e => {
-    if (e.target.nodeName !== 'BUTTON') {
-      return;
+    if (e.target.nodeName !== 'BUTTON') return;
+    if (userId == null) {
+      refs.sininModal.classList.remove('hidden');
+    } else {
+      const idFilm = localStorage.getItem('idFilm');
+      const markupFilm = localStorage.getItem('marcupFilm');
+      postUserData(userId, e.target.ariaLabel, idFilm, markupFilm);
+      deleteData(userId, e.target.dataset.set, idFilm);
+      closeModal();
     }
-    const idFilm = localStorage.getItem('idFilm');
-    const markupFilm = localStorage.getItem('marcupFilm');
-    postUserData(userId, e.target.ariaLabel, idFilm, markupFilm);
-    deleteData(userId, e.target.dataset.set, idFilm);
   });
 }
