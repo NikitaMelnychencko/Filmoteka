@@ -3,32 +3,36 @@ display: flex;
 padding-top: 5px;
 }
 
-
 .filter__movie-sort,
 .filter__movie-genres,
 .filter__movie-year{
-    
     display: block;
     font-size: 14px;
     line-height: 1.14;
     color: #545454;
 }
 
-.filter-link__sort,
-.filter-link__genres,
+
+.filter-input__sort,
+.filter-input__genres,
 .filter-link__year{
+    border: $button-border;
+  box-sizing: border-box;
+  border-radius: 5px;
     margin-right: 15px;
-    width: 120px;
+    padding: 2px;
+    width: 200px;
     color: #545454;
     font-size: 16px;
     line-height: 1.19;
+    text-align: center;
     transition: color $time-cubic;
 }
 
-.filter-link__sort:hover,
-.filter-link__sort:focus,
-.filter-link__genres:focus,
-.filter-link__genres:hover,
+.filter-input__sort:hover,
+.filter-input__sort:focus,
+.filter-input__genres:focus,
+.filter-input__genres:hover,
 .filter-link__year:focus,
 .filter-link__year:hover{
     color: $accent-color;
@@ -102,6 +106,41 @@ margin-bottom: 5px;
 .filter-item__genres:not(:last-child){
 margin-right: 5px;
 }
+
+
+
+.button__filter-clear{
+border: $button-border;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 3px;
+//   height: 44px;
+  width: 113px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  color: $primary-text-color;
+  background: none;
+  justify-content: center;
+  transition: all $time-cubic;
+//   @media screen and (min-width: $tablet-general) {
+//     width: 125px;
+//   }
+  @media screen and (min-width: $desktop-up) {
+    width: 152px;
+    }
+  
+  &:hover,
+  &:focus {
+    background: $second-accent-btn-color;
+    color: $accent-btn-color;
+    border-color: $second-accent-btn-color;
+  }
+}
+
 
 
 

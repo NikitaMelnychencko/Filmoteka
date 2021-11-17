@@ -1,6 +1,6 @@
 <div class="filter container">
     <div class="filter__movie-sort card ">
-        <input class="filter-link__sort" name="sort" placeholder="Sort" readonly>
+        <input class="filter-input__sort" name="sort" placeholder="Sort" readonly>
         <ul class="filter-list__sort">
             <li class="filter-item__sort" data-atribute='popularity.desc'>Popularity (decreasing)</li>
             <li class="filter-item__sort" data-atribute='popularity.asc'>Popularity (increasing)</li>
@@ -11,7 +11,7 @@
         </ul>
     </div>
     <div class="filter__movie-genres">
-        <input class="filter-link__genres" name="genre" placeholder="Genre" readonly>
+        <input class="filter-input__genres" name="genre" placeholder="Genre" readonly>
         <ul class="filter-list__genres">
             <li class=" filter-item__genres" id='none'>None</li>
             <li class=" filter-item__genres" id='28'>Action</li>
@@ -103,11 +103,7 @@
             <li class="filter-item__year">1960</li>
             <li class="filter-item__year">1959</li>
             <li class="filter-item__year">1958</li>
-            {{!-- <li class="filter-item__year">1957</li>
-            <li class="filter-item__year">1956</li>
-            <li class="filter-item__year">1955</li>
-            <li class="filter-item__year">1954</li>
-            <li class="filter-item__year">1953</li> --}}
         </ul>
+        <button class="button__filter-clear" type="button">Clear all filter</button>
     </div>
 </div>
