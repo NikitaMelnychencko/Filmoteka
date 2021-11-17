@@ -7,13 +7,12 @@ img{
 display: inline;
 }
 
-.page-error {
+.page__error {
     display: block;
-    height: calc(100vh - 230px - 129px);;
+    height: calc(100vh - 230px - 129px);
     text-align: center;
     display: block;
     font-size: 14px;
-
 }
 .page-error__serv{
      text-align: center;
@@ -25,25 +24,45 @@ display: inline;
         display: block;
         font-size: 150px;
 }
-.error-text{
-    font-size: 30px;
-    line-height: 1.17;
-    color: $third-text-color;
+.error__text{
+    font-weight: 500;
+  font-size: 30px;
+  line-height: 20px;
+  color: $primary-text-color;
+  margin-bottom: 21px;
 }
 
-.global-button-error{
-    display: inline-block;
-    width: 250px;
-    margin-top: 10px;
-@media screen and (min-width: $desktop-up) {
+.button__error{
+    margin-top: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    border: $button-border;
+  box-sizing: border-box;
+  border-radius: 5px;
+  height: 44px;
+  width: 113px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  color: $primary-text-color;
+  background: none;
+  justify-content: center;
+  transition: all $time-cubic;
+  @media screen and (min-width: $tablet-general) {
+    width: 300px;
+  }
+  @media screen and (min-width: $desktop-up) {
     width: 400px;
-      margin-right: 0;
-      display: block;
-      margin-left:auto;
-      margin-right: auto;
-    }
+  
+  }
+  &:hover,
+  &:focus {
+    background: $second-accent-btn-color;
+    color: $accent-btn-color;
+    border-color: $second-accent-btn-color;
+  }
 }
-
-
-
-
