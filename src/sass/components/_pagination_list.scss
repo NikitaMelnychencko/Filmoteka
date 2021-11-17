@@ -11,13 +11,16 @@
     padding-top: 50px;
     padding-bottom: 60px;
   }
+  
+  &--hidden {
+    display: none;
+  }
 }
-.pagination-container--hidden {
-  display: none;
-}
+
 .pagination-list {
     display: flex;
 }
+
 .page-button {
   width: 40px;
   height: 40px;
@@ -46,11 +49,35 @@
   &:active {
     opacity: 1;
     box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
+  }
 }
+
+.page-button--active {
+  color: $active-btn-text-color;
+  background: $active-btn-color;
+  
+  &:disabled {
+    opacity: 1;
+    cursor: default;
+  }
 }
+
+.page-button--mobile-hidden {
+  display: none;
+
+  @media screen and (min-width: $tablet-general) {
+    visibility: visible;
+    display: block;
+  }
+}
+
 .arrow-button {
   color: inherit;
   background: $arrow-btn-color;
+  
+  &--next {
+    transform: scale(-1, 1);
+  }
 
   &:disabled {
     color: $primary-btn-text-color;
@@ -61,32 +88,10 @@
     cursor: default;
   }
 }
-.arrow-button--next {
-    transform: scale(-1, 1);
-}
-.page-button--active {
-  color: $active-btn-text-color;
-  background: $active-btn-color;
-  &:disabled {
-    opacity: 1;
 
-    cursor: default;
-  }
-}
-.page-button--mobile-hidden {
-  display: none;
-
-  @media screen and (min-width: $tablet-general) {
-    visibility: visible;
-    display: block;
-  }
-}
 .page-button-svg {
     width: 16px;
     height: 16px;
 
     pointer-events: none;
-}
-.hidden-arrow {
-  display: none;
 }
