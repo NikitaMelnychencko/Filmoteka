@@ -42,7 +42,8 @@ function updateButton(id) {
         return
       } else {
         refButton().children[index].disabled = true
-        refButton().children[index].style.background='grey'
+        refButton().children[index].style.background = 'grey'
+        refButton().children[index].style.color='white'
       }
     })
   });
