@@ -3,6 +3,9 @@ import filter from '../../views/components/filter/filter_sort.hbs';
 import { filterGlobal } from './fetch_filter_sort'
 // import { renderMovieGlobal } from '../components/fetch';
 const main = document.querySelector('.hero')
+const body = document.querySelector('body')
+const hero = document.querySelector('.gallery-list')
+console.log(hero);
 
 let valueSort = '';
 let valueGenre = '';
@@ -11,7 +14,7 @@ let test = ""
 
 function filterMain() {
     const markup = filter()
-    main.insertAdjacentHTML("beforeend", markup);
+    hero.insertAdjacentHTML("beforebegin", markup);
 }
 filterMain();
 
@@ -93,7 +96,8 @@ function onTest(evt) {
     evt.preventDefault()
     console.log(evt.target);
     if (evt.target.nodeName !== 'LI') {
-        return;
+        return
+
     } else {
         refs.listYear.classList.remove('open');
         refs.inputYear.value = evt.target.textContent;
@@ -119,6 +123,9 @@ function removeClassOpenGenresSort() {
     refs.listGenres.classList.remove('open');
     refs.listOpenSort.classList.remove('open');
 }
+
+
+
 
 // Clear Filter
 refs.buttom.addEventListener('click', el => {
