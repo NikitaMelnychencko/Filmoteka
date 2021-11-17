@@ -9,6 +9,8 @@ body.addEventListener('click', el => {
 })
 
 let sort = '';
+let genre = '';
+let year = '';
 function refsFilter() {
     const refs = {
         InputSort: document.querySelector('.filter-input__sort'),
@@ -43,7 +45,6 @@ export function initFilter() {
     })
 }
 
-
 function onOpenListSorts(evt) {
     evt.preventDefault()
     refsFilter().InputSort.value = '';
@@ -66,8 +67,6 @@ function onRenderSort(evt) {
 };
 
 // genre
-let genre = ''
-
 
 function onOpenListGenres(evt) {
     evt.preventDefault();
@@ -87,14 +86,6 @@ function onRenderGenre(evt) {
     }
     renderGallery('sort', year, sort, genre);
 }
-
-
-// year
-let year = '';
-
-
-
-
 
 function onOpenListYear(evt) {
     evt.preventDefault();
@@ -116,12 +107,10 @@ function onRenderYear(evt) {
     renderGallery('sort', year, sort, genre);
 }
 
-
 // remove Open
 function removeClassOpenYearGenres() {
     refsFilter().listYear.classList.remove('open');
     refsFilter().listGenres.classList.remove('open');
-
 }
 
 function removeClassOpenYearSort() {
@@ -134,12 +123,7 @@ function removeClassOpenGenresSort() {
     refsFilter().listSort.classList.remove('open');
 }
 
-
-
-
 // Clear Filter
-
-
 function testOnOpen() {
     refsFilter().listYear.classList.remove('open');
     refsFilter().listGenres.classList.remove('open');
