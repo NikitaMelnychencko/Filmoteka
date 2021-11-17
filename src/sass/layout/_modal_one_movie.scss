@@ -122,6 +122,13 @@
   }
 }
 
+.modal-one-movie__text-box-secondary {
+  padding: 1px 10px;
+  background:$arrow-btn-color;
+  border-radius: 5px;
+  margin-right: 11px;
+}
+
 .modal-one-movie__about {
   font-weight: 500;
   font-size: 12px;
@@ -155,4 +162,8 @@
   @media screen and (min-width: $desktop-up) {
     justify-content: start;
   }
+}
+
+.uppercase-title {
+  text-transform: uppercase;
 }
