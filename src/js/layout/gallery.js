@@ -19,18 +19,20 @@ const renderParams = {
   globalOptions: '',
   globalSearch: '',
   globalOrder: '',
+  globalGenre: ''
 };
 
 export async function renderGallery(
   options = 'home',
   search,
   sortBy,
-  page = 1,
+  genre,
+  page = 1
 ) {
 
   //console.log('open render')
   console.log(renderParams);
-  console.log('пришли параметры', options, search, sortBy, page)
+  console.log('пришли параметры', options, search, sortBy, genre, page)
   addSpinner();
   let movies = {};
 
@@ -42,6 +44,10 @@ export async function renderGallery(
   }
   if (sortBy === '') {
     sortBy = renderParams.globalOrder;
+  }
+
+  if (genre === '') {
+    genre = renderParams.globalGenre;
   }
 
   if (options === 'home') {
@@ -70,10 +76,13 @@ export async function renderGallery(
   }
 
   if (options === 'sort') {
+    if (genre === 'none') { genre = '' }
     renderParams.globalOptions = options;
     renderParams.globalOrder = sortBy;
+    renderParams.globalGenre = genre;
+    renderParams.globalSearch = search;
 
-    movies = (await filterGlobal(renderParams.globalOrder, page))
+    movies = (await filterGlobal(renderParams.globalOrder, page, renderParams.globalSearch, renderParams.globalGenre))
   }
 
   if (options === 'filter') {

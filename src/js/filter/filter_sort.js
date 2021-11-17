@@ -27,6 +27,8 @@ const refs = {
     body: document.querySelector('body'),
 }
 
+let sort = '';
+
 refs.InputSort.addEventListener('click', onOpenListSorts);
 refs.listOpenSort.addEventListener('click', onRenderFilter);
 
@@ -45,8 +47,9 @@ function onRenderFilter(evt) {
         refs.listOpenSort.classList.remove('open')
         refs.InputSort.value = evt.target.textContent
     }
-    let link = evt.target.dataset.atribute;
-    renderGallery('sort', '', link);
+    sort = evt.target.dataset.atribute;
+    console.log(year, sort, genre)
+    renderGallery('sort', year, sort, genre);
 };
 
 
@@ -71,7 +74,8 @@ function onRenderGenre(evt) {
         refs.inputGenres.value = evt.target.textContent
         genre = evt.target.id
     }
-    renderGallery('filter', '', genre);
+    console.log(year, sort, genre)
+    renderGallery('sort', year, sort, genre);
 }
 
 
@@ -97,7 +101,8 @@ function onTest(evt) {
         refs.inputYear.value = evt.target.textContent
         year = evt.target.textContent
     }
-    renderGallery('sort', '', year);
+    console.log(year, sort, genre)
+    renderGallery('sort', year, sort, genre);
 }
 
 
