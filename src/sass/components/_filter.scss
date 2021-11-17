@@ -3,6 +3,10 @@ display: flex;
 padding-top: 5px;
 }
 
+.filter.is-hidden{
+    display: none;
+}
+
 .filter__movie-sort,
 .filter__movie-genres,
 .filter__movie-year{
@@ -15,10 +19,12 @@ padding-top: 5px;
 
 .filter-input__sort,
 .filter-input__genres,
-.filter-link__year{
+.filter-input__year{
+    color: transparent;
+    text-shadow: 0 0 0 black;
     border: $button-border;
-  box-sizing: border-box;
-  border-radius: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
     margin-right: 15px;
     padding: 2px;
     width: 200px;
@@ -33,8 +39,8 @@ padding-top: 5px;
 .filter-input__sort:focus,
 .filter-input__genres:focus,
 .filter-input__genres:hover,
-.filter-link__year:focus,
-.filter-link__year:hover{
+.filter-input__year:focus,
+.filter-input__year:hover{
     color: $accent-color;
 }
 

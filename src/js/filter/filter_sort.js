@@ -1,55 +1,65 @@
 import { renderGallery, renderMovies } from '../layout/gallery';
-import filter from '../../views/components/filter/filter_sort.hbs';
 import { filterGlobal } from './fetch_filter_sort'
-// import { renderMovieGlobal } from '../components/fetch';
-const main = document.querySelector('.hero')
 const body = document.querySelector('body')
-const hero = document.querySelector('.gallery-list')
-console.log(hero);
 
-let valueSort = '';
-let valueGenre = '';
-let valueYear = '';
-let test = ""
+body.addEventListener('click', el => {
+    if (el.target.nodeName !== "INPUT") {
+        testOnOpen()
+    }
+})
 
-function filterMain() {
-    const markup = filter()
-    hero.insertAdjacentHTML("beforebegin", markup);
-}
-filterMain();
-
-const refs = {
-    InputSort: document.querySelector('.filter-input__sort'),
-    listOpenSort: document.querySelector('.filter-list__sort'),
-    inputGenres: document.querySelector('.filter-input__genres'),
-    filterList: document.querySelector('.filter-list__genres'),
-    listGenres: document.querySelector('.filter-list__genres'),
-    inputYear: document.querySelector('.filter-link__year'),
-    listYear: document.querySelector('.filter-list__year'),
-    itemYear: document.querySelectorAll('.filter-item__year'),
-    body: document.querySelector('body'),
-    buttom: document.querySelector('.button__filter-clear'),
-}
 let sort = '';
+function refsFilter() {
+    const refs = {
+        InputSort: document.querySelector('.filter-input__sort'),
+        listSort: document.querySelector('.filter-list__sort'),
+        inputGenres: document.querySelector('.filter-input__genres'),
+        filterList: document.querySelector('.filter-list__genres'),
+        listGenres: document.querySelector('.filter-list__genres'),
+        inputYear: document.querySelector('.filter-input__year'),
+        listYear: document.querySelector('.filter-list__year'),
+        itemYear: document.querySelectorAll('.filter-item__year'),
+        body: document.querySelector('body'),
+        button: document.querySelector('.button__filter-clear'),
+    }
+    return refs
+}
 
-refs.InputSort.addEventListener('click', onOpenListSorts);
-refs.listOpenSort.addEventListener('click', onRenderFilter);
+export function initFilter() {
+    refsFilter().InputSort.addEventListener('click', onOpenListSorts);
+    refsFilter().listSort.addEventListener('click', onRenderSort);
+    refsFilter().inputGenres.addEventListener('click', onOpenListGenres);
+    refsFilter().filterList.addEventListener('click', onRenderGenre);
+    refsFilter().inputYear.addEventListener('click', onOpenListYear);
+    refsFilter().listYear.addEventListener('click', onRenderYear);
+    refsFilter().button.addEventListener('click', el => {
+        el.preventDefault()
+        renderGallery('home');
+        refsFilter().InputSort.value = '';
+        refsFilter().inputGenres.value = '';
+        refsFilter().inputYear.value = '';
+        refsFilter().listYear.classList.remove('open');
+        testOnOpen()
+    })
+}
+
 
 function onOpenListSorts(evt) {
     evt.preventDefault()
-    refs.InputSort.value = '';
+    refsFilter().InputSort.value = '';
     removeClassOpenYearGenres()
-    refs.listOpenSort.classList.toggle('open')
+    refsFilter().listSort.classList.toggle('open')
 }
 
-function onRenderFilter(evt) {
+function onRenderSort(evt) {
     evt.preventDefault();
     if (evt.target.nodeName !== 'LI') {
         return;
     } else {
-        refs.listOpenSort.classList.remove('open')
-        refs.InputSort.value = evt.target.textContent
+        refsFilter().listSort.classList.remove('open')
+        refsFilter().InputSort.value = evt.target.textContent
     }
+
     sort = evt.target.dataset.atribute;
     console.log(year, sort, genre)
     renderGallery('sort', year, sort, genre);
@@ -57,13 +67,12 @@ function onRenderFilter(evt) {
 
 // genre
 let genre = ''
-refs.inputGenres.addEventListener('click', onOpenListGenres);
-refs.filterList.addEventListener('click', onRenderGenre);
+
 
 function onOpenListGenres(evt) {
     evt.preventDefault();
-    refs.inputGenres.value = '';
-    refs.listGenres.classList.toggle('open');
+    refsFilter().inputGenres.value = '';
+    refsFilter().listGenres.classList.toggle('open');
     removeClassOpenYearSort()
 }
 
@@ -72,8 +81,8 @@ function onRenderGenre(evt) {
     if (evt.target.nodeName !== 'LI') {
         return;
     } else {
-        refs.listGenres.classList.remove('open');
-        refs.inputGenres.value = evt.target.textContent
+        refsFilter().listGenres.classList.remove('open');
+        refsFilter().inputGenres.value = evt.target.textContent
         genre = evt.target.id
     }
     renderGallery('sort', year, sort, genre);
@@ -82,25 +91,26 @@ function onRenderGenre(evt) {
 
 // year
 let year = '';
-refs.inputYear.addEventListener('click', onOpenListYear);
-refs.listYear.addEventListener('click', onTest);
+
+
+
+
 
 function onOpenListYear(evt) {
     evt.preventDefault();
-    refs.inputYear.value = '';
-    refs.listYear.classList.toggle('open')
+    refsFilter().inputYear.value = '';
+    refsFilter().listYear.classList.toggle('open')
     removeClassOpenGenresSort()
 }
 
-function onTest(evt) {
+function onRenderYear(evt) {
     evt.preventDefault()
     console.log(evt.target);
     if (evt.target.nodeName !== 'LI') {
         return
-
     } else {
-        refs.listYear.classList.remove('open');
-        refs.inputYear.value = evt.target.textContent;
+        refsFilter().listYear.classList.remove('open');
+        refsFilter().inputYear.value = evt.target.textContent;
         year = evt.target.textContent;
     }
     renderGallery('sort', year, sort, genre);
@@ -109,29 +119,30 @@ function onTest(evt) {
 
 // remove Open
 function removeClassOpenYearGenres() {
-    refs.listYear.classList.remove('open');
-    refs.listGenres.classList.remove('open');
+    refsFilter().listYear.classList.remove('open');
+    refsFilter().listGenres.classList.remove('open');
 
 }
 
 function removeClassOpenYearSort() {
-    refs.listYear.classList.remove('open');
-    refs.listOpenSort.classList.remove('open');
+    refsFilter().listYear.classList.remove('open');
+    refsFilter().listSort.classList.remove('open');
 }
 
 function removeClassOpenGenresSort() {
-    refs.listGenres.classList.remove('open');
-    refs.listOpenSort.classList.remove('open');
+    refsFilter().listGenres.classList.remove('open');
+    refsFilter().listSort.classList.remove('open');
 }
 
 
 
 
 // Clear Filter
-refs.buttom.addEventListener('click', el => {
-    el.preventDefault()
-    renderGallery('home');
-    refs.InputSort.value = '';
-    refs.inputGenres.value = '';
-    refs.inputYear.value = '';
-})
+
+
+function testOnOpen() {
+    refsFilter().listYear.classList.remove('open');
+    refsFilter().listGenres.classList.remove('open');
+    refsFilter().listSort.classList.remove('open');
+}
+

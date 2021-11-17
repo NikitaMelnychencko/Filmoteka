@@ -19,7 +19,8 @@ import { initGenres } from '../data/genres';
 import blockHelpTemplate from '../../views/components/block_help.hbs';
 import { blockhelpOpen } from '../components/block_help.js';
 import { seorchId } from '../layout/modal_one_movie.js';
-
+import filter from '../../views/components/filter/filter_sort.hbs';
+import { initFilter } from '../filter/filter_sort';
 export function pageRender(value, heroValue, valueAdd, valueRemove) {
   //backdrop include plugin "modal window"
   const backdropMarkUp = backdrop_markup(modal_markup({ svg }));
@@ -27,6 +28,10 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
   const currentValue = value;
   const blockHelpMarkup = blockHelpTemplate({ svg });
   const nullMarkup = markupNullImg(value.hero_tittle)
+  let markupFilter = '';
+  if (value.hero_tittle === 'Search Movies') {
+    markupFilter = filter()
+  }
 
   refs.main.innerHTML = main({
     currentValue,
@@ -34,11 +39,13 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
     heroValue,
     spinnerMarkUp,
     blockHelpMarkup,
-    nullMarkup
+    nullMarkup,
+    markupFilter
   });
   addHeroClass(valueAdd, valueRemove);
   if (value.hero_tittle === 'Search Movies') {
     openInput();
+    initFilter()
   }
 
   // pagination
