@@ -49,17 +49,11 @@
 .filter-list__sort,
 .filter-list__genres,
 .filter-list__year{
+    display: block;
     position: absolute;
     z-index: 1000;
-
-
-    left:50%;
-transform:translateX(-50%);
-    display: block;
-    
-
-    
-    width: 195px;
+   
+    width: 194px;
     margin: 0;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -75,17 +69,17 @@ transform:translateX(-50%);
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
       0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16); 
 
-    //transform: scaleY(0);  
+    left:50%;
+    transform: scaleY(0) translateX(-50%);  
     transform-origin: 0 0;
 
-    //transition: all $time-cubic;
-
+    transition: all $time-cubic;
 }
 
 .open{
     opacity: 1;
     pointer-events: initial;
-   // transform: scaleY(1);
+    transform: scaleY(1) translateX(-50%);
 }
 
 
@@ -98,9 +92,10 @@ transform:translateX(-50%);
     margin-right: auto;
     
     box-sizing: border-box;
-    width: 195px;
+    width: 194px;
     height: 35px;
-    padding-right: 25px;
+    padding-left: 5px;
+    padding-right: 24px;
     
     font-size: 14px;
     line-height: 1.19;
@@ -112,6 +107,7 @@ transform:translateX(-50%);
     
     cursor: pointer;
     transition: all $time-cubic;
+
     
     &:hover,
     &:focus {
@@ -188,7 +184,7 @@ transform:translateX(-50%);
 .filter-icon{
     position: absolute;
     top: 12px;
-    left: 175px;
+    left: 218px;
    
     width: 14px;
     height: 14px;
@@ -206,5 +202,10 @@ transform:translateX(-50%);
     .filter-input__genres:focus +&,
     .filter-input__year:focus + & {
         fill: $accent-color;
+    }
+
+    @media screen and (min-width: $tablet-general) {
+        left: 175px;
+
     }
 }

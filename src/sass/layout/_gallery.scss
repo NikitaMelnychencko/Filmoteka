@@ -8,7 +8,10 @@
 }
 
 .container-gallery {
-  padding-top: 30px;
+  padding-top: 20px;
+  @media screen and (min-width: $tablet-general) {
+    padding-top: 30px;
+  }
 }
 
 .gallery-list {
