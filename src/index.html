@@ -21,7 +21,7 @@
     <div class="header__body container">
       <div class="header__wraper ">
         <div class="header__main">
-          <a class="header__title" href="/">
+          <a class="header__title" href="index.html">
             <svg class="icon-film" width="16" height="12">
               <use href=./images/svg/svg.svg#icon-film></use>
             </svg>
@@ -37,27 +37,27 @@
               </svg>
               <a href="" class="nav__link"> log in</a>
             </li>
-            <li class="nav__list js-logOut hidden" id="logOut">
+            <li class="nav__list js-logout" id="logOut">
               <svg class="icon-user" width="16" height="12">
                 <use href="./images/svg/svg.svg#icon-logout"></use>
               </svg>
               <a href="" class="nav__link">log out</a>
             </li>
-            <li class="nav__list "><a href="/" class="nav__link nav__current">home</a></li>
-            <li class="nav__list"><a href="/" class="nav__link">my library</a></li>
+            <li class="nav__list "><a href="/" id="home" class="nav__link nav__current">home</a></li>
+            <li class="nav__list" ><a href="/" id="myLib" class="nav__link">my library</a></li>
           </ul>
         </nav>
       </div>
     </div>
 
-    <div class="backdrop-sing hidden">
+    <div class="backdrop-sing modal-auth--hidden">
       <div class="modal-signup ">
         <div class="cl-btn-mod">
           <div class="cl-btn-mod-in">
             <div class="cl-btn-mod-txt">Close</div>
           </div>
         </div>
-        <div class="signup-wpapper hidden">
+        <div class="signup-wpapper modal-singup--hidden">
           <h2 class="modal__title">Sing up</h2>
           <svg width="30px" height="30px" class="modal__back">
             <use href="./images/svg/svg.svg#icon-back"></use>
@@ -88,7 +88,7 @@
             <button type="submit" class="modal__button" aria-label="sign up">Sign up</button>
           </form>
         </div>
-        <div class="signin-wpapper">
+        <div class="signin-wpapper ">
           <h2 class="modal__title">Sign in</h2>
           <form action="signin" class="modal__form-login">
             <label class="modal__label">
