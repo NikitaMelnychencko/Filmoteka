@@ -35,6 +35,7 @@ export function renderParamsCard(id) {
     .then(response => {
         return response;
     })
+  .catch(error => {renderErrorServer()})
 }
 
 export function genreMovie(genre) {

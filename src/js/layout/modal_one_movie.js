@@ -4,6 +4,7 @@ import { renderParamsCard } from '../components/fetch';
 import { postUserData, userId,deleteData,getIdUser} from '../components/appFirebase.js';
 import img from '../../images/img/png/gallery/no-image.png';
 import { refs } from '../refs/refs.js';
+
 let id = 'id';
 let objService = '';
 let arrObj = '';
@@ -25,7 +26,6 @@ function renderMovieSeorchParam(id) {
       localStorage.setItem('idFilm', id);
       localStorage.setItem('marcupFilm', arrObj);
     })
-    .catch(() => {});
 }
 
 function imgFix(m) {
