@@ -6,7 +6,7 @@ let year = '';
 
 refsFilter().body.addEventListener('click', el => {
     if (el.target.nodeName !== "INPUT") {
-        removeOpen()
+        removeOpen();
     }
 })
 
@@ -51,8 +51,8 @@ export function initFilter() {
 function onOpenListSorts(evt) {
     evt.preventDefault()
     refsFilter().InputSort.value = '';
-    removeClassOpenYearGenres()
-    refsFilter().listSort.classList.toggle('open')
+    removeClassOpenYearGenres();
+    refsFilter().listSort.classList.toggle('open');
 }
 
 function onRenderSort(evt) {
@@ -60,11 +60,11 @@ function onRenderSort(evt) {
     if (evt.target.nodeName !== 'LI') {
         return;
     } else {
-        refsFilter().listSort.classList.remove('open')
-        refsFilter().InputSort.value = evt.target.textContent
+        refsFilter().listSort.classList.remove('open');
+        refsFilter().InputSort.value = evt.target.textContent;
     }
     sort = evt.target.dataset.atribute;
-    console.log(year, sort, genre)
+    console.log(year, sort, genre);
     renderGallery('sort', year, sort, genre);
 };
 
@@ -73,7 +73,7 @@ function onOpenListGenres(evt) {
     evt.preventDefault();
     refsFilter().inputGenres.value = '';
     refsFilter().listGenres.classList.toggle('open');
-    removeClassOpenYearSort()
+    removeClassOpenYearSort();
 }
 
 function onRenderGenre(evt) {
@@ -91,8 +91,8 @@ function onRenderGenre(evt) {
 function onOpenListYear(evt) {
     evt.preventDefault();
     refsFilter().inputYear.value = '';
-    refsFilter().listYear.classList.toggle('open')
-    removeClassOpenGenresSort()
+    refsFilter().listYear.classList.toggle('open');
+    removeClassOpenGenresSort();
 }
 
 function onRenderYear(evt) {

@@ -31,7 +31,7 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
   const spinnerMarkUp = spinner();
   const currentValue = value;
   const blockHelpMarkup = blockHelpTemplate({ svg });
-  const nullMarkup = markupNullImg(value.hero_tittle)
+  const nullMarkup = markupNullImg(value.hero_tittle);
 
   let markupFilter = '';
   if (value.hero_tittle === 'Search Movies') {
@@ -52,7 +52,7 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
   addHeroClass(valueAdd, valueRemove);
   if (value.hero_tittle === 'Search Movies') {
     openInput();
-    initFilter()
+    initFilter();
   }
 
   // pagination
