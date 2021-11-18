@@ -34,7 +34,7 @@ function imgFix(m) {
     ...{ poster_path: !m.poster_path ? img : `${IMG_URL}${m.poster_path}` },
   };
 }
-function updateButton(id) {
+export function updateButton(id) {
   const watched = getIdUser(userId, 'watched', id)
   const queue = getIdUser(userId, 'queue', id)
   Promise.all([watched, queue]).then(values => {
@@ -67,14 +67,13 @@ export function seorchId() {
   });
 }
 function addToDataBase(data) {
-  const buttonList = document.querySelector('.modal-one-movie__button-box');
-  buttonList.addEventListener('click', e => {
+  const idFilm = localStorage.getItem('idFilm');
+  const markupFilm = localStorage.getItem('marcupFilm');
+  refButton().addEventListener('click', e => {
     if (e.target.nodeName !== 'BUTTON') return;
     if (userId == null) {
       refs.sininModal.classList.remove('hidden');
     } else {
-      const idFilm = localStorage.getItem('idFilm');
-      const markupFilm = localStorage.getItem('marcupFilm');
       postUserData(userId, e.target.ariaLabel, idFilm, markupFilm);
       deleteData(userId, e.target.dataset.set, idFilm);
       closeModal();
