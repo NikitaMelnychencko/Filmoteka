@@ -8,6 +8,7 @@ import {
 import { refs } from '../refs/refs.js';
 import { addSpinner, removeSpinner } from './spinner';
 import { compile } from 'handlebars';
+import { ref } from '@firebase/database';
 
 refs.formLog.addEventListener('submit', e => {
   e.preventDefault();
@@ -18,7 +19,6 @@ refs.formLog.addEventListener('submit', e => {
   signInUser(emailValue, passValue);
   clearInput(refs.formLog, 2);
   removeSpinner();
-  addClass();
 });
 
 refs.formReg.addEventListener('submit', e => {
@@ -33,7 +33,6 @@ refs.formReg.addEventListener('submit', e => {
   AuthState(user);
   clearInput(refs.formReg, 3);
   removeSpinner();
-  addClass();
 });
 
 function clearInput(ref, number) {
@@ -51,11 +50,11 @@ function openSinUp(eve) {
   if (item === 'Sign up Now') {
     refs.singOutMod.classList.remove('modal-singup--hidden');
     refs.singInMod.classList.add('modal-singin--hidden');
+    refs.modalSinUpError.classList.add('modal__error--hidden');
   }
 }
 
 // function close modal
-refs.singinModal.addEventListener('click', mouseCloseMOdal);
 window.addEventListener('keydown', onCloseModal);
 
 function removeList() {
@@ -66,28 +65,59 @@ function removeList() {
 function onCloseModal(eve) {
   if (eve.code === 'Escape') {
     removeList();
+    backSingOut();
   }
   return window.addEventListener('keydown', onCloseModal);
 }
 
-function mouseCloseMOdal(event) {
-  if (
-    event.target.className === 'backdrop-sing' ||
-    event.target.className === 'cl-btn-mod-txt'
-  ) {
-    return addClass();
-  }
-  return;
+function removeListenerMouse() {
+  document.onmousedown = null;
+  document.onmouseup = null;
+  refs.modalSinUP.onmouseleave = null;
+}
+export function mouseUp() {
+  document.onmousedown = function () {
+    refs.modalSinUP.onmouseleave = function () {
+      document.onmouseup = null;
+    };
+    document.onmouseup = function (e) {
+      if (
+        e.target.className === 'backdrop-sing' ||
+        e.target.className === 'cl-btn-mod-txt'
+      ) {
+        {
+          
+          addClass();
+          backSingOut();
+        }
+      }
+    };
+  };
 }
 
-function addClass() {
+export function addClass() {
   refs.singinModal.classList.add('modal-auth--hidden');
+  removeListenerMouse();
 }
 
 // back sing Up
 refs.backModal.addEventListener('click', backSingOut);
 
 function backSingOut() {
-  refs.singOutMod.classList.add('modal-singup--hidden');
-  refs.singInMod.classList.remove('modal-singin--hidden');
+  toggleModalVisibility(refs.singOutMod, refs.singInMod, 'modal-singup--hidden', 'modal-singin--hidden')
+}
+
+export function logOutModalIsVisible(logOutFunction) {
+  toggleModalVisibility(refs.singInMod, refs.modalLogOut, 'modal-singin--hidden', 'modal-logout--hidden')
+  refs.btnLogOutYes.addEventListener('click', e => {
+    logOutFunction();
+    addClass();
+    toggleModalVisibility( refs.modalLogOut, refs.singInMod,  'modal-logout--hidden', 'modal-singin--hidden')
+  });
+  refs.btnLogOutNo.addEventListener('click', addClass);
+}
+ 
+function toggleModalVisibility(elFirst, elSecond, addClass, removeClass) {
+  elFirst.classList.add(addClass);
+  elSecond.classList.remove(removeClass);
 }
