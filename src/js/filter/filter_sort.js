@@ -4,11 +4,6 @@ let sort = '';
 let genre = '';
 let year = '';
 
-refsFilter().body.addEventListener('click', el => {
-    if (el.target.nodeName !== "INPUT") {
-        removeOpen();
-    }
-})
 
 function refsFilter() {
     const refs = {
@@ -23,6 +18,8 @@ function refsFilter() {
         button: document.querySelector('.button__filter-clear'),
         searchHome: document.querySelector('.search-form__input'),
         hero: document.querySelector('.gallery'),
+        arrowInput: document.querySelector('.filter-icon'),
+        blockInput: document.querySelector('.filter-inputs')
     }
     return refs
 }
@@ -34,6 +31,7 @@ export function initFilter() {
     refsFilter().listGenres.addEventListener('click', onRenderGenre);
     refsFilter().inputYear.addEventListener('click', onOpenListYear);
     refsFilter().listYear.addEventListener('click', onRenderYear);
+    refsFilter().blockInput.addEventListener('click', onToggleArrowInput);
     refsFilter().button.addEventListener('click', el => {
         el.preventDefault()
         renderGallery('home');
@@ -41,15 +39,26 @@ export function initFilter() {
         refsFilter().inputGenres.value = '';
         refsFilter().inputYear.value = '';
         refsFilter().listYear.classList.remove('open');
-        testOnOpen()
+        removeOpen()
     })
     refsFilter().searchHome.addEventListener('click', el => {
-        testOnOpen()
+        removeOpen()
     })
 }
+// clear EventListener
+function onClearEventListener(el) {
+    refsFilter().body.addEventListener('click', onClearEventListener);
+    if (el.target.nodeName !== "INPUT") {
+        removeOpen();
+        refsFilter().body.removeEventListener('click', onClearEventListener)
+    }
+}
 
-function onOpenListSorts(evt) {
-    evt.preventDefault()
+
+// sort 
+function onOpenListSorts(el) {
+    el.preventDefault()
+    onClearEventListener(el)
     refsFilter().InputSort.value = '';
     removeClassOpenYearGenres();
     refsFilter().listSort.classList.toggle('open');
@@ -64,13 +73,13 @@ function onRenderSort(evt) {
         refsFilter().InputSort.value = evt.target.textContent;
     }
     sort = evt.target.dataset.atribute;
-    console.log(year, sort, genre);
     renderGallery('sort', year, sort, genre);
 };
 
 // genre
 function onOpenListGenres(evt) {
     evt.preventDefault();
+    onClearEventListener(evt)
     refsFilter().inputGenres.value = '';
     refsFilter().listGenres.classList.toggle('open');
     removeClassOpenYearSort();
@@ -88,8 +97,11 @@ function onRenderGenre(evt) {
     renderGallery('sort', year, sort, genre);
 }
 
+
+// year
 function onOpenListYear(evt) {
     evt.preventDefault();
+    onClearEventListener(evt)
     refsFilter().inputYear.value = '';
     refsFilter().listYear.classList.toggle('open');
     removeClassOpenGenresSort();
@@ -97,7 +109,7 @@ function onOpenListYear(evt) {
 
 function onRenderYear(evt) {
     evt.preventDefault()
-    console.log(evt.target);
+    onClearEventListener(evt)
     if (evt.target.nodeName !== 'LI') {
         return
     } else {
@@ -130,4 +142,15 @@ function removeOpen() {
     refsFilter().listGenres.classList.remove('open');
     refsFilter().listSort.classList.remove('open');
 }
+
+// animation Arrow input
+function onToggleArrowInput(evt) {
+    console.log(evt.target);
+    if (evt.target) {
+        refsFilter().arrowInput.classList.toggle('transform');
+    }
+}
+
+
+
 

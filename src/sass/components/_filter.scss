@@ -192,7 +192,7 @@
     fill: $primary-border-color;
    
     pointer-events: none;
-
+    transform: rotate(0deg);
      transition: fill $time-cubic;
     
     .filter-input__sort:hover + &,
@@ -203,7 +203,9 @@
     .filter-input__year:focus + & {
         fill: $accent-color;
     }
-
+    // .open +&{
+    // transform: rotate(-89deg);
+    // }
     @media screen and (min-width: $tablet-general) {
         left: 175px;
 
