@@ -196,7 +196,10 @@
     
     .filter-input__sort:hover + &,
     .filter-input__genres:hover +&,
-    .filter-input__year:hover + & {
+    .filter-input__year:hover + &,
+    .filter-input__sort:focus + &,
+    .filter-input__genres:focus +&,
+    .filter-input__year:focus + & {
         fill: $accent-color;
     }
 }
