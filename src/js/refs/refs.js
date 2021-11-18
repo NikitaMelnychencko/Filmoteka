@@ -14,4 +14,7 @@ export const refs = {
   idhome: document.querySelector('#home'),
   idmyLib: document.querySelector('#myLib'),
   modalSinInOpen: document.querySelector('.modal-auth--hidden'),
+  modalLogOut: document.querySelector('.logout-wpapper'),
+  btnLogOutYes: document.querySelector('.logout-button--yes'),
+  btnLogOutNo: document.querySelector('.logout-button--no'),
 };
