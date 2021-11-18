@@ -1,8 +1,9 @@
 import modal_one_movie_markup from '../../views/partials/modal_one_movie.hbs';
-import { renderModal } from '../components/modal';
+import { renderModal, closeModal } from '../components/modal';
 import { renderParamsCard } from '../components/fetch';
 import { postUserData, userId,deleteData,getIdUser} from '../components/appFirebase.js';
 import img from '../../images/img/png/gallery/no-image.png';
+import { refs } from '../refs/refs.js';
 let id = 'id';
 let objService = '';
 let arrObj = '';
@@ -24,7 +25,7 @@ function renderMovieSeorchParam(id) {
       localStorage.setItem('idFilm', id);
       localStorage.setItem('marcupFilm', arrObj);
     })
-    .catch(() => { });
+    .catch(() => {});
 }
 
 function imgFix(m) {
@@ -33,7 +34,7 @@ function imgFix(m) {
     ...{ poster_path: !m.poster_path ? img : `${IMG_URL}${m.poster_path}` },
   };
 }
-function updateButton(id) {
+export function updateButton(id) {
   const watched = getIdUser(userId, 'watched', id)
   const queue = getIdUser(userId, 'queue', id)
   Promise.all([watched, queue]).then(values => {
@@ -52,9 +53,6 @@ function updateButton(id) {
 export function seorchId() {
   const imagesRef = document.querySelector('.gallery-list');
   imagesRef.addEventListener('click', e => {
-    localStorage.removeItem('idFilm', id);
-    localStorage.removeItem('marcupFilm', arrObj);
-
     e.preventDefault();
     if (e.target.nodeName === 'UL') {
       return;
@@ -66,13 +64,16 @@ export function seorchId() {
   });
 }
 function addToDataBase(data) {
+  const idFilm = localStorage.getItem('idFilm');
+  const markupFilm = localStorage.getItem('marcupFilm');
   refButton().addEventListener('click', e => {
-    if (e.target.nodeName !== 'BUTTON') {
-      return;
+    if (e.target.nodeName !== 'BUTTON') return;
+    if (userId == null) {
+      refs.singinModal.classList.remove('modal-auth--hidden');
+    } else {
+      postUserData(userId, e.target.ariaLabel, idFilm, markupFilm);
+      deleteData(userId, e.target.dataset.set, idFilm);
+      closeModal();
     }
-    const idFilm = localStorage.getItem('idFilm');
-    const markupFilm = localStorage.getItem('marcupFilm');
-    postUserData(userId, e.target.ariaLabel, idFilm, markupFilm);
-    deleteData(userId, e.target.dataset.set, idFilm);
   });
 }

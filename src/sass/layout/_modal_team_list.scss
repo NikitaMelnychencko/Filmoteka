@@ -116,6 +116,7 @@
 .ourteam__image {
   margin: auto;
   min-width: 100px;
+  height: 100px;
   border-radius: 60px;
   margin-bottom: 5px;
   transition: 1s;
@@ -125,10 +126,12 @@
   @media screen and (min-width: $tablet-general) and (max-width: $tablet-only) {
     margin-bottom: 10px;
     min-width: 140px;
+    height: 140px;
   }
   @media screen and (min-width: $desktop-up) {
     margin-bottom: 20px;
     width: 150px;
+    height: 150px;
   }
 }
 .ourteam__subtitle {

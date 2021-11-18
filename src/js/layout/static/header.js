@@ -5,55 +5,59 @@ import { renderGallery } from '../../layout/gallery';
 import myLibraryMarkUp from '../../../views/partials/hero_my_list.hbs';
 import { refs } from '../../refs/refs.js';
 import { initGenres } from '../../data/genres';
-import {
-  renderBackdrop,
-  closeMd,
-  closeBackdrop,
-} from '../../components/backdrop';
 import { signOutUser } from '../../components/appFirebase';
-import {onLibButtons} from '../../layout/hero_my_list.js';
+import { onLibButtons } from '../../layout/hero_my_list.js';
+// import { ref } from '@firebase/database';
 
+function current(event) {
+  if (event === 'home') {
+    refs.idhome.classList.add('nav__current');
+    refs.idmyLib.classList.remove('nav__current');
+  } else if (event === 'my library') {
+    refs.idhome.classList.remove('nav__current');
+    refs.idmyLib.classList.add('nav__current');
+  }
+}
 
-refs.myUlEle.forEach((list, id, a) => {
-  list.addEventListener('click', () =>
-    a.forEach(elem => elem.classList.toggle('nav__current', elem === list)),
+export function home() {
+  current('home');
+  initGenres();
+  renderGallery();
+  pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
+}
+
+export function mylibwatch() {
+  // here render header page Button
+  const myLib = myLibraryMarkUp();
+  pageRender(
+    mainTittle.my_library_watched,
+    myLib,
+    'hero--my-library',
+    'hero--home',
+    current('my library'),
   );
-});
+  onLibButtons();
+  const userId = sessionStorage.getItem('userId');
+  renderGallery('library', `${userId}`, `watched`);
+}
 
 // Funchtion for render header
 function canheHeader(event) {
   event.preventDefault();
-  let target = event.target;
-  let item = target.textContent.trim();
-  console.log(item);
-
-  if (item === 'home') {
+  let item = event.target.textContent.trim();
+  if (item === 'home' || item === 'log out') {
     // here render header page serch
-    initGenres();
-    renderGallery();
-    pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
-  }
-  if (item === 'my library') {
-    // here render header page Button
-    const myLib = myLibraryMarkUp();
-    pageRender(
-      mainTittle.my_library_watched,
-      myLib,
-      'hero--my-library',
-      'hero--home',
-    );
-
-    onLibButtons();
-    const userId = sessionStorage.getItem('userId');
-
-    renderGallery('library', `${userId}`, `watched`);
-
-    //getUser(`${userId}`, `watched`);
+    home();
+  } else if (sessionStorage.getItem('userId') !== null) {
+    mylibwatch();
+  } else {
+    refs.singinModal.classList.remove('modal-auth--hidden');
+    home();
   }
   if (item === 'log in') {
-    // renderBackdrop();
-    refs.sininModal.classList.remove('hidden');
+    refs.singinModal.classList.remove('modal-auth--hidden');
   }
+  return;
 }
 
 refs.myUlEle.forEach(function (link) {
@@ -61,15 +65,17 @@ refs.myUlEle.forEach(function (link) {
 });
 
 // function auth
-
 export function swetchClass() {
-  console.log(sessionStorage.getItem('userId') === null);
+  changeAuthModal();
+}
+
+function changeAuthModal() {
   if (sessionStorage.getItem('userId') === null) {
-    refs.logIn.classList.remove('hidden');
-    refs.logOut.classList.add('hidden');
+    refs.logIn.classList.remove('js-login--hidden');
+    refs.logOut.classList.add('js-logout--hidden');
   } else {
-    refs.logIn.classList.add('hidden');
-    refs.logOut.classList.remove('hidden');
+    refs.logIn.classList.add('js-login--hidden');
+    refs.logOut.classList.remove('js-logout--hidden');
   }
 }
 swetchClass();
@@ -77,5 +83,5 @@ swetchClass();
 refs.logOut.addEventListener('click', loginOutUser);
 
 function loginOutUser() {
-  signOutUser()
+  signOutUser();
 }
