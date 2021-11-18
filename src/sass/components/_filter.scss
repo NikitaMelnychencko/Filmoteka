@@ -1,6 +1,7 @@
 .filter {
     display: block;
     padding-top: 20px;
+    padding-bottom: 20px;
     
     @media screen and (min-width: $desktop-up) {
         display: flex;
