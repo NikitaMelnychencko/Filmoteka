@@ -67,13 +67,13 @@ export function regUser(email, password) {
       const errorMessage = error.message;
     });
 }
-
+console.log(localStorage.getItem('idFilm'));
 // Aut User
 export function signInUser(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
       swetchClass()
-      if(localStorage.getItem('idFilm') === null){updateButton(localStorage.getItem('idFilm'))} 
+      if(localStorage.getItem('idFilm') !== null){updateButton(localStorage.getItem('idFilm'))} 
       
       return userCredential.user;
     })
