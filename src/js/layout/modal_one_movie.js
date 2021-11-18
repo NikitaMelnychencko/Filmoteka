@@ -1,7 +1,7 @@
 import modal_one_movie_markup from '../../views/partials/modal_one_movie.hbs';
 import { renderModal, closeModal } from '../components/modal';
 import { renderParamsCard } from '../components/fetch';
-import { postUserData, userId, deleteData } from '../components/appFirebase.js';
+import { postUserData, userId,deleteData,getIdUser} from '../components/appFirebase.js';
 import img from '../../images/img/png/gallery/no-image.png';
 import { refs } from '../refs/refs.js';
 let id = 'id';
@@ -9,11 +9,17 @@ let objService = '';
 let arrObj = '';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
+function refButton() {
+  const buttonList = document.querySelector('.modal-one-movie__button-box');
+  return buttonList
+}
+
 function renderMovieSeorchParam(id) {
   renderParamsCard(id)
     .then(data => {
-      renderModal();
-      renderParamCard(data);
+      renderModal(modal_one_movie_markup(imgFix(data)));
+      addToDataBase(imgFix(data));
+      updateButton(id);
       objService = data;
       arrObj = JSON.stringify({ objService });
       localStorage.setItem('idFilm', id);
@@ -28,12 +34,20 @@ function imgFix(m) {
     ...{ poster_path: !m.poster_path ? img : `${IMG_URL}${m.poster_path}` },
   };
 }
-
-function renderParamCard(data) {
-  const modalContent = document.querySelector('.modal__content');
-  const marcup = modal_one_movie_markup(imgFix(data));
-  modalContent.innerHTML = marcup;
-  addToDataBase(imgFix(data));
+function updateButton(id) {
+  const watched = getIdUser(userId, 'watched', id)
+  const queue = getIdUser(userId, 'queue', id)
+  Promise.all([watched, queue]).then(values => {
+    values.forEach((item,index) => {
+      if (item === null) {
+        return
+      } else {
+        refButton().children[index].disabled = true
+        refButton().children[index].style.background = 'grey'
+        refButton().children[index].style.color='white'
+      }
+    })
+  });
 }
 
 export function seorchId() {
