@@ -1,3 +1,4 @@
+import { child } from 'firebase/database';
 import { renderGallery } from '../layout/gallery';
 
 let sort = '';
@@ -145,10 +146,13 @@ function removeOpen() {
 
 // animation Arrow input
 function onToggleArrowInput(evt) {
-    console.log(evt.target);
-    if (evt.target) {
-        refsFilter().arrowInput.classList.toggle('transform');
-    }
+    // console.log(refsFilter().listSort.classList('.open'));
+
+    console.log(evt.nextElementSibling);
+    // if (evt.target === child.classList === 'open') {
+
+    //     refsFilter().arrowInput.classList.toggle('transform');
+    // }
 }
 
 
