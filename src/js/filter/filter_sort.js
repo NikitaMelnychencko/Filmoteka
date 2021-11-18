@@ -4,6 +4,7 @@ let sort = '';
 let genre = '';
 let year = '';
 
+
 refsFilter().body.addEventListener('click', el => {
     if (el.target.nodeName !== "INPUT") {
         removeOpen()
@@ -23,6 +24,7 @@ function refsFilter() {
         button: document.querySelector('.button__filter-clear'),
         searchHome: document.querySelector('.search-form__input'),
         hero: document.querySelector('.gallery'),
+        filterContainer: document.querySelector('.filter'),
     }
     return refs
 }
@@ -41,10 +43,10 @@ export function initFilter() {
         refsFilter().inputGenres.value = '';
         refsFilter().inputYear.value = '';
         refsFilter().listYear.classList.remove('open');
-        testOnOpen()
+        //testOnOpen()
     })
     refsFilter().searchHome.addEventListener('click', el => {
-        testOnOpen()
+        //testOnOpen()
     })
 }
 
@@ -129,5 +131,14 @@ function removeOpen() {
     refsFilter().listYear.classList.remove('open');
     refsFilter().listGenres.classList.remove('open');
     refsFilter().listSort.classList.remove('open');
+}
+
+export function hideFilter(condition) {
+    if (condition) {
+        refsFilter().filterContainer.classList.add('hide-filter');
+        //removeOpen();
+    } else {
+        refsFilter().filterContainer.classList.remove('hide-filter');
+    }
 }
 

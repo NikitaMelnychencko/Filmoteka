@@ -4,6 +4,7 @@ import { renderPagination } from '../components/pagination-list';
 import img from '../../images/img/png/gallery/no-image.png';
 import card from '../../views/components/card_galery.hbs';
 import { filterGlobal } from '../filter/fetch_filter_sort';
+import { hideFilter } from '../filter/filter_sort';
 // import { filterGlobalGenres } from '../filter/fetch_filter_genres';
 //import { filterGlobal } from '../filter/fetch_filter_sort';
 import { getUser } from '../components/appFirebase';
@@ -51,11 +52,13 @@ export async function renderGallery(
   }
 
   if (options === 'home') {
+    hideFilter(false);
     renderParams.globalOptions = options;
     movies = await renderMovieGlobal(page, '', '', renderParams.globalOptions);
   }
 
   if (options === 'search') {
+    hideFilter(true);
     renderParams.globalOptions = options;
     renderParams.globalSearch = search;
     movies = await renderMovieGlobal(page, renderParams.globalSearch, '', '');
