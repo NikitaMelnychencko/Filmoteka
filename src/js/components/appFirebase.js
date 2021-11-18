@@ -168,13 +168,6 @@ export async function postUserData(userId, store, idFilm, markupFilm) {
   );
 }
 
-// //update
-// async function updateData(userId, store, idFilm, markupFilm) {
-//   return await update(
-//     ref(db, 'users/' + userId + '/' + store + '/' + idFilm),
-//     markupFilm,
-//   );
-// }
 
 //delete
 export async function deleteData(userId, store, idFilm) {

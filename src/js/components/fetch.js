@@ -25,7 +25,7 @@ export function renderMovieGlobal(page, searchQuery, id, options) {
           return data;
         }
       })
-      .catch(error => { });
+      .catch(error => {renderErrorSearch()});
   }
 }
 
@@ -35,7 +35,6 @@ export function renderParamsCard(id) {
     .then(response => {
         return response;
     })
-    .catch(error => { });
 }
 
 export function genreMovie(genre) {
@@ -51,5 +50,5 @@ function baseFetch(REQUEST_ADRESS) {
         throw new Error(renderErrorServer());
       }
     })
-    .catch(error => { });
+    .catch(error => {renderErrorServer()});
 }
