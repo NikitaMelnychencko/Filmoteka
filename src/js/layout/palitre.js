@@ -148,7 +148,6 @@ function setRingColor(e) {
 
 function satBrColor(e) {
   const sbc = degBlock(e, graph.holst / 2, '.palitre');
-  console.log(sbc);
   if (sbc > 220 && sbc < 314) {
     setColor.set_l(sbc);
     satBr(sbc, '#palitre__brightness-dot');
