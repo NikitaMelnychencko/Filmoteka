@@ -1,6 +1,4 @@
-import { renderGallery, renderMovies } from '../layout/gallery';
-import { filterGlobal } from './fetch_filter_sort';
-
+import { renderGallery } from '../layout/gallery';
 
 let sort = '';
 let genre = '';
@@ -8,7 +6,7 @@ let year = '';
 
 refsFilter().body.addEventListener('click', el => {
     if (el.target.nodeName !== "INPUT") {
-        testOnOpen()
+        removeOpen()
     }
 })
 
@@ -48,8 +46,6 @@ export function initFilter() {
     refsFilter().searchHome.addEventListener('click', el => {
         testOnOpen()
     })
-
-
 }
 
 function onOpenListSorts(evt) {
@@ -128,11 +124,8 @@ function removeClassOpenGenresSort() {
     refsFilter().listSort.classList.remove('open');
 }
 
-
-
-
 // Clear Filter
-function testOnOpen() {
+function removeOpen() {
     refsFilter().listYear.classList.remove('open');
     refsFilter().listGenres.classList.remove('open');
     refsFilter().listSort.classList.remove('open');
