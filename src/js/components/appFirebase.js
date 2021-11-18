@@ -73,7 +73,8 @@ export function signInUser(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
       swetchClass()
-      updateButton(localStorage.getItem('idFilm'))
+      if(localStorage.getItem('idFilm') === null){updateButton(localStorage.getItem('idFilm'))} 
+      
       return userCredential.user;
     })
     .catch(error => {
