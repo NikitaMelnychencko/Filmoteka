@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .filter{
 display: flex;
 padding-top: 5px;
@@ -11,9 +10,6 @@ padding-top: 5px;
 .filter__movie-sort,
 .filter__movie-genres,
 .filter__movie-year{
-=======
-.filter {
->>>>>>> bug-fix_change-Render-Gallery
     display: block;
     padding-top: 20px;
     
@@ -27,33 +23,6 @@ padding-top: 5px;
     display: block;
     padding-bottom: 15px;
 
-<<<<<<< HEAD
-.filter-input__sort,
-.filter-input__genres,
-.filter-input__year{
-    color: transparent;
-    text-shadow: 0 0 0 black;
-    border: $button-border;
-    box-sizing: border-box;
-    border-radius: 5px;
-    margin-right: 15px;
-    padding: 2px;
-    width: 200px;
-    color: #545454;
-    font-size: 16px;
-    line-height: 1.19;
-    text-align: center;
-    transition: color $time-cubic;
-}
-
-.filter-input__sort:hover,
-.filter-input__sort:focus,
-.filter-input__genres:focus,
-.filter-input__genres:hover,
-.filter-input__year:focus,
-.filter-input__year:hover{
-    color: $accent-color;
-=======
     @media screen and (min-width: $tablet-general) {
         display: flex;
         justify-content: space-between;
@@ -62,7 +31,6 @@ padding-top: 5px;
     @media screen and (min-width: $desktop-up) {
         padding: 0;
     }
->>>>>>> bug-fix_change-Render-Gallery
 }
 
 .filter__movie-sort,
@@ -117,7 +85,7 @@ padding-top: 5px;
 
 .filter-input__sort,
 .filter-input__genres,
-.filter-link__year {
+.filter-input__year {
     display: block;
     margin-left: auto;
     margin-right: auto;

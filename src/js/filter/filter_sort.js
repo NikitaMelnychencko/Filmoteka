@@ -1,54 +1,23 @@
 import { renderGallery, renderMovies } from '../layout/gallery';
 import { filterGlobal } from './fetch_filter_sort'
-<<<<<<< HEAD
-const body = document.querySelector('body')
-=======
-import svg from '../../images/svg/svg.svg'
-// import { renderMovieGlobal } from '../components/fetch';
-const main = document.querySelector('.hero')
-const body = document.querySelector('body')
-const hero = document.querySelector('.gallery')
-console.log(hero);
->>>>>>> bug-fix_change-Render-Gallery
+// const body = document.querySelector('body')
 
 
-<<<<<<< HEAD
-=======
-function filterMain() {
-    const markup = filter({ svg })
-    hero.insertAdjacentHTML("beforebegin", markup);
-}
-filterMain();
-
-const refs = {
-    InputSort: document.querySelector('.filter-input__sort'),
-    listOpenSort: document.querySelector('.filter-list__sort'),
-    inputGenres: document.querySelector('.filter-input__genres'),
-    filterList: document.querySelector('.filter-list__genres'),
-    listGenres: document.querySelector('.filter-list__genres'),
-    inputYear: document.querySelector('.filter-link__year'),
-    listYear: document.querySelector('.filter-list__year'),
-    itemYear: document.querySelectorAll('.filter-item__year'),
-    body: document.querySelector('body'),
-    buttom: document.querySelector('.button__filter-clear'),
-}
->>>>>>> bug-fix_change-Render-Gallery
 let sort = '';
 let genre = '';
 let year = '';
 
-body.addEventListener('click', el => {
-    if (el.target.nodeName !== "INPUT") {
-        testOnOpen()
-    }
-})
+// body.addEventListener('click', el => {
+//     if (el.target.nodeName !== "INPUT") {
+//         testOnOpen()
+//     }
+// })
 
 function refsFilter() {
     const refs = {
         InputSort: document.querySelector('.filter-input__sort'),
         listSort: document.querySelector('.filter-list__sort'),
         inputGenres: document.querySelector('.filter-input__genres'),
-        filterList: document.querySelector('.filter-list__genres'),
         listGenres: document.querySelector('.filter-list__genres'),
         inputYear: document.querySelector('.filter-input__year'),
         listYear: document.querySelector('.filter-list__year'),
@@ -60,12 +29,11 @@ function refsFilter() {
     return refs
 }
 
-
 export function initFilter() {
     refsFilter().InputSort.addEventListener('click', onOpenListSorts);
     refsFilter().listSort.addEventListener('click', onRenderSort);
     refsFilter().inputGenres.addEventListener('click', onOpenListGenres);
-    refsFilter().filterList.addEventListener('click', onRenderGenre);
+    refsFilter().listGenres.addEventListener('click', onRenderGenre);
     refsFilter().inputYear.addEventListener('click', onOpenListYear);
     refsFilter().listYear.addEventListener('click', onRenderYear);
     refsFilter().button.addEventListener('click', el => {
@@ -153,7 +121,7 @@ function removeClassOpenYearSort() {
     refsFilter().listSort.classList.remove('open');
 }
 
-function removeClassOpenGenresSort(open, open, open) {
+function removeClassOpenGenresSort() {
     refsFilter().listGenres.classList.remove('open');
     refsFilter().listSort.classList.remove('open');
 }
