@@ -5,12 +5,6 @@ let genre = '';
 let year = '';
 
 
-refsFilter().body.addEventListener('click', el => {
-    if (el.target.nodeName !== "INPUT") {
-        removeOpen()
-    }
-})
-
 function refsFilter() {
     const refs = {
         InputSort: document.querySelector('.filter-input__sort'),
@@ -24,7 +18,8 @@ function refsFilter() {
         button: document.querySelector('.button__filter-clear'),
         searchHome: document.querySelector('.search-form__input'),
         hero: document.querySelector('.gallery'),
-        filterContainer: document.querySelector('.filter'),
+        arrowInput: document.querySelector('.filter-icon'),
+        blockInput: document.querySelector('.filter-inputs')
     }
     return refs
 }
@@ -36,6 +31,7 @@ export function initFilter() {
     refsFilter().listGenres.addEventListener('click', onRenderGenre);
     refsFilter().inputYear.addEventListener('click', onOpenListYear);
     refsFilter().listYear.addEventListener('click', onRenderYear);
+    refsFilter().blockInput.addEventListener('click', onToggleArrowInput);
     refsFilter().button.addEventListener('click', el => {
         el.preventDefault()
         renderGallery('home');
@@ -43,18 +39,29 @@ export function initFilter() {
         refsFilter().inputGenres.value = '';
         refsFilter().inputYear.value = '';
         refsFilter().listYear.classList.remove('open');
-        //testOnOpen()
+        removeOpen()
     })
     refsFilter().searchHome.addEventListener('click', el => {
-        //testOnOpen()
+        removeOpen()
     })
 }
+// clear EventListener
+function onClearEventListener(el) {
+    refsFilter().body.addEventListener('click', onClearEventListener);
+    if (el.target.nodeName !== "INPUT") {
+        removeOpen();
+        refsFilter().body.removeEventListener('click', onClearEventListener)
+    }
+}
 
-function onOpenListSorts(evt) {
-    evt.preventDefault()
+
+// sort 
+function onOpenListSorts(el) {
+    el.preventDefault()
+    onClearEventListener(el)
     refsFilter().InputSort.value = '';
-    removeClassOpenYearGenres()
-    refsFilter().listSort.classList.toggle('open')
+    removeClassOpenYearGenres();
+    refsFilter().listSort.classList.toggle('open');
 }
 
 function onRenderSort(evt) {
@@ -62,20 +69,20 @@ function onRenderSort(evt) {
     if (evt.target.nodeName !== 'LI') {
         return;
     } else {
-        refsFilter().listSort.classList.remove('open')
-        refsFilter().InputSort.value = evt.target.textContent
+        refsFilter().listSort.classList.remove('open');
+        refsFilter().InputSort.value = evt.target.textContent;
     }
     sort = evt.target.dataset.atribute;
-    console.log(year, sort, genre)
     renderGallery('sort', year, sort, genre);
 };
 
 // genre
 function onOpenListGenres(evt) {
     evt.preventDefault();
+    onClearEventListener(evt)
     refsFilter().inputGenres.value = '';
     refsFilter().listGenres.classList.toggle('open');
-    removeClassOpenYearSort()
+    removeClassOpenYearSort();
 }
 
 function onRenderGenre(evt) {
@@ -90,16 +97,19 @@ function onRenderGenre(evt) {
     renderGallery('sort', year, sort, genre);
 }
 
+
+// year
 function onOpenListYear(evt) {
     evt.preventDefault();
+    onClearEventListener(evt)
     refsFilter().inputYear.value = '';
-    refsFilter().listYear.classList.toggle('open')
-    removeClassOpenGenresSort()
+    refsFilter().listYear.classList.toggle('open');
+    removeClassOpenGenresSort();
 }
 
 function onRenderYear(evt) {
     evt.preventDefault()
-    console.log(evt.target);
+    onClearEventListener(evt)
     if (evt.target.nodeName !== 'LI') {
         return
     } else {
@@ -133,12 +143,14 @@ function removeOpen() {
     refsFilter().listSort.classList.remove('open');
 }
 
-export function hideFilter(condition) {
-    if (condition) {
-        refsFilter().filterContainer.classList.add('hide-filter');
-        //removeOpen();
-    } else {
-        refsFilter().filterContainer.classList.remove('hide-filter');
+// animation Arrow input
+function onToggleArrowInput(evt) {
+    console.log(evt.target);
+    if (evt.target) {
+        refsFilter().arrowInput.classList.toggle('transform');
     }
 }
+
+
+
 

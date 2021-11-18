@@ -21,17 +21,16 @@ import { blockhelpOpen } from '../components/block_help.js';
 import { seorchId } from '../layout/modal_one_movie.js';
 import filter from '../../views/components/filter/filter_sort.hbs';
 import { initFilter } from '../filter/filter_sort';
-import filterItemYear from '../filter_card.json';
+import filterItemYear from '../filter_year_list.json';
 import filterItemGenre from '../filter_genre_list.json';
 import filterItemSort from '../filter_sort_list.json';
-
 export function pageRender(value, heroValue, valueAdd, valueRemove) {
   //backdrop include plugin "modal window"
   const backdropMarkUp = backdrop_markup(modal_markup({ svg }));
   const spinnerMarkUp = spinner();
   const currentValue = value;
   const blockHelpMarkup = blockHelpTemplate({ svg });
-  const nullMarkup = markupNullImg(value.hero_tittle)
+  const nullMarkup = markupNullImg(value.hero_tittle);
 
   let markupFilter = '';
   if (value.hero_tittle === 'Search Movies') {
@@ -52,7 +51,7 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
   addHeroClass(valueAdd, valueRemove);
   if (value.hero_tittle === 'Search Movies') {
     openInput();
-    initFilter()
+    initFilter();
   }
 
   // pagination
