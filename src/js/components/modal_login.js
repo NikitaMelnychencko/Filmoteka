@@ -66,7 +66,6 @@ function removeList() {
 function onCloseModal(eve) {
   if (eve.code === 'Escape') {
     removeList();
-    console.log(eve.code);
   }
   return window.addEventListener('keydown', onCloseModal);
 }
