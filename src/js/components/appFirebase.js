@@ -66,7 +66,6 @@ export function regUser(email, password) {
       return userCredential.user.uid;
     })
     .catch(error => {
-      const errorCode = error.code;
       const errorMessage = error.message;
       signUpErrorRender(errorMessage);
     });
@@ -84,44 +83,11 @@ export function signInUser(email, password) {
       return userCredential.user;
     })
     .catch(error => {
-      const errorCode = error.code;
       const errorMessage = error.message;
       signInErrorTextRender(errorMessage);
     });
 }
 
-function signInErrorTextRender(errorMessage) {
-  let errorText = '0';
-
-  if (errorMessage === 'Firebase: Error (auth/user-not-found).') {
-    errorText = 'Пользователь не обнаружен';
-  } else if (errorMessage === 'Firebase: Error (auth/wrong-password).') {
-    errorText = 'Неверный пароль';
-  } else if (
-    errorMessage ===
-    'Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).'
-  ) {
-    errorText = 'Слишком много попыток';
-  } else {
-    errorText = 'Unknow Error';
-  }
-
-  refs.modalSinInError.classList.remove('signin-modal__error--hidden');
-  refs.modalSinInError.innerHTML = `<p class="modal__error-text">${errorText}</p>`;
-}
-
-function signUpErrorRender(errorMessage) {
-  let errorText = '0';
-
-  if (errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
-    errorText = 'Пользователь уже зарегестрирован';
-  } else {
-    errorText = 'Unknow Error';
-  }
-
-  refs.modalSinUpError.classList.remove('signup-modal__error--hidden');
-  refs.modalSinUpError.innerHTML = `<p class="modal__error-text">${errorText}</p>`;
-}
 
 export async function updateInUser(name) {
   return await updateProfile(auth.currentUser, {
@@ -209,15 +175,45 @@ export async function postUserData(userId, store, idFilm, markupFilm) {
   );
 }
 
-// //update
-// async function updateData(userId, store, idFilm, markupFilm) {
-//   return await update(
-//     ref(db, 'users/' + userId + '/' + store + '/' + idFilm),
-//     markupFilm,
-//   );
-// }
-
 //delete
 export async function deleteData(userId, store, idFilm) {
   return await remove(ref(db, 'users/' + userId + '/' + store + '/' + idFilm));
+}
+
+
+
+function signInErrorTextRender(errorMessage) {
+  let errorText = '0';
+
+  if (errorMessage === 'Firebase: Error (auth/user-not-found).') {
+    errorText = 'User not found';
+  } else if (errorMessage === 'Firebase: Error (auth/wrong-password).') {
+    errorText = 'Wrong password';
+  } else if (
+    errorMessage ===
+    'Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).'
+  ) {
+    errorText = 'Too many attempts';
+  } else {
+    errorText = 'Unknow Error';
+  }
+  renderError(refs.modalSinInError, errorText)
+
+}
+
+function signUpErrorRender(errorMessage) {
+  let errorText = '0';
+
+  if (errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
+    errorText = 'User is already registered';
+  } else {
+    errorText = 'Unknow Error';
+  }
+  renderError(refs.modalSinUpError, errorText)
+
+}
+
+function renderError(ref, errorText) {
+  ref.classList.remove('modal__error--hidden');
+  ref.innerHTML = `<p class="modal__error-text">${errorText}</p>`;
 }

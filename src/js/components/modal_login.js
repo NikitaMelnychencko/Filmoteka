@@ -50,6 +50,7 @@ function openSinUp(eve) {
   if (item === 'Sign up Now') {
     refs.singOutMod.classList.remove('modal-singup--hidden');
     refs.singInMod.classList.add('modal-singin--hidden');
+    refs.modalSinUpError.classList.add('modal__error--hidden');
   }
 }
 
