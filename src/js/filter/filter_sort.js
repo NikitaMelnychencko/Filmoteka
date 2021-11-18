@@ -19,7 +19,8 @@ function refsFilter() {
         searchHome: document.querySelector('.search-form__input'),
         hero: document.querySelector('.gallery'),
         arrowInput: document.querySelector('.filter-icon'),
-        blockInput: document.querySelector('.filter-inputs')
+        blockInput: document.querySelector('.filter-inputs'),
+        filterContainer: document.querySelector('.filter'),
     }
     return refs
 }
@@ -141,6 +142,14 @@ function removeOpen() {
     refsFilter().listYear.classList.remove('open');
     refsFilter().listGenres.classList.remove('open');
     refsFilter().listSort.classList.remove('open');
+}
+
+export function hideFilter(condition) {
+    if (condition) {
+        refsFilter().filterContainer.classList.add('hide-filter');
+    } else {
+        refsFilter().filterContainer.classList.remove('hide-filter');
+    }
 }
 
 // animation Arrow input
