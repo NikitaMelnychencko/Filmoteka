@@ -23,6 +23,7 @@ import filter from '../../views/components/filter/filter_sort.hbs';
 import { initFilter } from '../filter/filter_sort';
 import filterItemYear from '../filter_card.json';
 import filterItemGenre from '../filter_genre_list.json';
+import filterItemSort from '../filter_sort_list.json';
 
 export function pageRender(value, heroValue, valueAdd, valueRemove) {
   //backdrop include plugin "modal window"
@@ -34,7 +35,7 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
 
   let markupFilter = '';
   if (value.hero_tittle === 'Search Movies') {
-    markupFilter = filter({ svg, filterItemYear, filterItemGenre });
+    markupFilter = filter({ svg, filterItemYear, filterItemGenre, filterItemSort });
 
   }
 

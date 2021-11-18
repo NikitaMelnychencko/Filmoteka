@@ -7,12 +7,9 @@
                 <use href="{{svg}}#icon-down-arrow"></use>
             </svg>
             <ul class="filter-list__sort">
-                <li class="filter-item__sort" data-atribute='popularity.desc'>Popularity (decreasing)</li>
-                <li class="filter-item__sort" data-atribute='popularity.asc'>Popularity (increasing)</li>
-                <li class="filter-item__sort" data-atribute='primary_release_date.desc'>Release date (decreasing)</li>
-                <li class="filter-item__sort" data-atribute='primary_release_date.asc'>Release date (ascending)</li>
-                <li class="filter-item__sort" data-atribute='original_title.asc'>Name (A-Z)</li>
-                <li class="filter-item__sort" data-atribute='original_title.desc'>Name (Z-A)</li>
+                {{#each filterItemSort.itemSort}}
+                <li class="filter-item__sort" data-atribute={{this.data-atribute}}>{{this.name}}</li>
+                {{/each}}
             </ul>
         </div>
         <div class="filter__movie-genres">
