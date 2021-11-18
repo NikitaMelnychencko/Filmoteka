@@ -1,42 +1,41 @@
-
-.hiden{
-    @extend %hide;
+.hiden {
+  @extend %hide;
 }
 
-img{
-display: inline;
+.page__error img {
+  display: inline;
 }
 
 .page__error {
-    display: block;
-    height: calc(100vh - 230px - 129px);
-    text-align: center;
-    display: block;
-    font-size: 14px;
+  display: block;
+  height: calc(100vh - 230px - 129px);
+  text-align: center;
+  display: block;
+  font-size: 14px;
 }
-.page-error__serv{
-     text-align: center;
-    display: block;
-    font-size: 14px;
+.page-error__serv {
+  text-align: center;
+  display: block;
+  font-size: 14px;
 }
 
-.error{
-        display: block;
-        font-size: 150px;
+.error {
+  display: block;
+  font-size: 150px;
 }
-.error__text{
-    font-weight: 500;
+.error__text {
+  font-weight: 500;
   font-size: 30px;
   line-height: 20px;
   color: $primary-text-color;
   margin-bottom: 21px;
 }
 
-.button__error{
-    margin-top: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    border: $button-border;
+.button__error {
+  margin-top: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  border: $button-border;
   box-sizing: border-box;
   border-radius: 5px;
   height: 44px;
@@ -57,7 +56,6 @@ display: inline;
   }
   @media screen and (min-width: $desktop-up) {
     width: 400px;
-  
   }
   &:hover,
   &:focus {
