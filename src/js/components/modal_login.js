@@ -18,7 +18,6 @@ refs.formLog.addEventListener('submit', e => {
   signInUser(emailValue, passValue);
   clearInput(refs.formLog, 2);
   removeSpinner();
-  addClass();
 });
 
 refs.formReg.addEventListener('submit', e => {
@@ -80,7 +79,7 @@ function mouseCloseMOdal(event) {
   return;
 }
 
-function addClass() {
+export function addClass() {
   refs.singinModal.classList.add('modal-auth--hidden');
 }
 

@@ -18,6 +18,8 @@ import {
 } from 'firebase/database';
 import { swetchClass } from '../layout/static/header';
 import { updateButton } from '../layout/modal_one_movie';
+import { addClass } from '../components/modal_login';
+import { refs } from '../refs/refs.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCrhBW63SM95ZUKCf6EsxC1CtzGhzdJBtQ',
@@ -59,7 +61,7 @@ const filmId = 534536;
 export function regUser(email, password) {
   return createUserWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
-      swetchClass()
+      swetchClass();
       return userCredential.user.uid;
     })
     .catch(error => {
@@ -72,14 +74,38 @@ export function regUser(email, password) {
 export function signInUser(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
-      swetchClass()
-      if(localStorage.getItem('idFilm') !== null){updateButton(localStorage.getItem('idFilm'))} 
+      swetchClass();
+      addClass;
+      if (localStorage.getItem('idFilm') !== null) {
+        updateButton(localStorage.getItem('idFilm'));
+      }
       return userCredential.user;
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      signInErrorRender(errorMessage);
     });
+}
+
+async function signInErrorRender(errorMessage) {
+  let errorText = '0';
+
+  if (errorMessage === 'Firebase: Error (auth/user-not-found).') {
+    errorText = 'Пользователь не обнаружен';
+  } else if (errorMessage === 'Firebase: Error (auth/wrong-password).') {
+    errorText = 'Неверный пароль';
+  } else if (
+    errorMessage ===
+    'Firebase: Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later. (auth/too-many-requests).'
+  ) {
+    errorText = 'Слишком много попыток';
+  } else {
+    errorText = 'Unknow Error';
+  }
+
+  refs.modalError.classList.remove('modal__error--hidden');
+  refs.modalError.innerHTML = `<p class="modal__error-text">${errorText}</p>`;
 }
 
 export async function updateInUser(name) {
@@ -99,7 +125,7 @@ export async function signOutUser() {
       // Sign-out successful.
       userId = null;
       sessionStorage.removeItem('userId');
-      swetchClass()
+      swetchClass();
     })
     .catch(error => {
       // An error happened.
@@ -159,8 +185,8 @@ export async function getUser(userId, store) {
 
 // Post
 export async function postUserData(userId, store, idFilm, markupFilm) {
-  if (userId===null) {
-    return
+  if (userId === null) {
+    return;
   }
   return await set(
     ref(db, 'users/' + userId + '/' + store + '/' + idFilm),

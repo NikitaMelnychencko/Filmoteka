@@ -56,6 +56,7 @@ function canheHeader(event) {
   }
   if (item === 'log in') {
     refs.singinModal.classList.remove('modal-auth--hidden');
+    refs.modalError.classList.add('modal__error--hidden');
   }
   return;
 }
