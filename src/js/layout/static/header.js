@@ -7,6 +7,7 @@ import { refs } from '../../refs/refs.js';
 import { initGenres } from '../../data/genres';
 import { signOutUser } from '../../components/appFirebase';
 import { onLibButtons } from '../../layout/hero_my_list.js';
+import { mouseUp } from '../../components/modal_login.js';
 // import { ref } from '@firebase/database';
 
 function current(event) {
@@ -62,6 +63,7 @@ function canheHeader(event) {
 
 function removeModalClassSingIn() {
   refs.singinModal.classList.remove('modal-auth--hidden');
+  mouseUp();
 }
 
 refs.myUlEle.forEach(function (link) {
