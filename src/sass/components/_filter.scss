@@ -1,15 +1,4 @@
-.filter{
-display: flex;
-padding-top: 5px;
-}
-
-.filter.is-hidden{
-    display: none;
-}
-
-.filter__movie-sort,
-.filter__movie-genres,
-.filter__movie-year{
+.filter {
     display: block;
     padding-top: 20px;
     

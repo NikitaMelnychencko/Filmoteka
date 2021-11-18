@@ -1,17 +1,17 @@
 import { renderGallery, renderMovies } from '../layout/gallery';
 import { filterGlobal } from './fetch_filter_sort'
-// const body = document.querySelector('body')
+const body = document.querySelector('body')
 
 
 let sort = '';
 let genre = '';
 let year = '';
 
-// body.addEventListener('click', el => {
-//     if (el.target.nodeName !== "INPUT") {
-//         testOnOpen()
-//     }
-// })
+body.addEventListener('click', el => {
+    if (el.target.nodeName !== "INPUT") {
+        testOnOpen()
+    }
+})
 
 function refsFilter() {
     const refs = {
@@ -48,6 +48,8 @@ export function initFilter() {
     refsFilter().searchHome.addEventListener('click', el => {
         testOnOpen()
     })
+
+
 }
 
 function onOpenListSorts(evt) {
