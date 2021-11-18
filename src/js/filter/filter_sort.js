@@ -1,10 +1,11 @@
 import { renderGallery, renderMovies } from '../layout/gallery';
 import filter from '../../views/components/filter/filter_sort.hbs';
 import { filterGlobal } from './fetch_filter_sort'
+import svg from '../../images/svg/svg.svg'
 // import { renderMovieGlobal } from '../components/fetch';
 const main = document.querySelector('.hero')
 const body = document.querySelector('body')
-const hero = document.querySelector('.gallery-list')
+const hero = document.querySelector('.gallery')
 console.log(hero);
 
 let valueSort = '';
@@ -13,7 +14,7 @@ let valueYear = '';
 let test = ""
 
 function filterMain() {
-    const markup = filter()
+    const markup = filter({ svg })
     hero.insertAdjacentHTML("beforebegin", markup);
 }
 filterMain();

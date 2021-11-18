@@ -1,55 +1,49 @@
-.filter{
-display: flex;
-padding-top: 5px;
+.filter {
+    display: block;
+    padding-top: 20px;
+    
+    @media screen and (min-width: $desktop-up) {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.filter-inputs {
+    display: block;
+    padding-bottom: 15px;
+
+    @media screen and (min-width: $tablet-general) {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    @media screen and (min-width: $desktop-up) {
+        padding: 0;
+    }
 }
 
 .filter__movie-sort,
 .filter__movie-genres,
-.filter__movie-year{
+.filter__movie-year {
+    position: relative;
     display: block;
+    
     font-size: 14px;
     line-height: 1.14;
-    color: #545454;
+    color: $third-text-color;
+
+    @media screen and (max-width: $mobile-only) {
+        &:not(:last-child) {
+            padding-bottom: 15px;
+        }
+    }
+
+    @media screen and (min-width: $desktop-up) {
+        &:not(:last-child) {
+             margin-right: 15px;
+        }
+    }
 }
-
-
-.filter-input__sort,
-.filter-input__genres,
-.filter-link__year{
-    border: $button-border;
-  box-sizing: border-box;
-  border-radius: 5px;
-    margin-right: 15px;
-    padding: 2px;
-    width: 200px;
-    color: #545454;
-    font-size: 16px;
-    line-height: 1.19;
-    text-align: center;
-    transition: color $time-cubic;
-}
-
-.filter-input__sort:hover,
-.filter-input__sort:focus,
-.filter-input__genres:focus,
-.filter-input__genres:hover,
-.filter-link__year:focus,
-.filter-link__year:hover{
-    color: $accent-color;
-}
-
-.filter-link__play{
-    display: block;
-    width: 45px;
-    height: 45px;
-}
-
-
-.filter-item__year:not(:last-child){
-margin-right: 5px;
-margin-bottom: 5px;
-}
-
 
 .filter-list__sort,
 .filter-list__genres,
@@ -57,87 +51,134 @@ margin-bottom: 5px;
     display: none;
 }
 
+.open{
+    display: block;
+    position: absolute;
+    z-index: 1000;
+    width: 195px;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    
+    background: $primary-background-color;
+    border-radius: 3px;
+    white-space: nowrap;
+
+    border-radius: 5px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
+      0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16); 
+}
+
+
+.filter-input__sort,
+.filter-input__genres,
+.filter-link__year {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+    box-sizing: border-box;
+    width: 195px;
+    height: 35px;
+    padding-right: 25px;
+    
+    font-size: 14px;
+    line-height: 1.19;
+    text-align: center;
+    
+    color: $accent-color;
+    border: 1px solid $primary-btn-text-color;
+    border-radius: 5px;
+    
+    cursor: pointer;
+    transition: all $time-cubic;
+    
+    &:hover,
+    &:focus {
+        border-color: $accent-color;
+        & + .filter-icon {
+            fill: $accent-color;
+        }
+    }
+}
+
+.filter-item__year{
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
 .filter-list__year.open{
-    width: 220px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.open{
-    display: block;
-    position: absolute;
-    z-index: 1000;
-    min-width: 150px;
-    margin: 0;
-    padding-top: 10px;
-    padding-bottom: 5px;
-    padding-left: 12px;
-    padding-right: 12px;
-    background: $primary-background-color;
-    border-radius: 3px;
-    white-space: nowrap;
-    // transition:  $time-cubic;
-
-}
-
-
 .filter-item__sort,
 .filter-item__genres,
 .filter-item__year{
-    cursor: pointer;
     margin-top: 10px;
+    
     font-size: 14px;
     line-height: 1.14;
+    
     color: $secondary-text-color;
-    transition: color $time-cubic;
+    cursor: pointer;
+    
+    transition: all $time-cubic;
 
+    &:hover,
+    &:focus {
+     color: $accent-color;
+    }
 }
-
-.filter-item__sort:hover,
-.filter-item__sort:focus,
-.filter-item__genres:hover,
-.filter-item__genres:focus,
-.filter-item__year:hover,
-.filter-item__year:focus{
-    color: $accent-color;
-}
-
-.filter-item__genres:not(:last-child){
-margin-right: 5px;
-}
-
-
 
 .button__filter-clear{
-border: $button-border;
-  box-sizing: border-box;
-  border-radius: 5px;
-  padding: 3px;
-  width: 113px;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  align-items: center;
-  text-align: center;
-  text-transform: uppercase;
-  color: $primary-text-color;
-  background: none;
-  justify-content: center;
-  transition: all $time-cubic;
-//   @media screen and (min-width: $tablet-general) {
-//     width: 125px;
-//   }
-  @media screen and (min-width: $desktop-up) {
-    width: 152px;
+    display: block;
+    box-sizing: border-box;
+    width: 140px;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    
+    color: $active-btn-text-color;
+    background-color: $accent-color;
+    
+    border-style: none;
+    border-radius: 5px;
+
+    transition: all $time-cubic;
+    
+    @media screen and (min-width: $desktop-up) {
+        display: auto;
+        margin: 0;
     }
-  
-  &:hover,
-  &:focus {
-    background: $second-accent-btn-color;
-    color: $accent-btn-color;
-    border-color: $second-accent-btn-color;
-  }
+    
+    &:hover,
+    &:focus {
+        background-color: $accent-btn-color;
+        color: $accent-color;
+        border: 1px solid $accent-color;
+    }
+}
+
+.filter-icon{
+    position: absolute;
+    top:12px;
+    left: 175px;
+   
+    width: 14px;
+    height: 14px;
+   
+    pointer-events: none;
 }
 
 
