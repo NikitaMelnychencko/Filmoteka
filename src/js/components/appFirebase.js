@@ -180,8 +180,6 @@ export async function deleteData(userId, store, idFilm) {
   return await remove(ref(db, 'users/' + userId + '/' + store + '/' + idFilm));
 }
 
-
-
 function signInErrorTextRender(errorMessage) {
   let errorText = '0';
 
@@ -206,6 +204,7 @@ function signUpErrorRender(errorMessage) {
 
   if (errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
     errorText = 'User is already registered';
+    
   } else {
     errorText = 'Unknow Error';
   }
