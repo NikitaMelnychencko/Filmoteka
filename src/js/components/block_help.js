@@ -1,25 +1,40 @@
 import scrollTo from './scroll_too';
 import { renderThemeModal } from '../layout/modal_theme';
-export function blockhelpOpen() {
-  const PROMPT_DELAY = 30000;
-  const MAX_PROMPT_ATTEMPTS = 3;
-  let promptCounter = 0;
-  let hasSubscribed = false;
-  const storageKey = 'user email';
 
-  const buttonHelp = document.querySelectorAll('.help__button');
-  const buttonScroll = document.querySelector('.button-scroll');
-  const buttonSettings = document.querySelector('#modal-settings');
-  const openHelpModalBtn = document.querySelector('.button-subscribe');
-  const subscribeModal = document.querySelector('.help__modal');
-  const btnCloseModal = subscribeModal.querySelector(
+const PROMPT_DELAY = 30000;
+const MAX_PROMPT_ATTEMPTS = 3;
+let promptCounter = 0;
+let hasSubscribed = false;
+const storageKey = 'user email';
+
+function getRefs() {
+  const refs = {
+ buttonHelp : document.querySelectorAll('.help__button'),
+   buttonScroll : document.querySelector('.button-scroll'),
+   buttonSettings : document.querySelector('#modal-settings'),
+   openHelpModalBtn : document.querySelector('.button-subscribe'),
+  subscribeModal : document.querySelector('.help__modal'),
+   btnCloseModal : document.querySelector(
     '.help__button-close-modal',
-  );
-  const subscribeForm = subscribeModal.querySelector('.client-mail__form');
-  const mailInput = subscribeForm.querySelector('.client-mail__input');
-  const thanksNotification = document.querySelector('.help__thanks');
+  ),
+   subscribeForm : document.querySelector('.client-mail__form'),
+   mailInput : document.querySelector('.client-mail__input'),
+   thanksNotification : document.querySelector('.help__thanks')
+  }
+  return refs;
+}
 
-  buttonHelp.forEach(button => {
+export function blockhelpOpen() {
+  btnHintIsVisible();
+  getRefs().buttonSettings.addEventListener('click', renderThemeModal);
+  getRefs().openHelpModalBtn.addEventListener('click', onOpenModalBtnClick);
+  autoOpenModal();
+ btnScrollIsVisible();
+  
+}
+
+function btnHintIsVisible() {
+   getRefs().buttonHelp.forEach(button => {
     const buttonHint = button.querySelector('.help__button-hint');
     button.addEventListener('mouseover', () => {
       elementIsVisible(buttonHint);
@@ -28,12 +43,9 @@ export function blockhelpOpen() {
       elementIsHidden(buttonHint);
     });
   });
+}
 
-  buttonSettings.addEventListener('click', renderThemeModal);
-  openHelpModalBtn.addEventListener('click', onOpenModalBtnClick);
-  autoOpenModal();
-
-  function onOpenModalBtnClick(event) {
+function onOpenModalBtnClick(event) {
     openModal();
   }
   function onBtnCloseModal(event) {
@@ -41,26 +53,26 @@ export function blockhelpOpen() {
     autoOpenModal();
   }
   function openModal() {
-    subscribeModal.classList.add('isActive');
-    btnCloseModal.addEventListener('click', onBtnCloseModal);
-    subscribeForm.addEventListener('submit', onSubscribe);
-    mailInput.value = localStorage.getItem(storageKey);
+    getRefs().subscribeModal.classList.add('isActive');
+    getRefs().btnCloseModal.addEventListener('click', onBtnCloseModal);
+    getRefs().subscribeForm.addEventListener('submit', onSubscribe);
+    getRefs().mailInput.value = localStorage.getItem(storageKey);
 
-    subscribeForm.addEventListener('input', event => {
-      localStorage.setItem(storageKey, mailInput.value);
+    getRefs().subscribeForm.addEventListener('input', event => {
+      localStorage.setItem(storageKey, getRefs().mailInput.value);
     });
   }
   function closeModal() {
-    subscribeModal.classList.remove('isActive');
+    getRefs().subscribeModal.classList.remove('isActive');
   }
 
   function onSubscribe(event) {
     event.preventDefault();
     hasSubscribed = true;
     closeModal();
-    elementIsVisible(thanksNotification);
+    elementIsVisible(getRefs().thanksNotification);
     setTimeout(() => {
-      elementIsHidden(thanksNotification);
+      elementIsHidden(getRefs().thanksNotification);
     }, 5000);
   }
   function autoOpenModal() {
@@ -77,15 +89,15 @@ export function blockhelpOpen() {
   function btnScrollIsVisible() {
     setInterval(() => {
       if (window.pageYOffset > 400) {
-        elementIsVisible(buttonScroll);
-        buttonScroll.addEventListener('click', scrollTo);
+        elementIsVisible(getRefs().buttonScroll);
+        getRefs().buttonScroll.addEventListener('click', scrollTo);
       } else {
-        elementIsHidden(buttonScroll);
-        buttonScroll.removeEventListener('click', scrollTo);
+        elementIsHidden(getRefs().buttonScroll);
+        getRefs().buttonScroll.removeEventListener('click', scrollTo);
       }
     }, 1000);
   }
-  btnScrollIsVisible();
+ 
 
   function elementIsVisible(element) {
     element.classList.add('is-visible');
@@ -93,4 +105,3 @@ export function blockhelpOpen() {
   function elementIsHidden(element) {
     element.classList.remove('is-visible');
   }
-}
