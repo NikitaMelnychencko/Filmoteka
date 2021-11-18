@@ -85,6 +85,7 @@ export function mouseUp() {
         e.target.className === 'cl-btn-mod-txt'
       ) {
         {
+          
           addClass();
         }
       }
