@@ -17,7 +17,7 @@ import {
   remove,
 } from 'firebase/database';
 import { swetchClass } from '../layout/static/header';
-import { renderPagination } from './pagination-list';
+import { updateButton } from '../layout/modal_one_movie';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCrhBW63SM95ZUKCf6EsxC1CtzGhzdJBtQ',
@@ -72,8 +72,8 @@ export function regUser(email, password) {
 export function signInUser(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
-      console.log(userCredential)
       swetchClass()
+      updateButton(localStorage.getItem('idFilm'))
       return userCredential.user;
     })
     .catch(error => {

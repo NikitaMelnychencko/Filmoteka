@@ -6,40 +6,38 @@ import {
   user,
 } from './appFirebase';
 import { refs } from '../refs/refs.js';
-import { addSpinner,removeSpinner } from './spinner';
-
+import { addSpinner, removeSpinner } from './spinner';
 
 refs.formLog.addEventListener('submit', e => {
   e.preventDefault();
-  addSpinner()
-  const formData = new FormData(e.currentTarget)
+  addSpinner();
+  const formData = new FormData(e.currentTarget);
   const emailValue = formData.get('email');
   const passValue = formData.get('pass');
-  signInUser(emailValue, passValue)
-  clearInput(refs.formLog, 2)
-  removeSpinner()
-  addClass()
-})
+  signInUser(emailValue, passValue);
+  clearInput(refs.formLog, 2);
+  removeSpinner();
+  addClass();
+});
 
 refs.formReg.addEventListener('submit', e => {
   e.preventDefault();
-  addSpinner()
-  const formData = new FormData(e.currentTarget)
+  addSpinner();
+  const formData = new FormData(e.currentTarget);
   const emailValue = formData.get('email');
   const passValue = formData.get('pass');
   const nameValue = formData.get('name');
-  regUser(emailValue, passValue)
-  updateInUser(nameValue)
-  AuthState(user)
-  clearInput(refs.formReg, 3)
-  removeSpinner()
-  addClass()
-})
+  regUser(emailValue, passValue);
+  updateInUser(nameValue);
+  AuthState(user);
+  clearInput(refs.formReg, 3);
+  removeSpinner();
+  addClass();
+});
 
-
-function clearInput(ref,number) {
-  for (let i = 0; i < number; i++) { 
-    ref.children[i].children[1].value=''
+function clearInput(ref, number) {
+  for (let i = 0; i < number; i++) {
+    ref.children[i].children[1].value = '';
   }
 }
 
@@ -47,7 +45,7 @@ function clearInput(ref,number) {
 
 refs.singUP.addEventListener('click', openSinUp);
 
-function openSinUp(eve) {
+export function openSinUp(eve) {
   // eve.preventDefault();
   const item = eve.target.textContent.trim();
   console.log(item);
@@ -70,11 +68,14 @@ function onCloseModal(eve) {
 }
 
 function mouseCloseMOdal(event) {
-  if (event.target.className === 'backdrop-sing'||event.target.className === 'cl-btn-mod-txt') {
-    addClass()
+  if (
+    event.target.className === 'backdrop-sing' ||
+    event.target.className === 'cl-btn-mod-txt'
+  ) {
+    addClass();
   }
 }
-function addClass() {
+export function addClass() {
   refs.sininModal.classList.add('hidden');
 }
 // back sing Up
@@ -86,4 +87,3 @@ function backSingOut(event) {
   refs.singOutMod.classList.add('hidden');
   refs.singInMod.classList.remove('hidden');
 }
-
