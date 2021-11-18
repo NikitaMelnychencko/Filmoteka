@@ -19,7 +19,6 @@ refs.formLog.addEventListener('submit', e => {
   signInUser(emailValue, passValue);
   clearInput(refs.formLog, 2);
   removeSpinner();
-  addClass();
 });
 
 refs.formReg.addEventListener('submit', e => {
@@ -34,7 +33,6 @@ refs.formReg.addEventListener('submit', e => {
   AuthState(user);
   clearInput(refs.formReg, 3);
   removeSpinner();
-  addClass();
 });
 
 function clearInput(ref, number) {
@@ -52,11 +50,11 @@ function openSinUp(eve) {
   if (item === 'Sign up Now') {
     refs.singOutMod.classList.remove('modal-singup--hidden');
     refs.singInMod.classList.add('modal-singin--hidden');
+    refs.modalSinUpError.classList.add('modal__error--hidden');
   }
 }
 
 // function close modal
-refs.singinModal.addEventListener('click', mouseCloseMOdal);
 window.addEventListener('keydown', onCloseModal);
 
 function removeList() {
@@ -67,34 +65,39 @@ function removeList() {
 function onCloseModal(eve) {
   if (eve.code === 'Escape') {
     removeList();
+    backSingOut();
   }
   return window.addEventListener('keydown', onCloseModal);
 }
-refs.modalSinInOpen.addEventListener('moseup', mouseUp);
 
-function mouseUp(e) {
-  if (
-    e.target.className === 'backdrop-sing' ||
-    e.target.className === 'cl-btn-mod-txt'
-  ) {
-    console.log(e.target);
-    // refs.singinModal.classList.remove('modal-auth--hidden');
-  }
+function removeListenerMouse() {
+  document.onmousedown = null;
+  document.onmouseup = null;
+  refs.modalSinUP.onmouseleave = null;
+}
+export function mouseUp() {
+  document.onmousedown = function () {
+    refs.modalSinUP.onmouseleave = function () {
+      document.onmouseup = null;
+    };
+    document.onmouseup = function (e) {
+      if (
+        e.target.className === 'backdrop-sing' ||
+        e.target.className === 'cl-btn-mod-txt'
+      ) {
+        {
+          
+          addClass();
+          backSingOut();
+        }
+      }
+    };
+  };
 }
 
-function mouseCloseMOdal(event) {
-  if (
-    event.target.className === 'backdrop-sing' ||
-    event.target.className === 'cl-btn-mod-txt'
-  ) {
-    return addClass();
-  }
-
-  return;
-}
-
-function addClass() {
+export function addClass() {
   refs.singinModal.classList.add('modal-auth--hidden');
+  removeListenerMouse();
 }
 
 // back sing Up
