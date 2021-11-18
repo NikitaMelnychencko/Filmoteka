@@ -1,5 +1,7 @@
 import { renderGallery, renderMovies } from '../layout/gallery';
 import { filterGlobal } from './fetch_filter_sort';
+import filterItem from '../filter_card.json';
+
 
 let sort = '';
 let genre = '';
