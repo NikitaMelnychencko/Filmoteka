@@ -69,6 +69,17 @@ function onCloseModal(eve) {
   }
   return window.addEventListener('keydown', onCloseModal);
 }
+refs.modalSinInOpen.addEventListener('moseup', mouseUp);
+
+function mouseUp(e) {
+  if (
+    e.target.className === 'backdrop-sing' ||
+    e.target.className === 'cl-btn-mod-txt'
+  ) {
+    console.log(e.target);
+    // refs.singinModal.classList.remove('modal-auth--hidden');
+  }
+}
 
 function mouseCloseMOdal(event) {
   if (
@@ -77,6 +88,7 @@ function mouseCloseMOdal(event) {
   ) {
     return addClass();
   }
+
   return;
 }
 
