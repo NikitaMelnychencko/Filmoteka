@@ -104,6 +104,20 @@ export function addClass() {
 refs.backModal.addEventListener('click', backSingOut);
 
 function backSingOut() {
-  refs.singOutMod.classList.add('modal-singup--hidden');
-  refs.singInMod.classList.remove('modal-singin--hidden');
+  toggleModalVisibility(refs.singOutMod, refs.singInMod, 'modal-singup--hidden', 'modal-singin--hidden')
+}
+
+export function logOutModalIsVisible(logOutFunction) {
+  toggleModalVisibility(refs.singInMod, refs.modalLogOut, 'modal-singin--hidden', 'modal-logout--hidden')
+  refs.btnLogOutYes.addEventListener('click', e => {
+    logOutFunction();
+    addClass();
+    toggleModalVisibility( refs.modalLogOut, refs.singInMod,  'modal-logout--hidden', 'modal-singin--hidden')
+  });
+  refs.btnLogOutNo.addEventListener('click', addClass);
+}
+ 
+function toggleModalVisibility(elFirst, elSecond, addClass, removeClass) {
+  elFirst.classList.add(addClass);
+  elSecond.classList.remove(removeClass);
 }
