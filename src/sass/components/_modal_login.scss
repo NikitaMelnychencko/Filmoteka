@@ -247,4 +247,17 @@
   top: 5px;
   left: 7px;
   fill: $primary-svg-color;
+  cursor: pointer;
+  animation-name: heartbeat;
+  animation-duration: 2500ms;
+  animation-iteration-count: infinite;
+}
+
+.modal-singin--hidden {
+  display: none;
+  opacity: 0;
+}
+.modal-singup--hidden {
+  display: none;
+  opacity: 0;
 }

@@ -46,6 +46,8 @@ export function closeModal() {
   modalRemoveListener();
   closeBackdrop();
   closeModalSignal();
+  localStorage.removeItem('idFilm');
+  localStorage.removeItem('marcupFilm');
 }
 
 function clearDelay() {
