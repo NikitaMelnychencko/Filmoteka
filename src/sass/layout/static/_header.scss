@@ -94,7 +94,7 @@
   height: 4px;
   background-color: $accent-color;
   border-radius: 2px;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: $time-cubic;
   transition-duration: 250ms;
 }
 .js-login--hidden {
