@@ -1,8 +1,38 @@
 import { renderGallery, renderMovies } from '../layout/gallery';
 import { filterGlobal } from './fetch_filter_sort'
+<<<<<<< HEAD
 const body = document.querySelector('body')
+=======
+import svg from '../../images/svg/svg.svg'
+// import { renderMovieGlobal } from '../components/fetch';
+const main = document.querySelector('.hero')
+const body = document.querySelector('body')
+const hero = document.querySelector('.gallery')
+console.log(hero);
+>>>>>>> bug-fix_change-Render-Gallery
 
 
+<<<<<<< HEAD
+=======
+function filterMain() {
+    const markup = filter({ svg })
+    hero.insertAdjacentHTML("beforebegin", markup);
+}
+filterMain();
+
+const refs = {
+    InputSort: document.querySelector('.filter-input__sort'),
+    listOpenSort: document.querySelector('.filter-list__sort'),
+    inputGenres: document.querySelector('.filter-input__genres'),
+    filterList: document.querySelector('.filter-list__genres'),
+    listGenres: document.querySelector('.filter-list__genres'),
+    inputYear: document.querySelector('.filter-link__year'),
+    listYear: document.querySelector('.filter-list__year'),
+    itemYear: document.querySelectorAll('.filter-item__year'),
+    body: document.querySelector('body'),
+    buttom: document.querySelector('.button__filter-clear'),
+}
+>>>>>>> bug-fix_change-Render-Gallery
 let sort = '';
 let genre = '';
 let year = '';
