@@ -7,6 +7,7 @@ import { refs } from '../../refs/refs.js';
 import { initGenres } from '../../data/genres';
 import { signOutUser } from '../../components/appFirebase';
 import { onLibButtons } from '../../layout/hero_my_list.js';
+import { mouseUp } from '../../components/modal_login.js';
 // import { ref } from '@firebase/database';
 
 function current(event) {
@@ -51,13 +52,19 @@ function canheHeader(event) {
   } else if (sessionStorage.getItem('userId') !== null) {
     mylibwatch();
   } else {
-    refs.singinModal.classList.remove('modal-auth--hidden');
+    removeModalClassSingIn();
     home();
   }
   if (item === 'log in') {
-    refs.singinModal.classList.remove('modal-auth--hidden');
+    removeModalClassSingIn();
   }
   return;
+}
+
+function removeModalClassSingIn() {
+  refs.singinModal.classList.remove('modal-auth--hidden');
+  refs.modalSinInError.classList.add('modal__error--hidden');
+  mouseUp();
 }
 
 refs.myUlEle.forEach(function (link) {
@@ -68,8 +75,7 @@ refs.myUlEle.forEach(function (link) {
 export function swetchClass() {
   changeAuthModal();
 }
-
-function changeAuthModal() {
+function hidenmodalSinUp() {
   if (sessionStorage.getItem('userId') === null) {
     refs.logIn.classList.remove('js-login--hidden');
     refs.logOut.classList.add('js-logout--hidden');
@@ -77,6 +83,10 @@ function changeAuthModal() {
     refs.logIn.classList.add('js-login--hidden');
     refs.logOut.classList.remove('js-logout--hidden');
   }
+}
+
+function changeAuthModal() {
+  hidenmodalSinUp();
 }
 swetchClass();
 
