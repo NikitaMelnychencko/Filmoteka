@@ -18,6 +18,7 @@ import {
 } from 'firebase/database';
 import { swetchClass } from '../layout/static/header';
 import { updateButton } from '../layout/modal_one_movie';
+import {renderErrorServer} from './error'
 import { addClass } from '../components/modal_login';
 import { refs } from '../refs/refs.js';
 
@@ -62,7 +63,7 @@ export function regUser(email, password) {
   return createUserWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
       swetchClass();
-      addClass;
+      addClass();
       return userCredential.user.uid;
     })
     .catch(error => {
@@ -76,7 +77,7 @@ export function signInUser(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
       swetchClass();
-      addClass;
+      addClass();
       if (localStorage.getItem('idFilm') !== null) {
         updateButton(localStorage.getItem('idFilm'));
       }
@@ -93,11 +94,6 @@ export async function updateInUser(name) {
   return await updateProfile(auth.currentUser, {
     displayName: `${name}`,
   })
-    .then(data => {})
-    .catch(error => {
-      // An error occurred
-      // ...
-    });
 }
 
 export async function signOutUser() {
@@ -108,9 +104,7 @@ export async function signOutUser() {
       sessionStorage.removeItem('userId');
       swetchClass();
     })
-    .catch(error => {
-      // An error happened.
-    });
+
 }
 
 // State User
@@ -154,9 +148,7 @@ export async function getUser(userId, store) {
         return null;
       }
     })
-    .catch(error => {
-      console.error(error);
-    });
+    .catch(() => renderErrorServer());
   let arr = [];
   for (let key in value) {
     arr.push(JSON.parse(value[key]).objService);
