@@ -20,7 +20,9 @@ import blockHelpTemplate from '../../views/components/block_help.hbs';
 import { blockhelpOpen } from '../components/block_help.js';
 import { seorchId } from '../layout/modal_one_movie.js';
 import filter from '../../views/components/filter/filter_sort.hbs';
-import { initFilter, filterMain } from '../filter/filter_sort';
+import { initFilter } from '../filter/filter_sort';
+import filterItemYear from '../filter_card.json';
+import filterItemGenre from '../filter_genre_list.json';
 
 export function pageRender(value, heroValue, valueAdd, valueRemove) {
   //backdrop include plugin "modal window"
@@ -29,13 +31,12 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
   const currentValue = value;
   const blockHelpMarkup = blockHelpTemplate({ svg });
   const nullMarkup = markupNullImg(value.hero_tittle)
+
   let markupFilter = '';
-  let markupSvgFilter = ''
-
   if (value.hero_tittle === 'Search Movies') {
-    markupFilter = filter({ svg })
-  }
+    markupFilter = filter({ svg, filterItemYear, filterItemGenre });
 
+  }
 
   refs.main.innerHTML = main({
     currentValue,
@@ -46,6 +47,7 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
     nullMarkup,
     markupFilter,
   });
+
   addHeroClass(valueAdd, valueRemove);
   if (value.hero_tittle === 'Search Movies') {
     openInput();

@@ -65,19 +65,12 @@ export function blockhelpOpen() {
   }
   function autoOpenModal() {
     if (promptCounter === MAX_PROMPT_ATTEMPTS || hasSubscribed) {
-      console.log('Максимальное кол-во надоеданий или подписался');
-
       return;
     }
 
     const timerId = setTimeout(() => {
-      console.log('Открываем надоедалку');
       openModal();
       promptCounter += 1;
-      console.log(
-        '🚀 ~ file: block_help.js ~ line 76 ~ setInterval ~ promptCounter',
-        promptCounter,
-      );
     }, PROMPT_DELAY);
   }
 

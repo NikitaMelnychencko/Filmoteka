@@ -6,40 +6,39 @@ import {
   user,
 } from './appFirebase';
 import { refs } from '../refs/refs.js';
-import { addSpinner,removeSpinner } from './spinner';
-
+import { addSpinner, removeSpinner } from './spinner';
+import { compile } from 'handlebars';
 
 refs.formLog.addEventListener('submit', e => {
   e.preventDefault();
-  addSpinner()
-  const formData = new FormData(e.currentTarget)
+  addSpinner();
+  const formData = new FormData(e.currentTarget);
   const emailValue = formData.get('email');
   const passValue = formData.get('pass');
-  signInUser(emailValue, passValue)
-  clearInput(refs.formLog, 2)
-  removeSpinner()
-  addClass()
-})
+  signInUser(emailValue, passValue);
+  clearInput(refs.formLog, 2);
+  removeSpinner();
+  addClass();
+});
 
 refs.formReg.addEventListener('submit', e => {
   e.preventDefault();
-  addSpinner()
-  const formData = new FormData(e.currentTarget)
+  addSpinner();
+  const formData = new FormData(e.currentTarget);
   const emailValue = formData.get('email');
   const passValue = formData.get('pass');
   const nameValue = formData.get('name');
-  regUser(emailValue, passValue)
-  updateInUser(nameValue)
-  AuthState(user)
-  clearInput(refs.formReg, 3)
-  removeSpinner()
-  addClass()
-})
+  regUser(emailValue, passValue);
+  updateInUser(nameValue);
+  AuthState(user);
+  clearInput(refs.formReg, 3);
+  removeSpinner();
+  addClass();
+});
 
-
-function clearInput(ref,number) {
-  for (let i = 0; i < number; i++) { 
-    ref.children[i].children[1].value=''
+function clearInput(ref, number) {
+  for (let i = 0; i < number; i++) {
+    ref.children[i].children[1].value = '';
   }
 }
 
@@ -48,42 +47,47 @@ function clearInput(ref,number) {
 refs.singUP.addEventListener('click', openSinUp);
 
 function openSinUp(eve) {
-  // eve.preventDefault();
   const item = eve.target.textContent.trim();
-  console.log(item);
   if (item === 'Sign up Now') {
-    refs.singOutMod.classList.remove('hidden');
-    refs.singInMod.classList.add('hidden');
+    refs.singOutMod.classList.remove('modal-singup--hidden');
+    refs.singInMod.classList.add('modal-singin--hidden');
   }
 }
 
 // function close modal
-
+refs.singinModal.addEventListener('click', mouseCloseMOdal);
 window.addEventListener('keydown', onCloseModal);
-window.addEventListener('click', mouseCloseMOdal);
+
+function removeList() {
+  window.removeEventListener('keydown', onCloseModal);
+  addClass();
+}
 
 function onCloseModal(eve) {
-  const cli = eve.code;
-  if (cli === 'Escape') {
-    refs.sininModal.classList.add('hidden');
+  if (eve.code === 'Escape') {
+    removeList();
   }
+  return window.addEventListener('keydown', onCloseModal);
 }
 
 function mouseCloseMOdal(event) {
-  if (event.target.className === 'backdrop-sing'||event.target.className === 'cl-btn-mod-txt') {
-    addClass()
+  if (
+    event.target.className === 'backdrop-sing' ||
+    event.target.className === 'cl-btn-mod-txt'
+  ) {
+    return addClass();
   }
+  return;
 }
-function addClass() {
-  refs.sininModal.classList.add('hidden');
-}
-// back sing Up
 
+function addClass() {
+  refs.singinModal.classList.add('modal-auth--hidden');
+}
+
+// back sing Up
 refs.backModal.addEventListener('click', backSingOut);
 
-function backSingOut(event) {
-  const item = event;
-  refs.singOutMod.classList.add('hidden');
-  refs.singInMod.classList.remove('hidden');
+function backSingOut() {
+  refs.singOutMod.classList.add('modal-singup--hidden');
+  refs.singInMod.classList.remove('modal-singin--hidden');
 }
-
