@@ -2,7 +2,8 @@ import { renderGallery, renderMovies } from '../layout/gallery';
 import { filterGlobal } from './fetch_filter_sort'
 import svg from '../../images/svg/svg.svg';
 import filter from '../../views/components/filter/filter_sort.hbs';
-const body = document.querySelector('body')
+
+
 
 
 let sort = '';
@@ -10,13 +11,13 @@ let genre = '';
 let year = '';
 
 // function filterMain() {
-const markup = filter({ svg })
-hero.insertAdjacentHTML("beforebegin", markup);
-console.log(markup);
+//     const markup = filter({ svg })
+//     refsFilter().hero.insertAdjacentHTML("beforebegin", markup);
+//     console.log(markup);
 // }
 // filterMain();
 
-body.addEventListener('click', el => {
+refsFilter().body.addEventListener('click', el => {
     if (el.target.nodeName !== "INPUT") {
         testOnOpen()
     }
@@ -34,6 +35,7 @@ function refsFilter() {
         body: document.querySelector('body'),
         button: document.querySelector('.button__filter-clear'),
         searchHome: document.querySelector('.search-form__input'),
+        hero: document.querySelector('.gallery'),
     }
     return refs
 }

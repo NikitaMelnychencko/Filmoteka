@@ -33,6 +33,8 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
     markupFilter = filter()
   }
 
+
+
   refs.main.innerHTML = main({
     currentValue,
     backdropMarkUp,
