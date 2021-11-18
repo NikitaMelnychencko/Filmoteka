@@ -21,7 +21,8 @@ import { blockhelpOpen } from '../components/block_help.js';
 import { seorchId } from '../layout/modal_one_movie.js';
 import filter from '../../views/components/filter/filter_sort.hbs';
 import { initFilter } from '../filter/filter_sort';
-import filterItem from '../filter_card.json';
+import filterItemYear from '../filter_card.json';
+import filterItemGenre from '../filter_genre_list.json'
 
 export function pageRender(value, heroValue, valueAdd, valueRemove) {
   //backdrop include plugin "modal window"
@@ -33,8 +34,8 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
 
   let markupFilter = '';
   if (value.hero_tittle === 'Search Movies') {
-    markupFilter = filter({ svg, filterItem });
-    console.log(markupFilter);
+    markupFilter = filter({ svg, filterItemYear, filterItemGenre });
+
   }
 
   refs.main.innerHTML = main({

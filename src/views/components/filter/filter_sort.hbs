@@ -21,25 +21,9 @@
                 <use href="{{svg}}#icon-down-arrow"></use>
             </svg>
             <ul class="filter-list__genres">
-                <li class=" filter-item__genres" id='28'>Action</li>
-                <li class="filter-item__genres" id='12'>Adventure</li>
-                <li class="filter-item__genres" id='16'>Animation</li>
-                <li class="filter-item__genres" id='35'>Comedy</li>
-                <li class="filter-item__genres" id='80'>Crime</li>
-                <li class="filter-item__genres" id='99'>Documentary</li>
-                <li class="filter-item__genres" id='18'>Drama</li>
-                <li class="filter-item__genres" id='10751'>Family</li>
-                <li class="filter-item__genres" id='14'>Fantasy</li>
-                <li class="filter-item__genres" id='36'>History</li>
-                <li class="filter-item__genres" id='27'>Horror</li>
-                <li class="filter-item__genres" id='10402'>Music</li>
-                <li class="filter-item__genres" id='9648'>Mystery</li>
-                <li class="filter-item__genres" id='10749'>Romance</li>
-                <li class="filter-item__genres" id='878'>Science Fiction</li>
-                <li class="filter-item__genres" id='10770'>TV Movie</li>
-                <li class="filter-item__genres" id='53'>Thriller</li>
-                <li class="filter-item__genres" id='10752'>War</li>
-                <li class="filter-item__genres" id='37'>Western</li>
+                {{#each filterItemGenre.itemGenre}}
+                <li class=" filter-item__genres" id={{this.id}}>{{this.name}}</li>
+                {{/each}}
             </ul>
         </div>
         <div class="filter__movie-year">
@@ -48,7 +32,7 @@
                 <use href="{{svg}}#icon-down-arrow"></use>
             </svg>
             <ul class="filter-list__year">
-                {{#each filterItem.year}}
+                {{#each filterItemYear.year}}
                 <li class="filter-item__year">{{this}}</li>
                 {{/each}}
             </ul>
