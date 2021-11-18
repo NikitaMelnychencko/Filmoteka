@@ -50,9 +50,11 @@
 .filter-list__genres,
 .filter-list__year{
     display: none;
+
 }
 
 .open{
+opacity: 1;
     display: block;
     position: absolute;
     z-index: 1000;
