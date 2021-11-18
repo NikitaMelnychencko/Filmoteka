@@ -53,9 +53,6 @@ export function updateButton(id) {
 export function seorchId() {
   const imagesRef = document.querySelector('.gallery-list');
   imagesRef.addEventListener('click', e => {
-    //localStorage.removeItem('idFilm');
-    //localStorage.removeItem('marcupFilm');
-
     e.preventDefault();
     if (e.target.nodeName === 'UL') {
       return;
