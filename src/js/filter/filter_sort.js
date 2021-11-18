@@ -1,15 +1,18 @@
-import { renderGallery, renderMovies } from '../layout/gallery';
+import { renderGallery, renderMovies, renderParams } from '../layout/gallery';
 import { filterGlobal } from './fetch_filter_sort';
+
 
 let sort = '';
 let genre = '';
 let year = '';
 
-refsFilter().body.addEventListener('click', el => {
-    if (el.target.nodeName !== "INPUT") {
-        testOnOpen()
-    }
-})
+if (renderParams.globalOptions !== 'home')
+
+    refsFilter().body.addEventListener('click', el => {
+        if (el.target.nodeName !== "INPUT") {
+            testOnOpen()
+        }
+    })
 
 function refsFilter() {
     const refs = {

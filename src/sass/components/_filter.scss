@@ -49,29 +49,38 @@
 .filter-list__sort,
 .filter-list__genres,
 .filter-list__year{
-    display: none;
-
-}
-
-.open{
-opacity: 1;
-    display: block;
     position: absolute;
     z-index: 1000;
+    
+    display: block;
+    
     width: 195px;
     margin: 0;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 12px;
     padding-right: 12px;
+
+    opacity: 0;
+    pointer-events: none;
     
     background: $primary-background-color;
-    border-radius: 3px;
     white-space: nowrap;
-
     border-radius: 5px;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
       0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16); 
+
+    transform: scaleY(0);  
+    transform-origin: 0 0;
+
+    transition: all $time-cubic;
+
+}
+
+.open{
+    opacity: 1;
+    pointer-events: initial;
+    transform: scaleY(1);
 }
 
 
@@ -102,9 +111,6 @@ opacity: 1;
     &:hover,
     &:focus {
         border-color: $accent-color;
-        & + .filter-icon {
-            fill: $accent-color;
-        }
     }
 }
 
@@ -176,15 +182,21 @@ opacity: 1;
 
 .filter-icon{
     position: absolute;
-    top:12px;
+    top: 12px;
     left: 175px;
    
     width: 14px;
     height: 14px;
+
+    fill: $primary-border-color;
    
     pointer-events: none;
+
+     transition: fill $time-cubic;
+    
+    .filter-input__sort:hover + &,
+    .filter-input__genres:hover +&,
+    .filter-input__year:hover + & {
+        fill: $accent-color;
+    }
 }
-
-
-
-

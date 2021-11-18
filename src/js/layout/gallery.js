@@ -15,8 +15,8 @@ let globalOrder = '';
 let globalSearch = ''
 
 
-const renderParams = {
-  globalOptions: '',
+export const renderParams = {
+  globalOptions: 'home',
   globalSearch: '',
   globalOrder: '',
   globalGenre: ''
