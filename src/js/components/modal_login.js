@@ -7,6 +7,8 @@ import {
 } from './appFirebase';
 import { refs } from '../refs/refs.js';
 import { addSpinner, removeSpinner } from './spinner';
+import { compile } from 'handlebars';
+import { ref } from '@firebase/database';
 
 refs.formLog.addEventListener('submit', e => {
   e.preventDefault();
@@ -45,45 +47,61 @@ function clearInput(ref, number) {
 
 refs.singUP.addEventListener('click', openSinUp);
 
-export function openSinUp(eve) {
-  // eve.preventDefault();
+function openSinUp(eve) {
   const item = eve.target.textContent.trim();
-  console.log(item);
   if (item === 'Sign up Now') {
-    refs.singOutMod.classList.remove('hidden');
-    refs.singInMod.classList.add('hidden');
+    refs.singOutMod.classList.remove('modal-singup--hidden');
+    refs.singInMod.classList.add('modal-singin--hidden');
   }
 }
 
 // function close modal
-
 window.addEventListener('keydown', onCloseModal);
-window.addEventListener('click', mouseCloseMOdal);
+
+function removeList() {
+  window.removeEventListener('keydown', onCloseModal);
+  addClass();
+}
 
 function onCloseModal(eve) {
-  const cli = eve.code;
-  if (cli === 'Escape') {
-    refs.sininModal.classList.add('hidden');
+  if (eve.code === 'Escape') {
+    removeList();
   }
+  return window.addEventListener('keydown', onCloseModal);
 }
 
-function mouseCloseMOdal(event) {
-  if (
-    event.target.className === 'backdrop-sing' ||
-    event.target.className === 'cl-btn-mod-txt'
-  ) {
-    addClass();
-  }
+function removeListenerMouse() {
+  document.onmousedown = null;
+  document.onmouseup = null;
+  refs.modalSinUP.onmouseleave = null;
 }
-export function addClass() {
-  refs.sininModal.classList.add('hidden');
+export function mouseUp() {
+  document.onmousedown = function () {
+    refs.modalSinUP.onmouseleave = function () {
+      document.onmouseup = null;
+    };
+    document.onmouseup = function (e) {
+      if (
+        e.target.className === 'backdrop-sing' ||
+        e.target.className === 'cl-btn-mod-txt'
+      ) {
+        {
+          addClass();
+        }
+      }
+    };
+  };
 }
+
+function addClass() {
+  refs.singinModal.classList.add('modal-auth--hidden');
+  removeListenerMouse();
+}
+
 // back sing Up
-
 refs.backModal.addEventListener('click', backSingOut);
 
-function backSingOut(event) {
-  const item = event;
-  refs.singOutMod.classList.add('hidden');
-  refs.singInMod.classList.remove('hidden');
+function backSingOut() {
+  refs.singOutMod.classList.add('modal-singup--hidden');
+  refs.singInMod.classList.remove('modal-singin--hidden');
 }

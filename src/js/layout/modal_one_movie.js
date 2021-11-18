@@ -53,9 +53,6 @@ export function updateButton(id) {
 export function seorchId() {
   const imagesRef = document.querySelector('.gallery-list');
   imagesRef.addEventListener('click', e => {
-    localStorage.removeItem('idFilm', id);
-    localStorage.removeItem('marcupFilm', arrObj);
-
     e.preventDefault();
     if (e.target.nodeName === 'UL') {
       return;
@@ -72,7 +69,7 @@ function addToDataBase(data) {
   refButton().addEventListener('click', e => {
     if (e.target.nodeName !== 'BUTTON') return;
     if (userId == null) {
-      refs.sininModal.classList.remove('hidden');
+      refs.singinModal.classList.remove('modal-auth--hidden');
     } else {
       postUserData(userId, e.target.ariaLabel, idFilm, markupFilm);
       deleteData(userId, e.target.dataset.set, idFilm);

@@ -97,12 +97,19 @@
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 250ms;
 }
-
-.hidden {
+.js-login--hidden {
   display: none;
   opacity: 0;
-  // visibility: hidden;
 }
+.js-logout--hidden {
+  display: none;
+  opacity: 0;
+}
+.modal-auth--hidden {
+  display: none;
+  opacity: 0;
+}
+
 .serch {
   background-color: initial;
   border: none;
