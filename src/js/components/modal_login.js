@@ -76,7 +76,7 @@ function removeListenerMouse() {
   refs.modalSinUP.onmouseleave = null;
 }
 export function mouseUp() {
-  document.onmousedown = function (e) {
+  document.onmousedown = function () {
     refs.modalSinUP.onmouseleave = function () {
       document.onmouseup = null;
     };
