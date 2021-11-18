@@ -63,6 +63,7 @@ function canheHeader(event) {
 
 function removeModalClassSingIn() {
   refs.singinModal.classList.remove('modal-auth--hidden');
+  refs.modalSinInError.classList.add('modal__error--hidden');
   mouseUp();
 }
 

@@ -14,5 +14,7 @@ export const refs = {
   idhome: document.querySelector('#home'),
   idmyLib: document.querySelector('#myLib'),
   modalSinInOpen: document.querySelector('.modal-auth--hidden'),
+  modalSinInError: document.querySelector('.signin-modal__error'),
+  modalSinUpError: document.querySelector('.signup-modal__error'),
   modalSinUP: document.querySelector('.modal-signup '),
 };

@@ -19,7 +19,6 @@ refs.formLog.addEventListener('submit', e => {
   signInUser(emailValue, passValue);
   clearInput(refs.formLog, 2);
   removeSpinner();
-  addClass();
 });
 
 refs.formReg.addEventListener('submit', e => {
@@ -34,7 +33,6 @@ refs.formReg.addEventListener('submit', e => {
   AuthState(user);
   clearInput(refs.formReg, 3);
   removeSpinner();
-  addClass();
 });
 
 function clearInput(ref, number) {
@@ -52,6 +50,7 @@ function openSinUp(eve) {
   if (item === 'Sign up Now') {
     refs.singOutMod.classList.remove('modal-singup--hidden');
     refs.singInMod.classList.add('modal-singin--hidden');
+    refs.modalSinUpError.classList.add('modal__error--hidden');
   }
 }
 
@@ -93,7 +92,7 @@ export function mouseUp() {
   };
 }
 
-function addClass() {
+export function addClass() {
   refs.singinModal.classList.add('modal-auth--hidden');
   removeListenerMouse();
 }
