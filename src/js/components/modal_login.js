@@ -66,6 +66,7 @@ function removeList() {
 function onCloseModal(eve) {
   if (eve.code === 'Escape') {
     removeList();
+    backSingOut();
   }
   return window.addEventListener('keydown', onCloseModal);
 }
@@ -87,6 +88,7 @@ export function mouseUp() {
       ) {
         {
           addClass();
+          backSingOut();
         }
       }
     };
