@@ -256,12 +256,12 @@
 
 .modal-singin--hidden,
 .modal-singup--hidden,
-.modal__error--hidden {
+.signin-modal__error--hidden {
   display: none;
   opacity: 0;
 }
 
-.modal__error{
+.signin-modal__error{
   width: 100%;
   text-align: center;
    position: absolute;
@@ -275,4 +275,17 @@ color: $warning-text-color;
 text-shadow: 0 0 5px black;
 font-style: italic;
 font-size: 14px;
+}
+
+.signup-wpapper{
+  position: relative;
+}
+
+.signup-modal__error{
+   width: 100%;
+ text-align: center;
+ position: absolute;
+ bottom: 60px;
+ left: 50%;
+ transform: translate(-50%);
 }

@@ -62,11 +62,13 @@ export function regUser(email, password) {
   return createUserWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
       swetchClass();
+      addClass;
       return userCredential.user.uid;
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      signUpErrorRender(errorMessage);
     });
 }
 
@@ -84,11 +86,11 @@ export function signInUser(email, password) {
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      signInErrorRender(errorMessage);
+      signInErrorTextRender(errorMessage);
     });
 }
 
-async function signInErrorRender(errorMessage) {
+function signInErrorTextRender(errorMessage) {
   let errorText = '0';
 
   if (errorMessage === 'Firebase: Error (auth/user-not-found).') {
@@ -104,8 +106,21 @@ async function signInErrorRender(errorMessage) {
     errorText = 'Unknow Error';
   }
 
-  refs.modalError.classList.remove('modal__error--hidden');
-  refs.modalError.innerHTML = `<p class="modal__error-text">${errorText}</p>`;
+  refs.modalSinInError.classList.remove('signin-modal__error--hidden');
+  refs.modalSinInError.innerHTML = `<p class="modal__error-text">${errorText}</p>`;
+}
+
+function signUpErrorRender(errorMessage) {
+  let errorText = '0';
+
+  if (errorMessage === 'Firebase: Error (auth/email-already-in-use).') {
+    errorText = 'Пользователь уже зарегестрирован';
+  } else {
+    errorText = 'Unknow Error';
+  }
+
+  refs.modalSinUpError.classList.remove('signup-modal__error--hidden');
+  refs.modalSinUpError.innerHTML = `<p class="modal__error-text">${errorText}</p>`;
 }
 
 export async function updateInUser(name) {

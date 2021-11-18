@@ -32,7 +32,6 @@ refs.formReg.addEventListener('submit', e => {
   AuthState(user);
   clearInput(refs.formReg, 3);
   removeSpinner();
-  addClass();
 });
 
 function clearInput(ref, number) {
