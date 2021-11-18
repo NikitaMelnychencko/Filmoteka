@@ -202,9 +202,7 @@
     .filter-input__year:focus + & {
         fill: $accent-color;
     }
-    // .open +&{
-    // transform: rotate(-89deg);
-    // }
+    
     @media screen and (min-width: $tablet-general) {
         left: 175px;
     }
@@ -212,4 +210,8 @@
 
 .hide-filter {
     display: none;
+}
+.filter-icon.transform{
+    transform: rotate(-89deg);
+    transition: all $time-cubic;
 }
