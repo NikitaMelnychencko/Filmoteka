@@ -63,7 +63,7 @@ export function regUser(email, password) {
   return createUserWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
       swetchClass();
-      addClass;
+      addClass();
       return userCredential.user.uid;
     })
     .catch(error => {
@@ -77,7 +77,7 @@ export function signInUser(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
       swetchClass();
-      addClass;
+      addClass();
       if (localStorage.getItem('idFilm') !== null) {
         updateButton(localStorage.getItem('idFilm'));
       }

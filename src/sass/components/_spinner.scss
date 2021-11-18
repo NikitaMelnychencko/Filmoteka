@@ -9,20 +9,6 @@
   z-index: 5000;
 }
 
-@keyframes animation {
-  0% {
-    stroke-dasharray: 1 98;
-    stroke-dashoffset: -105;
-  }
-  50% {
-    stroke-dasharray: 80 10;
-    stroke-dashoffset: -160;
-  }
-  100% {
-    stroke-dasharray: 1 98;
-    stroke-dashoffset: -300;
-  }
-}
 
 #spinner {
   transform-origin: center;
