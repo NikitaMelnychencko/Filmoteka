@@ -22,7 +22,7 @@ import { seorchId } from '../layout/modal_one_movie.js';
 import filter from '../../views/components/filter/filter_sort.hbs';
 import { initFilter } from '../filter/filter_sort';
 import filterItemYear from '../filter_card.json';
-import filterItemGenre from '../filter_genre_list.json'
+import filterItemGenre from '../filter_genre_list.json';
 
 export function pageRender(value, heroValue, valueAdd, valueRemove) {
   //backdrop include plugin "modal window"
