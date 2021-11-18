@@ -17,7 +17,7 @@ import {
   remove,
 } from 'firebase/database';
 import { swetchClass } from '../layout/static/header';
-import { renderPagination } from './pagination-list';
+import { updateButton } from '../layout/modal_one_movie';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCrhBW63SM95ZUKCf6EsxC1CtzGhzdJBtQ',
@@ -73,6 +73,7 @@ export function signInUser(email, password) {
   return signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
       swetchClass()
+      updateButton(localStorage.getItem('idFilm'))
       return userCredential.user;
     })
     .catch(error => {
@@ -122,7 +123,7 @@ window.onload = function () {
 };
 
 //getId
-async function getIdUser(userId, store, id) {
+export async function getIdUser(userId, store, id) {
   return await get(child(dbRef, 'users/' + userId + '/' + store + '/' + id))
     .then(snapshot => {
       if (snapshot.exists()) {
@@ -167,13 +168,13 @@ export async function postUserData(userId, store, idFilm, markupFilm) {
   );
 }
 
-//update
-async function updateData(userId, store, idFilm, markupFilm) {
-  return await update(
-    ref(db, 'users/' + userId + '/' + store + '/' + idFilm),
-    markupFilm,
-  );
-}
+// //update
+// async function updateData(userId, store, idFilm, markupFilm) {
+//   return await update(
+//     ref(db, 'users/' + userId + '/' + store + '/' + idFilm),
+//     markupFilm,
+//   );
+// }
 
 //delete
 export async function deleteData(userId, store, idFilm) {
