@@ -44,7 +44,7 @@ function initAccent() {
   const setColor = initDataAccent();
   if (initDataAccent() !== null && initDataAccent() !== undefined) {
     const accent = `hsl(${setColor.h}deg, ${setColor.s}%, ${setColor.l}%);`;
-    return `--accent-color: ${accent}  --selection-text-color: ${accent}  --second-accent-btn-color: ${accent} --secondary-background-color: ${accent} --primary-svg-color: ${accent}  --active-btn-color: ${accent} --spinner-primary-color: ${accent} --clear-accent-color: hsl(${setColor.h}deg, 100%, 50%)`;
+    return `--accent-color: ${accent}--selection-text-color: ${accent}--second-accent-btn-color: ${accent}--secondary-background-color: ${accent}--primary-svg-color: ${accent}--active-btn-color: ${accent}--spinner-primary-color: ${accent}--clear-accent-color: hsl(${setColor.h}deg, 100%, 50%);`;
   }
   return '';
 }
@@ -53,7 +53,7 @@ function darkColors() {
   const setColor = initDataAccent();
   const defaultColors = 'hsl(25deg, 100%, 50%);';
   const darkzz =
-    '--background: #1D1D21; --primary-text-color: #ffffff;  --primary-title-text-color: #ffffff; --accent-btn-color: #ffffff; --fourth-background-color: #232328; --third-text-color: #B8B8C6; --gallery-card-shadow: 0 0 8px hsl(25deg, 100%, 50%); $primary-btn-text-color: #ffffff;  --button-border: #ffffff;';
+    '--background: #1D1D21;--primary-text-color: #ffffff;--primary-title-text-color: #ffffff;--accent-btn-color: #ffffff;--fourth-background-color: #232328;--third-text-color: #B8B8C6;--gallery-card-shadow: 0 0 8px hsl(25deg, 100%, 50%); $primary-btn-text-color: #ffffff;--button-border: #ffffff;';
   if (initDataAccent() !== null && initDataAccent() !== undefined) {
     return `${darkzz} hsl(${setColor.h}deg, ${setColor.s}%, ${setColor.l}%);`;
   }

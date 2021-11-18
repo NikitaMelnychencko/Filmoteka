@@ -14,9 +14,14 @@ function getBrowserId() {
 }
 //from MDN
 
+function style() {
+  return document.documentElement.getAttribute('style');
+}
+
 export function renderBackdrop() {
+  document.documentElement.style.cssText = `${style()} overflow: hidden;`;
   backdrop().classList.add('backdrop_is-open');
-  document.documentElement.style.overflow = 'hidden';
+
   backdrop().addEventListener('click', closeMd);
 }
 
@@ -27,11 +32,23 @@ export function closeBackdrop() {
 }
 
 function restoreScroll() {
+  console.log(style());
+
+  const indexHidden = style().split(';');
+  const ss = indexHidden.indexOf(' overflow: hidden');
+  console.log(indexHidden);
+  console.log(ss);
+  const styleWithoutHidden = indexHidden.splice(ss - 1);
+  console.log(styleWithoutHidden);
+  const meow = styleWithoutHidden.join(';');
+  console.log(meow);
   if (getBrowserId() === 1) {
-    document.documentElement.style.overflow = 'auto';
+    document.documentElement.style.cssText = `${meow} overflow: auto;`;
+    console.log(style());
     return;
   }
-  document.documentElement.style.overflow = 'overlay';
+  document.documentElement.style.cssText = `${meow} overflow: overlay;`;
+  console.log(style());
   return;
 }
 

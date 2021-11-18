@@ -10,6 +10,7 @@ export function palitre() {
 
   palitre.onmousedown = function (e) {
     document.addEventListener('mousemove', moveDot);
+
     function removelistener() {
       document.removeEventListener('mousemove', moveDot);
       palitre.onmouseup = null;
@@ -53,7 +54,7 @@ const graph = {
 };
 
 function viewPort() {
-  const palitreHolst = document.querySelectorAll('.palitre__holst');
+  const palitreHolst = document.querySelectorAll('.palitre__holst-js');
   if (
     window.visualViewport.width >= 768 &&
     window.visualViewport.width < 1024
