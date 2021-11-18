@@ -162,7 +162,6 @@ export async function postUserData(userId, store, idFilm, markupFilm) {
   if (userId===null) {
     return
   }
-  console.log(111);
   return await set(
     ref(db, 'users/' + userId + '/' + store + '/' + idFilm),
     markupFilm,
