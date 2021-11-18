@@ -9,6 +9,7 @@ import { refs } from '../refs/refs.js';
 import { addSpinner, removeSpinner } from './spinner';
 import { compile } from 'handlebars';
 import { ref } from '@firebase/database';
+import { removeModalListener, addModalListener } from './modal.js';
 
 refs.formLog.addEventListener('submit', e => {
   e.preventDefault();
@@ -56,7 +57,6 @@ function openSinUp(eve) {
 }
 
 // function close modal
-window.addEventListener('keydown', onCloseModal);
 
 function removeList() {
   window.removeEventListener('keydown', onCloseModal);
@@ -70,38 +70,33 @@ function onCloseModal(eve) {
   return window.addEventListener('keydown', onCloseModal);
 }
 
-function removeListenerMouse() {
-  document.onmousedown = null;
-  document.onmouseup = null;
-  refs.modalSinUP.onmouseleave = null;
-}
-export function mouseUp() {
-  document.onmousedown = function () {
-    refs.modalSinUP.onmouseleave = function () {
-      document.onmouseup = null;
-    };
-    document.onmouseup = function (e) {
-      if (
-        e.target.className === 'backdrop-sing' ||
-        e.target.className === 'cl-btn-mod-txt'
-      ) {
-        {
-          addClass();
-        }
-      }
-    };
-  };
-}
-
 function addClass() {
   refs.singinModal.classList.add('modal-auth--hidden');
   removeListenerMouse();
 }
 
 // back sing Up
-refs.backModal.addEventListener('click', backSingOut);
 
 function backSingOut() {
   refs.singOutMod.classList.add('modal-singup--hidden');
   refs.singInMod.classList.remove('modal-singin--hidden');
+}
+
+const closeEvents = function (e) {
+  if (
+    e.target.className === 'backdrop-sing' ||
+    e.target.className === 'cl-btn-mod-txt'
+  ) {
+    addClass();
+  }
+};
+
+function removeListenerMouse() {
+  removeModalListener(refs.modalSinUP);
+}
+
+export function mouseUp() {
+  refs.backModal.addEventListener('click', backSingOut);
+  window.addEventListener('keydown', onCloseModal);
+  addModalListener(refs.modalSinUP, closeEvents);
 }

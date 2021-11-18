@@ -1,8 +1,6 @@
-import { closeModal } from './modal';
-function backdrop() {
-  const backdrop = document.querySelector('.backdrop');
-  return backdrop;
-}
+export const backdrop = function () {
+  return document.querySelector('.backdrop');
+};
 
 //from MDN
 function getBrowserId() {
@@ -19,16 +17,13 @@ function style() {
 }
 
 export function renderBackdrop() {
-  document.documentElement.style.cssText = `${style()} overflow: hidden;`;
+  document.documentElement.style.cssText = `${style()}overflow: hidden;`;
   backdrop().classList.add('backdrop_is-open');
-
-  backdrop().addEventListener('click', closeMd);
 }
 
 export function closeBackdrop() {
   backdrop().classList.remove('backdrop_is-open');
   restoreScroll();
-  backdrop().removeEventListener('click', closeMd);
 }
 
 function restoreScroll() {
@@ -36,9 +31,9 @@ function restoreScroll() {
 
   const indexHidden = style().split(';');
   const ss = indexHidden.indexOf(' overflow: hidden');
-  console.log(indexHidden);
+  console.table(indexHidden);
   console.log(ss);
-  const styleWithoutHidden = indexHidden.splice(ss - 1);
+  const styleWithoutHidden = indexHidden.splice(ss - 1, 1);
   console.log(styleWithoutHidden);
   const meow = styleWithoutHidden.join(';');
   console.log(meow);
@@ -50,10 +45,4 @@ function restoreScroll() {
   document.documentElement.style.cssText = `${meow} overflow: overlay;`;
   console.log(style());
   return;
-}
-
-function closeMd(evt) {
-  if (evt.target.id === 'backdrop') {
-    closeModal();
-  }
 }
