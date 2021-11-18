@@ -2,15 +2,17 @@ import { renderGallery, renderMovies } from '../layout/gallery';
 import { filterGlobal } from './fetch_filter_sort'
 const body = document.querySelector('body')
 
+
+let sort = '';
+let genre = '';
+let year = '';
+
 body.addEventListener('click', el => {
     if (el.target.nodeName !== "INPUT") {
         testOnOpen()
     }
 })
 
-let sort = '';
-let genre = '';
-let year = '';
 function refsFilter() {
     const refs = {
         InputSort: document.querySelector('.filter-input__sort'),
@@ -23,9 +25,11 @@ function refsFilter() {
         itemYear: document.querySelectorAll('.filter-item__year'),
         body: document.querySelector('body'),
         button: document.querySelector('.button__filter-clear'),
+        searchHome: document.querySelector('.search-form__input'),
     }
     return refs
 }
+
 
 export function initFilter() {
     refsFilter().InputSort.addEventListener('click', onOpenListSorts);
@@ -41,6 +45,9 @@ export function initFilter() {
         refsFilter().inputGenres.value = '';
         refsFilter().inputYear.value = '';
         refsFilter().listYear.classList.remove('open');
+        testOnOpen()
+    })
+    refsFilter().searchHome.addEventListener('click', el => {
         testOnOpen()
     })
 }
@@ -60,14 +67,12 @@ function onRenderSort(evt) {
         refsFilter().listSort.classList.remove('open')
         refsFilter().InputSort.value = evt.target.textContent
     }
-
     sort = evt.target.dataset.atribute;
     console.log(year, sort, genre)
     renderGallery('sort', year, sort, genre);
 };
 
 // genre
-
 function onOpenListGenres(evt) {
     evt.preventDefault();
     refsFilter().inputGenres.value = '';
@@ -118,10 +123,13 @@ function removeClassOpenYearSort() {
     refsFilter().listSort.classList.remove('open');
 }
 
-function removeClassOpenGenresSort() {
+function removeClassOpenGenresSort(open, open, open) {
     refsFilter().listGenres.classList.remove('open');
     refsFilter().listSort.classList.remove('open');
 }
+
+
+
 
 // Clear Filter
 function testOnOpen() {
