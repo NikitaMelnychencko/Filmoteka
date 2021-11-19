@@ -4,6 +4,7 @@
 @import './utils/breakpoints';
 @import './utils/fonts';
 @import './utils/placeholder';
+@import './utils/mixin';
 //=============base==============
 @import './base/globalClass';
 @import './base/reset';
@@ -20,6 +21,7 @@
 @import './components/filter';
 @import './components/spinner';
 @import './components/null_in_box';
+@import './components/preloader_bar';
 //=========static===============
 @import './layout/static/header';
 @import './layout/static/footer';

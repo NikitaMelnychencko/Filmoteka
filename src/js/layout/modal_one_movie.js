@@ -4,6 +4,7 @@ import { renderParamsCard } from '../components/fetch';
 import { postUserData, userId,deleteData,getIdUser} from '../components/appFirebase.js';
 import img from '../../images/img/png/gallery/no-image.png';
 import { refs } from '../refs/refs.js';
+import { mouseUp } from '../components/modal_login.js';
 let id = 'id';
 let objService = '';
 let arrObj = '';
@@ -18,14 +19,13 @@ function renderMovieSeorchParam(id) {
   renderParamsCard(id)
     .then(data => {
       renderModal(modal_one_movie_markup(imgFix(data)));
-      addToDataBase(imgFix(data));
-      updateButton(id);
       objService = data;
       arrObj = JSON.stringify({ objService });
       localStorage.setItem('idFilm', id);
       localStorage.setItem('marcupFilm', arrObj);
+      addToDataBase(imgFix(data));
+      updateButton(id);
     })
-    .catch(() => {});
 }
 
 function imgFix(m) {
@@ -70,6 +70,7 @@ function addToDataBase(data) {
     if (e.target.nodeName !== 'BUTTON') return;
     if (userId == null) {
       refs.singinModal.classList.remove('modal-auth--hidden');
+      mouseUp()
     } else {
       postUserData(userId, e.target.ariaLabel, idFilm, markupFilm);
       deleteData(userId, e.target.dataset.set, idFilm);

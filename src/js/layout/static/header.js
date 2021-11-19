@@ -7,15 +7,15 @@ import { refs } from '../../refs/refs.js';
 import { initGenres } from '../../data/genres';
 import { signOutUser } from '../../components/appFirebase';
 import { onLibButtons } from '../../layout/hero_my_list.js';
+import { logOutModalIsVisible } from '../../components/modal_login';
+import { mouseUp } from '../../components/modal_login.js';
 // import { ref } from '@firebase/database';
 
 function current(event) {
   if (event === 'home') {
-    refs.idhome.classList.add('nav__current');
-    refs.idmyLib.classList.remove('nav__current');
+    changeClass(refs.idhome, refs.idmyLib, 'nav__current', 'nav__current')
   } else if (event === 'my library') {
-    refs.idhome.classList.remove('nav__current');
-    refs.idmyLib.classList.add('nav__current');
+    changeClass(refs.idmyLib, refs.idhome, 'nav__current', 'nav__current')
   }
 }
 
@@ -51,13 +51,19 @@ function canheHeader(event) {
   } else if (sessionStorage.getItem('userId') !== null) {
     mylibwatch();
   } else {
-    refs.singinModal.classList.remove('modal-auth--hidden');
+    removeModalClassSingIn();
     home();
   }
   if (item === 'log in') {
-    refs.singinModal.classList.remove('modal-auth--hidden');
+    removeModalClassSingIn();
   }
   return;
+}
+
+function removeModalClassSingIn() {
+  refs.singinModal.classList.remove('modal-auth--hidden');
+  refs.modalSinInError.classList.add('modal__error--hidden');
+  mouseUp();
 }
 
 refs.myUlEle.forEach(function (link) {
@@ -68,20 +74,27 @@ refs.myUlEle.forEach(function (link) {
 export function swetchClass() {
   changeAuthModal();
 }
+function hidenmodalSinUp() {
+  if (sessionStorage.getItem('userId') === null) {
+    changeClass(refs.logOut, refs.logIn, 'js-logout--hidden', 'js-login--hidden')
+  } else {
+    changeClass(refs.logIn, refs.logOut, 'js-login--hidden', 'js-logout--hidden')
+  }
+}
+function changeClass(firstEl, secondEl, firstClass, secondClass) {
+  firstEl.classList.add(firstClass);
+    secondEl.classList.remove(secondClass);
+}
 
 function changeAuthModal() {
-  if (sessionStorage.getItem('userId') === null) {
-    refs.logIn.classList.remove('js-login--hidden');
-    refs.logOut.classList.add('js-logout--hidden');
-  } else {
-    refs.logIn.classList.add('js-login--hidden');
-    refs.logOut.classList.remove('js-logout--hidden');
-  }
+  hidenmodalSinUp();
 }
 swetchClass();
 
 refs.logOut.addEventListener('click', loginOutUser);
 
 function loginOutUser() {
-  signOutUser();
+  removeModalClassSingIn();
+  logOutModalIsVisible(signOutUser);
+
 }
