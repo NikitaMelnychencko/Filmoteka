@@ -1,11 +1,19 @@
 .gallery {
   padding-top: 20px;
   padding-bottom: 40px;
-  @media screen and (min-width: $desktop-up) {
-    padding-top: 60px;
+  @media screen and (min-width: $tablet-general) {
+    padding-top: 30px;
     padding-bottom: 60px;
   }
 }
+
+.container-gallery {
+  padding-top: 20px;
+  @media screen and (min-width: $tablet-general) {
+    padding-top: 30px;
+  }
+}
+
 .gallery-list {
   display: flex;
   flex-direction: row;

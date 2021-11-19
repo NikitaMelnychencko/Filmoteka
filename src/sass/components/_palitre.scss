@@ -24,7 +24,6 @@
   transform-origin: 140px 140px;
   transform: rotate(90 deg);
   z-index: 1002;
-  transition: all 150ms;
   animation-fill-mode: backwards;
   animation-name: palitre-current-dot;
   animation-duration: 300ms;
@@ -159,7 +158,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  background-color: $accent-color; //selected color
+  background-color: $accent-color;
   border-radius: 50%;
   width: 90px;
   height: 90px;
@@ -186,7 +185,7 @@
     top: 25%;
   }
   &::after {
-    color: black;
+    color: #000000;
     bottom: 25%;
   }
   &::before,
@@ -211,7 +210,7 @@
   background: linear-gradient(
     to bottom,
     rgb(255, 255, 255) 20%,
-    var(--clear-accent-color),
+    $clear-accent-color,
     rgb(0, 0, 0) 80%
   );
   animation-name: palitre-left;
@@ -221,7 +220,7 @@
   transform: translate(-48%, -48%) scale(1) rotate(180deg);
   background: linear-gradient(
     to bottom,
-    var(--clear-accent-color) 20%,
+    $clear-accent-color 20%,
     rgb(128, 128, 128) 80%
   );
 

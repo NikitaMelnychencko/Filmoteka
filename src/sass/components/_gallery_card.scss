@@ -78,7 +78,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 1.33;
+  line-height: 1.17;
 
   color: $selection-text-color;
 }
@@ -88,6 +88,11 @@
   align-items: center;
 
   max-width: 190px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
 
   white-space: nowrap;
   overflow: hidden;
@@ -119,6 +124,11 @@
   margin-left: 10px;
   width: 36px;
   height: 16px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
 
   background-color: $secondary-background-color;
   color: $form-text-color;

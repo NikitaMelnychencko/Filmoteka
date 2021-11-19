@@ -20,4 +20,5 @@ export const refs = {
   modalSinInError: document.querySelector('.signin-modal__error'),
   modalSinUpError: document.querySelector('.signup-modal__error'),
   modalSinUP: document.querySelector('.modal-signup '),
+  preloader: document.querySelector('.loading')
 };

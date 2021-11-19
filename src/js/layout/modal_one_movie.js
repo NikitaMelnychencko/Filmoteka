@@ -19,12 +19,12 @@ function renderMovieSeorchParam(id) {
   renderParamsCard(id)
     .then(data => {
       renderModal(modal_one_movie_markup(imgFix(data)));
-      addToDataBase(imgFix(data));
-      updateButton(id);
       objService = data;
       arrObj = JSON.stringify({ objService });
       localStorage.setItem('idFilm', id);
       localStorage.setItem('marcupFilm', arrObj);
+      addToDataBase(imgFix(data));
+      updateButton(id);
     })
 }
 

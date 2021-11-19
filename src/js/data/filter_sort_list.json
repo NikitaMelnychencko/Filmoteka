@@ -1,0 +1,28 @@
+{
+    "itemSort": [
+        {
+            "data-atribute": "popularity.desc",
+            "name": "Popularity (decreasing)"
+        },
+        {
+            "data-atribute": "popularity.asc",
+            "name": "Popularity (increasing)"
+        },
+        {
+            "data-atribute": "primary_release_date.desc",
+            "name": "Release date (decreasing)"
+        },
+        {
+            "data-atribute": "primary_release_date.asc",
+            "name": "Release date (ascending)"
+        },
+        {
+            "data-atribute": "original_title.asc",
+            "name": "Name (A-Z)"
+        },
+        {
+            "data-atribute": "original_title.desc",
+            "name": "Name (Z-A)"
+        }
+    ]
+}

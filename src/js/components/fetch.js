@@ -1,6 +1,6 @@
-// Вызов функции renderMuvieGlobal(page, searchQuery) для "input"
-// Вызов функции renderMuvieGlobal(page, '', '', home) для страници "Home"
-// Вызов функции renderParamsCard(id) для страници карточки фильма
+// Function call renderMuvieGlobal(page, searchQuery) for "input";
+// Function call renderMuvieGlobal(page, '', '', home) for pages "Home";
+// Function call renderParamsCard(id) for pages movie cards;
 
 import { renderErrorSearch, renderErrorServer } from './error';
 const API_KEY = '843d6905879c9b52f41f5f6a1e2c8966';
@@ -18,24 +18,22 @@ export function renderMovieGlobal(page, searchQuery, id, options) {
     const REQUEST_ADRESS = `${SEARCH_URL}?api_key=${API_KEY}&query=${searchQuery}&page=${page}&language=uk-ua`;
     return baseFetch(REQUEST_ADRESS)
       .then(data => {
-        console.log(data);
         if (data.results.length === 0) {
           throw new Error(renderErrorSearch());
         } else {
           return data;
         }
       })
-      .catch(error => {renderErrorSearch()});
+      .catch(error => { renderErrorSearch() });
   }
 }
-
 export function renderParamsCard(id) {
   const REQUEST_ADRESS = `${ID_URL}${id}?api_key=${API_KEY}&language=en-US`;
   return baseFetch(REQUEST_ADRESS)
     .then(response => {
-        return response;
+      return response;
     })
-  .catch(error => {renderErrorServer()})
+    .catch(error => { renderErrorServer() })
 }
 
 export function genreMovie(genre) {
@@ -51,5 +49,5 @@ function baseFetch(REQUEST_ADRESS) {
         throw new Error(renderErrorServer());
       }
     })
-    .catch(error => {renderErrorServer()});
+    .catch(error => { renderErrorServer() });
 }

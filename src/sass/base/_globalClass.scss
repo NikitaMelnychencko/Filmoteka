@@ -5,15 +5,32 @@ body {
   font-size: 12px;
   line-height: 1.33;
   background-color: $fourth-background-color;
-  font-display: swap;
+  // font-display: swap;
+
   @media screen and (min-width: $desktop-up) {
     // -----set govnoimage)))
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-      url('../images/img/background/bg1.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('../images/img/background/bg1440.jpg');
     background-size: cover;
     background-attachment: fixed;
-    // -----set govnoimage)))
+    background-position: center;
   }
+  @media screen and (min-width: 1680px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('../images/img/background/bg1680.jpg');
+  }
+
+  @media screen and (min-width: 1920px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('../images/img/background/bg1920.jpg');
+
+  }
+  @media screen and (min-width: 2600px) {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('../images/img/background/bg3840.jpg');
+  }
+  // -----set govnoimage)))
+
   &::before {
     content: '';
     z-index: -1;

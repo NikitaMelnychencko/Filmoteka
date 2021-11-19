@@ -22,8 +22,8 @@ function current(event) {
 export function home() {
   current('home');
   initGenres();
-  renderGallery();
   pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
+  renderGallery(1, 'home');
 }
 
 export function mylibwatch() {
@@ -38,7 +38,7 @@ export function mylibwatch() {
   );
   onLibButtons();
   const userId = sessionStorage.getItem('userId');
-  renderGallery('library', `${userId}`, `watched`);
+  renderGallery(1, 'library', `${userId}`, `watched`);
 }
 
 // Funchtion for render header
