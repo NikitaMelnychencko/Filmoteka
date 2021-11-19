@@ -15,6 +15,7 @@ import './components/error';
 import './components/filter';
 import './components/spinner';
 import './components/appFirebase';
+import './components/preloader_bar';
 //=========layout===============
 //=========static===============
 import './layout/static/header';
