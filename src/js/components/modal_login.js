@@ -7,7 +7,11 @@ import {
 } from './appFirebase';
 import { refs } from '../refs/refs.js';
 import { addSpinner, removeSpinner } from './spinner';
-import { removeModalListener, addModalListener } from './modal.js';
+import {
+  removeModalListener,
+  addModalListener,
+  modalAddListener,
+} from './modal.js';
 import { stopScroll, restoreScroll } from './scroll';
 refs.formLog.addEventListener('submit', e => {
   e.preventDefault();
@@ -70,7 +74,12 @@ function onCloseModal(eve) {
 export function addClass() {
   refs.singinModal.classList.add('modal-auth--hidden');
   removeListenerMouse();
-  restoreScroll();
+
+  if (document.querySelector('.modal-one-movie') === null) {
+    restoreScroll();
+  } else if (document.querySelector('.modal-one-movie') !== null) {
+    modalAddListener();
+  }
 }
 
 // back sing Up
@@ -119,7 +128,9 @@ const closeEvents = function (e) {
 };
 
 function removeListenerMouse() {
-  removeModalListener(refs.modalSinUP);
+  if (document.querySelector('.modal-one-movie') === null) {
+    removeModalListener(refs.modalSinUP);
+  }
 }
 
 export function mouseUp() {
