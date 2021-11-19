@@ -13,9 +13,9 @@ import { mouseUp } from '../../components/modal_login.js';
 
 function current(event) {
   if (event === 'home') {
-    changeClass(refs.idhome, refs.idmyLib, 'nav__current', 'nav__current')
+    changeClass(refs.idhome, refs.idmyLib, 'nav__current', 'nav__current');
   } else if (event === 'my library') {
-    changeClass(refs.idmyLib, refs.idhome, 'nav__current', 'nav__current')
+    changeClass(refs.idmyLib, refs.idhome, 'nav__current', 'nav__current');
   }
 }
 
@@ -76,14 +76,24 @@ export function swetchClass() {
 }
 function hidenmodalSinUp() {
   if (sessionStorage.getItem('userId') === null) {
-    changeClass(refs.logOut, refs.logIn, 'js-logout--hidden', 'js-login--hidden')
+    changeClass(
+      refs.logOut,
+      refs.logIn,
+      'js-logout--hidden',
+      'js-login--hidden',
+    );
   } else {
-    changeClass(refs.logIn, refs.logOut, 'js-login--hidden', 'js-logout--hidden')
+    changeClass(
+      refs.logIn,
+      refs.logOut,
+      'js-login--hidden',
+      'js-logout--hidden',
+    );
   }
 }
 function changeClass(firstEl, secondEl, firstClass, secondClass) {
   firstEl.classList.add(firstClass);
-    secondEl.classList.remove(secondClass);
+  secondEl.classList.remove(secondClass);
 }
 
 function changeAuthModal() {
@@ -96,5 +106,4 @@ refs.logOut.addEventListener('click', loginOutUser);
 function loginOutUser() {
   removeModalClassSingIn();
   logOutModalIsVisible(signOutUser);
-
 }
