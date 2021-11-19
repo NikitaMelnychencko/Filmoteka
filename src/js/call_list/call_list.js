@@ -8,10 +8,8 @@ import { refs } from '../refs/refs.js';
 import mainTittle from '../data/main.json';
 import backdrop_markup from '../../views/components/backdrop.hbs';
 import { homeMarkUp, openInput } from '../layout/hero_home';
-//import nullInBox from '../../views/components/null_in_box.hbs';
 import modal_markup from '../../views/components/modal.hbs';
 import svg from '../../images/svg/svg.svg';
-//import img from '../../images/img/null_in_box/null_in_box.jpg'
 import spinner from '../../views/components/spinner.hbs';
 import { renderGallery } from '../layout/gallery';
 import { primaryPagination } from '../components/pagination-list';
@@ -25,12 +23,11 @@ import filterItemYear from '../data/filter_year_list.json';
 import filterItemGenre from '../data/filter_genre_list.json';
 import filterItemSort from '../data/filter_sort_list.json';
 export function pageRender(value, heroValue, valueAdd, valueRemove) {
-  //backdrop include plugin "modal window"
   const backdropMarkUp = backdrop_markup(modal_markup({ svg }));
   const spinnerMarkUp = spinner();
   const currentValue = value;
   const blockHelpMarkup = blockHelpTemplate({ svg });
-  //const nullMarkup = markupNullImg(value.hero_tittle);
+
 
   let markupFilter = '';
   if (value.hero_tittle === 'Search Movies') {
@@ -44,7 +41,6 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
     heroValue,
     spinnerMarkUp,
     blockHelpMarkup,
-    //nullMarkup,
     markupFilter,
   });
 
@@ -71,9 +67,3 @@ initGenres()
   .then(renderGallery)
   .catch(renderGallery);
 
-// function markupNullImg(value) {
-//   if (value === 'Movie bookmarks') {
-//     return
-//     // nullInBox({ img })
-//   }
-// }
