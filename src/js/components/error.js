@@ -6,7 +6,7 @@ export const imgMarkup = errorRend({ img });
 export const imgMarkupMain = errorServ({ imgMainError });
 import { renderGallery } from '../layout/gallery';
 import { clearInput } from '../layout/hero_home';
-import { seorchId } from '../layout/modal_one_movie.js';
+import { home } from '../layout/static/header';
 
 //displays an error if the input is incorrect in the search
 export function renderErrorSearch() {
@@ -19,9 +19,7 @@ export function renderErrorSearch() {
   btnHome.addEventListener('click', el => {
     el.preventDefault();
     if (el.target) {
-      clearInput();
-      renderGallery(1, 'home');
-      filterAll.classList.remove('is-hidden')
+      home()
     }
   });
 }

@@ -20,7 +20,7 @@ import { swetchClass } from '../layout/static/header';
 import { updateButton } from '../layout/modal_one_movie';
 import {renderErrorServer} from './error'
 import { addClass } from '../components/modal_login';
-import { preloaderIsHided } from '../components/preloader_bar';
+import { preloaderIsHided,preloaderDisable } from '../components/preloader_bar';
 import { refs } from '../refs/refs.js';
 
 const firebaseConfig = {
@@ -119,12 +119,11 @@ export async function AuthState(user) {
     }
   });
 }
-
 window.onload = function () {
-  setTimeout(preloaderIsHided,1500)
+  setTimeout(preloaderIsHided, 1500)
+  setTimeout(preloaderDisable, 2000)
   AuthState(user);
 };
-
 //getId
 export async function getIdUser(userId, store, id) {
   return await get(child(dbRef, 'users/' + userId + '/' + store + '/' + id))
