@@ -21,9 +21,9 @@ import { blockhelpOpen } from '../components/block_help.js';
 import { seorchId } from '../layout/modal_one_movie.js';
 import filter from '../../views/components/filter/filter_sort.hbs';
 import { initFilter } from '../filter/filter_sort';
-import filterItemYear from '../filter_year_list.json';
-import filterItemGenre from '../filter_genre_list.json';
-import filterItemSort from '../filter_sort_list.json';
+import filterItemYear from '../data/filter_year_list.json';
+import filterItemGenre from '../data/filter_genre_list.json';
+import filterItemSort from '../data/filter_sort_list.json';
 export function pageRender(value, heroValue, valueAdd, valueRemove) {
   //backdrop include plugin "modal window"
   const backdropMarkUp = backdrop_markup(modal_markup({ svg }));
