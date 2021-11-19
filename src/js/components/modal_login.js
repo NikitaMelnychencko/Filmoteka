@@ -45,6 +45,7 @@ function clearInput(ref, number) {
 }
 
 // function for render sing up sing in
+refs.singUP.addEventListener('click', openSinUp)
 
 function openSinUp(eve) {
   const item = eve.target.textContent.trim();
@@ -73,6 +74,10 @@ function onCloseModal(eve) {
 
 export function addClass() {
   refs.singinModal.classList.add('modal-auth--hidden');
+  refs.singOutMod.classList.add('modal-singup--hidden');
+  refs.singInMod.classList.remove('modal-singin--hidden');
+  refs.modalSinUpError.classList.remove('modal__error--hidden');
+  
   removeListenerMouse();
 
   if (document.querySelector('.modal-one-movie') === null) {
