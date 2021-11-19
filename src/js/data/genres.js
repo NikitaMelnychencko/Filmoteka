@@ -9,6 +9,5 @@ export async function initGenres() {
             GENRES_MAP = new Map(genres.map(g => [g.id, g.name]));
         }
     } catch {
-        console.log("no ganres");
     }
 }
