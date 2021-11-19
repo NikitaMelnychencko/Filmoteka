@@ -2,7 +2,27 @@
   <div class='modal-one-movie__scroll-box'>
     <div class='modal-one-movie__image-box'>
       <div class='modal-one-movie__image'>
-        <img src={{poster_path}} alt='{{title}}' loading="lazy" width='274' height='398' />
+        <picture class='modal-one-movie__image--picture'>
+          <source
+            srcset='{{poster_path}}'
+            media='(min-width: 1024px)'
+            width='396'
+            {{! height='477' }}
+          />
+          <source
+            srcset='{{poster_path}}'
+            media='(min-width: 768px)'
+            width='264'
+            {{! height='374' }}
+          />
+          <img
+            srcset='{{poster_path}}'
+            src='{{poster_path}}'
+            alt='{{title}}'
+            width='240'
+            {{! height='356' }}
+          />
+        </picture>
       </div>
     </div>
     <div class='modal-one-movie__text-box'>
@@ -15,7 +35,9 @@
             <span class='modal-one-movie__text-box-accent'>
               {{vote_average}}
             </span>
-            {{vote_count}}
+            <span class='modal-one-movie__text-box-secondary'>
+              {{vote_count}}
+            </span>
           </td>
         </tr>
         <tr class='modal-one-movie__table--row'>
@@ -26,25 +48,34 @@
           <td class='modal-one-movie__table--first-list'>Genre</td>
           <td class='modal-one-movie__table--second-list'>
             {{#each genres}}
-            {{name}}
+              {{name}}{{#unless @last}},{{/unless}}
             {{/each}}</td>
         </tr>
         <tr class='modal-one-movie__table--row'>
           <td class='modal-one-movie__table--first-list'>Original title</td>
-          <td class='modal-one-movie__table--second-list'>{{original_title}}</td>
+          <td
+            class='modal-one-movie__table--second-list uppercase-title'
+          >{{original_title}}</td>
         </tr>
       </table>
       <div class='modal-one-movie__about-box'>
-        <h4 class='modal-one-movie__about'>About</h4>
+        <h4 class='modal-one-movie__about'>ABOUT</h4>
         <p class='modal-one-movie__about-text'>
           {{overview}}
         </p>
       </div>
 
       <div class='modal-one-movie__button-box'>
-        <button class='global-button btn__watch' data-set='watched' aria-label="watched">Add to
-          watched</button>
-        <button class='global-button btn__queue' data-set='queue' aria-label="queue">Add to queue</button>
+        <button
+          class='global-button btn__watch'
+          data-set='queue'
+          aria-label='watched'
+        >Add to watched</button>
+        <button
+          class='global-button btn__queue'
+          data-set='watched'
+          aria-label='queue'
+        >Add to queue</button>
       </div>
     </div>
   </div>

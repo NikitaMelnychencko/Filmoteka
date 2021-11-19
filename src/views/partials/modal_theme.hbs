@@ -1,32 +1,38 @@
 <div class='modal-theme'>
-
   <div class='modal-theme__scroll-box'>
     <form name='theme'>
-      <div class='modal-theme__dark-box dark-toggle'>
-        <input
-          id='dark-toggle'
-          class='dark-toggle__checkbox'
-          type='checkbox'
-          name='theme-switcher'
-          value='Dark theme'
-        />
-        <label for='dark-toggle' class='dark-toggle__label'>
-          <span class='dark-toggle__label-background'></span>
-        </label>
+      <div class='modal-theme__dark-box'>
+        <div class='dark-toggle'>
+          <input
+            id='dark-toggle'
+            class='dark-toggle__checkbox'
+            type='checkbox'
+            name='theme-switcher'
+            value='Dark theme'
+          />
+          <label for='dark-toggle' class='dark-toggle__label'>
+            <span class='dark-toggle__label-background'></span>
+          </label>
+        </div>
       </div>
-      <div class='palitre'>
+      <div
+        class='palitre'
+        onselectstart='return false'
+        onmousedown='return false'
+      >
         <div
-          class='palitre__saturation palitre__holst'
+          class='palitre__saturation palitre__holst-js'
           id='palitre__saturation'
-        ></div>
+        >
+        </div>
         <div class='palitre__saturation-dot' id='palitre__saturation-dot'></div>
         <div
-          class='palitre__brightness palitre__holst'
+          class='palitre__brightness palitre__holst-js'
           id='palitre__brightness'
-        ></div>
+        >
+        </div>
         <div class='palitre__brightness-dot' id='palitre__brightness-dot'></div>
-
-        <div class='palitre__ring palitre__holst' id='palitre__ring'></div>
+        <div class='palitre__ring palitre__holst-js' id='palitre__ring'></div>
         <div class='palitre__dot' id='palitre-ring-dot'></div>
         <div class='palitre__current-color'></div>
       </div>
@@ -35,12 +41,9 @@
           class='modal-theme__button'
           aria-label='restore-default'
           id='default-theme'
-        >Restore default</button>
-        <button
-          class='modal-theme__button'
-          aria-label='Apply'
-          id='apply-theme'
-        >Apply</button>
+        >
+          Restore default
+        </button>
       </div>
     </form>
   </div>

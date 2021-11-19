@@ -11,19 +11,18 @@
   transform: scale(1);
   transition: all $time-cubic;
 
-  &:hover,
-  &:focus {
+  &:hover {
     z-index: 2;
     transform: scale(1.05);
+  }
 
-    .gallery-list__img {
-      box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
-        0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
-    }
+  &:hover .gallery-list__img {
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
+      0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+  }
 
-    .gallery-list__title {
-      white-space: normal;
-    }
+  &:hover .gallery-list__title {
+    white-space: normal;
   }
 
   @media screen and (min-width: $tablet-general) {
@@ -79,7 +78,7 @@
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 1.33;
+  line-height: 1.17;
 
   color: $selection-text-color;
 }
@@ -89,6 +88,11 @@
   align-items: center;
 
   max-width: 190px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
 
   white-space: nowrap;
   overflow: hidden;
@@ -120,6 +124,11 @@
   margin-left: 10px;
   width: 36px;
   height: 16px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
 
   background-color: $secondary-background-color;
   color: $form-text-color;

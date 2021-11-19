@@ -1,36 +1,34 @@
 import { GENRES_MAP, initGenres } from '../data/genres';
 import { renderMovieGlobal } from '../components/fetch';
-import { renderPagination } from '../components/pagination-list';
-import img from '../../images/img/png/gallery/no-image.png';
-import card from '../../views/components/card_galery.hbs';
 import { getUser } from '../components/appFirebase';
+import { filterGlobal } from '../filter/fetch_filter_sort';
+import { hideFilter } from '../filter/filter_sort';
+import { renderPagination } from '../components/pagination-list';
 import { addSpinner, removeSpinner } from '../components/spinner';
+import img from '../../images/img/png/gallery/no-image.png';
+import imgEmpty from '../../images/img/null_in_box/null_in_box.jpg'
+import card from '../../views/components/card_galery.hbs';
+import nullInBox from '../../views/components/null_in_box.hbs';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
-const renderParams = {
-  globalOptions: '',
+export const renderParams = {
+  globalOptions: 'home',
   globalSearch: '',
+  globalYear: '',
   globalOrder: '',
+  globalGenre: '',
+  globalId: '',
+  globalLibrary: '',
 };
 
-export async function renderGallery(
-  options = 'home',
-  search,
-  sortBy,
-  page = 1,
-) {
+export async function renderGallery(page = 1, options, ...criterias) {
   addSpinner();
+
   let movies = {};
 
-  if (options === '') {
+  if (options === '' || !options) {
     options = renderParams.globalOptions;
-  }
-  if (search === '') {
-    search = renderParams.globalSearch;
-  }
-  if (sortBy === '') {
-    sortBy = renderParams.globalOrder;
   }
 
   if (options === 'home') {
@@ -39,23 +37,31 @@ export async function renderGallery(
   }
 
   if (options === 'search') {
+    hideFilter(true);
+    if (!criterias[0]) { criterias[0] = renderParams.globalSearch };
     renderParams.globalOptions = options;
-    renderParams.globalSearch = search;
+    renderParams.globalSearch = criterias[0];
     movies = await renderMovieGlobal(page, renderParams.globalSearch, '', '');
+  }
+
+  if (options === 'sort') {
+    renderParams.globalOptions = options;
+    renderParams.globalYear = criterias[0];
+    renderParams.globalOrder = criterias[1];
+    renderParams.globalGenre = criterias[2];
+
+    movies = (await filterGlobal(renderParams.globalOrder, page, renderParams.globalYear, renderParams.globalGenre))
   }
 
   if (options === 'library') {
     renderParams.globalOptions = options;
-    renderParams.globalSearch = search;
-    renderParams.globalOrder = sortBy;
+    renderParams.globalId = criterias[0];
+    renderParams.globalLibrary = criterias[1];
 
-    const allMovies = await getUser(
-      renderParams.globalSearch,
-      renderParams.globalOrder,
-    );
+    const allMovies = await getUser(renderParams.globalId, renderParams.globalLibrary);
 
-    movies['total_pages'] = Math.ceil(allMovies.length / 20);
-    movies['results'] = allMovies.slice((page - 1) * 20, page * 20);
+    movies['total_pages'] = Math.ceil(allMovies.length / 21);
+    movies['results'] = allMovies.slice((page - 1) * 21, page * 21);
   }
 
   if (!movies) {
@@ -73,9 +79,14 @@ export async function renderGallery(
 }
 
 export function renderMovies(movies) {
-  if (movies.length === 0) return;
-  const moviesData = getData(movies, GENRES_MAP);
   const gallery = document.querySelector('.gallery-list');
+
+  if (movies.length === 0) {
+    gallery.innerHTML = nullInBox({ imgEmpty })
+    return;
+  }
+
+  const moviesData = getData(movies, GENRES_MAP);
   gallery.innerHTML = card(moviesData);
 }
 

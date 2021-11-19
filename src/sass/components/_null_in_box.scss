@@ -1,6 +1,6 @@
 .gallery__null-item{
   width: 100%;
-  height: 100vh;
+  min-height: calc(100vh - 230px - 129px);
 }
 .null-item__thumb{
   display: flex;

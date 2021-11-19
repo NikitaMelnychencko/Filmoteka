@@ -1,4 +1,5 @@
 import { setTheme } from './modal_theme';
+import { stopScroll } from '../components/scroll';
 
 function dark_toggle() {
   return document.querySelector('#dark-toggle');
@@ -12,11 +13,11 @@ export function darkTheme() {
 function changeTheme(evt) {
   if (evt.target.checked) {
     setDarkTheme();
-
+    stopScroll();
     return;
   }
   setLightTheme();
-
+  stopScroll();
   return;
 }
 
@@ -32,13 +33,12 @@ function setLightTheme() {
 
 export function defaultTheme() {
   localStorage.removeItem('darkTheme');
-  dark_toggle().removeAttribute('checked', 'true');
+  dark_toggle().checked = '';
 }
 
 function initialiseCheckOnDownload() {
   if (JSON.parse(localStorage.getItem('darkTheme')) == 'dark') {
-    dark_toggle().setAttribute('checked', 'true');
-    return;
+    dark_toggle().checked = 'checked';
   }
   return;
 }
