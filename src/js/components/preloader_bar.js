@@ -1,10 +1,6 @@
 import { refs } from '../refs/refs.js';
-
-window.onload = function () {
-  setTimeout(preloaderIsHided,1500)
-
-};
   
-function preloaderIsHided() {
+export function preloaderIsHided() {
   refs.preloader.classList.add('loading--hiden')
 }
+ 

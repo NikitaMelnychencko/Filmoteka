@@ -20,6 +20,7 @@ import { swetchClass } from '../layout/static/header';
 import { updateButton } from '../layout/modal_one_movie';
 import {renderErrorServer} from './error'
 import { addClass } from '../components/modal_login';
+import { preloaderIsHided } from '../components/preloader_bar';
 import { refs } from '../refs/refs.js';
 
 const firebaseConfig = {
@@ -120,6 +121,7 @@ export async function AuthState(user) {
 }
 
 window.onload = function () {
+  setTimeout(preloaderIsHided,1500)
   AuthState(user);
 };
 
