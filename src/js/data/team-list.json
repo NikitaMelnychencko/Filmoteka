@@ -1,82 +1,62 @@
 [
   {
-   
     "name": "Nikita Melnichenko",
-    "position": "Teamlead",
+    "position": "Team lead",
     "imageMember": "https://avatars.githubusercontent.com/u/82110006?v=4",
-    "socialLink": 
-        "https://github.com/NikitaMelnychencko"
+    "socialLink": "https://github.com/NikitaMelnychencko"
   },
   {
-
     "name": "Vladislav Vinichenko",
-    "position":  "Scrum master",
+    "position": "Scrum master",
     "imageMember": "https://avatars.githubusercontent.com/u/82459567?v=4",
-    "socialLink": 
-        "https://github.com/VladVinichenko"
+    "socialLink": "https://github.com/VladVinichenko"
   },
   {
-    
     "name": "Oleksandra Tikka",
     "position": "Developer",
     "imageMember": "https://avatars.githubusercontent.com/u/82177700?v=4",
-    "socialLink": 
-        "https://github.com/tikkasandy"
+    "socialLink": "https://github.com/tikkasandy"
   },
   {
-    
     "name": "Oksana Soroka",
     "position": "Developer",
     "imageMember": "https://avatars.githubusercontent.com/u/81969158?v=4",
-    "socialLink": 
-        "https://github.com/OksanaSoroka1"
+    "socialLink": "https://github.com/OksanaSoroka1"
   },
   {
-    
     "name": "Valentin Bondarchuk",
     "position": "Developer",
     "imageMember": "https://avatars.githubusercontent.com/u/81237327?v=4",
-    "socialLink": 
-        "https://github.com/bondarchugtr"
+    "socialLink": "https://github.com/bondarchugtr"
   },
   {
-
     "name": "Andrii Hrytsai",
     "position": "Developer",
     "imageMember": "https://avatars.githubusercontent.com/u/81590763?v=4",
-    "socialLink": 
-        "https://github.com/andreydnb"
+    "socialLink": "https://github.com/andreydnb"
   },
   {
- 
     "name": "Egor Osipov",
     "position": "Developer",
     "imageMember": "https://avatars.githubusercontent.com/u/83457266?v=4",
-    "socialLink": 
-        "https://github.com/DeadNord"
+    "socialLink": "https://github.com/DeadNord"
   },
   {
-    
     "name": "Yevheniia Mankivska",
     "position": "Developer",
     "imageMember": "https://avatars.githubusercontent.com/u/59099458?v=4",
-    "socialLink": 
-        "https://github.com/Evgeniya-Mankovskaya"
+    "socialLink": "https://github.com/Evgeniya-Mankovskaya"
   },
   {
-   
     "name": "Saftar Aliev",
     "position": "Developer",
     "imageMember": "https://media-exp1.licdn.com/dms/image/C5603AQGjmUnP5O1S4g/profile-displayphoto-shrink_200_200/0/1544554825978?e=1642032000&v=beta&t=pMVFn0dY2zhBPj4dY5_MBBeh6LlIWtC5oRaCnQJ55ns",
-    "socialLink": 
-        "https://ua.linkedin.com/in/saftar-aliev-7b0794140"
+    "socialLink": "https://ua.linkedin.com/in/saftar-aliev-7b0794140"
   },
   {
-   
     "name": "Yurii",
     "position": "Developer",
     "imageMember": "https://avatars.githubusercontent.com/u/83427824?v=4",
-    "socialLink": 
-        "https://github.com/YNK0406"
-  } 
+    "socialLink": "https://github.com/YNK0406"
+  }
 ]
