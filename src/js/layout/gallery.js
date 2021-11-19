@@ -46,7 +46,7 @@ export async function renderGallery(
   }
 
   if (options === 'home') {
-    hideFilter(false);
+    // hideFilter(false);
     renderParams.globalOptions = options;
     movies = await renderMovieGlobal(page, '', '', renderParams.globalOptions);
   }

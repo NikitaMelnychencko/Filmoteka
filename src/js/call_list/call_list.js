@@ -71,8 +71,6 @@ initGenres()
   .then(renderGallery)
   .catch(renderGallery);
 
-//renderGallery();
-
 function markupNullImg(value) {
   if (value === 'Movie bookmarks') {
     return nullInBox({ img })
