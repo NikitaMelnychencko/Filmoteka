@@ -37,7 +37,7 @@ export function initFilter() {
     // refsFilter().blockInput.addEventListener('click', onToggleArrowInput);
     refsFilter().button.addEventListener('click', el => {
         el.preventDefault()
-        renderGallery('home');
+        renderGallery(1, 'home');
         refsFilter().InputSort.value = '';
         refsFilter().inputGenres.value = '';
         refsFilter().inputYear.value = '';
@@ -74,7 +74,7 @@ function onRenderSort(evt) {
         refsFilter().InputSort.value = evt.target.textContent;
     }
     sort = evt.target.dataset.atribute;
-    renderGallery('sort', year, sort, genre);
+    renderGallery(1, 'sort', year, sort, genre);
 };
 
 // genre
@@ -95,7 +95,7 @@ function onRenderGenre(evt) {
         refsFilter().inputGenres.value = evt.target.textContent
         genre = evt.target.id
     }
-    renderGallery('sort', year, sort, genre);
+    renderGallery(1, 'sort', year, sort, genre);
 }
 
 // year
@@ -105,7 +105,7 @@ function onOpenListYear(evt) {
     refsFilter().inputYear.value = '';
     refsFilter().listYear.classList.toggle('open');
 
-   removeClass(refsFilter().listGenres, refsFilter().listSort)
+    removeClass(refsFilter().listGenres, refsFilter().listSort)
 }
 
 function onRenderYear(evt) {
@@ -118,16 +118,16 @@ function onRenderYear(evt) {
         refsFilter().inputYear.value = evt.target.textContent;
         year = evt.target.textContent;
     }
-    renderGallery('sort', year, sort, genre);
+    renderGallery(1, 'sort', year, sort, genre);
 }
 
 // remove Open
 
 
-function removeClass(refsFirst, refsSecond,refsThird) {
+function removeClass(refsFirst, refsSecond, refsThird) {
     refsFirst.classList.remove('open');
-    if(refsSecond !== undefined){refsSecond.classList.remove('open')}
-    if(refsThird !== undefined){refsThird.classList.remove('open')}
+    if (refsSecond !== undefined) { refsSecond.classList.remove('open') }
+    if (refsThird !== undefined) { refsThird.classList.remove('open') }
 }
 
 
@@ -135,7 +135,7 @@ function removeClass(refsFirst, refsSecond,refsThird) {
 function removeOpen() {
     const arrowInput = document.querySelector('.filter-icon');
     arrowInput.classList.remove('transform')
-    removeClass(refsFilter().listYear, refsFilter().listGenres,refsFilter().listSort)
+    removeClass(refsFilter().listYear, refsFilter().listGenres, refsFilter().listSort)
 }
 
 export function hideFilter(condition) {

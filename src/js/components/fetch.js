@@ -18,14 +18,13 @@ export function renderMovieGlobal(page, searchQuery, id, options) {
     const REQUEST_ADRESS = `${SEARCH_URL}?api_key=${API_KEY}&query=${searchQuery}&page=${page}&language=uk-ua`;
     return baseFetch(REQUEST_ADRESS)
       .then(data => {
-        console.log(data);
         if (data.results.length === 0) {
           throw new Error(renderErrorSearch());
         } else {
           return data;
         }
       })
-      .catch(error => {renderErrorSearch()});
+      .catch(error => { renderErrorSearch() });
   }
 }
 export function renderParamsCard(id) {
@@ -34,7 +33,7 @@ export function renderParamsCard(id) {
     .then(response => {
       return response;
     })
-  .catch(error => {renderErrorServer()})
+    .catch(error => { renderErrorServer() })
 }
 
 export function genreMovie(genre) {
@@ -50,5 +49,5 @@ function baseFetch(REQUEST_ADRESS) {
         throw new Error(renderErrorServer());
       }
     })
-    .catch(error => {renderErrorServer()});
+    .catch(error => { renderErrorServer() });
 }
