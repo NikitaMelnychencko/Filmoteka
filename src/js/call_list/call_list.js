@@ -8,10 +8,10 @@ import { refs } from '../refs/refs.js';
 import mainTittle from '../data/main.json';
 import backdrop_markup from '../../views/components/backdrop.hbs';
 import { homeMarkUp, openInput } from '../layout/hero_home';
-import nullInBox from '../../views/components/null_in_box.hbs';
+//import nullInBox from '../../views/components/null_in_box.hbs';
 import modal_markup from '../../views/components/modal.hbs';
 import svg from '../../images/svg/svg.svg';
-import img from '../../images/img/null_in_box/null_in_box.jpg'
+//import img from '../../images/img/null_in_box/null_in_box.jpg'
 import spinner from '../../views/components/spinner.hbs';
 import { renderGallery } from '../layout/gallery';
 import { primaryPagination } from '../components/pagination-list';
@@ -30,7 +30,7 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
   const spinnerMarkUp = spinner();
   const currentValue = value;
   const blockHelpMarkup = blockHelpTemplate({ svg });
-  const nullMarkup = markupNullImg(value.hero_tittle);
+  //const nullMarkup = markupNullImg(value.hero_tittle);
 
   let markupFilter = '';
   if (value.hero_tittle === 'Search Movies') {
@@ -44,7 +44,7 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
     heroValue,
     spinnerMarkUp,
     blockHelpMarkup,
-    nullMarkup,
+    //nullMarkup,
     markupFilter,
   });
 
@@ -71,8 +71,9 @@ initGenres()
   .then(renderGallery)
   .catch(renderGallery);
 
-function markupNullImg(value) {
-  if (value === 'Movie bookmarks') {
-    return nullInBox({ img })
-  }
-}
+// function markupNullImg(value) {
+//   if (value === 'Movie bookmarks') {
+//     return
+//     // nullInBox({ img })
+//   }
+// }

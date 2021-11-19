@@ -22,7 +22,7 @@ function current(event) {
 export function home() {
   current('home');
   initGenres();
-  renderGallery();
+  renderGallery(1, 'home');
   pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
 }
 
@@ -38,7 +38,7 @@ export function mylibwatch() {
   );
   onLibButtons();
   const userId = sessionStorage.getItem('userId');
-  renderGallery('library', `${userId}`, `watched`);
+  renderGallery(1, 'library', `${userId}`, `watched`);
 }
 
 // Funchtion for render header
@@ -83,7 +83,7 @@ function hidenmodalSinUp() {
 }
 function changeClass(firstEl, secondEl, firstClass, secondClass) {
   firstEl.classList.add(firstClass);
-    secondEl.classList.remove(secondClass);
+  secondEl.classList.remove(secondClass);
 }
 
 function changeAuthModal() {

@@ -20,7 +20,7 @@ export function renderErrorSearch() {
     el.preventDefault();
     if (el.target) {
       clearInput();
-      renderGallery();
+      renderGallery(1, 'home');
       filterAll.classList.remove('is-hidden')
     }
   });
