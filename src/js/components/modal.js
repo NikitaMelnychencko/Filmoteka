@@ -13,12 +13,11 @@ export function renderModal(modalContent) {
   refsModal().modal_content.innerHTML = modalContent;
   refsModal().modalClose.classList.add('modal_is-open');
   modalAddListener();
-
-  addModalListener(refsModal().modalClose, buttonClose);
 }
 
-function modalAddListener() {
+export function modalAddListener() {
   window.addEventListener('keydown', modalCloseEcsKey);
+  addModalListener(refsModal().modalClose, buttonClose);
 }
 
 function modalCloseEcsKey(evt) {
@@ -65,13 +64,16 @@ export function closeModalSignal() {
 }
 
 export function removeModalListener(modalrefs) {
+  modalrefs.onmouseleave = null;
   document.onmousedown = null;
   document.onmouseup = null;
-  modalrefs.onmouseleave = null;
 }
 
 export function addModalListener(modalrefs, callback) {
   document.onmousedown = function (e) {
+    document.onmouseup = function (e) {
+      callback(e);
+    };
     modalrefs.onmouseleave = function () {
       document.onmouseup = null;
     };
