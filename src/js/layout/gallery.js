@@ -82,8 +82,6 @@ export function renderMovies(movies) {
   const gallery = document.querySelector('.gallery-list');
 
   if (movies.length === 0) {
-    console.log('gde img')
-    console.log(nullInBox({ imgEmpty }))
     gallery.innerHTML = nullInBox({ imgEmpty })
     return;
   }
