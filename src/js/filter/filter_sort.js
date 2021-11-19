@@ -41,7 +41,7 @@ export function initFilter() {
         refsFilter().InputSort.value = '';
         refsFilter().inputGenres.value = '';
         refsFilter().inputYear.value = '';
-        refsFilter().listYear.classList.remove('open');
+        removeClass(refsFilter().listYear)
         removeOpen()
     })
     refsFilter().searchHome.addEventListener('click', el => {
@@ -61,7 +61,7 @@ function onOpenListSorts(el) {
     el.preventDefault()
     onClearEventListener(el)
     refsFilter().InputSort.value = '';
-    removeClassOpenYearGenres();
+    removeClass(refsFilter().listYear, refsFilter().listGenres)
     refsFilter().listSort.classList.toggle('open');
 }
 
@@ -70,7 +70,7 @@ function onRenderSort(evt) {
     if (evt.target.nodeName !== 'LI') {
         return;
     } else {
-        refsFilter().listSort.classList.remove('open');
+        removeClass(refsFilter().listSort)
         refsFilter().InputSort.value = evt.target.textContent;
     }
     sort = evt.target.dataset.atribute;
@@ -83,7 +83,7 @@ function onOpenListGenres(evt) {
     onClearEventListener(evt)
     refsFilter().inputGenres.value = '';
     refsFilter().listGenres.classList.toggle('open');
-    removeClassOpenYearSort();
+    removeClass(refsFilter().listYear, refsFilter().listSort)
 }
 
 function onRenderGenre(evt) {
@@ -91,7 +91,7 @@ function onRenderGenre(evt) {
     if (evt.target.nodeName !== 'LI') {
         return;
     } else {
-        refsFilter().listGenres.classList.remove('open');
+        removeClass(refsFilter().listGenres)
         refsFilter().inputGenres.value = evt.target.textContent
         genre = evt.target.id
     }
@@ -105,7 +105,7 @@ function onOpenListYear(evt) {
     refsFilter().inputYear.value = '';
     refsFilter().listYear.classList.toggle('open');
 
-    removeClassOpenGenresSort();
+   removeClass(refsFilter().listGenres, refsFilter().listSort)
 }
 
 function onRenderYear(evt) {
@@ -114,7 +114,7 @@ function onRenderYear(evt) {
     if (evt.target.nodeName !== 'LI') {
         return
     } else {
-        refsFilter().listYear.classList.remove('open');
+        removeClass(refsFilter().listYear)
         refsFilter().inputYear.value = evt.target.textContent;
         year = evt.target.textContent;
     }
@@ -122,28 +122,20 @@ function onRenderYear(evt) {
 }
 
 // remove Open
-function removeClassOpenYearGenres() {
-    refsFilter().listYear.classList.remove('open');
-    refsFilter().listGenres.classList.remove('open');
+
+
+function removeClass(refsFirst, refsSecond,refsThird) {
+    refsFirst.classList.remove('open');
+    if(refsSecond !== undefined){refsSecond.classList.remove('open')}
+    if(refsThird !== undefined){refsThird.classList.remove('open')}
 }
 
-function removeClassOpenYearSort() {
-    refsFilter().listYear.classList.remove('open');
-    refsFilter().listSort.classList.remove('open');
-}
-
-function removeClassOpenGenresSort() {
-    refsFilter().listGenres.classList.remove('open');
-    refsFilter().listSort.classList.remove('open');
-}
 
 // Clear Filter
 function removeOpen() {
     const arrowInput = document.querySelector('.filter-icon');
     arrowInput.classList.remove('transform')
-    refsFilter().listYear.classList.remove('open');
-    refsFilter().listGenres.classList.remove('open');
-    refsFilter().listSort.classList.remove('open');
+    removeClass(refsFilter().listYear, refsFilter().listGenres,refsFilter().listSort)
 }
 
 export function hideFilter(condition) {
