@@ -21,6 +21,8 @@ function refsFilter() {
         hero: document.querySelector('.gallery'),
         blockInput: document.querySelector('.filter-inputs'),
         filterContainer: document.querySelector('.filter'),
+        arrowInput: document.querySelector('.filter__movie-sort'),
+
     }
     return refs
 }
@@ -32,7 +34,7 @@ export function initFilter() {
     refsFilter().listGenres.addEventListener('click', onRenderGenre);
     refsFilter().inputYear.addEventListener('click', onOpenListYear);
     refsFilter().listYear.addEventListener('click', onRenderYear);
-    refsFilter().blockInput.addEventListener('click', onToggleArrowInput);
+    // refsFilter().blockInput.addEventListener('click', onToggleArrowInput);
     refsFilter().button.addEventListener('click', el => {
         el.preventDefault()
         renderGallery('home');
@@ -50,20 +52,16 @@ export function initFilter() {
 function onClearEventListener(el) {
     refsFilter().body.addEventListener('click', onClearEventListener);
     if (el.target.nodeName !== "INPUT") {
-
         removeOpen();
         refsFilter().body.removeEventListener('click', onClearEventListener)
-
     }
 }
 // sort 
 function onOpenListSorts(el) {
-    console.log(refsFilter().arrowInput);
     el.preventDefault()
     onClearEventListener(el)
     refsFilter().InputSort.value = '';
     removeClassOpenYearGenres();
-    refsFilter().arrowInput.classList.remove('.transform');
     refsFilter().listSort.classList.toggle('open');
 }
 
@@ -100,15 +98,14 @@ function onRenderGenre(evt) {
     renderGallery('sort', year, sort, genre);
 }
 
-
 // year
 function onOpenListYear(evt) {
     evt.preventDefault();
     onClearEventListener(evt)
     refsFilter().inputYear.value = '';
     refsFilter().listYear.classList.toggle('open');
-    removeClassOpenGenresSort();
 
+    removeClassOpenGenresSort();
 }
 
 function onRenderYear(evt) {
@@ -142,6 +139,8 @@ function removeClassOpenGenresSort() {
 
 // Clear Filter
 function removeOpen() {
+    const arrowInput = document.querySelector('.filter-icon');
+    arrowInput.classList.remove('transform')
     refsFilter().listYear.classList.remove('open');
     refsFilter().listGenres.classList.remove('open');
     refsFilter().listSort.classList.remove('open');
@@ -154,19 +153,3 @@ export function hideFilter(condition) {
         refsFilter().filterContainer.classList.remove('hide-filter');
     }
 }
-
-// animation Arrow input
-function onToggleArrowInput(evt) {
-    if (evt.target) {
-        evt.target.nextElementSibling.classList.toggle('transform')
-    }
-
-}
-
-function test() {
-    const arrowInput = document.querySelector('.filter-icon');
-    console.log(arrowInput);
-    // arrowInput.classList.remove('.transform');
-}
-
-test()
