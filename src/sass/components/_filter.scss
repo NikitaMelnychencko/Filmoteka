@@ -1,14 +1,217 @@
-.filter_panel{
-   min-width: 260px;
-    width: 260px;
-    border: 1px solid #e3e3e3;
-    border-radius: var(--imageBorderRadius);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    overflow: hidden;
+.filter {
+    display: block;
+    
+    @media screen and (min-width: $desktop-up) {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
-.filter-list{
-position: relative;
+.filter-inputs {
+    display: block;
+    padding-bottom: 15px;
+
+    @media screen and (min-width: $tablet-general) {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    @media screen and (min-width: $desktop-up) {
+        padding: 0;
+    }
+}
+
+.filter__movie-sort,
+.filter__movie-genres,
+.filter__movie-year {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+    font-size: 14px;
+    line-height: 1.14;
+    color: $third-text-color;
+
+    @media screen and (max-width: $mobile-only) {
+        &:not(:last-child) {
+            padding-bottom: 15px;
+        }
+    }
+
+    @media screen and (min-width: $desktop-up) {
+        &:not(:last-child) {
+             margin-right: 15px;
+        }
+    }
+}
+
+.filter-list__sort,
+.filter-list__genres,
+.filter-list__year{
+    display: block;
+    position: absolute;
+    z-index: 1000;
+   
+    width: 194px;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    opacity: 0;
+    pointer-events: none;
+    
+    background: $primary-background-color;
+    white-space: nowrap;
+    border-radius: 5px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
+      0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16); 
+
+    left:50%;
+    transform: scaleY(0) translateX(-50%);  
+    transform-origin: 0 0;
+
+    transition: all $time-cubic;
+}
+
+.open{
+    opacity: 1;
+    pointer-events: initial;
+    transform: scaleY(1) translateX(-50%);
+}
+
+.filter-input__sort,
+.filter-input__genres,
+.filter-input__year {
+    display: block;
+    caret-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+    
+    box-sizing: border-box;
+    width: 194px;
+    height: 35px;
+    padding-left: 5px;
+    padding-right: 24px;
+    
+    font-size: 14px;
+    line-height: 1.19;
+    text-align: center;
+    
+    color: $accent-color;
+    border: 1px solid $primary-btn-text-color;
+    border-radius: 5px;
+    
+    cursor: pointer;
+    transition: all $time-cubic;
+
+    
+    &:hover,
+    &:focus {
+        border-color: $accent-color;
+    }
+}
+
+.filter-item__year{
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.filter-list__year{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.filter-item__sort,
+.filter-item__genres,
+.filter-item__year{
+    margin-top: 10px;
+    
+    font-size: 14px;
+    line-height: 1.14;
+    
+    color: $secondary-text-color;
+    cursor: pointer;
+    
+    transition: all $time-cubic;
+
+    &:hover,
+    &:focus {
+     color: $accent-color;
+    }
+}
+
+.button__filter-clear{
+    display: block;
+    box-sizing: border-box;
+    width: 140px;
+    height: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    
+    color: $active-btn-text-color;
+    background-color: $accent-color;
+    
+    border-style: none;
+    border-radius: 5px;
+
+    transition: all $time-cubic;
+    
+    @media screen and (min-width: $desktop-up) {
+        display: auto;
+        margin: 0;
+    }
+    
+    &:hover,
+    &:focus {
+        background-color: $accent-btn-color;
+        color: $accent-color;
+        border: 1px solid $accent-color;
+    }
+}
+
+.filter-icon{
+    position: absolute;
+    top: 12px;
+    left: 218px;
+   
+    width: 14px;
+    height: 14px;
+
+    fill: $primary-border-color;
+   
+    pointer-events: none;
+    transform: rotate(0deg);
+     transition: fill $time-cubic;
+    
+    .filter-input__sort:hover + &,
+    .filter-input__genres:hover +&,
+    .filter-input__year:hover + &,
+    .filter-input__sort:focus + &,
+    .filter-input__genres:focus +&,
+    .filter-input__year:focus + & {
+        fill: $accent-color;
+    }
+    
+    @media screen and (min-width: $tablet-general) {
+        left: 175px;
+    }
+}
+
+.hide-filter {
+    display: none;
+}
+.filter-icon.transform{
+    transform: rotate(-89deg);
+    transition: all $time-cubic;
 }

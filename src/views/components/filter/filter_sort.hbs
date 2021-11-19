@@ -1,0 +1,39 @@
+<div class="filter container">
+    <h3 class="hero__tittle--hide">Filter Movie</h3>
+    <div class='filter-inputs'>
+        <div class="filter__movie-sort card ">
+            <input class="filter-input__sort" name="sort" placeholder="Sort by" readonly>
+            <svg class="filter-icon" width="14px" height="14px">
+                <use href="{{svg}}#icon-down-arrow"></use>
+            </svg>
+            <ul class="filter-list__sort">
+                {{#each filterItemSort.itemSort}}
+                <li class="filter-item__sort" data-atribute={{this.data-atribute}}>{{this.name}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="filter__movie-genres">
+            <input class="filter-input__genres" name="genre" placeholder="Select genre" readonly>
+            <svg class="filter-icon" width="14px" height="14px">
+                <use href="{{svg}}#icon-down-arrow" "></use>
+            </svg>
+            <ul class=" filter-list__genres">
+                    {{#each filterItemGenre.itemGenre}}
+                    <li class=" filter-item__genres" id={{this.id}}>{{this.name}}</li>
+                    {{/each}}
+                    </ul>
+        </div>
+        <div class="filter__movie-year">
+            <input class="filter-input__year" name="year" placeholder="Select year" readonly>
+            <svg class="filter-icon" width="14px" height="14px">
+                <use href="{{svg}}#icon-down-arrow"></use>
+            </svg>
+            <ul class="filter-list__year">
+                {{#each filterItemYear.year}}
+                <li class="filter-item__year">{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <button class="button__filter-clear" type="button">Clear all filters</button>
+</div>

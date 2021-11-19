@@ -8,9 +8,11 @@ import { renderGallery } from '../layout/gallery';
 import { clearInput } from '../layout/hero_home';
 import { seorchId } from '../layout/modal_one_movie.js';
 
-//выводит ошибку при не вверном вводе в поиске
+//displays an error if the input is incorrect in the search
 export function renderErrorSearch() {
   const errors = document.querySelector('.gallery-list');
+  const filterAll = document.querySelector('.filter');
+  filterAll.classList.add('is-hidden')
   const marcup = errorRend({ img });
   errors.innerHTML = marcup;
   const btnHome = document.querySelector('.error__button');
@@ -19,11 +21,13 @@ export function renderErrorSearch() {
     if (el.target) {
       clearInput();
       renderGallery();
-      //seorchId()
+      filterAll.classList.remove('is-hidden')
     }
   });
 }
-//выводит ошибку при ошибке сервера
+
+
+//throws on server error
 
 export function renderErrorServer() {
   const errorsServ = document.querySelector('.gallery-list');

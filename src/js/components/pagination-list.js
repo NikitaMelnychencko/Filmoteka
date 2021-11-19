@@ -32,8 +32,8 @@ function onPageClick(e) {
 
     const pressedButton = e.target;
 
-    renderGallery('', '', '', getNextPage(pressedButton));
-    scrollTo();
+    renderGallery('', '', '', '', getNextPage(pressedButton))
+    scrollTo()
 }
 
 function getNextPage(button) {
