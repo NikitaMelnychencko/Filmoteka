@@ -1,4 +1,5 @@
 import { setTheme } from './modal_theme';
+import { stopScroll } from '../components/scroll';
 
 function dark_toggle() {
   return document.querySelector('#dark-toggle');
@@ -12,9 +13,11 @@ export function darkTheme() {
 function changeTheme(evt) {
   if (evt.target.checked) {
     setDarkTheme();
+    stopScroll();
     return;
   }
   setLightTheme();
+  stopScroll();
   return;
 }
 

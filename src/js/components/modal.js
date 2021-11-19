@@ -1,5 +1,4 @@
-import { renderBackdrop, closeBackdrop, backdrop } from './backdrop';
-
+import { renderBackdrop, closeBackdrop } from './backdrop';
 let modalTimerId = null;
 
 const refsModal = function () {
@@ -45,9 +44,7 @@ export const closeModal = function () {
   const modal = document.querySelector('.modal');
   modal.classList.remove('modal_is-open');
   modalRemoveListener();
-
   removeModalListener(refsModal().modalClose);
-
   closeBackdrop();
   closeModalSignal();
   localStorage.removeItem('idFilm');

@@ -2,11 +2,13 @@ import modal_theme from '../../views/partials/modal_theme.hbs';
 import { renderModal } from '../components/modal';
 import { palitre, defaultAccent, saveAccent } from './palitre';
 import { darkTheme, defaultTheme } from './dark-theme';
+import { stopScroll } from '../components/scroll';
 const modalThemeContent = modal_theme();
 
 export function renderThemeModal() {
   renderModal(modalThemeContent);
   initModalTheme();
+  stopScroll();
 }
 
 setTheme();
@@ -53,7 +55,7 @@ function darkColors() {
   const setColor = initDataAccent();
   const defaultColors = 'hsl(25deg, 100%, 50%);';
   const darkzz =
-    '--background: #1D1D21;--primary-text-color: #ffffff;--primary-title-text-color: #ffffff;--accent-btn-color: #ffffff;--fourth-background-color: #232328;--third-text-color: #B8B8C6;--gallery-card-shadow: 0 0 8px hsl(25deg, 100%, 50%); $primary-btn-text-color: #ffffff;--button-border: #ffffff;';
+    '--background: #1D1D21;--primary-text-color: #ffffff;--primary-title-text-color: #ffffff;--accent-btn-color: #ffffff;--fourth-background-color: #232328;--footer-background: #232328;--third-text-color: #B8B8C6;--gallery-card-shadow: 0 0 8px hsl(25deg, 100%, 50%);--primary-btn-text-color: #ffffff;--filter-border: #898989;--button-border: #ffffff;';
   if (initDataAccent() !== null && initDataAccent() !== undefined) {
     return `${darkzz} hsl(${setColor.h}deg, ${setColor.s}%, ${setColor.l}%);`;
   }

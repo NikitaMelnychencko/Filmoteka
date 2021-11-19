@@ -3,6 +3,7 @@ import './refs/refs';
 //==========call_list===========
 import './call_list/call_list';
 //==========components===========
+import './components/scroll';
 import './components/backdrop';
 import './components/block_help';
 import './components/fetch';
@@ -28,6 +29,6 @@ import './layout/modal_one_movie';
 import './layout/modal_team_list';
 import './layout/hero_home';
 import './layout/hero_my_list';
+import './layout/modal_theme';
 import './layout/palitre';
 import './layout/dark-theme';
-

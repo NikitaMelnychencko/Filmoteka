@@ -20,7 +20,8 @@
   --primary-title-text-color: #000000;
   --gallery-card-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
     0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
-  $primary-btn-text-color: #000000;
+  --primary-btn-text-color: #000000;
+  --filter-border: #000000;
 }
 
 //button-theme
@@ -75,6 +76,7 @@ $active-btn-color: var(--active-btn-color);
 $arrow-btn-color: var(--footer-background);
 $primary-btn-text-color: var(--primary-btn-text-color);
 $active-btn-text-color: #ffffff;
+$filter-btn-border: var(--filter-border);
 
 //logo
 $primary-logo-color: #000000;

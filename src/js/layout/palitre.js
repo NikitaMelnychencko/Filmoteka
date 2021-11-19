@@ -2,29 +2,50 @@ export function palitre() {
   viewPort();
   initPalitre();
   initDots();
-  const palitre = document.querySelector('.palitre');
+  palitreAddListeners();
+}
 
+function palitreItem() {
+  return document.querySelector('.palitre');
+}
+function removeMoveListener() {
+  const palitre = palitreItem();
+  palitre.onmouseup = null;
+  palitre.onmousemove = null;
+}
+
+function palitreAddListeners() {
+  const palitre = palitreItem();
   palitre.onclick = function (e) {
     moveDot(e);
   };
 
-  palitre.onmousedown = function (e) {
-    document.addEventListener('mousemove', moveDot);
-
-    function removelistener() {
-      document.removeEventListener('mousemove', moveDot);
-      palitre.onmouseup = null;
-    }
-    document.onmouseup = function () {
-      removelistener();
+  function mouseUp() {
+    palitre.onmouseup = function () {
+      removeMoveListener();
     };
+  }
+
+  palitre.onmousedown = function (e) {
+    palitre.onmousemove = function (e) {
+      moveDot(e);
+      mouseUp();
+    };
+
+    mouseUp();
     palitre.onmouseleave = function () {
-      removelistener();
+      removeMoveListener();
     };
   };
 }
 
+export function removePalitreListeners() {
+  const palitre = palitreItem();
+  palitre.onclick = null;
+}
+
 function moveDot(e) {
+  console.log('move');
   if (e.target.id === 'palitre__ring' || e.target.id === 'palitre-ring-dot') {
     setRingColor(e);
   } else if (
@@ -134,7 +155,18 @@ function initDots() {
 
 function setCurrentColor() {
   saveAccent();
+  setStyleCurrentColor();
   return;
+}
+
+function setStyleCurrentColor() {
+  const currentAccent = `hsl(${setColor.h}deg, ${setColor.s}%, ${setColor.l}%)`;
+  const currentDot = document.querySelector('.palitre__current-color');
+  const currentSaturation = document.querySelector('.palitre__saturation');
+  const currentBrightness = document.querySelector('.palitre__brightness');
+  currentDot.style.cssText = `background-color: ${currentAccent};`;
+  currentSaturation.style.cssText = `background: linear-gradient(to bottom, hsl(${setColor.h}deg, 100%, 50%) 20%, rgb(128, 128, 128) 80%);`;
+  currentBrightness.style.cssText = `  background: linear-gradient(to bottom, rgb(255, 255, 255) 20%, hsl(${setColor.h}deg, 100%, 50%), rgb(0, 0, 0) 80%);`;
 }
 
 function setRingColor(e) {
