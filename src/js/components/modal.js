@@ -1,24 +1,23 @@
 import { renderBackdrop, closeBackdrop } from './backdrop';
-
 let modalTimerId = null;
 
-function refsModal() {
-  const refsModalz = {
+const refsModal = function () {
+  return {
     modalClose: document.querySelector('.modal'),
     modal_content: document.querySelector('.modal__content'),
   };
-  return refsModalz;
-}
+};
 
 export function renderModal(modalContent) {
   renderBackdrop();
   refsModal().modal_content.innerHTML = modalContent;
   refsModal().modalClose.classList.add('modal_is-open');
   modalAddListener();
+
+  addModalListener(refsModal().modalClose, buttonClose);
 }
 
 function modalAddListener() {
-  refsModal().modalClose.addEventListener('click', buttonClose);
   window.addEventListener('keydown', modalCloseEcsKey);
 }
 
@@ -28,27 +27,29 @@ function modalCloseEcsKey(evt) {
   }
 }
 
-function buttonClose(evt) {
+const buttonClose = function (evt) {
   if (
     evt.target.id === 'close-modal' ||
     evt.target.parentElement.id === 'close-modal' ||
-    evt.target.parentElement.parentElement.id === 'close-modal'
+    evt.target.parentElement.parentElement.id === 'close-modal' ||
+    evt.target.id === 'backdrop'
   ) {
     return closeModal();
   }
   return;
-}
+};
 
-export function closeModal() {
+export const closeModal = function () {
   modalTimerId = setTimeout(clearDelay, 250);
   const modal = document.querySelector('.modal');
   modal.classList.remove('modal_is-open');
   modalRemoveListener();
+  removeModalListener(refsModal().modalClose);
   closeBackdrop();
   closeModalSignal();
   localStorage.removeItem('idFilm');
   localStorage.removeItem('marcupFilm');
-}
+};
 
 function clearDelay() {
   refsModal().modal_content.innerHTML = '';
@@ -56,11 +57,26 @@ function clearDelay() {
 }
 
 function modalRemoveListener() {
-  refsModal().modalClose.removeEventListener('click', buttonClose);
   window.removeEventListener('keydown', modalCloseEcsKey);
 }
 
 export function closeModalSignal() {
   return;
 }
-// setTimeout(e => renderModal('TEST'), 200); //test
+
+export function removeModalListener(modalrefs) {
+  document.onmousedown = null;
+  document.onmouseup = null;
+  modalrefs.onmouseleave = null;
+}
+
+export function addModalListener(modalrefs, callback) {
+  document.onmousedown = function (e) {
+    modalrefs.onmouseleave = function () {
+      document.onmouseup = null;
+    };
+    document.onmouseup = function (e) {
+      callback(e);
+    };
+  };
+}

@@ -22,8 +22,8 @@ function current(event) {
 export function home() {
   current('home');
   initGenres();
-  renderGallery(1, 'home');
   pageRender(mainTittle.home, homeMarkUp, 'hero--home', 'hero--my-library');
+  renderGallery(1, 'home');
 }
 
 export function mylibwatch() {
