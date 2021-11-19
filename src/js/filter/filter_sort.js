@@ -19,7 +19,6 @@ function refsFilter() {
         button: document.querySelector('.button__filter-clear'),
         searchHome: document.querySelector('.search-form__input'),
         hero: document.querySelector('.gallery'),
-        arrowInput: document.querySelector('.filter-icon'),
         blockInput: document.querySelector('.filter-inputs'),
         filterContainer: document.querySelector('.filter'),
     }
@@ -51,18 +50,20 @@ export function initFilter() {
 function onClearEventListener(el) {
     refsFilter().body.addEventListener('click', onClearEventListener);
     if (el.target.nodeName !== "INPUT") {
+
         removeOpen();
         refsFilter().body.removeEventListener('click', onClearEventListener)
+
     }
 }
-
-
 // sort 
 function onOpenListSorts(el) {
+    console.log(refsFilter().arrowInput);
     el.preventDefault()
     onClearEventListener(el)
     refsFilter().InputSort.value = '';
     removeClassOpenYearGenres();
+    refsFilter().arrowInput.classList.remove('.transform');
     refsFilter().listSort.classList.toggle('open');
 }
 
@@ -107,6 +108,7 @@ function onOpenListYear(evt) {
     refsFilter().inputYear.value = '';
     refsFilter().listYear.classList.toggle('open');
     removeClassOpenGenresSort();
+
 }
 
 function onRenderYear(evt) {
@@ -155,15 +157,16 @@ export function hideFilter(condition) {
 
 // animation Arrow input
 function onToggleArrowInput(evt) {
-    // console.log(refsFilter().listSort.classList('.open'));
+    if (evt.target) {
+        evt.target.nextElementSibling.classList.toggle('transform')
+    }
 
-    console.log(evt.nextElementSibling);
-    // if (evt.target === child.classList === 'open') {
-
-    //     refsFilter().arrowInput.classList.toggle('transform');
-    // }
 }
 
+function test() {
+    const arrowInput = document.querySelector('.filter-icon');
+    console.log(arrowInput);
+    // arrowInput.classList.remove('.transform');
+}
 
-
-
+test()
