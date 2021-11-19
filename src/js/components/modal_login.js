@@ -7,8 +7,6 @@ import {
 } from './appFirebase';
 import { refs } from '../refs/refs.js';
 import { addSpinner, removeSpinner } from './spinner';
-import { compile } from 'handlebars';
-import { ref } from '@firebase/database';
 import { removeModalListener, addModalListener } from './modal.js';
 import { stopScroll, restoreScroll } from './scroll';
 refs.formLog.addEventListener('submit', e => {
