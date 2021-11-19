@@ -42,8 +42,6 @@ function clearInput(ref, number) {
 
 // function for render sing up sing in
 
-refs.singUP.addEventListener('click', openSinUp);
-
 function openSinUp(eve) {
   const item = eve.target.textContent.trim();
   if (item === 'Sign up Now') {
@@ -54,6 +52,7 @@ function openSinUp(eve) {
 }
 
 // function close modal
+window.addEventListener('keydown', onCloseModal);
 
 function removeList() {
   window.removeEventListener('keydown', onCloseModal);
@@ -68,7 +67,7 @@ function onCloseModal(eve) {
   return window.addEventListener('keydown', onCloseModal);
 }
 
-function addClass() {
+export function addClass() {
   refs.singinModal.classList.add('modal-auth--hidden');
   removeListenerMouse();
   restoreScroll();

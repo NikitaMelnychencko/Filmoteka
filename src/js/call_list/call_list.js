@@ -27,14 +27,11 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
   const spinnerMarkUp = spinner();
   const currentValue = value;
   const blockHelpMarkup = blockHelpTemplate({ svg });
-
-
   let markupFilter = '';
   if (value.hero_tittle === 'Search Movies') {
     markupFilter = filter({ svg, filterItemYear, filterItemGenre, filterItemSort });
 
   }
-
   refs.main.innerHTML = main({
     currentValue,
     backdropMarkUp,
@@ -43,13 +40,11 @@ export function pageRender(value, heroValue, valueAdd, valueRemove) {
     blockHelpMarkup,
     markupFilter,
   });
-
   addHeroClass(valueAdd, valueRemove);
   if (value.hero_tittle === 'Search Movies') {
     openInput();
     initFilter();
   }
-
   // pagination
   primaryPagination();
   blockhelpOpen();
