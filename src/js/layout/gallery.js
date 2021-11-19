@@ -1,20 +1,14 @@
 import { GENRES_MAP, initGenres } from '../data/genres';
 import { renderMovieGlobal } from '../components/fetch';
-import { renderPagination } from '../components/pagination-list';
-import img from '../../images/img/png/gallery/no-image.png';
-import card from '../../views/components/card_galery.hbs';
+import { getUser } from '../components/appFirebase';
 import { filterGlobal } from '../filter/fetch_filter_sort';
 import { hideFilter } from '../filter/filter_sort';
-// import { filterGlobalGenres } from '../filter/fetch_filter_genres';
-//import { filterGlobal } from '../filter/fetch_filter_sort';
-import { getUser } from '../components/appFirebase';
+import { renderPagination } from '../components/pagination-list';
 import { addSpinner, removeSpinner } from '../components/spinner';
+import img from '../../images/img/png/gallery/no-image.png';
+import card from '../../views/components/card_galery.hbs';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-let globalOptions = "home";
-let globalOrder = '';
-let globalSearch = ''
-
 
 export const renderParams = {
   globalOptions: 'home',
@@ -32,8 +26,8 @@ export async function renderGallery(
 ) {
 
   //console.log('open render')
-  console.log(renderParams);
-  console.log('пришли параметры', options, search, sortBy, genre, page)
+  // console.log(renderParams);
+  // console.log('пришли параметры', options, search, sortBy, genre, page)
   addSpinner();
   let movies = {};
 
@@ -97,7 +91,7 @@ export async function renderGallery(
 
 
 
-  console.log(renderParams, page)
+  // console.log(renderParams, page)
 
   if (!movies) {
     renderPagination(0, 0);
