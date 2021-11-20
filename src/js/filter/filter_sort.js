@@ -1,5 +1,6 @@
 import { child } from 'firebase/database';
 import { renderGallery } from '../layout/gallery';
+import { refs } from '../refs/refs';
 
 let sort = '';
 let genre = '';
@@ -22,6 +23,7 @@ function refsFilter() {
         blockInput: document.querySelector('.filter-inputs'),
         filterContainer: document.querySelector('.filter'),
         arrowInput: document.querySelector('.filter__movie-sort'),
+        openBtn: document.querySelector('.open__btn'),
 
     }
     return refs
@@ -34,15 +36,15 @@ export function initFilter() {
     refsFilter().listGenres.addEventListener('click', onRenderGenre);
     refsFilter().inputYear.addEventListener('click', onOpenListYear);
     refsFilter().listYear.addEventListener('click', onRenderYear);
-    // refsFilter().blockInput.addEventListener('click', onToggleArrowInput);
     refsFilter().button.addEventListener('click', el => {
         el.preventDefault()
         renderGallery(1, 'home');
         refsFilter().InputSort.value = '';
         refsFilter().inputGenres.value = '';
         refsFilter().inputYear.value = '';
-        removeClass(refsFilter().listYear)
+        removeClass(refsFilter().listYear);
         removeOpen()
+        refsFilter().button.classList.add('open__btn');
     })
     refsFilter().searchHome.addEventListener('click', el => {
         removeOpen()
@@ -61,7 +63,7 @@ function onOpenListSorts(el) {
     el.preventDefault()
     onClearEventListener(el)
     refsFilter().InputSort.value = '';
-    removeClass(refsFilter().listYear, refsFilter().listGenres)
+    removeClass(refsFilter().listYear, refsFilter().listGenres);
     refsFilter().listSort.classList.toggle('open');
 }
 
@@ -75,6 +77,11 @@ function onRenderSort(evt) {
     }
     sort = evt.target.dataset.atribute;
     renderGallery(1, 'sort', year, sort, genre);
+    if (evt.target.dataset.atribute !== sort) {
+        return
+    } else if (refsFilter().openBtn) {
+        refsFilter().openBtn.classList.remove('open__btn')
+    }
 };
 
 // genre
@@ -95,6 +102,11 @@ function onRenderGenre(evt) {
         refsFilter().inputGenres.value = evt.target.textContent
         genre = evt.target.id
     }
+    if (evt.target.id !== genre) {
+        return
+    } else if (refsFilter().openBtn) {
+        refsFilter().openBtn.classList.remove('open__btn')
+    }
     renderGallery(1, 'sort', year, sort, genre);
 }
 
@@ -104,7 +116,6 @@ function onOpenListYear(evt) {
     onClearEventListener(evt)
     refsFilter().inputYear.value = '';
     refsFilter().listYear.classList.toggle('open');
-
     removeClass(refsFilter().listGenres, refsFilter().listSort)
 }
 
@@ -114,28 +125,31 @@ function onRenderYear(evt) {
     if (evt.target.nodeName !== 'LI') {
         return
     } else {
-        removeClass(refsFilter().listYear)
+        removeClass(refsFilter().listYear);
         refsFilter().inputYear.value = evt.target.textContent;
         year = evt.target.textContent;
+    }
+    if (!year) {
+        return
+    } else if (refsFilter().openBtn) {
+        refsFilter().openBtn.classList.remove('open__btn')
     }
     renderGallery(1, 'sort', year, sort, genre);
 }
 
 // remove Open
-
-
 function removeClass(refsFirst, refsSecond, refsThird) {
     refsFirst.classList.remove('open');
-    if (refsSecond !== undefined) { refsSecond.classList.remove('open') }
-    if (refsThird !== undefined) { refsThird.classList.remove('open') }
+    if (refsSecond !== undefined) { refsSecond.classList.remove('open') };
+    if (refsThird !== undefined) { refsThird.classList.remove('open') };
 }
 
 
 // Clear Filter
 function removeOpen() {
     const arrowInput = document.querySelector('.filter-icon');
-    arrowInput.classList.remove('transform')
-    removeClass(refsFilter().listYear, refsFilter().listGenres, refsFilter().listSort)
+    arrowInput.classList.remove('transform');
+    removeClass(refsFilter().listYear, refsFilter().listGenres, refsFilter().listSort);
 }
 
 export function hideFilter(condition) {
