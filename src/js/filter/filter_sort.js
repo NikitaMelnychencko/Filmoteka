@@ -24,10 +24,8 @@ function refsFilter() {
         filterContainer: document.querySelector('.filter'),
         arrowInput: document.querySelector('.filter__movie-sort'),
         openBtn: document.querySelector('.open__btn'),
-        filterIcon: document.querySelector('.filter-icon'),
-
     }
-    return refs
+    return refs;
 }
 
 
@@ -49,18 +47,17 @@ export function initFilter() {
         refsFilter().button.classList.add('open__btn');
     })
     refsFilter().searchHome.addEventListener('click', el => {
-        removeOpen()
-        // refsFilter().filterIcon.classList.remove('transform');
-
+        removeOpen();
     });
 }
+
 // clear EventListener
 function onClearEventListener(el) {
     refsFilter().body.addEventListener('click', onClearEventListener);
     if (el.target.nodeName !== "INPUT") {
-        refsFilter().filterIcon.classList.remove('transform');
         removeOpen();
-        refsFilter().body.removeEventListener('click', onClearEventListener)
+        refsFilter().body.removeEventListener('click', onClearEventListener);
+        removeTransformClickBody();
     }
 }
 
@@ -72,6 +69,7 @@ function onOpenListSorts(evt) {
     refsFilter().InputSort.value = '';
     removeClass(refsFilter().listYear, refsFilter().listGenres);
     refsFilter().listSort.classList.toggle('open');
+    removeTransformClickSort();
 }
 
 function onRenderSort(evt) {
@@ -79,18 +77,17 @@ function onRenderSort(evt) {
     if (evt.target.nodeName !== 'LI') {
         return;
     } else {
-
-        // removeTransform(evt)
-        console.log(refsFilter().filterIcon.classList.remove('transform'));
-        removeClass(refsFilter().listSort)
+        refsFilter().InputSort.nextElementSibling.classList.remove('transform');
+        removeClass(refsFilter().listSort);
         refsFilter().InputSort.value = evt.target.textContent;
+
     }
     sort = evt.target.dataset.atribute;
     renderGallery(1, 'sort', year, sort, genre);
     if (evt.target.dataset.atribute !== sort) {
-        return
+        return;
     } else if (refsFilter().openBtn) {
-        refsFilter().openBtn.classList.remove('open__btn')
+        refsFilter().openBtn.classList.remove('open__btn');
     }
 };
 
@@ -101,7 +98,8 @@ function onOpenListGenres(evt) {
     onClearEventListener(evt)
     refsFilter().inputGenres.value = '';
     refsFilter().listGenres.classList.toggle('open');
-    removeClass(refsFilter().listYear, refsFilter().listSort)
+    removeClass(refsFilter().listYear, refsFilter().listSort);
+    removeTransformClickGenres();
 }
 
 
@@ -110,14 +108,16 @@ function onRenderGenre(evt) {
     if (evt.target.nodeName !== 'LI') {
         return;
     } else {
-        removeClass(refsFilter().listGenres)
-        refsFilter().inputGenres.value = evt.target.textContent
-        genre = evt.target.id
+        refsFilter().inputGenres.nextElementSibling.classList.remove('transform');
+        removeClass(refsFilter().listGenres);
+        refsFilter().inputGenres.value = evt.target.textContent;
+        genre = evt.target.id;
+
     }
     if (evt.target.id !== genre) {
-        return
+        return;
     } else if (refsFilter().openBtn) {
-        refsFilter().openBtn.classList.remove('open__btn')
+        refsFilter().openBtn.classList.remove('open__btn');
     }
     renderGallery(1, 'sort', year, sort, genre);
 }
@@ -127,26 +127,28 @@ function onRenderGenre(evt) {
 function onOpenListYear(evt) {
     evt.preventDefault();
     toggleTransform(evt);
-    onClearEventListener(evt)
+    onClearEventListener(evt);
     refsFilter().inputYear.value = '';
     refsFilter().listYear.classList.toggle('open');
-    removeClass(refsFilter().listGenres, refsFilter().listSort)
+    removeClass(refsFilter().listGenres, refsFilter().listSort);
+    removeTransformClickYear();
 }
 
 function onRenderYear(evt) {
-    evt.preventDefault()
-    onClearEventListener(evt)
+    evt.preventDefault();
+    onClearEventListener(evt);
     if (evt.target.nodeName !== 'LI') {
-        return
+        return;
     } else {
+        refsFilter().inputYear.nextElementSibling.classList.remove('transform');
         removeClass(refsFilter().listYear);
         refsFilter().inputYear.value = evt.target.textContent;
         year = evt.target.textContent;
     }
     if (!year) {
-        return
+        return;
     } else if (refsFilter().openBtn) {
-        refsFilter().openBtn.classList.remove('open__btn')
+        refsFilter().openBtn.classList.remove('open__btn');
     }
     renderGallery(1, 'sort', year, sort, genre);
 }
@@ -158,12 +160,10 @@ function removeClass(refsFirst, refsSecond, refsThird) {
     if (refsThird !== undefined) { refsThird.classList.remove('open') };
 }
 
-
 // Clear Filter
 function removeOpen() {
     removeClass(refsFilter().listYear, refsFilter().listGenres, refsFilter().listSort);
 }
-
 
 export function hideFilter(condition) {
     if (condition) {
@@ -173,10 +173,30 @@ export function hideFilter(condition) {
     }
 }
 
+// rotate Arrow Functions
 function toggleTransform(evt) {
-    evt.target.nextElementSibling.classList.toggle('transform')
+    evt.target.nextElementSibling.classList.toggle('transform');
 }
 
-function removeTransform(evt) {
-    evt.target.nextElementSibling.classList.remove('transform')
+
+function removeTransformClickBody() {
+    refsFilter().InputSort.nextElementSibling.classList.remove('transform');
+    refsFilter().inputGenres.nextElementSibling.classList.remove('transform');
+    refsFilter().inputYear.nextElementSibling.classList.remove('transform');
+}
+
+function removeTransformClickYear() {
+    refsFilter().inputGenres.nextElementSibling.classList.remove('transform');
+    refsFilter().InputSort.nextElementSibling.classList.remove('transform');
+}
+
+function removeTransformClickGenres() {
+    refsFilter().inputYear.nextElementSibling.classList.remove('transform');
+    refsFilter().InputSort.nextElementSibling.classList.remove('transform');
+}
+
+
+function removeTransformClickSort() {
+    refsFilter().inputYear.nextElementSibling.classList.remove('transform');
+    refsFilter().inputGenres.nextElementSibling.classList.remove('transform');
 }
