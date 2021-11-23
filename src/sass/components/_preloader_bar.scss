@@ -6,8 +6,9 @@
   height: 100%;
   background: #000;
   z-index: 9999;
+  opacity: 1;
+  transition: all $time-cubic;
   &--hiden {
-    display: none;
     opacity: 0;
   }
 }
