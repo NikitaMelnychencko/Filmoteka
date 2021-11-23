@@ -21,7 +21,7 @@ function refsFilter() {
         blockInput: document.querySelector('.filter-inputs'),
         filterContainer: document.querySelector('.filter'),
         arrowInput: document.querySelector('.filter__movie-sort'),
-        openBtn: document.querySelector('.open__btn'),
+        openBtn: document.querySelector('.open-btn'),
 
     }
     return refs
@@ -42,7 +42,7 @@ export function initFilter() {
         refsFilter().inputYear.value = '';
         removeClass(refsFilter().listYear);
         removeOpen()
-        refsFilter().button.classList.add('open__btn');
+        refsFilter().button.classList.add('open-btn');
     })
     refsFilter().searchHome.addEventListener('click', el => {
         removeOpen()
@@ -78,7 +78,7 @@ function onRenderSort(evt) {
     if (evt.target.dataset.atribute !== sort) {
         return
     } else if (refsFilter().openBtn) {
-        refsFilter().openBtn.classList.remove('open__btn')
+        refsFilter().openBtn.classList.remove('open-btn')
     }
 };
 
@@ -103,7 +103,7 @@ function onRenderGenre(evt) {
     if (evt.target.id !== genre) {
         return
     } else if (refsFilter().openBtn) {
-        refsFilter().openBtn.classList.remove('open__btn')
+        refsFilter().openBtn.classList.remove('open-btn')
     }
     renderGallery(1, 'sort', year, sort, genre);
 }
@@ -130,7 +130,7 @@ function onRenderYear(evt) {
     if (!year) {
         return
     } else if (refsFilter().openBtn) {
-        refsFilter().openBtn.classList.remove('open__btn')
+        refsFilter().openBtn.classList.remove('open-btn')
     }
     renderGallery(1, 'sort', year, sort, genre);
 }
