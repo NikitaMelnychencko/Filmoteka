@@ -1,6 +1,4 @@
-import { child } from 'firebase/database';
 import { renderGallery } from '../layout/gallery';
-import { refs } from '../refs/refs';
 
 let sort = '';
 let genre = '';
