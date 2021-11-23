@@ -6,7 +6,7 @@ let year = '';
 
 function refsFilter() {
     const refs = {
-        InputSort: document.querySelector('.filter-input__sort'),
+        inputSort: document.querySelector('.filter-input__sort'),
         listSort: document.querySelector('.filter-list__sort'),
         inputGenres: document.querySelector('.filter-input__genres'),
         listGenres: document.querySelector('.filter-list__genres'),
@@ -27,7 +27,7 @@ function refsFilter() {
 }
 
 export function initFilter() {
-    refsFilter().InputSort.addEventListener('click', onOpenListSorts);
+    refsFilter().inputSort.addEventListener('click', onOpenListSorts);
     refsFilter().listSort.addEventListener('click', onRenderSort);
     refsFilter().inputGenres.addEventListener('click', onOpenListGenres);
     refsFilter().listGenres.addEventListener('click', onRenderGenre);
@@ -36,7 +36,7 @@ export function initFilter() {
     refsFilter().button.addEventListener('click', el => {
         el.preventDefault()
         renderGallery(1, 'home');
-        refsFilter().InputSort.value = '';
+        refsFilter().inputSort.value = '';
         refsFilter().inputGenres.value = '';
         refsFilter().inputYear.value = '';
         removeClass(refsFilter().listYear);
@@ -54,7 +54,8 @@ function onClearEventListener(el) {
     if (el.target.nodeName !== 'INPUT') {
         removeOpen();
         refsFilter().body.removeEventListener('click', onClearEventListener);
-        removeTransformClickBody();
+        removeTransform()
+
     }
 }
 
@@ -63,10 +64,10 @@ function onOpenListSorts(evt) {
     evt.preventDefault();
     toggleTransform(evt);
     onClearEventListener(evt);
-    refsFilter().InputSort.value = '';
+    refsFilter().inputSort.value = '';
     removeClass(refsFilter().listYear, refsFilter().listGenres);
     refsFilter().listSort.classList.toggle('open');
-    removeTransformClickSort();
+    removeTransformNextElement(refsFilter().inputGenres, refsFilter().inputYear)
 }
 
 function onRenderSort(evt) {
@@ -75,7 +76,7 @@ function onRenderSort(evt) {
         return;
     } else {
         removeClass(refsFilter().listSort)
-        refsFilter().InputSort.value = evt.target.textContent;
+        refsFilter().inputSort.value = evt.target.textContent;
     }
     sort = evt.target.dataset.atribute;
     renderGallery(1, 'sort', year, sort, genre);
@@ -94,7 +95,7 @@ function onOpenListGenres(evt) {
     refsFilter().inputGenres.value = '';
     refsFilter().listGenres.classList.toggle('open');
     removeClass(refsFilter().listYear, refsFilter().listSort);
-    removeTransformClickGenres();
+    removeTransformNextElement(refsFilter().inputYear, refsFilter().inputSort)
 }
 
 function onRenderGenre(evt) {
@@ -122,7 +123,8 @@ function onOpenListYear(evt) {
     refsFilter().inputYear.value = '';
     refsFilter().listYear.classList.toggle('open');
     removeClass(refsFilter().listGenres, refsFilter().listSort);
-    removeTransformClickYear();
+    removeTransformNextElement(refsFilter().inputGenres, refsFilter().inputSort)
+
 }
 
 function onRenderYear(evt) {
@@ -176,23 +178,22 @@ function toggleTransform(evt) {
     evt.target.nextElementSibling.classList.toggle('transform');
 }
 
-function removeTransformClickBody() {
-    refsFilter().InputSort.nextElementSibling.classList.remove('transform');
-    refsFilter().inputGenres.nextElementSibling.classList.remove('transform');
-    refsFilter().inputYear.nextElementSibling.classList.remove('transform');
-}
+function removeTransformNextElement(inputSort, inputGenres, inputYear) {
+    if (inputSort !== undefined) {
+        inputSort.nextElementSibling.classList.remove('transform');
+    }
+    if (inputGenres !== undefined) {
+        inputGenres.nextElementSibling.classList.remove('transform');
+    }
+    if (inputYear !== undefined) {
+        inputYear.nextElementSibling.classList.remove('transform');
+    }
 
-function removeTransformClickYear() {
-    refsFilter().inputGenres.nextElementSibling.classList.remove('transform');
-    refsFilter().InputSort.nextElementSibling.classList.remove('transform');
 }
-
-function removeTransformClickGenres() {
-    refsFilter().inputYear.nextElementSibling.classList.remove('transform');
-    refsFilter().InputSort.nextElementSibling.classList.remove('transform');
-}
-
-function removeTransformClickSort() {
-    refsFilter().inputYear.nextElementSibling.classList.remove('transform');
-    refsFilter().inputGenres.nextElementSibling.classList.remove('transform');
+function removeTransform() {
+    removeTransformNextElement(
+        refsFilter().inputSort,
+        refsFilter().inputGenres,
+        refsFilter().inputYear,
+    )
 }
