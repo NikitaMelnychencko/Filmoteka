@@ -183,11 +183,12 @@
     color: $accent-color;
     border: 1px solid $accent-color;
   }
+  &--open-btn{
+    display: none;
+
+  }
 }
 
-.open-btn {
-  display: none;
-}
 
 .filter-icon {
   position: absolute;

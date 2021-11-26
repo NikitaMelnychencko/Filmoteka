@@ -20,7 +20,7 @@ function refsFilter() {
         blockInput: document.querySelector('.filter-inputs'),
         filterContainer: document.querySelector('.filter'),
         arrowInput: document.querySelector('.filter__movie-sort'),
-        openBtn: document.querySelector('.open-btn'),
+        openBtn: document.querySelector('.button__filter-clear--open-btn'),
 
     }
     return refs
@@ -41,7 +41,7 @@ export function initFilter() {
         refsFilter().inputYear.value = '';
         removeClass(refsFilter().listYear);
         removeOpen()
-        refsFilter().button.classList.add('open-btn');
+        refsFilter().button.classList.add('button__filter-clear--open-btn');
     })
     refsFilter().searchHome.addEventListener('click', el => {
         removeOpen()
@@ -83,7 +83,7 @@ function onRenderSort(evt) {
     if (evt.target.dataset.atribute !== sort) {
         return
     } else if (refsFilter().openBtn) {
-        refsFilter().openBtn.classList.remove('open-btn')
+        refsFilter().openBtn.classList.remove('button__filter-clear--open-btn')
     }
 };
 
@@ -110,7 +110,7 @@ function onRenderGenre(evt) {
     if (evt.target.id !== genre) {
         return
     } else if (refsFilter().openBtn) {
-        refsFilter().openBtn.classList.remove('open-btn')
+        refsFilter().openBtn.classList.remove('button__filter-clear--open-btn')
     }
     renderGallery(1, 'sort', year, sort, genre);
 }
@@ -140,7 +140,7 @@ function onRenderYear(evt) {
     if (!year) {
         return
     } else if (refsFilter().openBtn) {
-        refsFilter().openBtn.classList.remove('open-btn')
+        refsFilter().openBtn.classList.remove('button__filter-clear--open-btn')
     }
     renderGallery(1, 'sort', year, sort, genre);
 }
@@ -179,9 +179,9 @@ function toggleTransform(evt) {
 }
 
 function removeTransformNextElement(inputSort, inputGenres, inputYear) {
-    if (inputSort !== undefined) {
-        inputSort.nextElementSibling.classList.remove('transform');
-    }
+    inputSort.nextElementSibling.classList.remove('transform');
+
+
     if (inputGenres !== undefined) {
         inputGenres.nextElementSibling.classList.remove('transform');
     }
