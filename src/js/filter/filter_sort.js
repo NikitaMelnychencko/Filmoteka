@@ -40,7 +40,8 @@ export function initFilter() {
         refsFilter().inputGenres.value = '';
         refsFilter().inputYear.value = '';
         removeClass(refsFilter().listYear);
-        removeOpen()
+        removeOpen();
+        refsFilter().button.setMode;
         refsFilter().button.classList.add('button__filter-clear--open-btn');
     })
     refsFilter().searchHome.addEventListener('click', el => {
@@ -197,3 +198,5 @@ function removeTransform() {
         refsFilter().inputYear,
     )
 }
+
+
