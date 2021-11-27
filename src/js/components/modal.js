@@ -5,6 +5,7 @@ const refsModal = function () {
   return {
     modalClose: document.querySelector('.modal'),
     modal_content: document.querySelector('.modal__content'),
+    body:document.querySelector('body'),
   };
 };
 
@@ -12,6 +13,9 @@ export function renderModal(modalContent) {
   renderBackdrop();
   refsModal().modal_content.innerHTML = modalContent;
   refsModal().modalClose.classList.add('modal_is-open');
+  refsModal().body.scrollTop = window.pageYOffset; // запоминаем текущую прокрутку сверху
+console.log(refsModal().body.scrollTop);
+  hideScroll()
   modalAddListener();
 }
 
@@ -22,6 +26,7 @@ export function modalAddListener() {
 
 function modalCloseEcsKey(evt) {
   if (evt.code === 'Escape') {
+    showScroll()
     closeModal();
   }
 }
@@ -33,7 +38,7 @@ const buttonClose = function (evt) {
     evt.target.parentElement.parentElement.id === 'close-modal' ||
     evt.target.id === 'backdrop'
   ) {
-    return closeModal();
+    return (showScroll(),closeModal());
   }
   return;
 };
@@ -46,6 +51,7 @@ export const closeModal = function () {
   removeModalListener(refsModal().modalClose);
   closeBackdrop();
   closeModalSignal();
+  showScroll()
   localStorage.removeItem('idFilm');
   localStorage.removeItem('marcupFilm');
 };
@@ -82,3 +88,6 @@ export function addModalListener(modalrefs, callback) {
     };
   };
 }
+
+
+

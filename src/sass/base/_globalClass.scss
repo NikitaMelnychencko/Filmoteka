@@ -7,6 +7,7 @@ body {
   background-color: $fourth-background-color;
   // font-display: swap;
 
+
   @media screen and (min-width: $desktop-up) {
     // -----set govnoimage)))
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -44,6 +45,10 @@ body {
     background-color: $primary-background-color;
     box-shadow: $container-shadow;
   }
+}
+body.no-scroll {
+  height: 100%;
+  overflow: hidden;
 }
 
 .container {
