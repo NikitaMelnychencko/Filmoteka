@@ -46,10 +46,6 @@ body {
     box-shadow: $container-shadow;
   }
 }
-body.no-scroll {
-  height: 100%;
-  overflow: hidden;
-}
 
 .container {
   margin-left: auto;

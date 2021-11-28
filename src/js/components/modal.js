@@ -5,7 +5,6 @@ const refsModal = function () {
   return {
     modalClose: document.querySelector('.modal'),
     modal_content: document.querySelector('.modal__content'),
-    body:document.querySelector('body'),
   };
 };
 
@@ -13,9 +12,7 @@ export function renderModal(modalContent) {
   renderBackdrop();
   refsModal().modal_content.innerHTML = modalContent;
   refsModal().modalClose.classList.add('modal_is-open');
-  refsModal().body.scrollTop = window.pageYOffset; // запоминаем текущую прокрутку сверху
-console.log(refsModal().body.scrollTop);
-  hideScroll()
+  bodyFixPosition()
   modalAddListener();
 }
 
@@ -26,7 +23,7 @@ export function modalAddListener() {
 
 function modalCloseEcsKey(evt) {
   if (evt.code === 'Escape') {
-    showScroll()
+    bodyUnfixPosition()
     closeModal();
   }
 }
@@ -38,7 +35,7 @@ const buttonClose = function (evt) {
     evt.target.parentElement.parentElement.id === 'close-modal' ||
     evt.target.id === 'backdrop'
   ) {
-    return (showScroll(),closeModal());
+    return (bodyUnfixPosition(),closeModal());
   }
   return;
 };
@@ -51,7 +48,7 @@ export const closeModal = function () {
   removeModalListener(refsModal().modalClose);
   closeBackdrop();
   closeModalSignal();
-  showScroll()
+  bodyUnfixPosition()
   localStorage.removeItem('idFilm');
   localStorage.removeItem('marcupFilm');
 };
@@ -90,4 +87,74 @@ export function addModalListener(modalrefs, callback) {
 }
 
 
+function bodyFixPosition() {
 
+  setTimeout( function() {
+    if ( !document.body.hasAttribute('data-body-scroll-fix')) {
+        
+          let scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+          document.body.setAttribute('data-body-scroll-fix', scrollPosition);
+          document.body.style.overflow = 'hidden';
+          document.body.style.position = 'fixed';
+          document.body.style.top = '-' + scrollPosition + 'px';
+          document.body.style.left = '0';
+          document.body.style.width = '100%';
+
+    }
+    if(hasScrollbar()){
+      document.body.style.width = `calc(100% - ${getScrollbarSize()}px)`;
+
+    }
+   
+
+  }, 15 );
+
+}
+
+function getScrollbarSize() { // получение ширины скролла
+  console.log('object');
+  let outer = document.createElement('div');
+  outer.style.visibility = 'hidden';
+  outer.style.width = '100px';
+  outer.style.msOverflowStyle = 'scrollbar'; // needed for WinJS apps
+
+  document.body.appendChild(outer);
+
+  let widthNoScroll = outer.offsetWidth;
+  // force scrollbars
+  outer.style.overflow = 'scroll';
+
+  // add innerdiv
+  let inner = document.createElement('div');
+  inner.style.width = '100%';
+  outer.appendChild(inner);
+
+  let widthWithScroll = inner.offsetWidth;
+
+  // remove divs
+  outer.parentNode.removeChild(outer);
+
+  return widthNoScroll - widthWithScroll;
+}
+
+
+
+function hasScrollbar() { // проверка на боковой скролл
+  return document.body.scrollHeight = document.body.clientHeight;
+}
+
+function bodyUnfixPosition() {
+
+  if ( document.body.hasAttribute('data-body-scroll-fix') ) {
+    let scrollPosition = document.body.getAttribute('data-body-scroll-fix');
+
+    document.body.removeAttribute('data-body-scroll-fix');
+
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.width = '';
+    window.scroll(0, scrollPosition);
+  }
+}
