@@ -5,7 +5,6 @@ const refsModal = function () {
   return {
     modalClose: document.querySelector('.modal'),
     modal_content: document.querySelector('.modal__content'),
-    body: document.querySelector('body'),
   };
 };
 
