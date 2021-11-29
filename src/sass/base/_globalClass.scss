@@ -7,7 +7,6 @@ body {
   background-color: $fourth-background-color;
   // font-display: swap;
 
-
   @media screen and (min-width: $desktop-up) {
     // -----set govnoimage)))
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -24,7 +23,6 @@ body {
   @media screen and (min-width: 1920px) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url('../images/img/background/bg1920.jpg');
-
   }
   @media screen and (min-width: 2600px) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -95,7 +93,7 @@ body {
 @media screen and (min-width: $tablet-general) {
   html,
   body {
-    overflow: overlay;
+    // overflow: overlay;
   }
   ::-webkit-scrollbar {
     width: 5px;

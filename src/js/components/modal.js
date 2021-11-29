@@ -5,6 +5,8 @@ const refsModal = function () {
   return {
     modalClose: document.querySelector('.modal'),
     modal_content: document.querySelector('.modal__content'),
+    body: document.querySelector('body'),
+    allHtml: document.querySelector('html body'),
   };
 };
 
@@ -12,7 +14,8 @@ export function renderModal(modalContent) {
   renderBackdrop();
   refsModal().modal_content.innerHTML = modalContent;
   refsModal().modalClose.classList.add('modal_is-open');
-  bodyFixPosition()
+
+  bodyFixPosition();
   modalAddListener();
 }
 
@@ -23,7 +26,7 @@ export function modalAddListener() {
 
 function modalCloseEcsKey(evt) {
   if (evt.code === 'Escape') {
-    bodyUnfixPosition()
+    bodyUnfixPosition();
     closeModal();
   }
 }
@@ -35,7 +38,7 @@ const buttonClose = function (evt) {
     evt.target.parentElement.parentElement.id === 'close-modal' ||
     evt.target.id === 'backdrop'
   ) {
-    return (bodyUnfixPosition(),closeModal());
+    return bodyUnfixPosition(), closeModal();
   }
   return;
 };
@@ -44,11 +47,11 @@ export const closeModal = function () {
   modalTimerId = setTimeout(clearDelay, 250);
   const modal = document.querySelector('.modal');
   modal.classList.remove('modal_is-open');
+  bodyUnfixPosition();
   modalRemoveListener();
   removeModalListener(refsModal().modalClose);
   closeBackdrop();
   closeModalSignal();
-  bodyUnfixPosition()
   localStorage.removeItem('idFilm');
   localStorage.removeItem('marcupFilm');
 };
@@ -86,75 +89,113 @@ export function addModalListener(modalrefs, callback) {
   };
 }
 
+// function bodyFixPosition() {
+//   setTimeout(function () {
+//     if (!document.body.hasAttribute('data-body__scroll-fix')) {
+//       let scrollPosition =
+//         window.pageYOffset || document.documentElement.scrollTop;
+//       refsModal().body.setAttribute('data-body__scroll-fix', scrollPosition);
+//       refsModal().body.style.overflow = 'scroll';
+//       refsModal().body.style.position = 'fixed';
+//       refsModal().body.style.top = '-' + scrollPosition + 'px';
+//     }
+//   }, 15);
+//   if (hasScrollbar()) {
+//     // с учетом горизонтального скролла. Чтобы небыло рывка при открытии модального окна
+//     refsModal().body.style.width = `calc(100% - ${getScrollbarSize()}px)`;
+//     // refsModal().body.classList.add('no-scroll');
+//     console.log(refsModal().body.style.width);
+//   } else {
+//     console.log('object');
+//     refsModal().body.style.width = '100%';
+//   }
+// }
+
+// function getScrollbarSize() {
+//   // получение ширины скролла
+//   const outer = document.createElement('div');
+//   outer.style.visibility = 'hidden';
+//   outer.style.width = '100%';
+//   outer.style.msOverflowStyle = 'scrollbar'; // needed for WinJS apps
+//   document.body.appendChild(outer);
+
+//   let widthNoScroll = outer.offsetWidth;
+//   // force scrollbars
+//   outer.style.overflow = 'scroll';
+
+//   // add innerdiv
+//   let inner = document.createElement('div');
+//   inner.style.width = '100%';
+//   outer.appendChild(inner);
+//   let widthWithScroll = inner.offsetWidth;
+
+//   // remove divs
+//   outer.parentNode.removeChild(outer);
+//   return widthNoScroll - widthWithScroll;
+// }
+
+// function hasScrollbar() {
+//   // проверка на боковой скролл
+//   console.log(
+//     document.body.scrollHeight > document.documentElement.clientHeight,
+//   );
+
+//   return document.body.scrollHeight > document.body.clientHeight;
+// }
+
+// function bodyUnfixPosition() {
+//   if (document.body.hasAttribute('data-body__scroll-fix')) {
+//     let scrollPosition = document.body.getAttribute('data-body__scroll-fix');
+//     document.body.removeAttribute('data-body__scroll-fix');
+//     refsModal().body.style.overflow = '';
+//     refsModal().body.style.position = '';
+//     refsModal().body.style.width = '';
+//     refsModal().body.style.top = '';
+
+//     window.scroll(0, scrollPosition);
+//   }
+// }
+
+// 1. Фиксация <body>
 
 function bodyFixPosition() {
+  setTimeout(function () {
+    /* Ставим необходимую задержку, чтобы не было «конфликта» в случае, если функция фиксации вызывается сразу после расфиксации (расфиксация отменяет действия расфиксации из-за одновременного действия) */
 
-  setTimeout( function() {
-    if ( !document.body.hasAttribute('data-body-scroll-fix')) {
-        
-          let scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-          document.body.setAttribute('data-body-scroll-fix', scrollPosition);
-          document.body.style.overflow = 'hidden';
-          document.body.style.position = 'fixed';
-          document.body.style.top = '-' + scrollPosition + 'px';
-          document.body.style.left = '0';
-          document.body.style.width = '100%';
+    if (!document.body.hasAttribute('data-body-scroll-fix')) {
+      // Получаем позицию прокрутки
+      let scrollPosition =
+        window.pageYOffset || document.documentElement.scrollTop;
 
+      // Ставим нужные стили
+      document.body.setAttribute('data-body-scroll-fix', scrollPosition); // Cтавим атрибут со значением прокрутки
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = '-' + scrollPosition + 'px';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+      refsModal().allHtml.style.right = '0';
     }
-    if(hasScrollbar()){
-      document.body.style.width = `calc(100% - ${getScrollbarSize()}px)`;
-
-    }
-   
-
-  }, 15 );
-
+  }, 15); /* Можно задержку ещё меньше, но у меня работало хорошо именно с этим значением на всех устройствах и браузерах */
 }
 
-function getScrollbarSize() { // получение ширины скролла
-  console.log('object');
-  let outer = document.createElement('div');
-  outer.style.visibility = 'hidden';
-  outer.style.width = '100px';
-  outer.style.msOverflowStyle = 'scrollbar'; // needed for WinJS apps
-
-  document.body.appendChild(outer);
-
-  let widthNoScroll = outer.offsetWidth;
-  // force scrollbars
-  outer.style.overflow = 'scroll';
-
-  // add innerdiv
-  let inner = document.createElement('div');
-  inner.style.width = '100%';
-  outer.appendChild(inner);
-
-  let widthWithScroll = inner.offsetWidth;
-
-  // remove divs
-  outer.parentNode.removeChild(outer);
-
-  return widthNoScroll - widthWithScroll;
-}
-
-
-
-function hasScrollbar() { // проверка на боковой скролл
-  return document.body.scrollHeight = document.body.clientHeight;
-}
-
+// 2. Расфиксация <body>
 function bodyUnfixPosition() {
-
-  if ( document.body.hasAttribute('data-body-scroll-fix') ) {
+  if (document.body.hasAttribute('data-body-scroll-fix')) {
+    // Получаем позицию прокрутки из атрибута
     let scrollPosition = document.body.getAttribute('data-body-scroll-fix');
-
+    // Удаляем атрибут
     document.body.removeAttribute('data-body-scroll-fix');
 
+    // Удаляем ненужные стили
     document.body.style.overflow = '';
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.left = '';
     document.body.style.width = '';
+    document.body.style.overflowY = '';
+
+    // Прокручиваем страницу на полученное из атрибута значение
     window.scroll(0, scrollPosition);
   }
 }
