@@ -93,11 +93,11 @@ body {
 @media screen and (min-width: $tablet-general) {
   html,
   body {
-    // overflow: overlay;
+    overflow: overlay;
   }
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
+  // ::-webkit-scrollbar {
+  //   // width: 5px;
+  // }
 
   ::-webkit-scrollbar-thumb {
     background: rgba(90, 90, 90);
