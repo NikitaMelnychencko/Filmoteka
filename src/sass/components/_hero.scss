@@ -25,7 +25,7 @@
     }
 
     @media screen and (min-width: $tablet-general) {
-      min-width: 768px;
+      min-width: $tablet-general;
       background-image: linear-gradient(
           to right,
           rgba(0, 0, 0, 0.1),
@@ -44,7 +44,7 @@
     }
 
     @media screen and (min-width: $desktop-up) {
-      max-width: 1024px;
+      max-width: $desktop-up;
       background-image: linear-gradient(
           to right,
           rgba(0, 0, 0, 0.1),
@@ -60,6 +60,10 @@
           background-image: url(../images/img/png/hero_home/desktop/home@2x.png);
         }
       }
+    }
+    @media screen and (min-width: $desktop-only) {
+      max-width: $desktop-only;
+
     }
   }
   &--my-library {
@@ -88,7 +92,7 @@
     }
 
     @media screen and (min-width: $tablet-general) {
-      min-width: 768px;
+      min-width: $tablet-general;
       background-image: linear-gradient(
           to right,
           rgba(0, 0, 0, 0.1),
@@ -107,7 +111,7 @@
     }
 
     @media screen and (min-width: $desktop-up) {
-      max-width: 1024px;
+      max-width: $desktop-up;
       background-image: linear-gradient(
           to right,
           rgba(0, 0, 0, 0.1),
@@ -123,6 +127,10 @@
           background-image: url(../images/img/png/hero_my_library/desktop/my-library@2x.png);
         }
       }
+    }
+
+    @media screen and (min-width: $desktop-only) {
+      max-width: $desktop-only;
     }
   }
 }
