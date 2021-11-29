@@ -43,6 +43,9 @@ body {
     height: 100vh;
     background-color: $primary-background-color;
     box-shadow: $container-shadow;
+    @media screen and (min-width: $desktop-only) {
+      width: $desktop-only;
+    }
   }
 }
 
@@ -66,6 +69,9 @@ body {
     padding-left: 71px;
     padding-right: 71px;
   }
+  @media screen and (min-width: $desktop-only) {
+    width: $desktop-only;
+  }
 }
 
 .container-hero {
@@ -88,6 +94,9 @@ body {
     width: $desktop-up;
     padding-left: 344px;
     padding-right: 344px;
+  }
+  @media screen and (min-width: $desktop-only) {
+    width: $desktop-only;
   }
 }
 
