@@ -4,7 +4,11 @@
   background-color: $fourth-background-color;
   max-width: 1024px;
   margin: 0 auto;
+  @media screen and (min-width: $desktop-only) {
+    max-width: $desktop-only;
+  }
 }
+
 
 .footer__container {
   display: flex;
