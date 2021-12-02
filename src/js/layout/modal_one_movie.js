@@ -46,8 +46,10 @@ export function updateButton(id) {
       if (item === null) {
         return;
       } else {
-        refButton().children[index].style.background = 'grey';
-        refButton().children[index].style.color = 'white';
+        //refButton().children[index].style.background = 'grey';
+        //refButton().children[index].style.color = 'white';
+        const value = refButton().children[index].textContent;
+        refButton().children[index].textContent = `DELL FROM `;
       }
     });
   });
@@ -75,9 +77,14 @@ function addToDataBase(data) {
       refs.singinModal.classList.remove('modal-auth--hidden');
       mouseUp();
     } else {
-      postUserData(userId, e.target.ariaLabel, idFilm, markupFilm);
-      deleteData(userId, e.target.dataset.set, idFilm);
-      closeModal();
+      if (e.target.textContent === 'DELL') {
+        deleteData(userId, e.target.ariaLabel, idFilm);
+        closeModal();
+      } else {
+        postUserData(userId, e.target.ariaLabel, idFilm, markupFilm);
+        deleteData(userId, e.target.dataset.set, idFilm);
+        closeModal();
+      }
     }
   });
 }
