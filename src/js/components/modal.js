@@ -89,18 +89,17 @@ export function addModalListener(modalrefs, callback) {
 }
 
 function bodyFixPosition() {
-  if (!document.body.hasAttribute('data-body-scroll-fix')) {
-    let scrollPosition =
-      window.pageYOffset || document.documentElement.scrollTop;
-    document.body.setAttribute('data-body-scroll-fix', scrollPosition);
-    document.body.style.top = '-' + scrollPosition + 'px';
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
-  }
-  if (getBrowserId() !== 2) {
-    console.log('test');
-    return document.body.classList.add('scrollRem');
+  if (getBrowserId() === 2) {
+    if (!document.body.hasAttribute('data-body-scroll-fix')) {
+      let scrollPosition =
+        window.pageYOffset || document.documentElement.scrollTop;
+      document.body.setAttribute('data-body-scroll-fix', scrollPosition);
+      document.body.style.top = '-' + scrollPosition + 'px';
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.classList.remove('scrollRem');
+    }
   }
 }
 
@@ -118,5 +117,5 @@ function removeStyle() {
   document.body.style.position = '';
   document.body.style.top = '';
   document.body.style.width = '';
-  document.body.classList.remove('scrollRem');
+  document.body.classList.add('scrollRem');
 }
