@@ -2,9 +2,13 @@
   position: relative;
   padding: 0px 0 85px 0;
 }
+
 .modal-theme__scroll-box {
   max-height: calc(100vh - 120px);
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: $scroll-color $primary-background-color;
+  scrollbar-width: thin;
   padding: 10px 20px 0 20px;
   @media screen and (min-width: $tablet-general) {
     padding: 0 20px 0 20px;

@@ -1,5 +1,6 @@
 import { renderBackdrop, closeBackdrop } from './backdrop';
 let modalTimerId = null;
+import { getBrowserId } from '../components/scroll';
 
 const refsModal = function () {
   return {
@@ -12,6 +13,8 @@ export function renderModal(modalContent) {
   renderBackdrop();
   refsModal().modal_content.innerHTML = modalContent;
   refsModal().modalClose.classList.add('modal_is-open');
+
+  bodyFixPosition();
   modalAddListener();
 }
 
@@ -22,6 +25,7 @@ export function modalAddListener() {
 
 function modalCloseEcsKey(evt) {
   if (evt.code === 'Escape') {
+    bodyUnfixPosition();
     closeModal();
   }
 }
@@ -33,7 +37,7 @@ const buttonClose = function (evt) {
     evt.target.parentElement.parentElement.id === 'close-modal' ||
     evt.target.id === 'backdrop'
   ) {
-    return closeModal();
+    return bodyUnfixPosition(), closeModal();
   }
   return;
 };
@@ -42,6 +46,7 @@ export const closeModal = function () {
   modalTimerId = setTimeout(clearDelay, 250);
   const modal = document.querySelector('.modal');
   modal.classList.remove('modal_is-open');
+  bodyUnfixPosition();
   modalRemoveListener();
   removeModalListener(refsModal().modalClose);
   closeBackdrop();
@@ -81,4 +86,36 @@ export function addModalListener(modalrefs, callback) {
       callback(e);
     };
   };
+}
+
+function bodyFixPosition() {
+  if (getBrowserId() === 2) {
+    if (!document.body.hasAttribute('data-body-scroll-fix')) {
+      let scrollPosition =
+        window.pageYOffset || document.documentElement.scrollTop;
+      document.body.setAttribute('data-body-scroll-fix', scrollPosition);
+      document.body.style.top = '-' + scrollPosition + 'px';
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.html.classList.remove('scrollRem');
+    }
+  }
+}
+
+function bodyUnfixPosition() {
+  if (document.body.hasAttribute('data-body-scroll-fix')) {
+    let scrollPosition = document.body.getAttribute('data-body-scroll-fix');
+    document.body.removeAttribute('data-body-scroll-fix');
+    removeStyle();
+    window.scroll(0, scrollPosition);
+  }
+}
+
+function removeStyle() {
+  document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.width = '';
+  document.html.classList.add('scrollRem');
 }

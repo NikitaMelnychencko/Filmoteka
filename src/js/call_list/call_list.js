@@ -11,7 +11,7 @@ import { homeMarkUp, openInput } from '../layout/hero_home';
 import modal_markup from '../../views/components/modal.hbs';
 import svg from '../../images/svg/svg.svg';
 import spinner from '../../views/components/spinner.hbs';
-import { renderGallery } from '../layout/gallery';
+import { renderGallery } from '../layout/gallery'; 
 import { primaryPagination } from '../components/pagination-list';
 import { initGenres } from '../data/genres';
 import blockHelpTemplate from '../../views/components/block_help.hbs';
