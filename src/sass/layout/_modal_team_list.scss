@@ -1,5 +1,8 @@
 .ourteam__container {
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: $scroll-color $primary-background-color;
+  scrollbar-width: thin;
   background-color: $primary-background-color;
   font-family: $primary-font-family;
   font-size: 12px;
@@ -16,7 +19,6 @@
     padding: 30px;
   }
   @media screen and (min-width: $desktop-up) {
-    overflow-y: hidden;
     min-width: 900px;
     height: 700px;
     padding: 30px;

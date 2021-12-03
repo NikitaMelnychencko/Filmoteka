@@ -3,25 +3,9 @@
     <div class='modal-one-movie__image-box'>
       <div class='modal-one-movie__image'>
         <picture class='modal-one-movie__image--picture'>
-          <source
-            srcset='{{poster_path}}'
-            media='(min-width: 1024px)'
-            width='396'
-            {{! height='477' }}
-          />
-          <source
-            srcset='{{poster_path}}'
-            media='(min-width: 768px)'
-            width='264'
-            {{! height='374' }}
-          />
-          <img
-            srcset='{{poster_path}}'
-            src='{{poster_path}}'
-            alt='{{title}}'
-            width='240'
-            {{! height='356' }}
-          />
+          <source srcset='{{poster_path}}' media='(min-width: 1024px)' />
+          <source srcset='{{poster_path}}' media='(min-width: 768px)' />
+          <img srcset='{{poster_path}}' src='{{poster_path}}' alt='{{title}}' />
         </picture>
       </div>
     </div>
