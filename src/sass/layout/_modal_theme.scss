@@ -7,7 +7,7 @@
   max-height: calc(100vh - 120px);
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-color: $secondary-text-color $primary-background-color;
+  scrollbar-color: $scroll-color $primary-background-color;
   scrollbar-width: thin;
   padding: 10px 20px 0 20px;
   @media screen and (min-width: $tablet-general) {

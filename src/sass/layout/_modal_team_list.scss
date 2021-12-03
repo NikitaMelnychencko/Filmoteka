@@ -1,7 +1,7 @@
 .ourteam__container {
   overflow-y: auto;
   overflow-x: hidden;
-  scrollbar-color: $secondary-text-color $primary-background-color;
+  scrollbar-color: $scroll-color $primary-background-color;
   scrollbar-width: thin;
   background-color: $primary-background-color;
   font-family: $primary-font-family;
