@@ -1,6 +1,6 @@
 import modal_one_movie_markup from '../../views/partials/modal_one_movie.hbs';
-import trailerPlayer from '../../views/partials/trailer_player';
-import { renderModal, closeModal } from '../components/modal';
+import { watchTrailer } from '../components/modal_trailer';
+import { renderModal, closeModal, modalRemoveListener, modalAddListener, addModalListener } from '../components/modal';
 import { renderParamsCard, getTrailer } from '../components/fetch';
 import { postUserData, userId, deleteData, getIdUser } from '../components/appFirebase.js';
 import img from '../../images/img/png/gallery/no-image.png';
@@ -29,13 +29,15 @@ function renderMovieSeorchParam(id) {
       localStorage.setItem('marcupFilm', arrObj);
       addToDataBase(imgFix(data));
       updateButton(id);
-      watchTrailer();
+      watchTrailer(id);
+      const test = document.querySelector('.trailer_backdrop');
     })
 }
 
 function imgFix(m) {
   return {
     ...m,
+    ...{ popularity: m.popularity.toFixed(1) },
     ...{ poster_path: !m.poster_path ? img : `${IMG_URL}${m.poster_path}` },
   };
 }
@@ -83,37 +85,3 @@ function addToDataBase(data) {
     }
   });
 }
-
-function watchTrailer() {
-  const yotubeBtn = document.querySelector('.youtube-btn');
-  yotubeBtn.addEventListener('click', onYoutubeBtn);
-}
-
-async function onYoutubeBtn(e) {
-  const data = await getTrailer(id);
-  const trailer = data.results[0].key;
-  // const mainCont = document.querySelector('main');
-  mainCont.insertAdjacentHTML('beforeend', trailerPlayer({ svg, trailer }));
-
-  const trailerModal = document.querySelector('.trailer_modal');
-  const trailerBackdrop = document.querySelector('.trailer_backdrop');
-  trailerModal.classList.add('trailer_modal_is-open');
-  trailerBackdrop.classList.add('trailer_backdrop_is-open');
-  const closeTr = trailerBackdrop.querySelector('.close-trailer-btn');
-  closeTr.addEventListener('click', closeTrailer)
-  window.addEventListener('keydown', closeTrailerEsc);
-
-}
-function closeTrailer(e) {
-  //console.log('close');
-  const trailerBackdrop = document.querySelector('.trailer_backdrop');
-  mainCont.removeChild(trailerBackdrop)
-
-}
-
-function closeTrailerEsc(e) {
-  if (e.code === 'Escape') {
-    closeTrailer();
-  }
-}
-
