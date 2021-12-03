@@ -117,3 +117,9 @@ body {
     background: transparent;
   }
 }
+
+html.scrollRem {
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+}

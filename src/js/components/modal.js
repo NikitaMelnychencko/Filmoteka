@@ -1,5 +1,6 @@
 import { renderBackdrop, closeBackdrop } from './backdrop';
 let modalTimerId = null;
+import { getBrowserId } from '../components/scroll';
 
 const refsModal = function () {
   return {
@@ -97,6 +98,10 @@ function bodyFixPosition() {
     document.body.style.position = 'fixed';
     document.body.style.width = '100%';
   }
+  if (getBrowserId() !== 2) {
+    console.log('test');
+    return document.body.classList.add('scrollRem');
+  }
 }
 
 function bodyUnfixPosition() {
@@ -113,4 +118,5 @@ function removeStyle() {
   document.body.style.position = '';
   document.body.style.top = '';
   document.body.style.width = '';
+  document.body.classList.remove('scrollRem');
 }
