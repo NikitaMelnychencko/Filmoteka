@@ -5,7 +5,7 @@
     // ::-webkit-scrollbar {
     //   width: 5px;
     // }
-    scrollbar-color: #666666 #000000; /* «цвет ползунка» «цвет полосы скроллбара» */
+    scrollbar-color: $secondary-text-color #000000;
     scrollbar-width: thin;
   }
   ::-webkit-scrollbar-thumb {
@@ -22,10 +22,6 @@
   ::-webkit-scrollbar {
     width: 5px;
   }
-}
-
-.mozilla-scroll-del {
-  scrollbar-width: none;
 }
 
 body {

@@ -8,7 +8,6 @@
   transform: translate(-50%, 0) scale(0.9);
   background-color: $primary-background-color;
   z-index: 2000;
-
   @media screen and (min-width: $tablet-general) {
     transform: translate(-50%, -50%) scale(0.9);
     top: 50%;

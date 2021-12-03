@@ -89,10 +89,6 @@ export function addModalListener(modalrefs, callback) {
 }
 
 function bodyFixPosition() {
-  if (getBrowserId() === 1) {
-    document.html.classList.add('mozilla-scroll-del');
-    console.log('sss');
-  }
   if (getBrowserId() === 2) {
     if (!document.body.hasAttribute('data-body-scroll-fix')) {
       let scrollPosition =
@@ -122,5 +118,4 @@ function removeStyle() {
   document.body.style.top = '';
   document.body.style.width = '';
   document.html.classList.add('scrollRem');
-  document.body.classList.remove('mozilla-scroll-del');
 }

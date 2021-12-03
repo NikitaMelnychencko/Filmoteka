@@ -12,7 +12,11 @@
 }
 .modal-one-movie__scroll-box {
   max-height: calc(100vh - 195px);
-  overflow: scroll;
+  // overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-color: $secondary-text-color $primary-background-color;
+  scrollbar-width: thin;
   padding: 0 20px 0 20px;
   @media screen and (min-width: $tablet-general) {
     display: flex;
