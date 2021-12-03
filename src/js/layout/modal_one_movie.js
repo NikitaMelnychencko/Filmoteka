@@ -49,7 +49,10 @@ export function updateButton(id) {
         //refButton().children[index].style.background = 'grey';
         //refButton().children[index].style.color = 'white';
         const value = refButton().children[index].textContent;
-        refButton().children[index].textContent = `DELL FROM `;
+        refButton().children[index].textContent = `Dell from ${value.slice(
+          7,
+          14,
+        )}`;
       }
     });
   });
@@ -77,7 +80,7 @@ function addToDataBase(data) {
       refs.singinModal.classList.remove('modal-auth--hidden');
       mouseUp();
     } else {
-      if (e.target.textContent === 'DELL') {
+      if (e.target.textContent === `Dell from ${e.target.ariaLabel}`) {
         deleteData(userId, e.target.ariaLabel, idFilm);
         closeModal();
       } else {
