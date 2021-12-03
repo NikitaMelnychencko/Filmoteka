@@ -89,6 +89,10 @@ export function addModalListener(modalrefs, callback) {
 }
 
 function bodyFixPosition() {
+  if (getBrowserId() === 1) {
+    document.html.classList.add('mozilla-scroll-del');
+    console.log('sss');
+  }
   if (getBrowserId() === 2) {
     if (!document.body.hasAttribute('data-body-scroll-fix')) {
       let scrollPosition =
@@ -98,7 +102,7 @@ function bodyFixPosition() {
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
-      document.body.classList.remove('scrollRem');
+      document.html.classList.remove('scrollRem');
     }
   }
 }
@@ -117,5 +121,6 @@ function removeStyle() {
   document.body.style.position = '';
   document.body.style.top = '';
   document.body.style.width = '';
-  document.body.classList.add('scrollRem');
+  document.html.classList.add('scrollRem');
+  document.body.classList.remove('mozilla-scroll-del');
 }

@@ -1,3 +1,33 @@
+@media screen and (min-width: $tablet-general) {
+  html {
+    overflow: overlay;
+
+    // ::-webkit-scrollbar {
+    //   width: 5px;
+    // }
+    scrollbar-color: #666666 #000000; /* «цвет ползунка» «цвет полосы скроллбара» */
+    scrollbar-width: thin;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(90, 90, 90);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+.scrollRem {
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+}
+
+.mozilla-scroll-del {
+  scrollbar-width: none;
+}
+
 body {
   background-color: $primary-background-color;
   color: $primary-text-color;
@@ -96,30 +126,5 @@ body {
   }
   @media screen and (min-width: $desktop-only) {
     width: $desktop-only;
-  }
-}
-
-@media screen and (min-width: $tablet-general) {
-  html,
-  body {
-    overflow: overlay;
-  }
-  // ::-webkit-scrollbar {
-  //   width: 5px;
-  // }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(90, 90, 90);
-    border-radius: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-}
-
-.scrollRem {
-  ::-webkit-scrollbar {
-    width: 5px;
   }
 }
