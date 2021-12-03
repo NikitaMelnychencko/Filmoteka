@@ -1,7 +1,12 @@
 import modal_one_movie_markup from '../../views/partials/modal_one_movie.hbs';
 import { renderModal, closeModal } from '../components/modal';
 import { renderParamsCard } from '../components/fetch';
-import { postUserData, userId,deleteData,getIdUser} from '../components/appFirebase.js';
+import {
+  postUserData,
+  userId,
+  deleteData,
+  getIdUser,
+} from '../components/appFirebase.js';
 import img from '../../images/img/png/gallery/no-image.png';
 import { refs } from '../refs/refs.js';
 import { mouseUp } from '../components/modal_login.js';
@@ -12,7 +17,7 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 function refButton() {
   const buttonList = document.querySelector('.modal-one-movie__button-box');
-  return buttonList
+  return buttonList;
 }
  
 function renderMovieSeorchParam(id) {
@@ -36,18 +41,20 @@ function dataFix(m) {
   };
 }
 export function updateButton(id) {
-  const watched = getIdUser(userId, 'watched', id)
-  const queue = getIdUser(userId, 'queue', id)
+  const watched = getIdUser(userId, 'watched', id);
+  const queue = getIdUser(userId, 'queue', id);
   Promise.all([watched, queue]).then(values => {
-    values.forEach((item,index) => {
+    values.forEach((item, index) => {
       if (item === null) {
-        return
+        return;
       } else {
-        refButton().children[index].disabled = true
-        refButton().children[index].style.background = 'grey'
-        refButton().children[index].style.color='white'
+        const value = refButton().children[index].textContent;
+        refButton().children[index].textContent = `Dell from ${value.slice(
+          7,
+          14,
+        )}`;
       }
-    })
+    });
   });
 }
 
@@ -71,11 +78,16 @@ function addToDataBase(data) {
     if (e.target.nodeName !== 'BUTTON') return;
     if (userId == null) {
       refs.singinModal.classList.remove('modal-auth--hidden');
-      mouseUp()
+      mouseUp();
     } else {
-      postUserData(userId, e.target.ariaLabel, idFilm, markupFilm);
-      deleteData(userId, e.target.dataset.set, idFilm);
-      closeModal();
+      if (e.target.textContent === `Dell from ${e.target.ariaLabel}`) {
+        deleteData(userId, e.target.ariaLabel, idFilm);
+        closeModal();
+      } else {
+        postUserData(userId, e.target.ariaLabel, idFilm, markupFilm);
+        deleteData(userId, e.target.dataset.set, idFilm);
+        closeModal();
+      }
     }
   });
 }
