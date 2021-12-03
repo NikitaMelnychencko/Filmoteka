@@ -1,5 +1,6 @@
 import modal_one_movie_markup from '../../views/partials/modal_one_movie.hbs';
 import { renderModal, closeModal } from '../components/modal';
+import { watchTrailer } from '../components/modal_trailer';
 import { renderParamsCard } from '../components/fetch';
 import {
   postUserData,
@@ -14,7 +15,6 @@ import { mouseUp } from '../components/modal_login.js';
 let id = 'id';
 let objService = '';
 let arrObj = '';
-const mainCont = document.querySelector('main');
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 function refButton() {
@@ -25,7 +25,8 @@ function refButton() {
 function renderMovieSeorchParam(id) {
   renderParamsCard(id)
     .then(data => {
-      renderModal(modal_one_movie_markup(dataFix(data)));
+      const dataFixed = dataFix(data);
+      renderModal(modal_one_movie_markup({ svg, dataFixed }));
       objService = data;
       arrObj = JSON.stringify({ objService });
       localStorage.setItem('idFilm', id);
@@ -33,14 +34,12 @@ function renderMovieSeorchParam(id) {
       addToDataBase(dataFix(data));
       updateButton(id);
       watchTrailer(id);
-      const test = document.querySelector('.trailer_backdrop');
     })
 }
 
 function dataFix(m) {
   return {
     ...m,
-    ...{ popularity: m.popularity.toFixed(1) },
     ...{ poster_path: !m.poster_path ? img : `${IMG_URL}${m.poster_path}` },
     ...{ popularity: parseFloat(m.popularity.toFixed(1)) }
   };
