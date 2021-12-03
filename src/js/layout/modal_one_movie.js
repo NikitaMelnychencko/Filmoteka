@@ -46,8 +46,6 @@ export function updateButton(id) {
       if (item === null) {
         return;
       } else {
-        //refButton().children[index].style.background = 'grey';
-        //refButton().children[index].style.color = 'white';
         const value = refButton().children[index].textContent;
         refButton().children[index].textContent = `Dell from ${value.slice(
           7,
