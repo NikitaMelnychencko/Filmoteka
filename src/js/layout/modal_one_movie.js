@@ -14,24 +14,25 @@ function refButton() {
   const buttonList = document.querySelector('.modal-one-movie__button-box');
   return buttonList
 }
-
+ 
 function renderMovieSeorchParam(id) {
   renderParamsCard(id)
     .then(data => {
-      renderModal(modal_one_movie_markup(imgFix(data)));
+      renderModal(modal_one_movie_markup(dataFix(data)));
       objService = data;
       arrObj = JSON.stringify({ objService });
       localStorage.setItem('idFilm', id);
       localStorage.setItem('marcupFilm', arrObj);
-      addToDataBase(imgFix(data));
+      addToDataBase(dataFix(data));
       updateButton(id);
     })
 }
 
-function imgFix(m) {
+function dataFix(m) {
   return {
     ...m,
     ...{ poster_path: !m.poster_path ? img : `${IMG_URL}${m.poster_path}` },
+    ...{ popularity : parseFloat(m.popularity.toFixed(1))}
   };
 }
 export function updateButton(id) {
@@ -78,3 +79,5 @@ function addToDataBase(data) {
     }
   });
 }
+
+
