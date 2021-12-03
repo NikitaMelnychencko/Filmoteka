@@ -1,13 +1,16 @@
 import modal_one_movie_markup from '../../views/partials/modal_one_movie.hbs';
+import trailerPlayer from '../../views/partials/trailer_player';
 import { renderModal, closeModal } from '../components/modal';
-import { renderParamsCard } from '../components/fetch';
-import { postUserData, userId,deleteData,getIdUser} from '../components/appFirebase.js';
+import { renderParamsCard, getTrailer } from '../components/fetch';
+import { postUserData, userId, deleteData, getIdUser } from '../components/appFirebase.js';
 import img from '../../images/img/png/gallery/no-image.png';
+import svg from '../../images/svg/svg.svg';
 import { refs } from '../refs/refs.js';
 import { mouseUp } from '../components/modal_login.js';
 let id = 'id';
 let objService = '';
 let arrObj = '';
+const mainCont = document.querySelector('main');
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
 function refButton() {
@@ -18,13 +21,15 @@ function refButton() {
 function renderMovieSeorchParam(id) {
   renderParamsCard(id)
     .then(data => {
-      renderModal(modal_one_movie_markup(imgFix(data)));
+      const dataFixed = imgFix(data);
+      renderModal(modal_one_movie_markup({ svg, dataFixed }));
       objService = data;
       arrObj = JSON.stringify({ objService });
       localStorage.setItem('idFilm', id);
       localStorage.setItem('marcupFilm', arrObj);
       addToDataBase(imgFix(data));
       updateButton(id);
+      watchTrailer();
     })
 }
 
@@ -38,13 +43,13 @@ export function updateButton(id) {
   const watched = getIdUser(userId, 'watched', id)
   const queue = getIdUser(userId, 'queue', id)
   Promise.all([watched, queue]).then(values => {
-    values.forEach((item,index) => {
+    values.forEach((item, index) => {
       if (item === null) {
         return
       } else {
         refButton().children[index].disabled = true
         refButton().children[index].style.background = 'grey'
-        refButton().children[index].style.color='white'
+        refButton().children[index].style.color = 'white'
       }
     })
   });
@@ -78,3 +83,37 @@ function addToDataBase(data) {
     }
   });
 }
+
+function watchTrailer() {
+  const yotubeBtn = document.querySelector('.youtube-btn');
+  yotubeBtn.addEventListener('click', onYoutubeBtn);
+}
+
+async function onYoutubeBtn(e) {
+  const data = await getTrailer(id);
+  const trailer = data.results[0].key;
+  // const mainCont = document.querySelector('main');
+  mainCont.insertAdjacentHTML('beforeend', trailerPlayer({ svg, trailer }));
+
+  const trailerModal = document.querySelector('.trailer_modal');
+  const trailerBackdrop = document.querySelector('.trailer_backdrop');
+  trailerModal.classList.add('trailer_modal_is-open');
+  trailerBackdrop.classList.add('trailer_backdrop_is-open');
+  const closeTr = trailerBackdrop.querySelector('.close-trailer-btn');
+  closeTr.addEventListener('click', closeTrailer)
+  window.addEventListener('keydown', closeTrailerEsc);
+
+}
+function closeTrailer(e) {
+  //console.log('close');
+  const trailerBackdrop = document.querySelector('.trailer_backdrop');
+  mainCont.removeChild(trailerBackdrop)
+
+}
+
+function closeTrailerEsc(e) {
+  if (e.code === 'Escape') {
+    closeTrailer();
+  }
+}
+

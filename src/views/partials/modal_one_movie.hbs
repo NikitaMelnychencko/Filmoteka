@@ -3,80 +3,65 @@
     <div class='modal-one-movie__image-box'>
       <div class='modal-one-movie__image'>
         <picture class='modal-one-movie__image--picture'>
-          <source
-            srcset='{{poster_path}}'
-            media='(min-width: 1024px)'
-            width='396'
-            {{! height='477' }}
-          />
-          <source
-            srcset='{{poster_path}}'
-            media='(min-width: 768px)'
-            width='264'
-            {{! height='374' }}
-          />
-          <img
-            srcset='{{poster_path}}'
-            src='{{poster_path}}'
-            alt='{{title}}'
-            width='240'
-            {{! height='356' }}
-          />
+          <source srcset='{{dataFixed.poster_path}}' media='(min-width: 1024px)' width='396' {{! height='477' }} />
+          <source srcset='{{dataFixed.poster_path}}' media='(min-width: 768px)' width='264' {{! height='374' }} />
+          <img srcset='{{dataFixed.poster_path}}' src='{{dataFixed.poster_path}}' alt='{{dataFixed.title}}' width='240'
+            {{! height='356' }} />
         </picture>
+        <button class='youtube-btn' data-set='watched' aria-label='queue'>
+          <svg class='youtube-svg' width="46px" height="32px">
+            <use href="{{svg}}#youtube-btn"></use>
+          </svg>
+        </button>
       </div>
     </div>
     <div class='modal-one-movie__text-box'>
-      <h3 class='modal-one-movie__title'>{{original_title}}</h3>
+      <h3 class='modal-one-movie__title'>{{dataFixed.original_title}}</h3>
       <table class='modal-one-movie__table'>
         <caption class='modal-one-movie__caption'>about movie</caption>
         <tr class='modal-one-movie__table--row'>
           <td class='modal-one-movie__table--first-list'>Vote / Votes</td>
           <td class='modal-one-movie__table--second-list'>
             <span class='modal-one-movie__text-box-accent'>
-              {{vote_average}}
+              {{dataFixed.vote_average}}
             </span>
             <span class='modal-one-movie__text-box-secondary'>
-              {{vote_count}}
+              {{dataFixed.vote_count}}
             </span>
           </td>
         </tr>
         <tr class='modal-one-movie__table--row'>
           <td class='modal-one-movie__table--first-list'>Popularity</td>
-          <td class='modal-one-movie__table--second-list'>{{popularity}}</td>
+          <td class='modal-one-movie__table--second-list'>{{dataFixed.popularity}}</td>
         </tr>
         <tr class='modal-one-movie__table--row'>
           <td class='modal-one-movie__table--first-list'>Genre</td>
           <td class='modal-one-movie__table--second-list'>
-            {{#each genres}}
-              {{name}}{{#unless @last}},{{/unless}}
+            {{#each dataFixed.genres}}
+            {{name}}{{#unless @last}},{{/unless}}
             {{/each}}</td>
         </tr>
         <tr class='modal-one-movie__table--row'>
           <td class='modal-one-movie__table--first-list'>Original title</td>
-          <td
-            class='modal-one-movie__table--second-list uppercase-title'
-          >{{original_title}}</td>
+          <td class='modal-one-movie__table--second-list uppercase-title'>{{dataFixed.original_title}}</td>
         </tr>
       </table>
       <div class='modal-one-movie__about-box'>
         <h4 class='modal-one-movie__about'>ABOUT</h4>
         <p class='modal-one-movie__about-text'>
-          {{overview}}
+          {{dataFixed.overview}}
         </p>
       </div>
 
       <div class='modal-one-movie__button-box'>
-        <button
-          class='global-button btn__watch'
-          data-set='queue'
-          aria-label='watched'
-        >Add to watched</button>
-        <button
-          class='global-button btn__queue'
-          data-set='watched'
-          aria-label='queue'
-        >Add to queue</button>
+        <button class='global-button btn__watch' data-set='queue' aria-label='watched'>Add to watched</button>
+        <button class='global-button btn__queue' data-set='watched' aria-label='queue'>Add to queue</button>
       </div>
     </div>
   </div>
+  {{!-- <div class="trailer_backdrop">
+    <div class='trailer_modal'>
+
+    </div>
+  </div> --}}
 </div>
