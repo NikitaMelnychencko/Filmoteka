@@ -17,30 +17,7 @@
   top: 50%;
   left: 50%;
 
-//   width: 80vw;
-//   height: 80vw / 1.65;
-  
-//   transition: all $time-cubic;
   transform: translate(-50%, -50%);
-//   background-color: rgba(0, 0, 0, 0.85);
-//   z-index: 4000;
-//   @media screen and (min-width: $tablet-general) {
-//     transform: translate(-50%, -50%) scale(0.9);
-//     top: 50%;
-//   }
-
-//   opacity: 1;
-//   pointer-events: initial;
-//   transform: translate(-50%, 0) scale(1);
-//   @media screen and (min-width: $tablet-general) {
-//     transform: translate(-50%, -50%) scale(1);
-//   }
-
-//   @media screen and (min-width: $desktop-up) {
-//    // width: ;
-//   }
-
-
 }
 
 .close-trailer-btn {
@@ -66,7 +43,6 @@
    fill: $active-btn-color;
    background-color: $active-btn-text-color;
 
-  
 }
  @media screen and (min-width: $tablet-general) { 
     right: -50px;
@@ -76,19 +52,17 @@
 
 .youtube-frame {
   display: block;
+  width: 300px;
+  height: 150px;
 
   @media screen and (min-width: $tablet-general) {
    width: 660px;
    height: 400px;
   }
 
-//   width: 80vw;
-
-//   height: calc(80vw/1.65);
-
 @media screen and (min-width: $desktop-up) {
-   width: 990px;
-   height: 600px;
+   width: 924px;
+   height: 560px;
   }
 }
 

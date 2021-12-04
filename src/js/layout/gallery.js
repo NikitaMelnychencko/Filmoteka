@@ -60,8 +60,8 @@ export async function renderGallery(page = 1, options, ...criterias) {
 
     const allMovies = await getUser(renderParams.globalId, renderParams.globalLibrary);
 
-    movies['total_pages'] = Math.ceil(allMovies.length / 21);
-    movies['results'] = allMovies.slice((page - 1) * 21, page * 21);
+    movies['total_pages'] = Math.ceil(allMovies.length / 20);
+    movies['results'] = allMovies.slice((page - 1) * 20, page * 20);
   }
 
   if (!movies) {

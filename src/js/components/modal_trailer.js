@@ -17,27 +17,28 @@ async function onYoutubeBtnClick(e) {
     const data = await getTrailer(id);
 
     if (data.results.length > 0) {
-        const url = selectTrailer(data);
-
-        modalRemoveListener();
-        main.insertAdjacentHTML('beforeend', trailerPlayer({ svg, url }));
-
-        // const trailerBackdrop = document.querySelector('.trailer_backdrop');
-        // const trailerModal = document.querySelector('.trailer_modal');
-        // trailerBackdrop.classList.add('trailer_backdrop_is-open');
-        // trailerModal.classList.add('trailer_modal_is-open');
-
-        addTrailerListners();
+        shoeTrailer(data);
     } else {
-        const youtubeMessage = main.querySelector('.no-trailer');
-        const youtubeBtn = main.querySelector('.youtube-btn');
-        console.log(youtubeBtn);
-        youtubeMessage.classList.remove('no-trailer-hidden');
-        youtubeBtn.setAttribute('disabled', true);
-
+        disableTrailer();
     };
-
 };
+
+function shoeTrailer(data) {
+    const url = selectTrailer(data);
+
+    modalRemoveListener();
+    main.insertAdjacentHTML('beforeend', trailerPlayer({ svg, url }));
+
+    addTrailerListners();
+}
+
+function disableTrailer() {
+    const youtubeMessage = main.querySelector('.no-trailer');
+    const youtubeBtn = main.querySelector('.youtube-btn');
+    youtubeMessage.classList.remove('no-trailer-hidden');
+    youtubeBtn.setAttribute('disabled', true);
+}
+
 
 function selectTrailer(data) {
     let url = '';
