@@ -7,11 +7,14 @@
           <source srcset='{{dataFixed.poster_path}}' media='(min-width: 768px)' />
           <img srcset='{{dataFixed.poster_path}}' src='{{dataFixed.poster_path}}' alt='{{dataFixed.title}}' />
         </picture>
-        <button class='youtube-btn' data-set='watched' aria-label='queue'>
-          <svg class='youtube-svg' width="46px" height="32px">
-            <use href="{{svg}}#youtube-btn"></use>
-          </svg>
-        </button>
+        <div class='youtube-trailer'>
+          <button class='youtube-btn' data-set='watched' aria-label='queue'>
+            <svg class='youtube-svg' width="46px" height="32px">
+              <use href="{{svg}}#youtube-btn"></use>
+            </svg>
+          </button>
+          <p class="no-trailer no-trailer-hidden">Trailer not found</p>
+        </div>
       </div>
     </div>
     <div class='modal-one-movie__text-box'>
@@ -58,9 +61,4 @@
       </div>
     </div>
   </div>
-  {{!-- <div class="trailer_backdrop">
-    <div class='trailer_modal'>
-
-    </div>
-  </div> --}}
 </div>

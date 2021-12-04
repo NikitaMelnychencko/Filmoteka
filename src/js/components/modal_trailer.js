@@ -22,33 +22,21 @@ async function onYoutubeBtnClick(e) {
         modalRemoveListener();
         main.insertAdjacentHTML('beforeend', trailerPlayer({ svg, url }));
 
-        const trailerBackdrop = document.querySelector('.trailer_backdrop');
-        const trailerModal = document.querySelector('.trailer_modal');
-        trailerBackdrop.classList.add('trailer_backdrop_is-open');
-        trailerModal.classList.add('trailer_modal_is-open');
+        // const trailerBackdrop = document.querySelector('.trailer_backdrop');
+        // const trailerModal = document.querySelector('.trailer_modal');
+        // trailerBackdrop.classList.add('trailer_backdrop_is-open');
+        // trailerModal.classList.add('trailer_modal_is-open');
 
         addTrailerListners();
-    } else console.log('error')
+    } else {
+        const youtubeMessage = main.querySelector('.no-trailer');
+        const youtubeBtn = main.querySelector('.youtube-btn');
+        console.log(youtubeBtn);
+        youtubeMessage.classList.remove('no-trailer-hidden');
+        youtubeBtn.setAttribute('disabled', true);
 
-};
+    };
 
-function addTrailerListners() {
-    const closeBtn = main.querySelector('.close-trailer-btn');
-
-    closeBtn.addEventListener('click', closeTrailer)
-    window.addEventListener('keydown', closeTrailerEsc);
-};
-
-function closeTrailer(e) {
-    main.removeChild(main.querySelector('.trailer_backdrop'));
-    window.removeEventListener('keydown', closeTrailerEsc);
-    modalAddListener();
-};
-
-function closeTrailerEsc(e) {
-    if (e.code === 'Escape') {
-        closeTrailer();
-    }
 };
 
 function selectTrailer(data) {
@@ -69,4 +57,24 @@ function selectTrailer(data) {
     };
 
     return url;
+};
+
+function addTrailerListners() {
+    const trailerBackdrop = document.querySelector('.trailer_backdrop');
+    const closeBtn = main.querySelector('.close-trailer-btn');
+
+    window.addEventListener('keydown', closeTrailerEsc);
+    trailerBackdrop.addEventListener('click', closeTrailer);
+};
+
+function closeTrailer(e) {
+    main.removeChild(main.querySelector('.trailer_backdrop'));
+    window.removeEventListener('keydown', closeTrailerEsc);
+    modalAddListener();
+};
+
+function closeTrailerEsc(e) {
+    if (e.code === 'Escape') {
+        closeTrailer();
+    }
 };

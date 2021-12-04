@@ -180,128 +180,68 @@
 .uppercase-title {
   text-transform: uppercase;
 }
-
-// ------------
-
+.yotube-trailer {
+  display: flex;
+  position: absolute;
+}
 .youtube-btn { 
   position: absolute;
-  top:5px;
-  left:5px;
+  top: 5px;
+  left: 5px;
   width: 46px;
   height: 32px;
-  border: none;
-  background-color: rgba(0, 0, 0, 0);
   padding: 0;
+  
+  background-color: transparent;
+  fill: $youtube-active-color;
+  
+  border: none;
+  outline: none;
+  
   transform: scale(1);
-
   transition: all $time-cubic;
   
   &:hover {
-   
     transform: scale(1.15);
+  }
+
+  &:disabled {
+    fill: $youtube-disable-color;
+    &:hover {
+      transform: scale(1);
+      cursor:default;
+    }
   }
 }
 
 .yotube-svg {
-
   width: 60px;
   height: 40px;
-  
-
 }
 
-.trailer_backdrop {
+.no-trailer {
   position: absolute;
-  //background: $backdrop-color;
-  opacity: 0;
-  // background-color:black;
-  pointer-events: none;
-  width: 100vw;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  position: fixed;
-  transition: all $time-cubic;
-  z-index: 1000;
-}
+  top: 45px;
+  left: 5px;
 
-.trailer_backdrop_is-open {
+  padding:2px 5px;
+ 
+
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  color: $youtube-active-color;
+  background-color: white;
   opacity: 1;
-  //background:darkgray;
-  background-color: rgba(0, 0, 0, 0.85);
-  pointer-events: initial;
+  border-radius: 5px;
+
+  cursor: default;
+
+  transition: all $time-cubic;
+
 }
 
-.trailer_modal {
-  position: absolute;
-  top: 20px;
-  left: 50%;
+.no-trailer-hidden {
   opacity: 0;
   pointer-events: none;
-  transition: all $time-cubic;
-  transform: translate(-50%, 0) scale(0.9);
-  background-color: $primary-background-color;
-  z-index: 2000;
-  @media screen and (min-width: $tablet-general) {
-    transform: translate(-50%, -50%) scale(0.9);
-    top: 50%;
-  }
 }
-
-// .modal__content {
-//   min-width: 150px;
-//   min-height: 150px;
-// }
-
-// .modal__close-button-svg {
-//   stroke: $primary-text-color;
-//   width: 14px;
-//   height: 14px;
-// }
-
-.trailer_modal_is-open {
-  opacity: 1;
-  pointer-events: initial;
-  transform: translate(-50%, 0) scale(1);
-  @media screen and (min-width: $tablet-general) {
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-.close-trailer-btn {
-  position: absolute;
-  right: -50px;
-  top: -50px;
-
-  width: 50px;
-  height: 50px;
-
-  padding: 0;
-  border: none;
-  outline: none;
-
-  border-radius: 50%;
-
-  background-color: rgba(0, 0, 0, 0);
-  fill:white;
-  transform: scale(1);
-//   color:black
-
-&:hover,
-&:focus {
-transform: scale(1.2);
-fill: orange
-}
-}
-
-.close-trailer-svg {
-  // fill: black;
-  // color: black;
-
-}
-
-.youtube-frame {
-  display: block;
-  width: 990px;
-  height: 600px;
-}
-
