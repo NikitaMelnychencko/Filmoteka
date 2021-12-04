@@ -20,7 +20,6 @@ export function restoreScroll() {
   const styleString = styleArray.join(';');
   document.documentElement.style.cssText = `${styleString}${browserScroll()}`;
 }
-console.log(getBrowserId());
 
 const browserScroll = function () {
   if (getBrowserId() === 1) {

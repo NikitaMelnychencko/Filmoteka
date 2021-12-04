@@ -45,7 +45,6 @@ export function removePalitreListeners() {
 }
 
 function moveDot(e) {
-  console.log('move');
   if (e.target.id === 'palitre__ring' || e.target.id === 'palitre-ring-dot') {
     setRingColor(e);
   } else if (
