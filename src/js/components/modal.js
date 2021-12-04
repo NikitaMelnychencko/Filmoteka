@@ -95,7 +95,7 @@ function bodyFixPosition() {
         window.pageYOffset || document.documentElement.scrollTop;
       document.body.setAttribute('data-body-scroll-fix', scrollPosition);
       removeStyle('hidden', 'fixed', `-${scrollPosition}px`, '100%');
-      document.html.classList.remove('scrollRem');
+      document.documentElement.classList.remove('scrollRem');
     }
   }
 }
@@ -105,7 +105,7 @@ function bodyUnfixPosition() {
     let scrollPosition = document.body.getAttribute('data-body-scroll-fix');
     document.body.removeAttribute('data-body-scroll-fix');
     removeStyle('', '', '', '');
-    document.html.classList.add('scrollRem');
+    document.documentElement.classList.add('scrollRem');
     window.scroll(0, scrollPosition);
   }
 }
