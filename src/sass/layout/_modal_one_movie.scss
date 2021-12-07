@@ -28,6 +28,7 @@
 }
 
 .modal-one-movie__image-box {
+  position: relative;
   display: flex;
   justify-content: center;
   @media screen and (min-width: $tablet-general) {
@@ -178,4 +179,68 @@
 
 .uppercase-title {
   text-transform: uppercase;
+}
+.yotube-trailer {
+  display: flex;
+  position: absolute;
+}
+.youtube-btn { 
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 46px;
+  height: 32px;
+  padding: 0;
+  
+  background-color: transparent;
+  fill: $youtube-active-color;
+  
+  border: none;
+  outline: none;
+  
+  transform: scale(1);
+  transition: all $time-cubic;
+  
+  &:hover {
+    transform: scale(1.15);
+  }
+
+  &:disabled {
+    fill: $youtube-disable-color;
+    &:hover {
+      transform: scale(1);
+      cursor:default;
+    }
+  }
+}
+
+.yotube-svg {
+  width: 60px;
+  height: 40px;
+}
+
+.no-trailer {
+  position: absolute;
+  top: 45px;
+  left: 5px;
+
+  padding:2px 5px;
+ 
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  
+  color: $youtube-active-color;
+  background-color: $youtube-white-color;
+  opacity: 1;
+  border-radius: 5px;
+
+  cursor: default;
+
+  transition: all $time-cubic;
+}
+
+.no-trailer-hidden {
+  opacity: 0;
+  pointer-events: none;
 }

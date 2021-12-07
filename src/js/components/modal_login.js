@@ -77,7 +77,7 @@ export function addClass() {
   refs.singOutMod.classList.add('modal-singup--hidden');
   refs.singInMod.classList.remove('modal-singin--hidden');
   refs.modalSinUpError.classList.remove('modal__error--hidden');
-  
+
   removeListenerMouse();
 
   if (document.querySelector('.modal-one-movie') === null) {

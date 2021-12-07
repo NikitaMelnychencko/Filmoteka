@@ -1,5 +1,6 @@
 import modal_one_movie_markup from '../../views/partials/modal_one_movie.hbs';
 import { renderModal, closeModal } from '../components/modal';
+import { watchTrailer } from '../components/modal_trailer';
 import { renderParamsCard } from '../components/fetch';
 import {
   postUserData,
@@ -8,6 +9,7 @@ import {
   getIdUser,
 } from '../components/appFirebase.js';
 import img from '../../images/img/png/gallery/no-image.png';
+import svg from '../../images/svg/svg.svg';
 import { refs } from '../refs/refs.js';
 import { mouseUp } from '../components/modal_login.js';
 let id = 'id';
@@ -19,17 +21,19 @@ function refButton() {
   const buttonList = document.querySelector('.modal-one-movie__button-box');
   return buttonList;
 }
- 
+
 function renderMovieSeorchParam(id) {
   renderParamsCard(id)
     .then(data => {
-      renderModal(modal_one_movie_markup(dataFix(data)));
+      const dataFixed = dataFix(data);
+      renderModal(modal_one_movie_markup({ svg, dataFixed }));
       objService = data;
       arrObj = JSON.stringify({ objService });
       localStorage.setItem('idFilm', id);
       localStorage.setItem('marcupFilm', arrObj);
       addToDataBase(dataFix(data));
       updateButton(id);
+      watchTrailer(id);
     })
 }
 
@@ -37,7 +41,7 @@ function dataFix(m) {
   return {
     ...m,
     ...{ poster_path: !m.poster_path ? img : `${IMG_URL}${m.poster_path}` },
-    ...{ popularity : parseFloat(m.popularity.toFixed(1))}
+    ...{ popularity: parseFloat(m.popularity.toFixed(1)) }
   };
 }
 export function updateButton(id) {

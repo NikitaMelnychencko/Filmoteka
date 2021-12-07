@@ -60,7 +60,7 @@ function clearDelay() {
   clearTimeout(modalTimerId);
 }
 
-function modalRemoveListener() {
+export function modalRemoveListener() {
   window.removeEventListener('keydown', modalCloseEcsKey);
 }
 

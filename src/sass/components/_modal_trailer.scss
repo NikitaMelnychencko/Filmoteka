@@ -1,0 +1,68 @@
+
+.trailer_backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3000;
+
+  width: 100vw;
+  height: 100vh;
+  
+  background-color: $dark-backdrop-color;
+  pointer-events: initial;
+}
+
+.trailer_modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+.close-trailer-btn {
+  position: absolute;
+  top: -50px;
+  right: 50%;
+  transform: translateX(50%);
+
+  width: 50px;
+  height: 50px;
+  padding: 0;
+
+  background-color: transparent;
+  fill: $active-btn-text-color;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+
+  transition: all $time-cubic;
+
+  &:hover,
+  &:focus {
+   fill: $active-btn-color;
+   background-color: $active-btn-text-color;
+
+}
+ @media screen and (min-width: $tablet-general) { 
+    right: -50px;
+    transform: translateX(0);
+  }
+}
+
+.youtube-frame {
+  display: block;
+  width: 300px;
+  height: 150px;
+
+  @media screen and (min-width: $tablet-general) {
+   width: 660px;
+   height: 400px;
+  }
+
+@media screen and (min-width: $desktop-up) {
+   width: 924px;
+   height: 560px;
+  }
+}
+
